@@ -8,14 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _3.PL
+namespace _3.PL.Views
 {
-    public partial class Form1 : Form
+    public partial class frmDashboard : Form
     {
-        public Form1()
+        public frmDashboard()
         {
             InitializeComponent();
         }
-
     }
 }
