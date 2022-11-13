@@ -12,56 +12,56 @@ using _1.DAL.IRepositories;
 using _2.BUS.Services;
 using _2.BUS.IServices;
 using _1.DAL.DomainClass;
+
 namespace _3.PL.Views
 {
-    public partial class Frm_SanPham : Form
+    public partial class Frm_MauSac : Form
     {
-        private ISanPhamRepository _iSanPhamRepository;
-        private IQLSanPhamServices _iqLSanPhamServices;
+        private IMauSacRepository _imsRepository;
+        private IQLMauSacServices _iqLmsServices;
         private Guid _id;
-        public Frm_SanPham()
+        public Frm_MauSac()
         {
             InitializeComponent();
-            _iqLSanPhamServices = new QLSanPhamServices();
-            _iSanPhamRepository = new SanPhamRepository();
+            _imsRepository = new MauSacRepository();
+            _iqLmsServices = new QLMauSacServices();
             LoadData();
         }
+
         private void LoadData()
         {
-            dgrd_sanpham.ColumnCount = 5;
-            dgrd_sanpham.Columns[0].Name = "ID";
-            dgrd_sanpham.Columns[1].Name = "Mã";
-            dgrd_sanpham.Columns[2].Name = "Tên";
-            dgrd_sanpham.Columns[3].Name = "Mô tả";
-            dgrd_sanpham.Columns[4].Name = "Trạng thái";
-            dgrd_sanpham.Rows.Clear();
-            foreach (var x in _iqLSanPhamServices.GetAll())
+            dgrd_mausac.ColumnCount = 4;
+            dgrd_mausac.Columns[0].Name = "ID";
+            dgrd_mausac.Columns[1].Name = "Mã";
+            dgrd_mausac.Columns[2].Name = "Tên";
+            dgrd_mausac.Columns[3].Name = "Trạng thái";
+            dgrd_mausac.Rows.Clear();
+            foreach (var x in _iqLmsServices.GetAll())
             {
-                dgrd_sanpham.Rows.Add(x.Id, x.Ma, x.Ten, x.MoTa, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                dgrd_mausac.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
         }
-        private SanPham GetDataFromGUI()
+        private MauSac GetDataFromGUI()
         {
-            SanPham sp = new SanPham();
-            sp.Id = _id;
-            sp.Ma = tbx_ma.Text;
-            sp.Ten = tbx_ten.Text;
-            sp.MoTa = tbx_mota.Text;
+            MauSac ms = new MauSac();
+            ms.Id = _id;
+            ms.Ma = tbx_ma.Text;
+            ms.Ten = tbx_ten.Text;
             if (rbtn_hd.Checked == true)
             {
-                sp.TrangThai = 1;
+                ms.TrangThai = 1;
             }
             else if (rbtn_kohd.Checked == true)
             {
-                sp.TrangThai = 0;
+                ms.TrangThai = 0;
             }
-            return sp;
+            return ms;
         }
         private void btn_them_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLSanPhamServices.Add(GetDataFromGUI());
+                _iqLmsServices.Add(GetDataFromGUI());
                 LoadData();
             }
         }
@@ -70,7 +70,7 @@ namespace _3.PL.Views
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLSanPhamServices.Update(GetDataFromGUI());
+                _iqLmsServices.Update(GetDataFromGUI());
                 LoadData();
             }
         }
@@ -79,7 +79,7 @@ namespace _3.PL.Views
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLSanPhamServices.Delete(GetDataFromGUI());
+                _iqLmsServices.Delete(GetDataFromGUI());
                 LoadData();
             }
         }
@@ -88,32 +88,26 @@ namespace _3.PL.Views
         {
             tbx_ma.Text = "";
             tbx_ten.Text = "";
-            tbx_mota.Text = "";
             rbtn_hd.Checked = true;
             LoadData();
         }
 
-        private void dgrd_sanpham_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgrd_nsx_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            var sp = _iqLSanPhamServices.GetAll().FirstOrDefault(c => c.Id == Guid.Parse(dgrd_sanpham.Rows[rowIndex].Cells[0].Value.ToString()));
-            _id = sp.Id;
-            tbx_ma.Text = sp.Ma;
-            tbx_ten.Text = sp.Ten;
-            tbx_mota.Text = sp.MoTa;
-            if (sp.TrangThai == 1)
+            var ms = _iqLmsServices.GetAll().FirstOrDefault(c => c.Id == Guid.Parse(dgrd_mausac.Rows[rowIndex].Cells[0].Value.ToString()));
+            _id = ms.Id;
+            tbx_ma.Text = ms.Ma;
+            tbx_ten.Text = ms.Ten;
+
+            if (ms.TrangThai == 1)
             {
                 rbtn_hd.Checked = true;
             }
-            else if (sp.TrangThai == 0)
+            else if (ms.TrangThai == 0)
             {
                 rbtn_kohd.Checked = true;
             }
-        }
-
-        private void Frm_SanPham_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
