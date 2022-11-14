@@ -11,8 +11,8 @@
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="Services\" />
-    <Folder Include="Services\" />
+	<Folder Include="IServices\" />
+	<Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

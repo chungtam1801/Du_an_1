@@ -10,11 +10,13 @@ namespace _2.BUS.ViewModels
 {
     public class ViewQLChiTietHoaDon
     {
-        public Guid Id { get; set; }
-        public Guid? IdCtsp { get; set; }
-        public Guid? IdHd { get; set; }
-        public decimal? DonGia { get; set; }
+        public string Ma { get; set; }
+        public string Ten { get; set; }
+        public string Nsx { get; set; }
+        public string MauSac { get; set; }
+        public string LoaiSp { get; set; }
+        public string KichThuoc { get; set; }
+        public string ChatLieu { get; set; }
         public int? SoLuong { get; set; }
-        public int? TrangThai { get; set; }
     }
 }

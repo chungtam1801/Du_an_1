@@ -7,15 +7,20 @@ using _1.DAL.DomainClass;
 using _1.DAL.IRepositories;
 using _1.DAL.Repositories;
 using _2.BUS.IServices;
+using _2.BUS.ViewModels;
 
 namespace _2.BUS.Services
 {
     public class QLChiTietHoaDonServices : IQLChiTietHoaDonServices
     {
         private IChiTietHoaDonRepository _iChiTietHoaDonRepository;
+        private IQLChiTietSpServices _iQLChiTietSpServices;
+        private IHoaDonRepository _iHoaDonRepository;
         public QLChiTietHoaDonServices()
         {
             _iChiTietHoaDonRepository = new ChiTietHoaDonRepository();
+            _iQLChiTietSpServices = new QLChiTietSpServices();
+            _iHoaDonRepository = new HoaDonRepository();
         }
         public string Add(ChiTietHoaDon obj)
         {
@@ -36,6 +41,25 @@ namespace _2.BUS.Services
         public List<ChiTietHoaDon> GetAll()
         {
             return _iChiTietHoaDonRepository.GetAll();
+        }
+
+        public List<ViewQLChiTietHoaDon> GetAllView(Guid IdHD)
+        {
+            var lstView = new List<ViewQLChiTietHoaDon>();
+            lstView = (from a in _iQLChiTietSpServices.GetAllView()
+                       join b in _iChiTietHoaDonRepository.GetAll().Where(c=>c.IdHd==IdHD) on a.Id equals b.IdCtsp
+                       select new ViewQLChiTietHoaDon()
+                       {
+                           Ma = a.Ma,
+                           Ten = a.Ten,
+                           Nsx = a.Nsx,
+                           MauSac = a.MauSac,
+                           LoaiSp = a.LoaiSp,
+                           KichThuoc = a.KichThuoc,
+                           ChatLieu = a.ChatLieu,
+                           SoLuong = b.SoLuong
+                       }).ToList();
+            return lstView;
         }
 
         public ChiTietHoaDon GetByID(Guid id)

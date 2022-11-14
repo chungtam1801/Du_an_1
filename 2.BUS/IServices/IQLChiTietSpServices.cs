@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _1.DAL.DomainClass;
+using _2.BUS.ViewModels;
 
 namespace _2.BUS.IServices
 {
@@ -13,6 +14,7 @@ namespace _2.BUS.IServices
         string Update(ChiTietSp obj);
         string Delete(ChiTietSp obj);
         List<ChiTietSp> GetAll();
+        List<ViewQLChiTietSp> GetAllView();
         ChiTietSp GetByID(Guid id);
     }
 }
