@@ -9,11 +9,13 @@ using Microsoft.EntityFrameworkCore;
 namespace _1.DAL.DomainClass
 {
     [Table("NhanVien")]
-    [Index(nameof(Ma), Name = "UQ__NhanVien__3214CC9ECA2AF9EF", IsUnique = true)]
+    [Index(nameof(Ma), Name = "UQ__NhanVien__3214CC9E86DCCE6B", IsUnique = true)]
     public partial class NhanVien
     {
         public NhanVien()
         {
+            GiaoCaIdNguoiGiaoCaNavigations = new HashSet<GiaoCa>();
+            GiaoCaIdNguoiNhanCaNavigations = new HashSet<GiaoCa>();
             HoaDons = new HashSet<HoaDon>();
         }
 
@@ -50,6 +52,10 @@ namespace _1.DAL.DomainClass
         [ForeignKey(nameof(IdCv))]
         [InverseProperty(nameof(ChucVu.NhanViens))]
         public virtual ChucVu IdCvNavigation { get; set; }
+        [InverseProperty(nameof(GiaoCa.IdNguoiGiaoCaNavigation))]
+        public virtual ICollection<GiaoCa> GiaoCaIdNguoiGiaoCaNavigations { get; set; }
+        [InverseProperty(nameof(GiaoCa.IdNguoiNhanCaNavigation))]
+        public virtual ICollection<GiaoCa> GiaoCaIdNguoiNhanCaNavigations { get; set; }
         [InverseProperty(nameof(HoaDon.IdNvNavigation))]
         public virtual ICollection<HoaDon> HoaDons { get; set; }
     }

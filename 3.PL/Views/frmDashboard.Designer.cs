@@ -78,6 +78,7 @@
             // 
             // btn_TaoHoaDon
             // 
+            this.btn_TaoHoaDon.ForeColor = System.Drawing.Color.Black;
             this.btn_TaoHoaDon.Location = new System.Drawing.Point(33, 354);
             this.btn_TaoHoaDon.Name = "btn_TaoHoaDon";
             this.btn_TaoHoaDon.Size = new System.Drawing.Size(89, 35);
@@ -115,6 +116,7 @@
             // 
             // btn_ThanhToan
             // 
+            this.btn_ThanhToan.ForeColor = System.Drawing.Color.Black;
             this.btn_ThanhToan.Location = new System.Drawing.Point(139, 354);
             this.btn_ThanhToan.Name = "btn_ThanhToan";
             this.btn_ThanhToan.Size = new System.Drawing.Size(89, 35);

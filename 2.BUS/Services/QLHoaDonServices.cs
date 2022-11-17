@@ -21,7 +21,7 @@ namespace _2.BUS.Services
         {
             if (obj == null) return "Thêm thất bại";
             var tempobj = obj;
-            if (_iHoaDonRepository.Add(tempobj)) return "Thêm thành công";
+            if (_iHoaDonRepository.Add(tempobj)) return "Tạo hóa đơn thành công";
             return "Thêm thất bại";
         }
 
@@ -47,7 +47,7 @@ namespace _2.BUS.Services
         {
             if (obj == null) return "Sửa thất bại";
             var tempobj = obj;
-            if (_iHoaDonRepository.Update(tempobj)) return "Sửa thành công";
+            if (_iHoaDonRepository.Update(tempobj)) return "Thanh toán thành công";
             return "Sửa thất bại";
         }
     }

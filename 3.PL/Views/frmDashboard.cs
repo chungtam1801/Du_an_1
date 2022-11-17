@@ -143,18 +143,25 @@ namespace _3.PL.Views
             tbx_NhanVien.Text = _iQLNhanVienServices.GetAll().First(c => c.Id == hoaDon.IdNv).Ten;
             tbx_NgayTao.Text = hoaDon.NgayTao.ToString();
             tbx_TongTien.Text = "0";
-            _iQLHoaDonServices.Add(hoaDon);
+            MessageBox.Show(_iQLHoaDonServices.Add(hoaDon));
             _hoaDon = hoaDon;
             LoadDTG_HoaDon(_iQLHoaDonServices.GetAll());
         }
 
         private void btn_ThanhToan_Click(object sender, EventArgs e)
         {
-            _hoaDon.NgayThanhToan = DateTime.Now;
-            _hoaDon.TrangThai = 1;
-            _iQLHoaDonServices.Update(_hoaDon);
-            tbx_NgayThanhToan.Text = _hoaDon.NgayThanhToan.ToString();
-            LoadDTG_HoaDon(_iQLHoaDonServices.GetAll());
+            if(tbx_TienKhachDua.Text=="")
+            {
+                MessageBox.Show("Vui lòng nhập tiền khách đưa");
+            }
+            else
+            {
+                _hoaDon.NgayThanhToan = DateTime.Now;
+                _hoaDon.TrangThai = 1;
+                MessageBox.Show(_iQLHoaDonServices.Update(_hoaDon));
+                tbx_NgayThanhToan.Text = _hoaDon.NgayThanhToan.ToString();
+                LoadDTG_HoaDon(_iQLHoaDonServices.GetAll());
+            }              
         }
 
         private void tbx_TienKhachDua_TextChanged(object sender, EventArgs e)
