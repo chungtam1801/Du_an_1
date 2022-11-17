@@ -56,11 +56,12 @@
             this.cmb_loaisp = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dgrd_ctsp = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_openfile = new System.Windows.Forms.Button();
             this.btn_them = new System.Windows.Forms.Button();
             this.btn_sua = new System.Windows.Forms.Button();
             this.btn_xoa = new System.Windows.Forms.Button();
             this.btn_clear = new System.Windows.Forms.Button();
+            this.openfileDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_spham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrd_ctsp)).BeginInit();
             this.SuspendLayout();
@@ -177,9 +178,11 @@
             // 
             // pictureBox_spham
             // 
+            this.pictureBox_spham.Image = global::_3.PL.Properties.Resources.image_icon_153794;
             this.pictureBox_spham.Location = new System.Drawing.Point(92, 95);
             this.pictureBox_spham.Name = "pictureBox_spham";
             this.pictureBox_spham.Size = new System.Drawing.Size(110, 110);
+            this.pictureBox_spham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_spham.TabIndex = 26;
             this.pictureBox_spham.TabStop = false;
             // 
@@ -312,14 +315,15 @@
             this.dgrd_ctsp.TabIndex = 37;
             this.dgrd_ctsp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrd_ctsp_CellClick);
             // 
-            // button1
+            // btn_openfile
             // 
-            this.button1.Location = new System.Drawing.Point(11, 148);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "Browns";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_openfile.Location = new System.Drawing.Point(11, 148);
+            this.btn_openfile.Name = "btn_openfile";
+            this.btn_openfile.Size = new System.Drawing.Size(75, 23);
+            this.btn_openfile.TabIndex = 38;
+            this.btn_openfile.Text = "Browns";
+            this.btn_openfile.UseVisualStyleBackColor = true;
+            this.btn_openfile.Click += new System.EventHandler(this.btn_openfile_Click);
             // 
             // btn_them
             // 
@@ -361,6 +365,10 @@
             this.btn_clear.UseVisualStyleBackColor = true;
             this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
+            // openfileDialog
+            // 
+            this.openfileDialog.FileName = "openFileDialog1";
+            // 
             // Frm_ChiTietSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -370,7 +378,7 @@
             this.Controls.Add(this.btn_xoa);
             this.Controls.Add(this.btn_sua);
             this.Controls.Add(this.btn_them);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_openfile);
             this.Controls.Add(this.dgrd_ctsp);
             this.Controls.Add(this.tbx_soluong);
             this.Controls.Add(this.label8);
@@ -437,10 +445,11 @@
         private System.Windows.Forms.ComboBox cmb_loaisp;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dgrd_ctsp;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_openfile;
         private System.Windows.Forms.Button btn_them;
         private System.Windows.Forms.Button btn_sua;
         private System.Windows.Forms.Button btn_xoa;
         private System.Windows.Forms.Button btn_clear;
+        private System.Windows.Forms.OpenFileDialog openfileDialog;
     }
 }

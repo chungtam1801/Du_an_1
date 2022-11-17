@@ -56,7 +56,8 @@ namespace _3.PL.Views
             dgrd_ctsp.Columns[12].Name = "Trạng thái";
             foreach (var x in _iqLChiTietSpServices.GetAll())
             {
-                dgrd_ctsp.Rows.Add(x.Id, _iqlSanPhamServices.GetAll().First(c => c.Id == x.IdSp).Ten,
+                dgrd_ctsp.Rows.Add(x.Id,
+                    _iqlSanPhamServices.GetAll().First(c => c.Id == x.IdSp).Ten,
                                         _iqlNsxServices.GetAll().First(c => c.Id == x.IdNsx).Ten,
                                         _iqlMauSacServices.GetAll().First(c => c.Id == x.IdMauSac).Ten,
                                         _iqLLoaiSpServices.GetAll().First(c => c.Id == x.IdLoaiSp).Ten,
@@ -192,6 +193,22 @@ namespace _3.PL.Views
             if (ctsp.TrangThai == 1)
             {
                 rbtn_hd.Checked = true;
+            }
+        }
+
+        private void btn_openfile_Click(object sender, EventArgs e)
+        {
+            //openfileDialog.ShowDialog();
+            //string file = openfileDialog.FileName;
+            //if (string.IsNullOrEmpty(file)) return;
+            //Image myImage  = Image.FromFile(file);
+            //pictureBox_spham.Image = myImage;
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openfileDialog.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox_spham.Image = new Bitmap(openFileDialog.FileName);
+
             }
         }
     }
