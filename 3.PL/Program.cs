@@ -18,7 +18,7 @@ namespace _3.PL
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_TrangChu());
+            Application.Run(new Frm_ChiTietSanPham());
         }
     }
 }

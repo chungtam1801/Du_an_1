@@ -49,6 +49,12 @@ namespace _1.DAL.Repositories
         {
             if (obj == null) return false;
             var tempobj = _dbContext.ChiTietSps.FirstOrDefault(c => c.Id == obj.Id);
+            tempobj.IdKt = obj.IdKt;
+            tempobj.IdMauSac=obj.IdMauSac;
+            tempobj.IdSp=obj.IdSp;
+            tempobj.IdLoaiSp=obj.IdLoaiSp;
+            tempobj.IdClieu=obj.IdClieu;
+            tempobj.IdNsx=obj.IdNsx;
             tempobj.Anh = obj.Anh;
             tempobj.MoTa = obj.MoTa;    
             tempobj.SoLuongTon= obj.SoLuongTon;
