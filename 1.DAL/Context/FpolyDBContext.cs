@@ -24,6 +24,7 @@ namespace _1.DAL.Context
         public virtual DbSet<ChiTietPttt> ChiTietPttts { get; set; }
         public virtual DbSet<ChiTietSp> ChiTietSps { get; set; }
         public virtual DbSet<ChucVu> ChucVus { get; set; }
+        public virtual DbSet<GiaoCa> GiaoCas { get; set; }
         public virtual DbSet<HoaDon> HoaDons { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
         public virtual DbSet<KhuyenMai> KhuyenMais { get; set; }
@@ -42,7 +43,7 @@ namespace _1.DAL.Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=LAPTOP-G189FU38\\SQLEXPRESS;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;User ID=nhinhph25737;Password=123456");
+                optionsBuilder.UseSqlServer("Data Source=TAM-LAPTOP\\SQLEXPRESS;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;User ID=tam;Password=123456789");
             }
         }
 
@@ -172,11 +173,26 @@ namespace _1.DAL.Context
                 entity.Property(e => e.TrangThai).HasDefaultValueSql("((0))");
             });
 
-            modelBuilder.Entity<HoaDon>(entity =>
+            modelBuilder.Entity<GiaoCa>(entity =>
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.GiamGia).IsUnicode(false);
+                entity.Property(e => e.GhiChu).IsUnicode(false);
+
+                entity.HasOne(d => d.IdNguoiGiaoCaNavigation)
+                    .WithMany(p => p.GiaoCaIdNguoiGiaoCaNavigations)
+                    .HasForeignKey(d => d.IdNguoiGiaoCa)
+                    .HasConstraintName("FK_NguoiGC");
+
+                entity.HasOne(d => d.IdNguoiNhanCaNavigation)
+                    .WithMany(p => p.GiaoCaIdNguoiNhanCaNavigations)
+                    .HasForeignKey(d => d.IdNguoiNhanCa)
+                    .HasConstraintName("FK_NguoiNC");
+            });
+
+            modelBuilder.Entity<HoaDon>(entity =>
+            {
+                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
                 entity.Property(e => e.Ma).IsUnicode(false);
 

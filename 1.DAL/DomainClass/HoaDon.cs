@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace _1.DAL.DomainClass
 {
     [Table("HoaDon")]
-    [Index(nameof(Ma), Name = "UQ__HoaDon__3214CC9EC1332EB1", IsUnique = true)]
+    [Index(nameof(Ma), Name = "UQ__HoaDon__3214CC9E6AF877D5", IsUnique = true)]
     public partial class HoaDon
     {
         public HoaDon()
@@ -27,10 +27,9 @@ namespace _1.DAL.DomainClass
         public string Ma { get; set; }
         [Column(TypeName = "date")]
         public DateTime NgayTao { get; set; }
-        [Column(TypeName = "date")]
-        public DateTime NgayThanhToan { get; set; }
-        [StringLength(10)]
-        public string GiamGia { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? NgayThanhToan { get; set; }
+        public double? GiamGia { get; set; }
         public int? TrangThai { get; set; }
 
         [ForeignKey(nameof(IdNv))]

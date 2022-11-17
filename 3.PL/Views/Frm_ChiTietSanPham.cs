@@ -119,7 +119,7 @@ namespace _3.PL.Views
             ctsp.GiaBan = Convert.ToDecimal(tbx_giaban.Text);
             ctsp.GiaNhap = Convert.ToDecimal(tbx_gianhap.Text);
             ctsp.SoLuongTon = Convert.ToInt32(tbx_soluong.Text);
-            ctsp.Anh = pictureBox_spham.Text;
+            //ctsp.Anh = pictureBox_spham.Text;
             if (rbtn_hd.Checked == true)
             {
                 ctsp.TrangThai = 1;
