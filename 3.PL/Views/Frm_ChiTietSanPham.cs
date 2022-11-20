@@ -130,6 +130,7 @@ namespace _3.PL.Views
             ctsp.GiaBan = Convert.ToDecimal(tbx_giaban.Text);
             ctsp.GiaNhap = Convert.ToDecimal(tbx_gianhap.Text);
             ctsp.SoLuongTon = Convert.ToInt32(tbx_soluong.Text);
+            //Ảnh
             if(pictureBox_spham.Image == null)
             {
                 ctsp.Anh = null;
@@ -138,7 +139,8 @@ namespace _3.PL.Views
                 MemoryStream stream = new MemoryStream();
                 pictureBox_spham.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
                 ctsp.Anh = stream.ToArray();
-            }        
+            } 
+            
             if (rbtn_hd.Checked == true)
             {
                 ctsp.TrangThai = 1;
@@ -226,6 +228,7 @@ namespace _3.PL.Views
                 tbx_soluong.Text = ctsp.SoLuongTon.ToString();
                 tbx_gianhap.Text = ctsp.GiaNhap.ToString();
                 tbx_giaban.Text = ctsp.GiaBan.ToString();
+                //ẢNh
                 if (ctsp.Anh == null)
                 {
                     pictureBox_spham.Image = null;

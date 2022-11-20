@@ -460,7 +460,7 @@
             // pic_ttnhieuphuongthuc
             // 
             this.pic_ttnhieuphuongthuc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pic_ttnhieuphuongthuc.Image = global::_3.PL.Properties.Resources.thethanhtoan1;
+            // this.pic_ttnhieuphuongthuc.Image = global::_3.PL.Properties.Resources.thethanhtoan1;
             this.pic_ttnhieuphuongthuc.Location = new System.Drawing.Point(125, 252);
             this.pic_ttnhieuphuongthuc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pic_ttnhieuphuongthuc.Name = "pic_ttnhieuphuongthuc";
@@ -472,7 +472,7 @@
             // pictureBox4
             // 
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Image = global::_3.PL.Properties.Resources.nvtaiquay2;
+            // this.pictureBox4.Image = global::_3.PL.Properties.Resources.nvtaiquay2;
             this.pictureBox4.Location = new System.Drawing.Point(12, 8);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox4.Name = "pictureBox4";
@@ -495,7 +495,7 @@
             // pic_themnhanhkhachhang
             // 
             this.pic_themnhanhkhachhang.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pic_themnhanhkhachhang.Image = global::_3.PL.Properties.Resources.add1;
+            // this.pic_themnhanhkhachhang.Image = global::_3.PL.Properties.Resources.add1;
             this.pic_themnhanhkhachhang.Location = new System.Drawing.Point(263, 4);
             this.pic_themnhanhkhachhang.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pic_themnhanhkhachhang.Name = "pic_themnhanhkhachhang";
@@ -516,7 +516,7 @@
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Image = global::_3.PL.Properties.Resources.timkiem1;
+            // this.pictureBox2.Image = global::_3.PL.Properties.Resources.timkiem1;
             this.pictureBox2.Location = new System.Drawing.Point(1, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox2.Name = "pictureBox2";

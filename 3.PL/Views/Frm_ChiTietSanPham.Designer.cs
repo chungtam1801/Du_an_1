@@ -196,6 +196,154 @@
             this.label5.Size = new System.Drawing.Size(95, 18);
             this.label5.TabIndex = 35;
             this.label5.Text = "Loại sản phẩm";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 38);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 15);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Nhà sản xuất";
+            // 
+            // cmb_mausac
+            // 
+            this.cmb_mausac.FormattingEnabled = true;
+            this.cmb_mausac.Location = new System.Drawing.Point(92, 64);
+            this.cmb_mausac.Name = "cmb_mausac";
+            this.cmb_mausac.Size = new System.Drawing.Size(124, 23);
+            this.cmb_mausac.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 67);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(51, 15);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Màu sắc";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(700, 72);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(80, 15);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "Trạng thái KM";
+            // 
+            // chk_khuyenmai
+            // 
+            //this.chk_khuyenmai.AutoSize = true;
+            //this.chk_khuyenmai.Location = new System.Drawing.Point(786, 68);
+            //this.chk_khuyenmai.Name = "chk_khuyenmai";
+            //this.chk_khuyenmai.Size = new System.Drawing.Size(83, 19);
+            //this.chk_khuyenmai.TabIndex = 21;
+            //this.chk_khuyenmai.Text = "checkBox1";
+            //this.chk_khuyenmai.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(700, 99);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(59, 15);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "Trạng thái";
+            // 
+            // rbtn_hd
+            // 
+            this.rbtn_hd.AutoSize = true;
+            this.rbtn_hd.Location = new System.Drawing.Point(786, 98);
+            this.rbtn_hd.Name = "rbtn_hd";
+            this.rbtn_hd.Size = new System.Drawing.Size(82, 19);
+            this.rbtn_hd.TabIndex = 23;
+            this.rbtn_hd.TabStop = true;
+            this.rbtn_hd.Text = "Hoạt động";
+            this.rbtn_hd.UseVisualStyleBackColor = true;
+            // 
+            // rbtn_kohd
+            // 
+            this.rbtn_kohd.AutoSize = true;
+            this.rbtn_kohd.Location = new System.Drawing.Point(892, 99);
+            this.rbtn_kohd.Name = "rbtn_kohd";
+            this.rbtn_kohd.Size = new System.Drawing.Size(118, 19);
+            this.rbtn_kohd.TabIndex = 24;
+            this.rbtn_kohd.TabStop = true;
+            this.rbtn_kohd.Text = "Không hoạt động";
+            this.rbtn_kohd.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(18, 109);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(29, 15);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Ảnh";
+            // 
+            // pictureBox_spham
+            // 
+            // this.pictureBox_spham.Image = global::_3.PL.Properties.Resources.image_icon_153794;
+            // this.pictureBox_spham.Location = new System.Drawing.Point(92, 95);
+            this.pictureBox_spham.Name = "pictureBox_spham";
+            this.pictureBox_spham.Size = new System.Drawing.Size(110, 110);
+            this.pictureBox_spham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_spham.TabIndex = 26;
+            this.pictureBox_spham.TabStop = false;
+            // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Location = new System.Drawing.Point(348, 131);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(38, 15);
+            this.label.TabIndex = 27;
+            this.label.Text = "Mô tả";
+            // 
+            // tbx_mota
+            // 
+            this.tbx_mota.Location = new System.Drawing.Point(437, 128);
+            this.tbx_mota.Multiline = true;
+            this.tbx_mota.Name = "tbx_mota";
+            this.tbx_mota.Size = new System.Drawing.Size(167, 50);
+            this.tbx_mota.TabIndex = 28;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(700, 14);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(54, 15);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Giá nhập";
+            // 
+            // tbx_gianhap
+            // 
+            this.tbx_gianhap.Location = new System.Drawing.Point(774, 6);
+            this.tbx_gianhap.Name = "tbx_gianhap";
+            this.tbx_gianhap.Size = new System.Drawing.Size(167, 23);
+            this.tbx_gianhap.TabIndex = 17;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(700, 43);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(47, 15);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "Giá bán";
+            // 
+            // tbx_giaban
+            // 
+            this.tbx_giaban.Location = new System.Drawing.Point(774, 35);
+            this.tbx_giaban.Name = "tbx_giaban";
+            this.tbx_giaban.Size = new System.Drawing.Size(167, 23);
+            this.tbx_giaban.TabIndex = 19;
+            // 
+            // tbx_soluong
+            // 
+            this.tbx_soluong.Location = new System.Drawing.Point(437, 97);
+            this.tbx_soluong.Name = "tbx_soluong";
+            this.tbx_soluong.Size = new System.Drawing.Size(133, 23);
+            this.tbx_soluong.TabIndex = 36;
             // 
             // label8
             // 
