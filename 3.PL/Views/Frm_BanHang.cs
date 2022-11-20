@@ -45,7 +45,7 @@ namespace _3.PL.Views
                 thongTinSanPham.Anh = bitmap;
                 thongTinSanPham.Ten = x.Ten;
                 thongTinSanPham.SoLuong = x.SoLuongTon.ToString();
-                thongTinSanPham.GiaTien = x.Gia.ToString();
+                thongTinSanPham.GiaTien = x.GiaBan.ToString();
                 thongTinSanPham.Id = x.Id.ToString();
                 thongTinSanPham.Click += new System.EventHandler(UserContrel_Click);
                 flp_SanPham.Controls.Add(thongTinSanPham);           
