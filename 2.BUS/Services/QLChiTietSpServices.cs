@@ -71,9 +71,12 @@ namespace _2.BUS.Services
                              LoaiSp = h.Ten,
                              KichThuoc = d.Size,
                              ChatLieu = c.Ten,
+                             Anh = a.Anh,
                              MoTa = a.MoTa,
                              SoLuongTon = a.SoLuongTon,
-                             Gia = a.GiaBan
+                             GiaNhap = a.GiaNhap,
+                             GiaBan = a.GiaBan,
+                             TrangThai = a.TrangThai,
                          } 
                          ).ToList();
             return listView;

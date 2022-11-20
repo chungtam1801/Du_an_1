@@ -19,8 +19,12 @@ namespace _2.BUS.ViewModels
         public string LoaiSp { get; set; }
         public string KichThuoc { get; set; }
         public string ChatLieu { get; set; }
+        public byte[] Anh { get; set; }
         public string MoTa { get; set; }
         public int? SoLuongTon { get; set; }
-        public decimal? Gia { get; set; }
+        public decimal? GiaNhap { get; set; }
+        public decimal? GiaBan { get; set; }
+        public int? TrangThai { get; set; }
+
     }
 }
