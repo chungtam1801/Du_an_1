@@ -65,6 +65,8 @@ namespace _3.PL.Views
             pnl_Nav.Left = btn_nhanvien.Left;
             btn_nhanvien.BackColor = Color.FromArgb(46, 51, 73);
             lbl_tilte.Text = "NHÂN VIÊN";
+            OpenChildForm(new Frm_NhanVien(), sender);
+
 
         }
 
