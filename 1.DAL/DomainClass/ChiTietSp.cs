@@ -29,9 +29,6 @@ namespace _1.DAL.DomainClass
         public Guid? IdKt { get; set; }
         [Column("IdCLieu")]
         public Guid? IdClieu { get; set; }
-        [Required]
-        [StringLength(50)]
-        public string Anh { get; set; }
         [StringLength(50)]
         public string MoTa { get; set; }
         public int? SoLuongTon { get; set; }
@@ -40,6 +37,8 @@ namespace _1.DAL.DomainClass
         [Column(TypeName = "decimal(20, 0)")]
         public decimal? GiaBan { get; set; }
         public int? TrangThai { get; set; }
+        [Column(TypeName = "image")]
+        public byte[] Anh { get; set; }
 
         [ForeignKey(nameof(IdClieu))]
         [InverseProperty(nameof(ChatLieu.ChiTietSps))]
