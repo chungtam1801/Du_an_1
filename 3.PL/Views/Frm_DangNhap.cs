@@ -54,14 +54,5 @@ namespace _3.PL.Views
             this.tb_taikhoan.Focus();
         }
 
-        private void lb_QuenMatKhau_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            
-        }
-
-        private void lb_QuenMatKhau_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }
