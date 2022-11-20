@@ -74,7 +74,9 @@ namespace _2.BUS.Services
                              Anh = a.Anh,
                              MoTa = a.MoTa,
                              SoLuongTon = a.SoLuongTon,
-                             Gia = a.GiaBan
+                             GiaNhap = a.GiaNhap,
+                             GiaBan = a.GiaBan,
+                             TrangThai = a.TrangThai,
                          } 
                          ).ToList();
             return listView;

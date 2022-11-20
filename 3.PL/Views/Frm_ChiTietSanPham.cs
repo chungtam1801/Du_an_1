@@ -11,6 +11,8 @@ using _1.DAL.DomainClass;
 using _2.BUS.IServices;
 using _2.BUS.Services;
 using System.IO;
+using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace _3.PL.Views
 {
@@ -23,6 +25,7 @@ namespace _3.PL.Views
         private IQLKichThuocServices _iqlLKichThuocServices;
         private IQLLoaiSpServices _iqLLoaiSpServices;
         private IQLChatLieuServices _iqLChatLieuServices;
+
         private Guid _id;
         public Frm_ChiTietSanPham()
         {
@@ -35,11 +38,16 @@ namespace _3.PL.Views
             _iqLLoaiSpServices = new QLLoaiSpServices();
             _iqlMauSacServices = new QLMauSacServices();
             LoadData();
-            LoadCombobox();
+            LoadSanPham();
+            LoadChatLieu();
+            LoadMauSac();
+            LoadNSX();
+            LoadKichThuoc();
+            LoadLoaiSP();
         }
         private void LoadData()
         {
-            dgrd_ctsp.ColumnCount = 13;
+            dgrd_ctsp.ColumnCount = 12;
             dgrd_ctsp.Rows.Clear();
             dgrd_ctsp.Columns[0].Name = "Id";
             dgrd_ctsp.Columns[0].Visible = false;
@@ -50,56 +58,58 @@ namespace _3.PL.Views
             dgrd_ctsp.Columns[5].Name = "Kích thước";
             dgrd_ctsp.Columns[6].Name = "Chất liệu";
             dgrd_ctsp.Columns[7].Name = "Ảnh";
-            dgrd_ctsp.Columns[8].Name = "Mô tả";
-            dgrd_ctsp.Columns[9].Name = "Số lượng tồn";
-            dgrd_ctsp.Columns[10].Name = "Giá nhập";
-            dgrd_ctsp.Columns[11].Name = "Giá bán";
-            dgrd_ctsp.Columns[12].Name = "Trạng thái";
-            foreach (var x in _iqLChiTietSpServices.GetAll())
+            dgrd_ctsp.Columns[7].Name = "Mô tả";
+            dgrd_ctsp.Columns[8].Name = "Số lượng tồn";
+            dgrd_ctsp.Columns[9].Name = "Giá nhập";
+            dgrd_ctsp.Columns[10].Name = "Giá bán";
+            dgrd_ctsp.Columns[11].Name = "Trạng thái";
+            foreach (var x in _iqLChiTietSpServices.GetAllView())
             {
-                dgrd_ctsp.Rows.Add(x.Id,
-                    _iqlSanPhamServices.GetAll().First(c => c.Id == x.IdSp).Ten,
-                                        _iqlNsxServices.GetAll().First(c => c.Id == x.IdNsx).Ten,
-                                        _iqlMauSacServices.GetAll().First(c => c.Id == x.IdMauSac).Ten,
-                                        _iqLLoaiSpServices.GetAll().First(c => c.Id == x.IdLoaiSp).Ten,
-                                        _iqlLKichThuocServices.GetAll().First(c => c.Id == x.IdKt).Size,
-                                        _iqLChatLieuServices.GetAll().First(c => c.Id == x.IdClieu).Ten,
-                                        x.Anh, x.MoTa, x.SoLuongTon, x.GiaNhap, x.GiaBan,
-                                        x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                dgrd_ctsp.Rows.Add(x.Id, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu, x.MoTa, x.SoLuongTon, x.GiaNhap, x.GiaBan, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
         }
-        private void LoadCombobox()
+        private void LoadSanPham()
         {
             foreach (var x in _iqlSanPhamServices.GetAll())
             {
                 cmb_sp.Items.Add(x.Ten);
             }
             cmb_sp.SelectedIndex = 0;
-
+        }
+        private void LoadNSX()
+        {
             foreach (var x in _iqlNsxServices.GetAll())
             {
                 cmb_nsx.Items.Add(x.Ten);
             }
             cmb_nsx.SelectedIndex = 0;
-
+        }
+        private void LoadMauSac()
+        {
             foreach (var x in _iqlMauSacServices.GetAll())
             {
                 cmb_mausac.Items.Add(x.Ten);
             }
             cmb_mausac.SelectedIndex = 0;
-
+        }
+        private void LoadChatLieu()
+        {
             foreach (var x in _iqLChatLieuServices.GetAll())
             {
                 cmb_chatlieu.Items.Add(x.Ten);
             }
             cmb_chatlieu.SelectedIndex = 0;
-
+        }
+        private void LoadKichThuoc()
+        {
             foreach (var x in _iqlLKichThuocServices.GetAll())
             {
                 cmb_kichthuoc.Items.Add(x.Size);
             }
             cmb_kichthuoc.SelectedIndex = 0;
-
+        }
+        private void LoadLoaiSP()
+        {
             foreach (var x in _iqLLoaiSpServices.GetAll())
             {
                 cmb_loaisp.Items.Add(x.Ten);
@@ -120,7 +130,17 @@ namespace _3.PL.Views
             ctsp.GiaBan = Convert.ToDecimal(tbx_giaban.Text);
             ctsp.GiaNhap = Convert.ToDecimal(tbx_gianhap.Text);
             ctsp.SoLuongTon = Convert.ToInt32(tbx_soluong.Text);
-            //ctsp.Anh = pictureBox_spham.Text;
+            //Ảnh
+            if(pictureBox_spham.Image == null)
+            {
+                ctsp.Anh = null;
+            }else
+            {
+                MemoryStream stream = new MemoryStream();
+                pictureBox_spham.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                ctsp.Anh = stream.ToArray();
+            } 
+            
             if (rbtn_hd.Checked == true)
             {
                 ctsp.TrangThai = 1;
@@ -138,7 +158,17 @@ namespace _3.PL.Views
             }           
             return ctsp;
         }
-        private void btn_them_Click(object sender, EventArgs e)
+
+        private void btn_openfile_Click_1(object sender, EventArgs e)
+        {
+            openFileDialog1.ShowDialog();
+            string file = openFileDialog1.FileName;
+            if (string.IsNullOrEmpty(file)) return;
+            Image myImage = Image.FromFile(file);
+            pictureBox_spham.Image = myImage;
+        }
+
+        private void btn_them_Click_1(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
@@ -147,7 +177,7 @@ namespace _3.PL.Views
             LoadData();
         }
 
-        private void btn_sua_Click(object sender, EventArgs e)
+        private void btn_sua_Click_1(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
@@ -156,7 +186,7 @@ namespace _3.PL.Views
             LoadData();
         }
 
-        private void btn_xoa_Click(object sender, EventArgs e)
+        private void btn_xoa_Click_1(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
@@ -165,60 +195,74 @@ namespace _3.PL.Views
             LoadData();
         }
 
-        private void btn_clear_Click(object sender, EventArgs e)
+        private void btn_clear_Click_1(object sender, EventArgs e)
         {
-            LoadCombobox();
-            _id = Guid.Empty;
+            LoadData();
+            LoadSanPham();
+            LoadChatLieu();
+            LoadMauSac();
+            LoadNSX();
+            LoadKichThuoc(); _id = Guid.Empty;
             tbx_giaban.Text = "";
             tbx_gianhap.Text = "";
             tbx_mota.Text = "";
             tbx_soluong.Text = "";
+            pictureBox_spham.Image = null;
             LoadData();
         }
 
-        private void dgrd_ctsp_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgrd_ctsp_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            var row = dgrd_ctsp.Rows[rowIndex];
-            ChiTietSp ctsp = _iqLChiTietSpServices.GetAll().First(c => c.Id == Guid.Parse(row.Cells[0].Value.ToString()));
-            SanPham sp = _iqlSanPhamServices.GetAll().First(c => c.Id == ctsp.IdSp);
-            MauSac ms = _iqlMauSacServices.GetAll().First(c => c.Id == ctsp.IdMauSac);
-            KichThuoc kt = _iqlLKichThuocServices.GetAll().First(c => c.Id == ctsp.IdKt);
-            LoaiSp lsp = _iqLLoaiSpServices.GetAll().First(c => c.Id == ctsp.IdLoaiSp);
-            Nsx nsx = _iqlNsxServices.GetAll().First(c => c.Id == ctsp.IdNsx);
-            ChatLieu cl = _iqLChatLieuServices.GetAll().First(c => c.Id == ctsp.IdClieu);
-            _id = ctsp.Id;
-            cmb_sp.SelectedIndex = _iqlSanPhamServices.GetAll().IndexOf(sp);
-            cmb_mausac.SelectedIndex = _iqlMauSacServices.GetAll().IndexOf(ms);
-            cmb_kichthuoc.SelectedIndex = _iqlLKichThuocServices.GetAll().IndexOf(kt);
-            cmb_loaisp.SelectedIndex = _iqLLoaiSpServices.GetAll().IndexOf(lsp);
-            cmb_nsx.SelectedIndex = _iqlNsxServices.GetAll().IndexOf(nsx);
-            cmb_chatlieu.SelectedIndex = _iqLChatLieuServices.GetAll().IndexOf(cl);
-            tbx_mota.Text = ctsp.MoTa;
-            tbx_soluong.Text = ctsp.SoLuongTon.ToString();
-            tbx_gianhap.Text = row.Cells[10].Value.ToString();
-            tbx_giaban.Text = row.Cells[11].Value.ToString();
-            if (ctsp.TrangThai == 1)
+            if (rowIndex >= 0 && rowIndex < _iqLChiTietSpServices.GetAllView().Count)
             {
-                rbtn_hd.Checked = true;
+                var row = dgrd_ctsp.Rows[rowIndex];
+                ChiTietSp ctsp = _iqLChiTietSpServices.GetAll().First(c => c.Id == Guid.Parse(row.Cells[0].Value.ToString()));
+                SanPham sp = _iqlSanPhamServices.GetAll().First(c => c.Id == ctsp.IdSp);
+                MauSac ms = _iqlMauSacServices.GetAll().First(c => c.Id == ctsp.IdMauSac);
+                KichThuoc kt = _iqlLKichThuocServices.GetAll().First(c => c.Id == ctsp.IdKt);
+                LoaiSp lsp = _iqLLoaiSpServices.GetAll().First(c => c.Id == ctsp.IdLoaiSp);
+                Nsx nsx = _iqlNsxServices.GetAll().First(c => c.Id == ctsp.IdNsx);
+                ChatLieu cl = _iqLChatLieuServices.GetAll().First(c => c.Id == ctsp.IdClieu);
+                _id = ctsp.Id;
+                cmb_sp.SelectedIndex = _iqlSanPhamServices.GetAll().IndexOf(sp);
+                cmb_mausac.SelectedIndex = _iqlMauSacServices.GetAll().IndexOf(ms);
+                cmb_kichthuoc.SelectedIndex = _iqlLKichThuocServices.GetAll().IndexOf(kt);
+                cmb_loaisp.SelectedIndex = _iqLLoaiSpServices.GetAll().IndexOf(lsp);
+                cmb_nsx.SelectedIndex = _iqlNsxServices.GetAll().IndexOf(nsx);
+                cmb_chatlieu.SelectedIndex = _iqLChatLieuServices.GetAll().IndexOf(cl);
+                tbx_mota.Text = ctsp.MoTa;
+                tbx_soluong.Text = ctsp.SoLuongTon.ToString();
+                tbx_gianhap.Text = ctsp.GiaNhap.ToString();
+                tbx_giaban.Text = ctsp.GiaBan.ToString();
+                //ẢNh
+                if (ctsp.Anh == null)
+                {
+                    pictureBox_spham.Image = null;
+                }
+                else
+                {
+                    MemoryStream memoryStream = new MemoryStream(ctsp.Anh.ToArray());
+                    Image img = Image.FromStream(memoryStream);
+                    if (img == null) return;
+                    pictureBox_spham.Image = img;
+
+                }
+
+                if (ctsp.TrangThai == 1)
+                {
+                    rbtn_hd.Checked = true;
+                }
+                else if (ctsp.TrangThai == 0)
+                {
+                    rbtn_kohd.Checked = true;
+                }
             }
         }
 
-        private void btn_openfile_Click(object sender, EventArgs e)
+        private void splitContainer5_SplitterMoved(object sender, SplitterEventArgs e)
         {
-            //openfileDialog.ShowDialog();
-            //string file = openfileDialog.FileName;
-            //if (string.IsNullOrEmpty(file)) return;
-            //Image myImage  = Image.FromFile(file);
-            //pictureBox_spham.Image = myImage;
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //if (openfileDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    pictureBox_spham.Image = new Bitmap(openFileDialog.FileName);
-            //}
-            openfileDialog.Filter = "Image files (*.png) |*.png|(*.jpg)|*.jpg|(*.gif)|*.gif";
-            openfileDialog.ShowDialog();
-            pictureBox_spham.Image = Image.FromFile(openfileDialog.FileName);
+
         }
     }
 }

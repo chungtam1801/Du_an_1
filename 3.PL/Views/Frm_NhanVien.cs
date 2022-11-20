@@ -72,8 +72,8 @@ namespace _3.PL.Views
             nv_diachi.Text = "";
             nv_Sdt.Text = "";
             nv_mk.Text = "";
-            radioButton1.Checked=false;
-            radioButton2.Checked=false;
+            rbtn_conlam.Checked=false;
+            rbtn_nghilam.Checked=false;
             LoadNV();
         }
 
@@ -92,11 +92,11 @@ namespace _3.PL.Views
             nv_Sdt.Text=nv.Sdt;
             if (nv.TrangThai == 1)
             {
-                radioButton1.Checked = true;
+                rbtn_conlam.Checked = true;
             }
             else if (nv.TrangThai == 0)
             {
-                radioButton2.Checked=true;
+                rbtn_nghilam.Checked=true;
             }
                 
         }
@@ -113,11 +113,11 @@ namespace _3.PL.Views
             nv.DiaChi = nv_diachi.Text;
             nv.Sdt=nv_Sdt.Text;
             nv.MatKhau = nv_mk.Text;
-            if (radioButton1.Checked == true)
+            if (rbtn_conlam.Checked == true)
             {
                 nv.TrangThai = 1;
             }
-            else if(radioButton2.Checked == true)
+            else if(rbtn_nghilam.Checked == true)
             {
                 nv.TrangThai= 0;
             }
@@ -141,7 +141,6 @@ namespace _3.PL.Views
 
         private void btn_sua_Click(object sender, EventArgs e)
         {
-
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
                 _IqlNhanVienServices.Update(GetDataFormGui());
@@ -151,7 +150,6 @@ namespace _3.PL.Views
 
         private void btn_xoa_Click(object sender, EventArgs e)
         {
-
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
                 _IqlNhanVienServices.Delete(GetDataFormGui());
@@ -161,12 +159,36 @@ namespace _3.PL.Views
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
-            Clear();
+            nv_ma.Text = "";
+            nv_ten.Text = "";
+            nv_tendem.Text = "";
+            nv_ho.Text = "";
+            nv_cbb_gioitinh.Items.Clear();
+            nv_Sdt.Text = "";
+            nv_mk.Text = "";
+            nv_diachi.Text = "";
+            rbtn_conlam.Checked = false;
+            rbtn_nghilam.Checked = false;
         }
 
         private void nv_cbb_gioitinh_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        public void loaddtgbysearch()
+        {
+            //dtg_nhanvien.DataSource = ;
+        }
+        private void btn_seachbyma_Click(object sender, EventArgs e)
+        {
+            
+            //foreach (var item in nv.Ma)
+            //{
+                
+            //}
+        }
+        private void tk_timkiem_TextChanged(object sender, EventArgs e, string s)
+        {
         }
     }
 }

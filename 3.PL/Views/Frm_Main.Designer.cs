@@ -88,7 +88,7 @@
             this.btn_nhanvien.FlatAppearance.BorderSize = 0;
             this.btn_nhanvien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_nhanvien.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_nhanvien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btn_nhanvien.ForeColor = System.Drawing.Color.LightSkyBlue;
             this.btn_nhanvien.Location = new System.Drawing.Point(0, 279);
             this.btn_nhanvien.Name = "btn_nhanvien";
             this.btn_nhanvien.Size = new System.Drawing.Size(190, 45);
@@ -105,7 +105,7 @@
             this.btn_hoadon.FlatAppearance.BorderSize = 0;
             this.btn_hoadon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_hoadon.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_hoadon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btn_hoadon.ForeColor = System.Drawing.Color.LightSkyBlue;
             this.btn_hoadon.Location = new System.Drawing.Point(0, 234);
             this.btn_hoadon.Name = "btn_hoadon";
             this.btn_hoadon.Size = new System.Drawing.Size(190, 45);
@@ -216,11 +216,11 @@
             // 
             this.lbl_tilte.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_tilte.AutoSize = true;
-            this.lbl_tilte.Font = new System.Drawing.Font("Open Sans", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_tilte.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_tilte.ForeColor = System.Drawing.Color.White;
             this.lbl_tilte.Location = new System.Drawing.Point(441, 3);
             this.lbl_tilte.Name = "lbl_tilte";
-            this.lbl_tilte.Size = new System.Drawing.Size(88, 33);
+            this.lbl_tilte.Size = new System.Drawing.Size(89, 29);
             this.lbl_tilte.TabIndex = 0;
             this.lbl_tilte.Text = "HOME";
             // 
