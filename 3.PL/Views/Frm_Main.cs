@@ -34,7 +34,6 @@ namespace _3.PL.Views
             btn_banHang.BackColor = Color.FromArgb(46, 51, 73);
             lbl_tilte.Text = "BÁN HÀNG";
             OpenChildForm(new Frm_BanHang(), sender);
-
         }
 
         private void btn_sanpham_Click(object sender, EventArgs e)

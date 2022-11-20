@@ -61,7 +61,7 @@
             this.pnl_menu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnl_menu.Location = new System.Drawing.Point(0, 0);
             this.pnl_menu.Name = "pnl_menu";
-            this.pnl_menu.Size = new System.Drawing.Size(190, 567);
+            this.pnl_menu.Size = new System.Drawing.Size(190, 650);
             this.pnl_menu.TabIndex = 0;
             // 
             // btn_khachhang
@@ -89,7 +89,6 @@
             this.btn_nhanvien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_nhanvien.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_nhanvien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btn_nhanvien.Image = global::_3.PL.Properties.Resources.account_profile_user_avatar_man_people_team_group_users_icon_210760;
             this.btn_nhanvien.Location = new System.Drawing.Point(0, 279);
             this.btn_nhanvien.Name = "btn_nhanvien";
             this.btn_nhanvien.Size = new System.Drawing.Size(190, 45);
@@ -107,7 +106,6 @@
             this.btn_hoadon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_hoadon.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_hoadon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
-            this.btn_hoadon.Image = global::_3.PL.Properties.Resources._3668836_bill_expenses_fee_tax_108027;
             this.btn_hoadon.Location = new System.Drawing.Point(0, 234);
             this.btn_hoadon.Name = "btn_hoadon";
             this.btn_hoadon.Size = new System.Drawing.Size(190, 45);
@@ -189,7 +187,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::_3.PL.Properties.Resources.user1;
             this.pictureBox1.Location = new System.Drawing.Point(60, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(63, 63);
@@ -212,7 +209,7 @@
             this.pnl_title.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_title.Location = new System.Drawing.Point(190, 0);
             this.pnl_title.Name = "pnl_title";
-            this.pnl_title.Size = new System.Drawing.Size(817, 39);
+            this.pnl_title.Size = new System.Drawing.Size(1022, 39);
             this.pnl_title.TabIndex = 4;
             // 
             // lbl_tilte
@@ -221,7 +218,7 @@
             this.lbl_tilte.AutoSize = true;
             this.lbl_tilte.Font = new System.Drawing.Font("Open Sans", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_tilte.ForeColor = System.Drawing.Color.White;
-            this.lbl_tilte.Location = new System.Drawing.Point(338, 3);
+            this.lbl_tilte.Location = new System.Drawing.Point(441, 3);
             this.lbl_tilte.Name = "lbl_tilte";
             this.lbl_tilte.Size = new System.Drawing.Size(88, 33);
             this.lbl_tilte.TabIndex = 0;
@@ -233,7 +230,7 @@
             this.pnl_desktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_desktop.Location = new System.Drawing.Point(190, 39);
             this.pnl_desktop.Name = "pnl_desktop";
-            this.pnl_desktop.Size = new System.Drawing.Size(817, 528);
+            this.pnl_desktop.Size = new System.Drawing.Size(1022, 611);
             this.pnl_desktop.TabIndex = 5;
             // 
             // Frm_Main
@@ -241,14 +238,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(1007, 567);
+            this.ClientSize = new System.Drawing.Size(1212, 650);
             this.Controls.Add(this.pnl_desktop);
             this.Controls.Add(this.pnl_title);
             this.Controls.Add(this.pnl_Nav);
             this.Controls.Add(this.pnl_menu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Frm_Main";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Frm_Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Frm_Main_Load);

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using _1.DAL.DomainClass;
 using _2.BUS.IServices;
 using _2.BUS.Services;
+using System.IO;
 
 namespace _3.PL.Views
 {
@@ -128,6 +129,13 @@ namespace _3.PL.Views
             {
                 ctsp.TrangThai = 0;
             }
+            if(pictureBox_spham.Image != null)
+            {
+                MemoryStream ms = new MemoryStream();
+                pictureBox_spham.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                byte[] data = ms.GetBuffer();
+                ctsp.Anh = data;
+            }           
             return ctsp;
         }
         private void btn_them_Click(object sender, EventArgs e)
@@ -203,13 +211,14 @@ namespace _3.PL.Views
             //if (string.IsNullOrEmpty(file)) return;
             //Image myImage  = Image.FromFile(file);
             //pictureBox_spham.Image = myImage;
-
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openfileDialog.ShowDialog() == DialogResult.OK)
-            {
-                pictureBox_spham.Image = new Bitmap(openFileDialog.FileName);
-
-            }
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //if (openfileDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    pictureBox_spham.Image = new Bitmap(openFileDialog.FileName);
+            //}
+            openfileDialog.Filter = "Image files (*.png) |*.png|(*.jpg)|*.jpg|(*.gif)|*.gif";
+            openfileDialog.ShowDialog();
+            pictureBox_spham.Image = Image.FromFile(openfileDialog.FileName);
         }
     }
 }

@@ -178,7 +178,6 @@
             // 
             // pictureBox_spham
             // 
-            this.pictureBox_spham.Image = global::_3.PL.Properties.Resources.image_icon_153794;
             this.pictureBox_spham.Location = new System.Drawing.Point(92, 95);
             this.pictureBox_spham.Name = "pictureBox_spham";
             this.pictureBox_spham.Size = new System.Drawing.Size(110, 110);
