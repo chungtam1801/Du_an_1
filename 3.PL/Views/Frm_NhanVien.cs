@@ -41,9 +41,12 @@ namespace _3.PL.Views
             dtg_nhanvien.Columns[5].Name = "Tên đệm";
             dtg_nhanvien.Columns[6].Name = "Họ";
             dtg_nhanvien.Columns[7].Name = "Họ và tên";
+            dtg_nhanvien.Columns[7].Width = 150;
             dtg_nhanvien.Columns[8].Name = "Giới tính";
             dtg_nhanvien.Columns[9].Name = "Ngày sinh";
+            dtg_nhanvien.Columns[9].Width = 160;
             dtg_nhanvien.Columns[10].Name = "Địa chỉ";
+            dtg_nhanvien.Columns[10].Width = 131;
             dtg_nhanvien.Columns[11].Name = "Số DT";
             dtg_nhanvien.Columns[12].Name = "Mật khẩu";
             dtg_nhanvien.Columns[13].Name = "Trạng thái";

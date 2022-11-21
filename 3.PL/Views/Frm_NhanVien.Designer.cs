@@ -63,12 +63,14 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_nhanvien)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_seachbyma)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_clear
@@ -278,7 +280,7 @@
             this.dtg_nhanvien.Name = "dtg_nhanvien";
             this.dtg_nhanvien.RowHeadersWidth = 51;
             this.dtg_nhanvien.RowTemplate.Height = 29;
-            this.dtg_nhanvien.Size = new System.Drawing.Size(1259, 404);
+            this.dtg_nhanvien.Size = new System.Drawing.Size(1394, 404);
             this.dtg_nhanvien.TabIndex = 0;
             this.dtg_nhanvien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_nhanvien_CellClick);
             // 
@@ -292,7 +294,6 @@
             this.tk_timkiem.PlaceholderText = "   Tìm kiếm nhân viên theo mã";
             this.tk_timkiem.Size = new System.Drawing.Size(370, 29);
             this.tk_timkiem.TabIndex = 46;
-            //this.tk_timkiem.TextChanged += new System.EventHandler(this.tk_timkiem_TextChanged);
             // 
             // nv_cbb_gioitinh
             // 
@@ -345,7 +346,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Location = new System.Drawing.Point(1278, 46);
+            this.panel1.Location = new System.Drawing.Point(9, 9);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(309, 35);
             this.panel1.TabIndex = 52;
@@ -402,7 +403,7 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label12);
-            this.panel2.Location = new System.Drawing.Point(1277, 89);
+            this.panel2.Location = new System.Drawing.Point(9, 52);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(309, 404);
             this.panel2.TabIndex = 54;
@@ -412,9 +413,10 @@
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(87)))), ((int)(((byte)(122)))));
             this.panel3.Controls.Add(this.tk_timkiem);
             this.panel3.Controls.Add(this.btn_seachbyma);
-            this.panel3.Location = new System.Drawing.Point(1, 1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1585, 37);
+            this.panel3.Size = new System.Drawing.Size(1724, 37);
             this.panel3.TabIndex = 55;
             // 
             // panel4
@@ -423,7 +425,7 @@
             this.panel4.Controls.Add(this.label13);
             this.panel4.Location = new System.Drawing.Point(12, 46);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1259, 35);
+            this.panel4.Size = new System.Drawing.Size(1394, 35);
             this.panel4.TabIndex = 56;
             // 
             // label13
@@ -431,23 +433,32 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(503, 11);
+            this.label13.Location = new System.Drawing.Point(622, 9);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(192, 18);
             this.label13.TabIndex = 1;
             this.label13.Text = "THÔNG TIN NHÂN VIÊN";
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.panel2);
+            this.panel5.Controls.Add(this.panel1);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(1403, 37);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(321, 468);
+            this.panel5.TabIndex = 57;
             // 
             // Frm_NhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1598, 505);
+            this.ClientSize = new System.Drawing.Size(1724, 505);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.dtg_nhanvien);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Frm_NhanVien";
@@ -464,6 +475,7 @@
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -504,5 +516,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel5;
     }
 }
