@@ -32,6 +32,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.pic_themnhanhchatlieu = new System.Windows.Forms.PictureBox();
+            this.pic_themnhanhkichthuoc = new System.Windows.Forms.PictureBox();
+            this.pic_themnhanhnsx = new System.Windows.Forms.PictureBox();
+            this.pic_themnhanhloaisp = new System.Windows.Forms.PictureBox();
+            this.pic_themnhanhmausac = new System.Windows.Forms.PictureBox();
+            this.pic_themnhanhsp = new System.Windows.Forms.PictureBox();
             this.tbx_soluong = new System.Windows.Forms.TextBox();
             this.cmb_sp = new System.Windows.Forms.ComboBox();
             this.cmb_nsx = new System.Windows.Forms.ComboBox();
@@ -79,6 +85,12 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhchatlieu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhkichthuoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhnsx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhloaisp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhmausac)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhsp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
@@ -105,7 +117,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1324, 754);
+            this.panel1.Size = new System.Drawing.Size(1324, 749);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer1
@@ -123,8 +135,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1324, 754);
-            this.splitContainer1.SplitterDistance = 383;
+            this.splitContainer1.Size = new System.Drawing.Size(1324, 749);
+            this.splitContainer1.SplitterDistance = 364;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer3
@@ -139,6 +151,12 @@
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer3.Panel1.Controls.Add(this.pic_themnhanhchatlieu);
+            this.splitContainer3.Panel1.Controls.Add(this.pic_themnhanhkichthuoc);
+            this.splitContainer3.Panel1.Controls.Add(this.pic_themnhanhnsx);
+            this.splitContainer3.Panel1.Controls.Add(this.pic_themnhanhloaisp);
+            this.splitContainer3.Panel1.Controls.Add(this.pic_themnhanhmausac);
+            this.splitContainer3.Panel1.Controls.Add(this.pic_themnhanhsp);
             this.splitContainer3.Panel1.Controls.Add(this.tbx_soluong);
             this.splitContainer3.Panel1.Controls.Add(this.cmb_sp);
             this.splitContainer3.Panel1.Controls.Add(this.cmb_nsx);
@@ -157,10 +175,76 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(383, 754);
-            this.splitContainer3.SplitterDistance = 264;
+            this.splitContainer3.Size = new System.Drawing.Size(364, 749);
+            this.splitContainer3.SplitterDistance = 262;
             this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 0;
+            // 
+            // pic_themnhanhchatlieu
+            // 
+            this.pic_themnhanhchatlieu.Image = global::_3.PL.Properties.Resources.add4;
+            this.pic_themnhanhchatlieu.Location = new System.Drawing.Point(256, 178);
+            this.pic_themnhanhchatlieu.Name = "pic_themnhanhchatlieu";
+            this.pic_themnhanhchatlieu.Size = new System.Drawing.Size(22, 22);
+            this.pic_themnhanhchatlieu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_themnhanhchatlieu.TabIndex = 47;
+            this.pic_themnhanhchatlieu.TabStop = false;
+            this.pic_themnhanhchatlieu.Click += new System.EventHandler(this.pic_themnhanhchatlieu_Click);
+            // 
+            // pic_themnhanhkichthuoc
+            // 
+            this.pic_themnhanhkichthuoc.Image = global::_3.PL.Properties.Resources.add4;
+            this.pic_themnhanhkichthuoc.Location = new System.Drawing.Point(215, 144);
+            this.pic_themnhanhkichthuoc.Name = "pic_themnhanhkichthuoc";
+            this.pic_themnhanhkichthuoc.Size = new System.Drawing.Size(22, 22);
+            this.pic_themnhanhkichthuoc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_themnhanhkichthuoc.TabIndex = 46;
+            this.pic_themnhanhkichthuoc.TabStop = false;
+            this.pic_themnhanhkichthuoc.Click += new System.EventHandler(this.pic_themnhanhkichthuoc_Click);
+            // 
+            // pic_themnhanhnsx
+            // 
+            this.pic_themnhanhnsx.Image = global::_3.PL.Properties.Resources.add4;
+            this.pic_themnhanhnsx.Location = new System.Drawing.Point(339, 40);
+            this.pic_themnhanhnsx.Name = "pic_themnhanhnsx";
+            this.pic_themnhanhnsx.Size = new System.Drawing.Size(22, 22);
+            this.pic_themnhanhnsx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_themnhanhnsx.TabIndex = 43;
+            this.pic_themnhanhnsx.TabStop = false;
+            this.pic_themnhanhnsx.Click += new System.EventHandler(this.pic_themnhanhnsx_Click);
+            // 
+            // pic_themnhanhloaisp
+            // 
+            this.pic_themnhanhloaisp.Image = global::_3.PL.Properties.Resources.add4;
+            this.pic_themnhanhloaisp.Location = new System.Drawing.Point(339, 110);
+            this.pic_themnhanhloaisp.Name = "pic_themnhanhloaisp";
+            this.pic_themnhanhloaisp.Size = new System.Drawing.Size(22, 22);
+            this.pic_themnhanhloaisp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_themnhanhloaisp.TabIndex = 45;
+            this.pic_themnhanhloaisp.TabStop = false;
+            this.pic_themnhanhloaisp.Click += new System.EventHandler(this.pic_themnhanhloaisp_Click);
+            // 
+            // pic_themnhanhmausac
+            // 
+            this.pic_themnhanhmausac.Image = global::_3.PL.Properties.Resources.add4;
+            this.pic_themnhanhmausac.Location = new System.Drawing.Point(247, 76);
+            this.pic_themnhanhmausac.Name = "pic_themnhanhmausac";
+            this.pic_themnhanhmausac.Size = new System.Drawing.Size(22, 22);
+            this.pic_themnhanhmausac.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_themnhanhmausac.TabIndex = 44;
+            this.pic_themnhanhmausac.TabStop = false;
+            this.pic_themnhanhmausac.Click += new System.EventHandler(this.pic_themnhanhmausac_Click);
+            // 
+            // pic_themnhanhsp
+            // 
+            this.pic_themnhanhsp.Image = global::_3.PL.Properties.Resources.add4;
+            this.pic_themnhanhsp.Location = new System.Drawing.Point(339, 8);
+            this.pic_themnhanhsp.Name = "pic_themnhanhsp";
+            this.pic_themnhanhsp.Size = new System.Drawing.Size(22, 22);
+            this.pic_themnhanhsp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_themnhanhsp.TabIndex = 42;
+            this.pic_themnhanhsp.TabStop = false;
+            this.pic_themnhanhsp.Click += new System.EventHandler(this.pic_themnhanhsp_Click);
             // 
             // tbx_soluong
             // 
@@ -173,10 +257,10 @@
             // cmb_sp
             // 
             this.cmb_sp.FormattingEnabled = true;
-            this.cmb_sp.Location = new System.Drawing.Point(117, 6);
+            this.cmb_sp.Location = new System.Drawing.Point(116, 6);
             this.cmb_sp.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cmb_sp.Name = "cmb_sp";
-            this.cmb_sp.Size = new System.Drawing.Size(216, 26);
+            this.cmb_sp.Size = new System.Drawing.Size(217, 26);
             this.cmb_sp.TabIndex = 9;
             // 
             // cmb_nsx
@@ -303,8 +387,8 @@
             // 
             this.splitContainer4.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer6);
-            this.splitContainer4.Size = new System.Drawing.Size(383, 485);
-            this.splitContainer4.SplitterDistance = 179;
+            this.splitContainer4.Size = new System.Drawing.Size(364, 482);
+            this.splitContainer4.SplitterDistance = 177;
             this.splitContainer4.SplitterWidth = 5;
             this.splitContainer4.TabIndex = 0;
             // 
@@ -326,10 +410,9 @@
             // 
             this.splitContainer5.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.splitContainer5.Panel2.Controls.Add(this.pictureBox_spham);
-            this.splitContainer5.Size = new System.Drawing.Size(383, 179);
-            this.splitContainer5.SplitterDistance = 141;
+            this.splitContainer5.Size = new System.Drawing.Size(364, 177);
+            this.splitContainer5.SplitterDistance = 134;
             this.splitContainer5.TabIndex = 0;
-            this.splitContainer5.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer5_SplitterMoved);
             // 
             // btn_openfile
             // 
@@ -359,7 +442,7 @@
             this.pictureBox_spham.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_spham.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox_spham.Name = "pictureBox_spham";
-            this.pictureBox_spham.Size = new System.Drawing.Size(238, 179);
+            this.pictureBox_spham.Size = new System.Drawing.Size(226, 177);
             this.pictureBox_spham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_spham.TabIndex = 27;
             this.pictureBox_spham.TabStop = false;
@@ -395,8 +478,8 @@
             this.splitContainer6.Panel2.Controls.Add(this.btn_sua);
             this.splitContainer6.Panel2.Controls.Add(this.btn_xoa);
             this.splitContainer6.Panel2.Controls.Add(this.btn_them);
-            this.splitContainer6.Size = new System.Drawing.Size(383, 301);
-            this.splitContainer6.SplitterDistance = 197;
+            this.splitContainer6.Size = new System.Drawing.Size(364, 300);
+            this.splitContainer6.SplitterDistance = 196;
             this.splitContainer6.SplitterWidth = 5;
             this.splitContainer6.TabIndex = 0;
             // 
@@ -562,8 +645,8 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer2.Panel2.Controls.Add(this.dgrd_ctsp);
-            this.splitContainer2.Size = new System.Drawing.Size(937, 754);
-            this.splitContainer2.SplitterDistance = 43;
+            this.splitContainer2.Size = new System.Drawing.Size(956, 749);
+            this.splitContainer2.SplitterDistance = 42;
             this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -575,7 +658,7 @@
             this.dgrd_ctsp.Location = new System.Drawing.Point(0, 0);
             this.dgrd_ctsp.Name = "dgrd_ctsp";
             this.dgrd_ctsp.RowTemplate.Height = 25;
-            this.dgrd_ctsp.Size = new System.Drawing.Size(937, 706);
+            this.dgrd_ctsp.Size = new System.Drawing.Size(956, 702);
             this.dgrd_ctsp.TabIndex = 0;
             this.dgrd_ctsp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrd_ctsp_CellClick_1);
             // 
@@ -587,7 +670,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1324, 754);
+            this.ClientSize = new System.Drawing.Size(1324, 749);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -595,6 +678,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_ChiTietSanPham";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Frm_ChiTietSanPham_Load);
             this.panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -605,6 +689,12 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhchatlieu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhkichthuoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhnsx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhloaisp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhmausac)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhsp)).EndInit();
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
@@ -669,7 +759,13 @@
         private System.Windows.Forms.TextBox tbx_mota;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.DataGridView dgrd_ctsp;
         private System.Windows.Forms.ComboBox cmb_khuyenmai;
+        private System.Windows.Forms.PictureBox pic_themnhanhchatlieu;
+        private System.Windows.Forms.PictureBox pic_themnhanhkichthuoc;
+        private System.Windows.Forms.PictureBox pic_themnhanhnsx;
+        private System.Windows.Forms.PictureBox pic_themnhanhloaisp;
+        private System.Windows.Forms.PictureBox pic_themnhanhmausac;
+        private System.Windows.Forms.PictureBox pic_themnhanhsp;
+        private System.Windows.Forms.DataGridView dgrd_ctsp;
     }
 }

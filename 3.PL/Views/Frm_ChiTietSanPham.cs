@@ -13,6 +13,7 @@ using _2.BUS.Services;
 using System.IO;
 using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
+using _3.PL.Views;
 
 namespace _3.PL.Views
 {
@@ -70,14 +71,18 @@ namespace _3.PL.Views
         }
         private void LoadSanPham()
         {
-            foreach (var x in _iqlSanPhamServices.GetAll())
+            if (_iqlSanPhamServices.GetAll().Count == 0) return;
             {
-                cmb_sp.Items.Add(x.Ten);
+                foreach (var x in _iqlSanPhamServices.GetAll())
+                {
+                    cmb_sp.Items.Add(x.Ten);
+                }
+                cmb_sp.SelectedIndex = 0;
             }
-            cmb_sp.SelectedIndex = 0;
         }
         private void LoadNSX()
         {
+            if (_iqlNsxServices.GetAll().Count == 0) return;
             foreach (var x in _iqlNsxServices.GetAll())
             {
                 cmb_nsx.Items.Add(x.Ten);
@@ -86,6 +91,7 @@ namespace _3.PL.Views
         }
         private void LoadMauSac()
         {
+            if (_iqlMauSacServices.GetAll().Count == 0) return;
             foreach (var x in _iqlMauSacServices.GetAll())
             {
                 cmb_mausac.Items.Add(x.Ten);
@@ -94,6 +100,7 @@ namespace _3.PL.Views
         }
         private void LoadChatLieu()
         {
+            if (_iqLChatLieuServices.GetAll().Count == 0) return;
             foreach (var x in _iqLChatLieuServices.GetAll())
             {
                 cmb_chatlieu.Items.Add(x.Ten);
@@ -102,6 +109,7 @@ namespace _3.PL.Views
         }
         private void LoadKichThuoc()
         {
+            if (_iqlLKichThuocServices.GetAll().Count == 0) return;
             foreach (var x in _iqlLKichThuocServices.GetAll())
             {
                 cmb_kichthuoc.Items.Add(x.Size);
@@ -110,7 +118,9 @@ namespace _3.PL.Views
         }
         private void LoadLoaiSP()
         {
-            foreach (var x in _iqLLoaiSpServices.GetAll())
+            List<LoaiSp> _lstlsp = _iqLLoaiSpServices.GetAll().Where(c=> c.MaLoaiSpcha != null).ToList();
+            if (_lstlsp.Count == 0) return;
+            foreach (var x in _lstlsp)
             {
                 cmb_loaisp.Items.Add(x.Ten);
             }
@@ -120,12 +130,12 @@ namespace _3.PL.Views
         {
             ChiTietSp ctsp = new ChiTietSp();
             ctsp.Id = _id;
-            ctsp.IdSp = _iqlSanPhamServices.GetAll()[cmb_sp.SelectedIndex].Id;
-            ctsp.IdMauSac = _iqlMauSacServices.GetAll()[cmb_mausac.SelectedIndex].Id;
-            ctsp.IdClieu = _iqLChatLieuServices.GetAll()[cmb_chatlieu.SelectedIndex].Id;
-            ctsp.IdNsx = _iqlNsxServices.GetAll()[cmb_nsx.SelectedIndex].Id;
-            ctsp.IdKt = _iqlLKichThuocServices.GetAll()[cmb_kichthuoc.SelectedIndex].Id;
-            ctsp.IdLoaiSp = _iqLLoaiSpServices.GetAll()[cmb_loaisp.SelectedIndex].Id;
+            ctsp.IdSp = _iqlSanPhamServices.GetAll().First(c=> c.Ten == cmb_sp.Text).Id;
+            ctsp.IdMauSac = _iqlMauSacServices.GetAll().First(c => c.Ten == cmb_mausac.Text).Id;
+            ctsp.IdClieu = _iqLChatLieuServices.GetAll().First(c => c.Ten == cmb_chatlieu.Text).Id;
+            ctsp.IdNsx = _iqlNsxServices.GetAll().First(c => c.Ten == cmb_nsx.Text).Id;
+            ctsp.IdKt = _iqlLKichThuocServices.GetAll().First(c => c.Size == cmb_kichthuoc.Text).Id;
+            ctsp.IdLoaiSp = _iqLLoaiSpServices.GetAll().First(c => c.Ten == cmb_loaisp.Text).Id;
             ctsp.MoTa = tbx_mota.Text;
             ctsp.GiaBan = Convert.ToDecimal(tbx_giaban.Text);
             ctsp.GiaNhap = Convert.ToDecimal(tbx_gianhap.Text);
@@ -197,12 +207,13 @@ namespace _3.PL.Views
 
         private void btn_clear_Click_1(object sender, EventArgs e)
         {
-            LoadData();
-            LoadSanPham();
-            LoadChatLieu();
-            LoadMauSac();
-            LoadNSX();
-            LoadKichThuoc(); _id = Guid.Empty;
+            cmb_sp.SelectedIndex = 0;
+            cmb_chatlieu.SelectedIndex = 0;
+            cmb_nsx.SelectedIndex = 0;
+            cmb_mausac.SelectedIndex = 0;
+            cmb_kichthuoc.SelectedIndex = 0;
+            cmb_loaisp.SelectedIndex = 0;
+
             tbx_giaban.Text = "";
             tbx_gianhap.Text = "";
             tbx_mota.Text = "";
@@ -225,12 +236,13 @@ namespace _3.PL.Views
                 Nsx nsx = _iqlNsxServices.GetAll().First(c => c.Id == ctsp.IdNsx);
                 ChatLieu cl = _iqLChatLieuServices.GetAll().First(c => c.Id == ctsp.IdClieu);
                 _id = ctsp.Id;
-                cmb_sp.SelectedIndex = _iqlSanPhamServices.GetAll().IndexOf(sp);
-                cmb_mausac.SelectedIndex = _iqlMauSacServices.GetAll().IndexOf(ms);
-                cmb_kichthuoc.SelectedIndex = _iqlLKichThuocServices.GetAll().IndexOf(kt);
-                cmb_loaisp.SelectedIndex = _iqLLoaiSpServices.GetAll().IndexOf(lsp);
-                cmb_nsx.SelectedIndex = _iqlNsxServices.GetAll().IndexOf(nsx);
-                cmb_chatlieu.SelectedIndex = _iqLChatLieuServices.GetAll().IndexOf(cl);
+
+                cmb_sp.Text = sp.Ten;
+                cmb_mausac.Text = ms.Ten;
+                cmb_kichthuoc.Text = kt.Size;
+                cmb_loaisp.Text = lsp.Ten;
+                cmb_nsx.Text = nsx.Ten;
+                cmb_chatlieu.Text = cl.Ten;
                 tbx_mota.Text = ctsp.MoTa;
                 tbx_soluong.Text = ctsp.SoLuongTon.ToString();
                 tbx_gianhap.Text = ctsp.GiaNhap.ToString();
@@ -259,10 +271,65 @@ namespace _3.PL.Views
                 }
             }
         }
-
-        private void splitContainer5_SplitterMoved(object sender, SplitterEventArgs e)
+        private void Frm_ChiTietSanPham_Load(object sender, EventArgs e)
         {
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(pic_themnhanhsp, "Thêm nhanh");
+            toolTip.SetToolTip(pic_themnhanhnsx, "Thêm nhanh");
+            toolTip.SetToolTip(pic_themnhanhchatlieu, "Thêm nhanh");
+            toolTip.SetToolTip(pic_themnhanhkichthuoc, "Thêm nhanh");
+            toolTip.SetToolTip(pic_themnhanhloaisp, "Thêm nhanh");
+            toolTip.SetToolTip(pic_themnhanhmausac, "Thêm nhanh");
 
+        }
+
+        private void pic_themnhanhsp_Click(object sender, EventArgs e)
+        {
+            this.TopMost = false;
+            Frm_ThemNhanhSP form = new Frm_ThemNhanhSP();
+            form.TopMost = true;
+            form.BringToFront();
+            form.ShowDialog();
+        }
+
+        private void pic_themnhanhnsx_Click(object sender, EventArgs e)
+        {
+            Frm_ThemNhanhNSX form = new Frm_ThemNhanhNSX();
+            form.TopMost = true;
+            form.BringToFront();
+            form.ShowDialog();
+        }
+
+        private void pic_themnhanhmausac_Click(object sender, EventArgs e)
+        {
+            Frm_ThemNhanhMauSac form = new Frm_ThemNhanhMauSac();
+            form.TopMost = true;
+            form.BringToFront();
+            form.ShowDialog();
+        }
+
+        private void pic_themnhanhloaisp_Click(object sender, EventArgs e)
+        {
+            Frm_ThemNhanhLoaiSP form = new Frm_ThemNhanhLoaiSP();
+            form.TopMost = true;
+            form.BringToFront();
+            form.ShowDialog();
+        }
+
+        private void pic_themnhanhkichthuoc_Click(object sender, EventArgs e)
+        {
+            Frm_ThemNhanhKichThuoc form = new Frm_ThemNhanhKichThuoc();
+            form.TopMost = true;
+            form.BringToFront();
+            form.ShowDialog();
+        }
+
+        private void pic_themnhanhchatlieu_Click(object sender, EventArgs e)
+        {
+            Frm_ThemNhanhChatLieu form = new Frm_ThemNhanhChatLieu();
+            form.TopMost = true;
+            form.BringToFront();
+            form.ShowDialog();
         }
     }
 }

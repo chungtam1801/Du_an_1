@@ -88,7 +88,8 @@
             this.btn_nhanvien.FlatAppearance.BorderSize = 0;
             this.btn_nhanvien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_nhanvien.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_nhanvien.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.btn_nhanvien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btn_nhanvien.Image = global::_3.PL.Properties.Resources.nhanvien;
             this.btn_nhanvien.Location = new System.Drawing.Point(0, 279);
             this.btn_nhanvien.Name = "btn_nhanvien";
             this.btn_nhanvien.Size = new System.Drawing.Size(190, 45);
@@ -105,7 +106,8 @@
             this.btn_hoadon.FlatAppearance.BorderSize = 0;
             this.btn_hoadon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_hoadon.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_hoadon.ForeColor = System.Drawing.Color.LightSkyBlue;
+            this.btn_hoadon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btn_hoadon.Image = global::_3.PL.Properties.Resources.hoadon;
             this.btn_hoadon.Location = new System.Drawing.Point(0, 234);
             this.btn_hoadon.Name = "btn_hoadon";
             this.btn_hoadon.Size = new System.Drawing.Size(190, 45);
@@ -187,6 +189,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Image = global::_3.PL.Properties.Resources.user12;
             this.pictureBox1.Location = new System.Drawing.Point(60, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(63, 63);
