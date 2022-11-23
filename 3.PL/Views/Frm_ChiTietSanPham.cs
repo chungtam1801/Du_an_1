@@ -282,51 +282,81 @@ namespace _3.PL.Views
             toolTip.SetToolTip(pic_themnhanhmausac, "Thêm nhanh");
 
         }
-
+        void ThemNhanhSP(string s)
+        {
+            LoadSanPham();
+            cmb_sp.Text = s;
+        }
         private void pic_themnhanhsp_Click(object sender, EventArgs e)
         {
             this.TopMost = false;
             Frm_ThemNhanhSP form = new Frm_ThemNhanhSP();
+            form.Themsp = new Frm_ThemNhanhSP.ADDSP(ThemNhanhSP);
             form.TopMost = true;
             form.BringToFront();
             form.ShowDialog();
         }
-
+        void ThemNhanhNSX(string s)
+        {
+            LoadNSX();
+            cmb_nsx.Text = s;
+        }
         private void pic_themnhanhnsx_Click(object sender, EventArgs e)
         {
             Frm_ThemNhanhNSX form = new Frm_ThemNhanhNSX();
+            form.Themnsx = new Frm_ThemNhanhNSX.ADDNSX(ThemNhanhNSX);
             form.TopMost = true;
             form.BringToFront();
             form.ShowDialog();
         }
-
+        void ThemNhanhMauSac(string s)
+        {
+            LoadMauSac();
+            cmb_mausac.Text = s;
+        }
         private void pic_themnhanhmausac_Click(object sender, EventArgs e)
         {
             Frm_ThemNhanhMauSac form = new Frm_ThemNhanhMauSac();
+            form.Themms = new Frm_ThemNhanhMauSac.AddMauSac(ThemNhanhMauSac);
             form.TopMost = true;
             form.BringToFront();
             form.ShowDialog();
         }
-
+        void ThemNhanhLSP(string s)
+        {
+            LoadLoaiSP();
+            cmb_loaisp.Text = s;
+        }
         private void pic_themnhanhloaisp_Click(object sender, EventArgs e)
         {
             Frm_ThemNhanhLoaiSP form = new Frm_ThemNhanhLoaiSP();
+            form.Themlsp = new Frm_ThemNhanhLoaiSP.ADDLoaiSP(ThemNhanhLSP);
             form.TopMost = true;
             form.BringToFront();
             form.ShowDialog();
         }
-
+        void ThemNhanhKichThuoc(string s)
+        {
+            LoadKichThuoc();
+            cmb_kichthuoc.Text = s;
+        }
         private void pic_themnhanhkichthuoc_Click(object sender, EventArgs e)
         {
             Frm_ThemNhanhKichThuoc form = new Frm_ThemNhanhKichThuoc();
+            form.ThemKichThuoc = new Frm_ThemNhanhKichThuoc.AddKichThuoc(ThemNhanhKichThuoc);
             form.TopMost = true;
             form.BringToFront();
             form.ShowDialog();
         }
-
+        void ThemNhanhChatLieu(string s)
+        {
+            LoadChatLieu();
+            cmb_chatlieu.Text = s;
+        }
         private void pic_themnhanhchatlieu_Click(object sender, EventArgs e)
         {
             Frm_ThemNhanhChatLieu form = new Frm_ThemNhanhChatLieu();
+            form.ThemChatLieu = new Frm_ThemNhanhChatLieu.AddChatLieu(ThemNhanhChatLieu);
             form.TopMost = true;
             form.BringToFront();
             form.ShowDialog();

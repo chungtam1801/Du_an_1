@@ -16,6 +16,8 @@ namespace _3.PL.Views
     public partial class Frm_ThemNhanhLoaiSP : Form
     {
         private IQLLoaiSpServices _iqLLoaiSpServices;
+        public delegate void ADDLoaiSP(string s);
+        public ADDLoaiSP Themlsp;
         public Frm_ThemNhanhLoaiSP()
         {
             InitializeComponent();
@@ -67,8 +69,8 @@ namespace _3.PL.Views
 
         private void btn_boqua_Click(object sender, EventArgs e)
         {
-            tbx_ten.Text = "";
             cmb_lspcha.SelectedIndex = 0;
+            Themlsp(tbx_ten.Text);
             this.Close();
         }
     }

@@ -60,6 +60,7 @@
             this.btn_boqua.Text = "Bỏ qua";
             this.btn_boqua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_boqua.UseVisualStyleBackColor = false;
+            this.btn_boqua.Click += new System.EventHandler(this.btn_boqua_Click_1);
             // 
             // btn_luu
             // 
@@ -75,6 +76,7 @@
             this.btn_luu.Text = "     Lưu";
             this.btn_luu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_luu.UseVisualStyleBackColor = false;
+            this.btn_luu.Click += new System.EventHandler(this.btn_luu_Click_1);
             // 
             // tbx_ten
             // 

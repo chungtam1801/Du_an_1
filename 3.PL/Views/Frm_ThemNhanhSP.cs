@@ -18,10 +18,13 @@ namespace _3.PL.Views
     public partial class Frm_ThemNhanhSP : Form
     {
         private IQLSanPhamServices _iqLSanPhamServices;
+        public delegate void ADDSP(string sp);
+        public ADDSP Themsp;
         public Frm_ThemNhanhSP()
         {
             InitializeComponent();
             _iqLSanPhamServices = new QLSanPhamServices();
+
         }
         private string MaTuSinh()
         {
@@ -52,7 +55,7 @@ namespace _3.PL.Views
         }
         private void btn_boqua_Click_1(object sender, EventArgs e)
         {
-            tbx_tensp.Text = "";
+            Themsp(tbx_tensp.Text);
             this.Close();
         }
     }

@@ -16,6 +16,8 @@ namespace _3.PL.Views
     public partial class Frm_ThemNhanhKichThuoc : Form
     {
         private IQLKichThuocServices _iQLKichThuocServices;
+        public delegate void AddKichThuoc(string s);
+        public AddKichThuoc ThemKichThuoc;
         public Frm_ThemNhanhKichThuoc()
         {
             InitializeComponent();
@@ -51,6 +53,7 @@ namespace _3.PL.Views
 
         private void btn_boqua_Click(object sender, EventArgs e)
         {
+            ThemKichThuoc(tbx_ten.Text);
             this.Close();
         }
     }

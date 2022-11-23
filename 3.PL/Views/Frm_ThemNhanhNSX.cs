@@ -16,6 +16,8 @@ namespace _3.PL.Views
     public partial class Frm_ThemNhanhNSX : Form
     {
         private IQLNsxServices _iqLNsxServices;
+        public delegate void ADDNSX(string s);
+        public ADDNSX Themnsx;
         public Frm_ThemNhanhNSX()
         {
             InitializeComponent();
@@ -51,8 +53,7 @@ namespace _3.PL.Views
         }
         private void btn_boqua_Click(object sender, EventArgs e)
         {
-            tbx_ten.Text = "";
-            tbx_diachi.Text = "";
+            Themnsx(tbx_ten.Text);
             this.Close();
         }
     }

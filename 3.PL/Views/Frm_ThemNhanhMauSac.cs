@@ -16,6 +16,8 @@ namespace _3.PL.Views
     public partial class Frm_ThemNhanhMauSac : Form
     {
         private IQLMauSacServices _iQLMauSacServices;
+        public delegate void AddMauSac(string s);
+        public AddMauSac Themms;
         public Frm_ThemNhanhMauSac()
         {
             InitializeComponent();
@@ -51,7 +53,7 @@ namespace _3.PL.Views
 
         private void btn_boqua_Click(object sender, EventArgs e)
         {
-            tbx_ten.Text = "";
+            Themms(tbx_ten.Text);
             this.Close();
         }
     }

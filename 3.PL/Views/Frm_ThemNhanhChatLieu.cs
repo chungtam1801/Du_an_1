@@ -16,6 +16,8 @@ namespace _3.PL.Views
     public partial class Frm_ThemNhanhChatLieu : Form
     {
         private IQLChatLieuServices _iQLChatLieuServices;
+        public delegate void AddChatLieu(string s);
+        public AddChatLieu ThemChatLieu;
         public Frm_ThemNhanhChatLieu()
         {
             InitializeComponent();
@@ -38,19 +40,20 @@ namespace _3.PL.Views
             s = "CL00" + (max + 1);
             return s;
         }
-        private void btn_luu_Click(object sender, EventArgs e)
+        private void btn_luu_Click_1(object sender, EventArgs e)
         {
             ChatLieu cl = new ChatLieu();
             cl.Ten = tbx_ten.Text;
-            cl.Ma =MaTuSinh();
+            cl.Ma = MaTuSinh();
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
                 MessageBox.Show(_iQLChatLieuServices.Add(cl));
             }
         }
-        private void btn_boqua_Click(object sender, EventArgs e)
+
+        private void btn_boqua_Click_1(object sender, EventArgs e)
         {
-            tbx_ten.Text = "";
+            ThemChatLieu(tbx_ten.Text);
             this.Close();
         }
     }
