@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_ChiTietSanPham));
             this.panel1 = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -74,7 +75,14 @@
             this.btn_xoa = new System.Windows.Forms.Button();
             this.btn_them = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.tbx_max = new System.Windows.Forms.TextBox();
+            this.tbx_min = new System.Windows.Forms.TextBox();
+            this.cmb_thanhphan = new System.Windows.Forms.ComboBox();
+            this.loctheogiaban = new System.Windows.Forms.PictureBox();
+            this.cmb_timkiem = new System.Windows.Forms.ComboBox();
             this.dgrd_ctsp = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -105,9 +113,12 @@
             this.splitContainer6.Panel2.SuspendLayout();
             this.splitContainer6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loctheogiaban)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrd_ctsp)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -117,7 +128,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1324, 749);
+            this.panel1.Size = new System.Drawing.Size(1370, 749);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer1
@@ -135,8 +146,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1324, 749);
-            this.splitContainer1.SplitterDistance = 364;
+            this.splitContainer1.Size = new System.Drawing.Size(1370, 749);
+            this.splitContainer1.SplitterDistance = 376;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer3
@@ -175,7 +186,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(364, 749);
+            this.splitContainer3.Size = new System.Drawing.Size(376, 749);
             this.splitContainer3.SplitterDistance = 262;
             this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 0;
@@ -387,7 +398,7 @@
             // 
             this.splitContainer4.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer6);
-            this.splitContainer4.Size = new System.Drawing.Size(364, 482);
+            this.splitContainer4.Size = new System.Drawing.Size(376, 482);
             this.splitContainer4.SplitterDistance = 177;
             this.splitContainer4.SplitterWidth = 5;
             this.splitContainer4.TabIndex = 0;
@@ -410,25 +421,28 @@
             // 
             this.splitContainer5.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.splitContainer5.Panel2.Controls.Add(this.pictureBox_spham);
-            this.splitContainer5.Size = new System.Drawing.Size(364, 177);
-            this.splitContainer5.SplitterDistance = 134;
+            this.splitContainer5.Size = new System.Drawing.Size(376, 177);
+            this.splitContainer5.SplitterDistance = 138;
             this.splitContainer5.TabIndex = 0;
             // 
             // btn_openfile
             // 
-            this.btn_openfile.Location = new System.Drawing.Point(11, 54);
+            this.btn_openfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
+            this.btn_openfile.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_openfile.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btn_openfile.Location = new System.Drawing.Point(14, 56);
             this.btn_openfile.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_openfile.Name = "btn_openfile";
-            this.btn_openfile.Size = new System.Drawing.Size(89, 44);
+            this.btn_openfile.Size = new System.Drawing.Size(112, 44);
             this.btn_openfile.TabIndex = 40;
             this.btn_openfile.Text = "Open Files";
-            this.btn_openfile.UseVisualStyleBackColor = true;
+            this.btn_openfile.UseVisualStyleBackColor = false;
             this.btn_openfile.Click += new System.EventHandler(this.btn_openfile_Click_1);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 11);
+            this.label13.Location = new System.Drawing.Point(21, 12);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(32, 18);
             this.label13.TabIndex = 39;
@@ -442,7 +456,7 @@
             this.pictureBox_spham.Location = new System.Drawing.Point(0, 0);
             this.pictureBox_spham.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pictureBox_spham.Name = "pictureBox_spham";
-            this.pictureBox_spham.Size = new System.Drawing.Size(226, 177);
+            this.pictureBox_spham.Size = new System.Drawing.Size(234, 177);
             this.pictureBox_spham.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_spham.TabIndex = 27;
             this.pictureBox_spham.TabStop = false;
@@ -478,7 +492,7 @@
             this.splitContainer6.Panel2.Controls.Add(this.btn_sua);
             this.splitContainer6.Panel2.Controls.Add(this.btn_xoa);
             this.splitContainer6.Panel2.Controls.Add(this.btn_them);
-            this.splitContainer6.Size = new System.Drawing.Size(364, 300);
+            this.splitContainer6.Size = new System.Drawing.Size(376, 300);
             this.splitContainer6.SplitterDistance = 196;
             this.splitContainer6.SplitterWidth = 5;
             this.splitContainer6.TabIndex = 0;
@@ -552,7 +566,7 @@
             // 
             // tbx_giaban
             // 
-            this.tbx_giaban.Location = new System.Drawing.Point(88, 36);
+            this.tbx_giaban.Location = new System.Drawing.Point(116, 36);
             this.tbx_giaban.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbx_giaban.Name = "tbx_giaban";
             this.tbx_giaban.Size = new System.Drawing.Size(219, 25);
@@ -569,7 +583,7 @@
             // 
             // tbx_gianhap
             // 
-            this.tbx_gianhap.Location = new System.Drawing.Point(88, 4);
+            this.tbx_gianhap.Location = new System.Drawing.Point(117, 4);
             this.tbx_gianhap.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbx_gianhap.Name = "tbx_gianhap";
             this.tbx_gianhap.Size = new System.Drawing.Size(219, 25);
@@ -586,46 +600,58 @@
             // 
             // btn_clear
             // 
-            this.btn_clear.Location = new System.Drawing.Point(157, 55);
+            this.btn_clear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
+            this.btn_clear.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_clear.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btn_clear.Location = new System.Drawing.Point(203, 73);
             this.btn_clear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(98, 28);
+            this.btn_clear.Size = new System.Drawing.Size(130, 53);
             this.btn_clear.TabIndex = 44;
             this.btn_clear.Text = "Clear";
-            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.UseVisualStyleBackColor = false;
             this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click_1);
             // 
             // btn_sua
             // 
-            this.btn_sua.Location = new System.Drawing.Point(157, 12);
+            this.btn_sua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
+            this.btn_sua.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_sua.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btn_sua.Location = new System.Drawing.Point(203, 12);
             this.btn_sua.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_sua.Name = "btn_sua";
-            this.btn_sua.Size = new System.Drawing.Size(101, 28);
+            this.btn_sua.Size = new System.Drawing.Size(130, 53);
             this.btn_sua.TabIndex = 42;
             this.btn_sua.Text = "Sửa";
-            this.btn_sua.UseVisualStyleBackColor = true;
+            this.btn_sua.UseVisualStyleBackColor = false;
             this.btn_sua.Click += new System.EventHandler(this.btn_sua_Click_1);
             // 
             // btn_xoa
             // 
-            this.btn_xoa.Location = new System.Drawing.Point(23, 55);
+            this.btn_xoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
+            this.btn_xoa.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_xoa.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btn_xoa.Location = new System.Drawing.Point(35, 73);
             this.btn_xoa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_xoa.Name = "btn_xoa";
-            this.btn_xoa.Size = new System.Drawing.Size(101, 28);
+            this.btn_xoa.Size = new System.Drawing.Size(130, 53);
             this.btn_xoa.TabIndex = 43;
             this.btn_xoa.Text = "Xóa";
-            this.btn_xoa.UseVisualStyleBackColor = true;
+            this.btn_xoa.UseVisualStyleBackColor = false;
             this.btn_xoa.Click += new System.EventHandler(this.btn_xoa_Click_1);
             // 
             // btn_them
             // 
-            this.btn_them.Location = new System.Drawing.Point(23, 12);
+            this.btn_them.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
+            this.btn_them.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_them.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btn_them.Location = new System.Drawing.Point(35, 12);
             this.btn_them.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_them.Name = "btn_them";
-            this.btn_them.Size = new System.Drawing.Size(101, 28);
+            this.btn_them.Size = new System.Drawing.Size(130, 53);
             this.btn_them.TabIndex = 41;
             this.btn_them.Text = "Thêm";
-            this.btn_them.UseVisualStyleBackColor = true;
+            this.btn_them.UseVisualStyleBackColor = false;
             this.btn_them.Click += new System.EventHandler(this.btn_them_Click_1);
             // 
             // splitContainer2
@@ -640,27 +666,97 @@
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer2.Panel1.Controls.Add(this.tbx_max);
+            this.splitContainer2.Panel1.Controls.Add(this.tbx_min);
+            this.splitContainer2.Panel1.Controls.Add(this.cmb_thanhphan);
+            this.splitContainer2.Panel1.Controls.Add(this.loctheogiaban);
+            this.splitContainer2.Panel1.Controls.Add(this.cmb_timkiem);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer2.Panel2.Controls.Add(this.dgrd_ctsp);
-            this.splitContainer2.Size = new System.Drawing.Size(956, 749);
+            this.splitContainer2.Size = new System.Drawing.Size(990, 749);
             this.splitContainer2.SplitterDistance = 42;
             this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 0;
             // 
+            // tbx_max
+            // 
+            this.tbx_max.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbx_max.Location = new System.Drawing.Point(749, 8);
+            this.tbx_max.Name = "tbx_max";
+            this.tbx_max.PlaceholderText = "Giá Max";
+            this.tbx_max.Size = new System.Drawing.Size(100, 28);
+            this.tbx_max.TabIndex = 59;
+            // 
+            // tbx_min
+            // 
+            this.tbx_min.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbx_min.Location = new System.Drawing.Point(622, 9);
+            this.tbx_min.Name = "tbx_min";
+            this.tbx_min.PlaceholderText = "Giá Min";
+            this.tbx_min.Size = new System.Drawing.Size(100, 28);
+            this.tbx_min.TabIndex = 58;
+            // 
+            // cmb_thanhphan
+            // 
+            this.cmb_thanhphan.FormattingEnabled = true;
+            this.cmb_thanhphan.Location = new System.Drawing.Point(217, 5);
+            this.cmb_thanhphan.Name = "cmb_thanhphan";
+            this.cmb_thanhphan.Size = new System.Drawing.Size(220, 26);
+            this.cmb_thanhphan.Sorted = true;
+            this.cmb_thanhphan.TabIndex = 57;
+            this.cmb_thanhphan.TextChanged += new System.EventHandler(this.cmb_thanhphan_TextChanged);
+            // 
+            // loctheogiaban
+            // 
+            this.loctheogiaban.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loctheogiaban.Image = ((System.Drawing.Image)(resources.GetObject("loctheogiaban.Image")));
+            this.loctheogiaban.Location = new System.Drawing.Point(874, 6);
+            this.loctheogiaban.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.loctheogiaban.Name = "loctheogiaban";
+            this.loctheogiaban.Size = new System.Drawing.Size(31, 28);
+            this.loctheogiaban.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.loctheogiaban.TabIndex = 55;
+            this.loctheogiaban.TabStop = false;
+            this.loctheogiaban.Click += new System.EventHandler(this.loctheogiaban_Click);
+            // 
+            // cmb_timkiem
+            // 
+            this.cmb_timkiem.FormattingEnabled = true;
+            this.cmb_timkiem.Location = new System.Drawing.Point(14, 6);
+            this.cmb_timkiem.Name = "cmb_timkiem";
+            this.cmb_timkiem.Size = new System.Drawing.Size(176, 26);
+            this.cmb_timkiem.TabIndex = 0;
+            this.cmb_timkiem.TextChanged += new System.EventHandler(this.cmb_timkiem_TextChanged);
+            // 
             // dgrd_ctsp
             // 
-            this.dgrd_ctsp.BackgroundColor = System.Drawing.Color.White;
+            this.dgrd_ctsp.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dgrd_ctsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrd_ctsp.ContextMenuStrip = this.contextMenuStrip1;
             this.dgrd_ctsp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgrd_ctsp.Location = new System.Drawing.Point(0, 0);
             this.dgrd_ctsp.Name = "dgrd_ctsp";
             this.dgrd_ctsp.RowTemplate.Height = 25;
-            this.dgrd_ctsp.Size = new System.Drawing.Size(956, 702);
+            this.dgrd_ctsp.Size = new System.Drawing.Size(990, 702);
             this.dgrd_ctsp.TabIndex = 0;
             this.dgrd_ctsp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrd_ctsp_CellClick_1);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 
@@ -670,7 +766,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1324, 749);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -710,10 +806,14 @@
             this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
             this.splitContainer6.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.loctheogiaban)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrd_ctsp)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -767,5 +867,12 @@
         private System.Windows.Forms.PictureBox pic_themnhanhmausac;
         private System.Windows.Forms.PictureBox pic_themnhanhsp;
         private System.Windows.Forms.DataGridView dgrd_ctsp;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ComboBox cmb_timkiem;
+        private System.Windows.Forms.PictureBox loctheogiaban;
+        private System.Windows.Forms.ComboBox cmb_thanhphan;
+        private System.Windows.Forms.TextBox tbx_max;
+        private System.Windows.Forms.TextBox tbx_min;
     }
 }
