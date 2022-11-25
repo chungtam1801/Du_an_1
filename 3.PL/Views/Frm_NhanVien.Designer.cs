@@ -178,7 +178,7 @@
             this.tb_ma.Location = new System.Drawing.Point(85, 7);
             this.tb_ma.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_ma.Name = "tb_ma";
-            this.tb_ma.Size = new System.Drawing.Size(195, 23);
+            this.tb_ma.Size = new System.Drawing.Size(194, 23);
             this.tb_ma.TabIndex = 30;
             // 
             // tb_ten
@@ -187,7 +187,7 @@
             this.tb_ten.Location = new System.Drawing.Point(85, 34);
             this.tb_ten.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_ten.Name = "tb_ten";
-            this.tb_ten.Size = new System.Drawing.Size(195, 23);
+            this.tb_ten.Size = new System.Drawing.Size(194, 23);
             this.tb_ten.TabIndex = 31;
             // 
             // tb_tendem
@@ -196,7 +196,7 @@
             this.tb_tendem.Location = new System.Drawing.Point(85, 61);
             this.tb_tendem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_tendem.Name = "tb_tendem";
-            this.tb_tendem.Size = new System.Drawing.Size(195, 23);
+            this.tb_tendem.Size = new System.Drawing.Size(194, 23);
             this.tb_tendem.TabIndex = 32;
             // 
             // tb_ho
@@ -205,7 +205,7 @@
             this.tb_ho.Location = new System.Drawing.Point(85, 88);
             this.tb_ho.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_ho.Name = "tb_ho";
-            this.tb_ho.Size = new System.Drawing.Size(195, 23);
+            this.tb_ho.Size = new System.Drawing.Size(194, 23);
             this.tb_ho.TabIndex = 33;
             // 
             // tb_matkhau
@@ -214,7 +214,7 @@
             this.tb_matkhau.Location = new System.Drawing.Point(85, 196);
             this.tb_matkhau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_matkhau.Name = "tb_matkhau";
-            this.tb_matkhau.Size = new System.Drawing.Size(195, 23);
+            this.tb_matkhau.Size = new System.Drawing.Size(194, 23);
             this.tb_matkhau.TabIndex = 45;
             // 
             // tb_sdt
@@ -223,7 +223,7 @@
             this.tb_sdt.Location = new System.Drawing.Point(85, 169);
             this.tb_sdt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_sdt.Name = "tb_sdt";
-            this.tb_sdt.Size = new System.Drawing.Size(195, 23);
+            this.tb_sdt.Size = new System.Drawing.Size(194, 23);
             this.tb_sdt.TabIndex = 44;
             // 
             // tb_diachi
@@ -232,7 +232,7 @@
             this.tb_diachi.Location = new System.Drawing.Point(85, 223);
             this.tb_diachi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_diachi.Name = "tb_diachi";
-            this.tb_diachi.Size = new System.Drawing.Size(195, 23);
+            this.tb_diachi.Size = new System.Drawing.Size(194, 23);
             this.tb_diachi.TabIndex = 43;
             // 
             // label8
@@ -405,7 +405,7 @@
             this.panel2.Controls.Add(this.label12);
             this.panel2.Location = new System.Drawing.Point(9, 52);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(309, 404);
+            this.panel2.Size = new System.Drawing.Size(308, 404);
             this.panel2.TabIndex = 54;
             // 
             // panel3
@@ -416,7 +416,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1724, 37);
+            this.panel3.Size = new System.Drawing.Size(1698, 37);
             this.panel3.TabIndex = 55;
             // 
             // panel4
@@ -444,7 +444,7 @@
             this.panel5.Controls.Add(this.panel2);
             this.panel5.Controls.Add(this.panel1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(1403, 37);
+            this.panel5.Location = new System.Drawing.Point(1377, 37);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(321, 468);
             this.panel5.TabIndex = 57;
@@ -454,7 +454,7 @@
             this.panel6.Controls.Add(this.dtg_nhanvien);
             this.panel6.Location = new System.Drawing.Point(12, 89);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1394, 404);
+            this.panel6.Size = new System.Drawing.Size(1368, 404);
             this.panel6.TabIndex = 58;
             // 
             // dtg_nhanvien
@@ -465,8 +465,9 @@
             this.dtg_nhanvien.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.dtg_nhanvien.Location = new System.Drawing.Point(0, 0);
             this.dtg_nhanvien.Name = "dtg_nhanvien";
+            this.dtg_nhanvien.RowHeadersWidth = 51;
             this.dtg_nhanvien.RowTemplate.Height = 25;
-            this.dtg_nhanvien.Size = new System.Drawing.Size(1394, 404);
+            this.dtg_nhanvien.Size = new System.Drawing.Size(1368, 404);
             this.dtg_nhanvien.TabIndex = 0;
             this.dtg_nhanvien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_nhanvien_CellClick_1);
             // 
@@ -475,7 +476,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1724, 505);
+            this.ClientSize = new System.Drawing.Size(1698, 505);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);

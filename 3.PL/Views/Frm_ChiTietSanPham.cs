@@ -14,6 +14,7 @@ using System.IO;
 using System.Data.SqlClient;
 using Microsoft.Data.SqlClient;
 using _3.PL.Views;
+using _2.BUS.ViewModels;
 
 namespace _3.PL.Views
 {
@@ -38,17 +39,21 @@ namespace _3.PL.Views
             _iqlLKichThuocServices = new QLKichThuocServices();
             _iqLLoaiSpServices = new QLLoaiSpServices();
             _iqlMauSacServices = new QLMauSacServices();
-            LoadData();
+            LoadData(null);
             LoadSanPham();
             LoadChatLieu();
             LoadMauSac();
             LoadNSX();
             LoadKichThuoc();
             LoadLoaiSP();
+            LoadTimKiem();
         }
-        private void LoadData()
+        
+        // Load dữ liệu
+        private void LoadData(string s)
         {
-            dgrd_ctsp.ColumnCount = 12;
+            dgrd_ctsp.Height = 35;
+            dgrd_ctsp.ColumnCount = 13;
             dgrd_ctsp.Rows.Clear();
             dgrd_ctsp.Columns[0].Name = "Id";
             dgrd_ctsp.Columns[0].Visible = false;
@@ -59,16 +64,18 @@ namespace _3.PL.Views
             dgrd_ctsp.Columns[5].Name = "Kích thước";
             dgrd_ctsp.Columns[6].Name = "Chất liệu";
             dgrd_ctsp.Columns[7].Name = "Ảnh";
-            dgrd_ctsp.Columns[7].Name = "Mô tả";
-            dgrd_ctsp.Columns[8].Name = "Số lượng tồn";
-            dgrd_ctsp.Columns[9].Name = "Giá nhập";
-            dgrd_ctsp.Columns[10].Name = "Giá bán";
-            dgrd_ctsp.Columns[11].Name = "Trạng thái";
-            foreach (var x in _iqLChiTietSpServices.GetAllView())
+            dgrd_ctsp.Columns[8].Name = "Mô tả";
+            dgrd_ctsp.Columns[9].Name = "Số lượng tồn";
+            dgrd_ctsp.Columns[10].Name = "Giá nhập";
+            dgrd_ctsp.Columns[11].Name = "Giá bán";
+            dgrd_ctsp.Columns[12].Name = "Trạng thái";
+            dgrd_ctsp.Rows.Clear();
+            foreach (var x in _iqLChiTietSpServices.GetAllView(s))
             {
-                dgrd_ctsp.Rows.Add(x.Id, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu, x.MoTa, x.SoLuongTon, x.GiaNhap, x.GiaBan, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                dgrd_ctsp.Rows.Add(x.Id, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu,x.Anh,x.MoTa,x.SoLuongTon, x.GiaNhap, x.GiaBan, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
         }
+        // Load thuộc tính
         private void LoadSanPham()
         {
             if (_iqlSanPhamServices.GetAll().Count == 0) return;
@@ -77,7 +84,7 @@ namespace _3.PL.Views
                 {
                     cmb_sp.Items.Add(x.Ten);
                 }
-                cmb_sp.SelectedIndex = 0;
+                cmb_sp.SelectedIndex = -1;
             }
         }
         private void LoadNSX()
@@ -87,7 +94,7 @@ namespace _3.PL.Views
             {
                 cmb_nsx.Items.Add(x.Ten);
             }
-            cmb_nsx.SelectedIndex = 0;
+            cmb_nsx.SelectedIndex = -1;
         }
         private void LoadMauSac()
         {
@@ -96,7 +103,7 @@ namespace _3.PL.Views
             {
                 cmb_mausac.Items.Add(x.Ten);
             }
-            cmb_mausac.SelectedIndex = 0;
+            cmb_mausac.SelectedIndex = -1;
         }
         private void LoadChatLieu()
         {
@@ -105,7 +112,7 @@ namespace _3.PL.Views
             {
                 cmb_chatlieu.Items.Add(x.Ten);
             }
-            cmb_chatlieu.SelectedIndex = 0;
+            cmb_chatlieu.SelectedIndex = -1;
         }
         private void LoadKichThuoc()
         {
@@ -114,7 +121,7 @@ namespace _3.PL.Views
             {
                 cmb_kichthuoc.Items.Add(x.Size);
             }
-            cmb_kichthuoc.SelectedIndex = 0;
+            cmb_kichthuoc.SelectedIndex = -1;
         }
         private void LoadLoaiSP()
         {
@@ -124,8 +131,9 @@ namespace _3.PL.Views
             {
                 cmb_loaisp.Items.Add(x.Ten);
             }
-            cmb_loaisp.SelectedIndex = 0;
+            cmb_loaisp.SelectedIndex = -1;
         }
+        //Lấy data từ controls
         private ChiTietSp GetDataFromGUI()
         {
             ChiTietSp ctsp = new ChiTietSp();
@@ -168,41 +176,50 @@ namespace _3.PL.Views
             }           
             return ctsp;
         }
-
+        // Mở File Ảnh
         private void btn_openfile_Click_1(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            string file = openFileDialog1.FileName;
-            if (string.IsNullOrEmpty(file)) return;
-            Image myImage = Image.FromFile(file);
-            pictureBox_spham.Image = myImage;
-        }
+            OpenFileDialog opf = new OpenFileDialog();
+            opf.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif";
+            if(opf.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    pictureBox_spham.Image = Image.FromFile(opf.FileName);
+                }catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
 
+        }
+        // CRUD
         private void btn_them_Click_1(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLChiTietSpServices.Add(GetDataFromGUI());
+                MessageBox.Show(_iqLChiTietSpServices.Add(GetDataFromGUI()));
             }
-            LoadData();
+            LoadData(null);
         }
 
         private void btn_sua_Click_1(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLChiTietSpServices.Update(GetDataFromGUI());
+                MessageBox.Show(_iqLChiTietSpServices.Update(GetDataFromGUI()));
+
             }
-            LoadData();
+            LoadData(null);
         }
 
         private void btn_xoa_Click_1(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLChiTietSpServices.Delete(GetDataFromGUI());
+                MessageBox.Show(_iqLChiTietSpServices.Delete(GetDataFromGUI()));
             }
-            LoadData();
+            LoadData(null);
         }
 
         private void btn_clear_Click_1(object sender, EventArgs e)
@@ -219,9 +236,9 @@ namespace _3.PL.Views
             tbx_mota.Text = "";
             tbx_soluong.Text = "";
             pictureBox_spham.Image = null;
-            LoadData();
+            LoadData(null);
         }
-
+        // Cell click
         private void dgrd_ctsp_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
@@ -271,6 +288,7 @@ namespace _3.PL.Views
                 }
             }
         }
+        // Thêm nhanh các thuộc tính
         private void Frm_ChiTietSanPham_Load(object sender, EventArgs e)
         {
             ToolTip toolTip = new ToolTip();
@@ -360,6 +378,132 @@ namespace _3.PL.Views
             form.TopMost = true;
             form.BringToFront();
             form.ShowDialog();
+        }
+        // Xóa bằng nháy phải trên datagrid view
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Bạn có muốn xóa không?","Thông báo",MessageBoxButtons.YesNo)== DialogResult.Yes)
+                {
+                    DataGridViewRow dataGrid = dgrd_ctsp.CurrentRow;
+                    ChiTietSp ctsp = _iqLChiTietSpServices.GetAll().First(c => c.Id == Guid.Parse(dataGrid.Cells[0].Value.ToString()));
+                    MessageBox.Show(_iqLChiTietSpServices.Delete(ctsp));
+                    LoadData(null);
+                }
+            }catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OKCancel);
+                }
+}
+        // Tìm kiếm theo combox 
+        private void LoadTimKiem()
+        {
+            cmb_timkiem.Items.Add("Sản Phẩm");
+            cmb_timkiem.Items.Add("Nhà sản xuất");
+            cmb_timkiem.Items.Add("Màu sắc");
+            cmb_timkiem.Items.Add("Loại sản phẩm");
+            cmb_timkiem.Items.Add("Chất liệu");
+            cmb_timkiem.Items.Add("Kích thước");
+        }
+
+        private void cmb_timkiem_TextChanged(object sender, EventArgs e)
+        {
+            if(cmb_timkiem.Text == "Sản Phẩm")
+            { 
+                if (_iqlSanPhamServices.GetAll().Count == 0) return;
+                {
+                    cmb_thanhphan.Items.Clear();
+                    foreach (var x in _iqlSanPhamServices.GetAll())
+                    {
+                        cmb_thanhphan.Items.Add(x.Ten);
+                    }
+                    cmb_thanhphan.SelectedIndex = -1;
+                }
+            }else if(cmb_timkiem.Text == "Nhà sản xuất")
+            {
+                if (_iqlNsxServices.GetAll().Count == 0) return;
+                cmb_thanhphan.Items.Clear();
+                foreach (var x in _iqlNsxServices.GetAll())
+                {
+                    cmb_thanhphan.Items.Add(x.Ten);
+                }
+                cmb_thanhphan.SelectedIndex = -1;
+            }else if(cmb_timkiem.Text == "Màu sắc")
+            {
+                if (_iqlMauSacServices.GetAll().Count == 0) return;
+                cmb_thanhphan.Items.Clear();
+                foreach (var x in _iqlMauSacServices.GetAll())
+                {
+                    cmb_thanhphan.Items.Add(x.Ten);
+                }
+                cmb_thanhphan.SelectedIndex = -1;
+            }
+            else if(cmb_timkiem.Text == "Loại sản phẩm")
+            {
+                List<LoaiSp> _lstlsp = _iqLLoaiSpServices.GetAll().Where(c => c.MaLoaiSpcha != null).ToList();
+                if (_lstlsp.Count == 0) return;
+                cmb_thanhphan.Items.Clear();
+                foreach (var x in _lstlsp)
+                {
+                    cmb_thanhphan.Items.Add(x.Ten);
+                }
+                cmb_thanhphan.SelectedIndex = -1;
+            }
+            else if(cmb_timkiem.Text == "Kích thước")
+            {
+                if (_iqlLKichThuocServices.GetAll().Count == 0) return;
+                cmb_thanhphan.Items.Clear();
+                foreach (var x in _iqlLKichThuocServices.GetAll())
+                {
+                    cmb_thanhphan.Items.Add(x.Size);
+                }
+                cmb_thanhphan.SelectedIndex = -1;
+            }
+            else if(cmb_timkiem.Text == "Chất liệu") 
+            {
+                if (_iqLChatLieuServices.GetAll().Count == 0) return;
+                cmb_thanhphan.Items.Clear();
+                foreach (var x in _iqLChatLieuServices.GetAll())
+                {
+                    cmb_thanhphan.Items.Add(x.Ten);
+                }
+                cmb_thanhphan.SelectedIndex = -1;
+            }
+
+            cmb_thanhphan_TextChanged(sender, e);
+        }
+
+        private void cmb_thanhphan_TextChanged(object sender, EventArgs e)
+        {
+            LoadData(cmb_thanhphan.Text);
+        }
+        //Lọc theo giá bán
+        private void loctheogiaban_Click(object sender, EventArgs e)
+        {
+            var list = _iqLChiTietSpServices.GetAllView().Where(c => c.GiaBan >= Convert.ToDecimal(tbx_min.Text) && c.GiaBan <= Convert.ToDecimal(tbx_max.Text)).ToList();
+            dgrd_ctsp.Height = 35;
+            dgrd_ctsp.ColumnCount = 13;
+            dgrd_ctsp.Rows.Clear();
+            dgrd_ctsp.Columns[0].Name = "Id";
+            dgrd_ctsp.Columns[0].Visible = false;
+            dgrd_ctsp.Columns[1].Name = "Sản phẩm";
+            dgrd_ctsp.Columns[2].Name = "Nhà sản xuất";
+            dgrd_ctsp.Columns[3].Name = "Màu sắc";
+            dgrd_ctsp.Columns[4].Name = "Loại sản phẩm";
+            dgrd_ctsp.Columns[5].Name = "Kích thước";
+            dgrd_ctsp.Columns[6].Name = "Chất liệu";
+            dgrd_ctsp.Columns[7].Name = "Ảnh";
+            dgrd_ctsp.Columns[8].Name = "Mô tả";
+            dgrd_ctsp.Columns[9].Name = "Số lượng tồn";
+            dgrd_ctsp.Columns[10].Name = "Giá nhập";
+            dgrd_ctsp.Columns[11].Name = "Giá bán";
+            dgrd_ctsp.Columns[12].Name = "Trạng thái";
+            dgrd_ctsp.Rows.Clear();
+            foreach (var x in list)
+            {
+                dgrd_ctsp.Rows.Add(x.Id, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu, x.Anh, x.MoTa, x.SoLuongTon, x.GiaNhap, x.GiaBan, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+            }
         }
     }
 }
