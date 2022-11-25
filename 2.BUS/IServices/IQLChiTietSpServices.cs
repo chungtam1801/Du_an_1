@@ -14,6 +14,7 @@ namespace _2.BUS.IServices
         string Update(ChiTietSp obj);
         string Delete(ChiTietSp obj);
         List<ChiTietSp> GetAll();
+        List<ViewQLChiTietSp> GetAllView(string s);
         List<ViewQLChiTietSp> GetAllView();
         ChiTietSp GetByID(Guid id);
     }

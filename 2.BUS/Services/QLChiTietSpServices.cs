@@ -82,6 +82,12 @@ namespace _2.BUS.Services
             return listView;
         }
 
+        public List<ViewQLChiTietSp> GetAllView(string s)
+        {
+            if (s == null) return GetAllView();
+            return GetAllView().Where(c => c.Ten.ToLower().Contains(s.ToLower()) || c.Nsx.ToLower().Contains(s.ToLower()) || c.MauSac.ToLower().Contains(s.ToLower()) || c.LoaiSp.ToLower().Contains(s.ToLower()) || c.KichThuoc.ToLower().Contains(s.ToLower()) || c.ChatLieu.ToLower().Contains(s.ToLower())).ToList();
+        }
+
         public ChiTietSp GetByID(Guid id)
         {
             throw new NotImplementedException();
