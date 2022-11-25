@@ -174,6 +174,7 @@
             // 
             // tb_ma
             // 
+            this.tb_ma.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_ma.Location = new System.Drawing.Point(85, 7);
             this.tb_ma.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_ma.Name = "tb_ma";
@@ -182,6 +183,7 @@
             // 
             // tb_ten
             // 
+            this.tb_ten.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_ten.Location = new System.Drawing.Point(85, 34);
             this.tb_ten.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_ten.Name = "tb_ten";
@@ -190,6 +192,7 @@
             // 
             // tb_tendem
             // 
+            this.tb_tendem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_tendem.Location = new System.Drawing.Point(85, 61);
             this.tb_tendem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_tendem.Name = "tb_tendem";
@@ -198,6 +201,7 @@
             // 
             // tb_ho
             // 
+            this.tb_ho.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_ho.Location = new System.Drawing.Point(85, 88);
             this.tb_ho.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_ho.Name = "tb_ho";
@@ -206,6 +210,7 @@
             // 
             // tb_matkhau
             // 
+            this.tb_matkhau.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_matkhau.Location = new System.Drawing.Point(85, 196);
             this.tb_matkhau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_matkhau.Name = "tb_matkhau";
@@ -214,6 +219,7 @@
             // 
             // tb_sdt
             // 
+            this.tb_sdt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_sdt.Location = new System.Drawing.Point(85, 169);
             this.tb_sdt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_sdt.Name = "tb_sdt";
@@ -222,6 +228,7 @@
             // 
             // tb_diachi
             // 
+            this.tb_diachi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tb_diachi.Location = new System.Drawing.Point(85, 223);
             this.tb_diachi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_diachi.Name = "tb_diachi";
@@ -303,13 +310,16 @@
             // 
             this.dtp_ngaysinh.Location = new System.Drawing.Point(85, 142);
             this.dtp_ngaysinh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtp_ngaysinh.MinDate = new System.DateTime(1922, 1, 1, 0, 0, 0, 0);
             this.dtp_ngaysinh.Name = "dtp_ngaysinh";
             this.dtp_ngaysinh.Size = new System.Drawing.Size(196, 23);
             this.dtp_ngaysinh.TabIndex = 49;
+            this.dtp_ngaysinh.Value = new System.DateTime(2022, 11, 24, 18, 55, 59, 0);
             // 
             // rbtn_conlam
             // 
             this.rbtn_conlam.AutoSize = true;
+            this.rbtn_conlam.BackColor = System.Drawing.Color.LightGray;
             this.rbtn_conlam.Location = new System.Drawing.Point(85, 250);
             this.rbtn_conlam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtn_conlam.Name = "rbtn_conlam";
@@ -317,11 +327,12 @@
             this.rbtn_conlam.TabIndex = 50;
             this.rbtn_conlam.TabStop = true;
             this.rbtn_conlam.Text = "còn làm";
-            this.rbtn_conlam.UseVisualStyleBackColor = true;
+            this.rbtn_conlam.UseVisualStyleBackColor = false;
             // 
             // rbtn_nghilam
             // 
             this.rbtn_nghilam.AutoSize = true;
+            this.rbtn_nghilam.BackColor = System.Drawing.Color.LightGray;
             this.rbtn_nghilam.Location = new System.Drawing.Point(159, 250);
             this.rbtn_nghilam.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtn_nghilam.Name = "rbtn_nghilam";
@@ -329,7 +340,7 @@
             this.rbtn_nghilam.TabIndex = 51;
             this.rbtn_nghilam.TabStop = true;
             this.rbtn_nghilam.Text = "nghỉ làm";
-            this.rbtn_nghilam.UseVisualStyleBackColor = true;
+            this.rbtn_nghilam.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 

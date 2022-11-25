@@ -73,7 +73,7 @@ namespace _3.PL.Views
 
         private NhanVien GetDataFormGui()
         {
-            NhanVien nv=new NhanVien();
+            NhanVien nv = new NhanVien();
             nv.Id = _id;
             nv.Ma = tb_ma.Text;
             nv.Ten = tb_ten.Text;
@@ -103,10 +103,58 @@ namespace _3.PL.Views
 
         private void btn_them_Click(object sender, EventArgs e)
         {
+            NhanVien nv = new NhanVien();
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
-                _IqlNhanVienServices.Add(GetDataFormGui());
-                LoadNV();
+                if (tb_ma.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mã nhân viên không được bỏ trống!");
+                }
+                else if (tb_ho.Text.Trim() == "")
+                {
+                    MessageBox.Show("Họ nhân viên không được bỏ trống!");
+                } 
+                else if (nv_cbb_gioitinh.Text.Trim() == "")
+                {
+                    MessageBox.Show("Tên nhân viên không được bỏ trống!");
+                }
+                else if (dtp_ngaysinh.Value.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Ngày sinh nhân viên không được bỏ trống!");
+                }
+                else if (tb_sdt.Text.Trim() == "")
+                {
+                    MessageBox.Show("SDT nhân viên không được bỏ trống!");
+                }
+                else if (tb_sdt.Text.Trim().Count() != 10)
+                {
+                    MessageBox.Show("SDT nhân viên không hợp lệ 0xxxxxxxxx!");
+                }
+                //else if (tb_sdt.Text.Trim())
+                //{
+                //    MessageBox.Show("SDT nhân viên không hợp lệ 0xxxxxxxxx!");
+                //}
+                else if (nv_cbb_gioitinh.Text.Trim() == "")
+                {
+                    MessageBox.Show("Giới tính nhân viên không được bỏ trống!");
+                }
+                else if (tb_matkhau.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mật khẩu nhân viên không được bỏ trống!");
+                }
+                else if (tb_diachi.Text.Trim() == "")
+                {
+                    MessageBox.Show("Địa chỉ nhân viên không được bỏ trống!");
+                }
+                else if (rbtn_conlam.Checked == false && rbtn_nghilam.Checked == false)
+                {
+                    MessageBox.Show("Trạng thái nhân viên không được bỏ trống!");
+                }
+                else
+                {
+                    _IqlNhanVienServices.Add(GetDataFormGui());
+                    LoadNV();
+                }
             }
         }
 
@@ -173,6 +221,7 @@ namespace _3.PL.Views
             tb_ho.Text = nv.Ho;
             nv_cbb_gioitinh.Text = nv.GioiTinh;
             dtp_ngaysinh.Value = nv.NgaySinh;
+            tb_matkhau.Text = nv.MatKhau;
             tb_diachi.Text = nv.DiaChi;
             tb_sdt.Text = nv.Sdt;
             if (nv.TrangThai == 1)
