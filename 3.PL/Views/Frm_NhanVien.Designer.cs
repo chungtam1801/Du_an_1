@@ -287,7 +287,7 @@
             this.tk_timkiem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tk_timkiem.Multiline = true;
             this.tk_timkiem.Name = "tk_timkiem";
-            this.tk_timkiem.PlaceholderText = "   Tìm kiếm nhân viên theo thông tin nhân viên";
+            this.tk_timkiem.PlaceholderText = "   Tìm kiếm theo mã nhân viên";
             this.tk_timkiem.Size = new System.Drawing.Size(370, 29);
             this.tk_timkiem.TabIndex = 46;
             this.tk_timkiem.TextChanged += new System.EventHandler(this.tk_timkiem_TextChanged);

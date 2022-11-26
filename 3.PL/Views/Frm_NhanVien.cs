@@ -14,6 +14,7 @@ using _1.DAL.DomainClass;
 using _1.DAL.IRepositories;
 using _1.DAL.Repositories;
 using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
 namespace _3.PL.Views
 {
@@ -102,7 +103,13 @@ namespace _3.PL.Views
             LoadNV();
             rbtn_conlam.Checked = true;
         }
-        
+        public static bool IsValidVietNamPhoneNumber(string phoneNum)
+        {
+            if (string.IsNullOrEmpty(phoneNum))
+                return false;
+            string sMailPattern = @"^((0(\d){9}))$";
+            return Regex.IsMatch(phoneNum.Trim(), sMailPattern);
+        }
         private void btn_them_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
@@ -150,6 +157,10 @@ namespace _3.PL.Views
                 else if (_IqlNhanVienServices.GetAll().Any(p => p.Sdt == tb_sdt.Text))
                 {
                     MessageBox.Show("SDT nhân viên đã tồn tại!");
+                }
+                else if (IsValidVietNamPhoneNumber(tb_sdt.Text) == false)
+                {
+                    MessageBox.Show("Số DT!");
                 }
                 else if (tb_matkhau.Text.Trim() == "")
                 {
