@@ -140,7 +140,7 @@ namespace _3.PL.Views
         {
             btn_lsp.BackColor = Color.FromArgb(80, 87, 122);
             lbl_tilte.Text = "LOẠI SẢN PHẨM";
-            //OpenChildForm(new (), sender);
+            OpenChildForm(new Frm_LoaiSP(), sender);
         }
 
         private void btn_clieu_Click(object sender, EventArgs e)
