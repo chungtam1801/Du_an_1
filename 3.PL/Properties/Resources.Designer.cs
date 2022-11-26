@@ -63,6 +63,16 @@ namespace _3.PL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _1486564391_compose_81525 {
+            get {
+                object obj = ResourceManager.GetObject("1486564391-compose_81525", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _3668836_bill_expenses_fee_tax_108027 {
             get {
                 object obj = ResourceManager.GetObject("3668836-bill-expenses-fee-tax_108027", resourceCulture);
@@ -143,6 +153,26 @@ namespace _3.PL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add5 {
+            get {
+                object obj = ResourceManager.GetObject("add5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap add6 {
+            get {
+                object obj = ResourceManager.GetObject("add6", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap basket_icon_icons_com_54364 {
             get {
                 object obj = ResourceManager.GetObject("basket_icon-icons.com_54364", resourceCulture);
@@ -173,6 +203,46 @@ namespace _3.PL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap clear {
+            get {
+                object obj = ResourceManager.GetObject("clear", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap delete {
+            get {
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap delete1 {
+            get {
+                object obj = ResourceManager.GetObject("delete1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit {
+            get {
+                object obj = ResourceManager.GetObject("edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ghichu {
             get {
                 object obj = ResourceManager.GetObject("ghichu", resourceCulture);
@@ -186,6 +256,16 @@ namespace _3.PL.Properties {
         internal static System.Drawing.Bitmap hoadon {
             get {
                 object obj = ResourceManager.GetObject("hoadon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_broom_clean_service_labor_website_4622511_122412 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder-broom-clean-service-labor-website-4622511_122412", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

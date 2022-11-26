@@ -13,6 +13,7 @@ namespace _2.BUS.IServices
         string Update(SanPham obj);
         string Delete(SanPham obj);
         List<SanPham> GetAll();
+        List<SanPham> GetAll(string s);
         SanPham GetByID(Guid id);
     }
 }

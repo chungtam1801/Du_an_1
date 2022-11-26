@@ -133,7 +133,7 @@ namespace _3.PL.Views
                 hoaDon.Ma = "HD" + (_iQLHoaDonServices.GetAll().Count + 1);
             }
             hoaDon.IdNv =
-            hoaDon.IdNv = new Guid("506AE5B4-6D31-43E6-A5EB-BA535A67D692");
+            hoaDon.IdNv = new Guid("35341215-8D86-4220-93D2-719BA3EF0616");
             hoaDon.NgayTao = DateTime.Now;
             tbx_MaHD.Text = hoaDon.Ma;
             tbx_NgayTao.Text = hoaDon.NgayTao.ToString();

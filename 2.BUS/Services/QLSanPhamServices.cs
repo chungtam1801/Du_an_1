@@ -38,6 +38,12 @@ namespace _2.BUS.Services
             return _iSanPhamRepository.GetAll();
         }
 
+        public List<SanPham> GetAll(string s)
+        {
+            if(s == null) return GetAll();
+            return GetAll().Where(c=> c.Ten.ToLower().Contains(s.ToLower())).ToList();
+        }
+
         public SanPham GetByID(Guid id)
         {
             throw new NotImplementedException();

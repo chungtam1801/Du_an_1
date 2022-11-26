@@ -11,10 +11,9 @@ using _1.DAL.DomainClass;
 using _2.BUS.IServices;
 using _2.BUS.Services;
 using System.IO;
-using System.Data.SqlClient;
-using Microsoft.Data.SqlClient;
 using _3.PL.Views;
 using _2.BUS.ViewModels;
+using _3.PL.Utilities;
 
 namespace _3.PL.Views
 {
@@ -149,13 +148,13 @@ namespace _3.PL.Views
             ctsp.GiaNhap = Convert.ToDecimal(tbx_gianhap.Text);
             ctsp.SoLuongTon = Convert.ToInt32(tbx_soluong.Text);
             //Ảnh
-            if(pictureBox_spham.Image == null)
+            if(pic_anhsp.Image == null)
             {
                 ctsp.Anh = null;
             }else
             {
                 MemoryStream stream = new MemoryStream();
-                pictureBox_spham.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                pic_anhsp.Image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
                 ctsp.Anh = stream.ToArray();
             } 
             
@@ -167,34 +166,25 @@ namespace _3.PL.Views
             {
                 ctsp.TrangThai = 0;
             }
-            if(pictureBox_spham.Image != null)
+            if(pic_anhsp.Image != null)
             {
                 MemoryStream ms = new MemoryStream();
-                pictureBox_spham.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                pic_anhsp.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                 byte[] data = ms.GetBuffer();
                 ctsp.Anh = data;
             }           
             return ctsp;
         }
-        // Mở File Ảnh
-        private void btn_openfile_Click_1(object sender, EventArgs e)
+        
+        public Image ConvertByteArrayToImage(byte[] data)
         {
-            OpenFileDialog opf = new OpenFileDialog();
-            opf.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif";
-            if(opf.ShowDialog() == DialogResult.OK)
+            using (MemoryStream ms = new MemoryStream(data))
             {
-                try
-                {
-                    pictureBox_spham.Image = Image.FromFile(opf.FileName);
-                }catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                return Image.FromStream(ms);
             }
-
         }
         // CRUD
-        private void btn_them_Click_1(object sender, EventArgs e)
+        private void btn_them_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
@@ -203,7 +193,7 @@ namespace _3.PL.Views
             LoadData(null);
         }
 
-        private void btn_sua_Click_1(object sender, EventArgs e)
+        private void btn_sua_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
@@ -213,16 +203,17 @@ namespace _3.PL.Views
             LoadData(null);
         }
 
-        private void btn_xoa_Click_1(object sender, EventArgs e)
+        private void btn_xoa_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
                 MessageBox.Show(_iqLChiTietSpServices.Delete(GetDataFromGUI()));
             }
             LoadData(null);
+
         }
 
-        private void btn_clear_Click_1(object sender, EventArgs e)
+        private void btn_clear_Click(object sender, EventArgs e)
         {
             cmb_sp.SelectedIndex = 0;
             cmb_chatlieu.SelectedIndex = 0;
@@ -235,8 +226,9 @@ namespace _3.PL.Views
             tbx_gianhap.Text = "";
             tbx_mota.Text = "";
             tbx_soluong.Text = "";
-            pictureBox_spham.Image = null;
+            pic_anhsp.Image = null;
             LoadData(null);
+
         }
         // Cell click
         private void dgrd_ctsp_CellClick_1(object sender, DataGridViewCellEventArgs e)
@@ -267,14 +259,14 @@ namespace _3.PL.Views
                 //ẢNh
                 if (ctsp.Anh == null)
                 {
-                    pictureBox_spham.Image = null;
+                    pic_anhsp.Image = null;
                 }
                 else
                 {
                     MemoryStream memoryStream = new MemoryStream(ctsp.Anh.ToArray());
                     Image img = Image.FromStream(memoryStream);
                     if (img == null) return;
-                    pictureBox_spham.Image = img;
+                    pic_anhsp.Image = img;
 
                 }
 
@@ -298,6 +290,8 @@ namespace _3.PL.Views
             toolTip.SetToolTip(pic_themnhanhkichthuoc, "Thêm nhanh");
             toolTip.SetToolTip(pic_themnhanhloaisp, "Thêm nhanh");
             toolTip.SetToolTip(pic_themnhanhmausac, "Thêm nhanh");
+            toolTip.SetToolTip(pic_anhsp, "CLick để thêm ảnh");
+            pic_anhsp.AllowDrop = true;
 
         }
         void ThemNhanhSP(string s)
@@ -479,7 +473,7 @@ namespace _3.PL.Views
             LoadData(cmb_thanhphan.Text);
         }
         //Lọc theo giá bán
-        private void loctheogiaban_Click(object sender, EventArgs e)
+        private void pic_locgia_Click(object sender, EventArgs e)
         {
             var list = _iqLChiTietSpServices.GetAllView().Where(c => c.GiaBan >= Convert.ToDecimal(tbx_min.Text) && c.GiaBan <= Convert.ToDecimal(tbx_max.Text)).ToList();
             dgrd_ctsp.Height = 35;
@@ -503,6 +497,46 @@ namespace _3.PL.Views
             foreach (var x in list)
             {
                 dgrd_ctsp.Rows.Add(x.Id, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu, x.Anh, x.MoTa, x.SoLuongTon, x.GiaNhap, x.GiaBan, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+            }
+        }
+        private void pic_anhsp_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                var data = e.Data.GetData(DataFormats.FileDrop);
+                if (data != null)
+                {
+                    var filename = data as string[];
+                    if (filename.Length > 0 && filename.Length < 512000)
+                    {
+                        pic_anhsp.Image = Image.FromFile(filename[0]);
+                    }
+                }
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+        private void pic_anhsp_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Copy;
+        }
+
+        private void pic_anhsp_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog opf = new OpenFileDialog();
+            opf.Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif";
+            if (opf.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    pic_anhsp.Image = Image.FromFile(opf.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }
