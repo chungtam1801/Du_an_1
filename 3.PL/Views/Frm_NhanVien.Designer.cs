@@ -139,7 +139,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 42);
+            this.label2.Location = new System.Drawing.Point(20, 96);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(25, 15);
             this.label2.TabIndex = 19;
@@ -157,7 +157,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(19, 96);
+            this.label4.Location = new System.Drawing.Point(20, 42);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(23, 15);
             this.label4.TabIndex = 21;
@@ -184,7 +184,7 @@
             // tb_ten
             // 
             this.tb_ten.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ten.Location = new System.Drawing.Point(85, 34);
+            this.tb_ten.Location = new System.Drawing.Point(85, 88);
             this.tb_ten.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_ten.Name = "tb_ten";
             this.tb_ten.Size = new System.Drawing.Size(194, 23);
@@ -202,7 +202,7 @@
             // tb_ho
             // 
             this.tb_ho.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tb_ho.Location = new System.Drawing.Point(85, 88);
+            this.tb_ho.Location = new System.Drawing.Point(85, 34);
             this.tb_ho.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tb_ho.Name = "tb_ho";
             this.tb_ho.Size = new System.Drawing.Size(194, 23);
@@ -287,9 +287,10 @@
             this.tk_timkiem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tk_timkiem.Multiline = true;
             this.tk_timkiem.Name = "tk_timkiem";
-            this.tk_timkiem.PlaceholderText = "   Tìm kiếm nhân viên theo mã";
+            this.tk_timkiem.PlaceholderText = "   Tìm kiếm nhân viên theo thông tin nhân viên";
             this.tk_timkiem.Size = new System.Drawing.Size(370, 29);
             this.tk_timkiem.TabIndex = 46;
+            this.tk_timkiem.TextChanged += new System.EventHandler(this.tk_timkiem_TextChanged);
             // 
             // nv_cbb_gioitinh
             // 
@@ -298,7 +299,8 @@
             this.nv_cbb_gioitinh.FormattingEnabled = true;
             this.nv_cbb_gioitinh.Items.AddRange(new object[] {
             "Nam",
-            "Nữ"});
+            "Nữ",
+            " "});
             this.nv_cbb_gioitinh.Location = new System.Drawing.Point(85, 115);
             this.nv_cbb_gioitinh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nv_cbb_gioitinh.Name = "nv_cbb_gioitinh";

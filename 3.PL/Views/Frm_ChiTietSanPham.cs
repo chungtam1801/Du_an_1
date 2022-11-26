@@ -298,7 +298,6 @@ namespace _3.PL.Views
             toolTip.SetToolTip(pic_themnhanhkichthuoc, "Thêm nhanh");
             toolTip.SetToolTip(pic_themnhanhloaisp, "Thêm nhanh");
             toolTip.SetToolTip(pic_themnhanhmausac, "Thêm nhanh");
-
         }
         void ThemNhanhSP(string s)
         {

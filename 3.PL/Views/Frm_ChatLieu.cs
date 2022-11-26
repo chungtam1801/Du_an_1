@@ -109,5 +109,14 @@ namespace _3.PL.Views
                 rbtn_kohd.Checked = true;
             }
         }
+
+        private void btn_them_Click_1(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+            {
+                _iqLclServices.Add(GetDataFromGUI());
+                LoadData();
+            }
+        }
     }
 }
