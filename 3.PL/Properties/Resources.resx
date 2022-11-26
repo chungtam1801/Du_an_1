@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="3668836-bill-expenses-fee-tax_108027" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="hoadon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\3668836-bill-expenses-fee-tax_108027.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="nvtaiquay" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -130,7 +130,7 @@
   <data name="nvtaiquay2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\nvtaiquay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="account_profile_user_avatar_man_people_team_group_users_icon_210760" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="nhanvien" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\account_profile_user_avatar_man_people_team_group_users_icon_210760.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="office_business_people_group_team_leadership_icon_221269" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -142,7 +142,7 @@
   <data name="nvtaiquay1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\nvtaiquay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user11" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="user12" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\user1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="4105943-accounts-group-people-user-user-group-users_113923" type="System.Resources.ResXFileRef, System.Windows.Forms">

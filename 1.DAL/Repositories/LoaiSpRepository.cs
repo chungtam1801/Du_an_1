@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _1.DAL.Repositories
 {
-    public class LoaiSpRepository : ILoaiSpRepository
+    public class LoaiSpRepository : IClassCRUDRepo<LoaiSp>
     {
         private FpolyDBContext _dbContext;
         public LoaiSpRepository()
@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.LoaiSps.ToList();
         }
 
-        public LoaiSp GetbyId(LoaiSp id)
+        public LoaiSp GetbyId(Guid id)
         {
             throw new NotImplementedException();
         }

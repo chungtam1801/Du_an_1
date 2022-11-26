@@ -18,13 +18,11 @@ namespace _3.PL.Views
 {
     public partial class Frm_NhanVien : Form
     {
-        private INhanVienRepository _INhanVienRepository;
         private IQLNhanVienServices _IqlNhanVienServices;
         private Guid _id;
         public Frm_NhanVien()
         {
             InitializeComponent();
-            _INhanVienRepository = new NhanVienRepository();
             _IqlNhanVienServices = new QLNhanVienServices();
         }
         private void LoadNV()

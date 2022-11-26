@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLHoaDonServices : IQLHoaDonServices
     {
-        private IHoaDonRepository _iHoaDonRepository;
+        private IClassCRUDRepo<HoaDon> _iHoaDonRepository;
         public QLHoaDonServices()
         {
             _iHoaDonRepository = new HoaDonRepository();

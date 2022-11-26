@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLChiTietPtttServices : IQLChiTietPtttServices
     {
-        private IChiTietPtttRepository _iChiTietPtttRepository;
+        private IClassCRUDRepo<ChiTietPttt> _iChiTietPtttRepository;
         public QLChiTietPtttServices()
         {
             _iChiTietPtttRepository = new ChiTietPtttRepository();

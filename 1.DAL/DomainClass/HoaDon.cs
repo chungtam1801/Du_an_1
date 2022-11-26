@@ -31,6 +31,8 @@ namespace _1.DAL.DomainClass
         public DateTime? NgayThanhToan { get; set; }
         public double? GiamGia { get; set; }
         public int? TrangThai { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? TienShip { get; set; }
 
         [ForeignKey(nameof(IdNv))]
         [InverseProperty(nameof(NhanVien.HoaDons))]

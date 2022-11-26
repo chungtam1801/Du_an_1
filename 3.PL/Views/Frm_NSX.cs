@@ -17,13 +17,11 @@ namespace _3.PL.Views
 {
     public partial class Frm_NSX : Form
     {
-        private INsxRepository _insxRepository;
         private IQLNsxServices _iqLNsxServices;
         private Guid _id;
         public Frm_NSX()
         {
             InitializeComponent();
-            _insxRepository = new NsxRepository();
             _iqLNsxServices = new QLNsxServices();
             LoadData();
         }

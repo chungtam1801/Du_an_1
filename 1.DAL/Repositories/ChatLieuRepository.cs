@@ -9,7 +9,7 @@ using _1.DAL.IRepositories;
 
 namespace _1.DAL.Repositories
 {
-    public class ChatLieuRepository : IChatLieuRepository
+    public class ChatLieuRepository : IClassCRUDRepo<ChatLieu>
     {
         private FpolyDBContext _dbContext;
         public ChatLieuRepository()
@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.ChatLieus.ToList();
         }
 
-        public ChatLieu GetbyId(ChatLieu id)
+        public ChatLieu GetbyId(Guid id)
         {
             throw new NotImplementedException();
         }

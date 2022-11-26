@@ -121,6 +121,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbl_GiaTien;
-        private System.Windows.Forms.Label lbl_SoLuong;
+        public System.Windows.Forms.Label lbl_SoLuong;
     }
 }

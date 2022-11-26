@@ -17,13 +17,11 @@ namespace _3.PL.Views
 {
     public partial class Frm_MauSac : Form
     {
-        private IMauSacRepository _imsRepository;
         private IQLMauSacServices _iqLmsServices;
         private Guid _id;
         public Frm_MauSac()
         {
             InitializeComponent();
-            _imsRepository = new MauSacRepository();
             _iqLmsServices = new QLMauSacServices();
             LoadData();
         }

@@ -16,14 +16,12 @@ namespace _3.PL.Views
 {
     public partial class Frm_SanPham : Form
     {
-        private ISanPhamRepository _iSanPhamRepository;
         private IQLSanPhamServices _iqLSanPhamServices;
         private Guid _id;
         public Frm_SanPham()
         {
             InitializeComponent();
             _iqLSanPhamServices = new QLSanPhamServices();
-            _iSanPhamRepository = new SanPhamRepository();
             LoadData();
         }
         private void LoadData()

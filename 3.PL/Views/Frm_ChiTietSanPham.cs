@@ -158,7 +158,6 @@ namespace _3.PL.Views
             }           
             return ctsp;
         }
-
         private void btn_openfile_Click_1(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();

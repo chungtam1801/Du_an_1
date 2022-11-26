@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _1.DAL.Repositories
 {
-    public class NsxRepository : INsxRepository
+    public class NsxRepository : IClassCRUDRepo<Nsx>
     {
         private FpolyDBContext _dbContext;
         public NsxRepository()
@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
            return _dbContext.Nsxes.ToList();
         }
 
-        public Nsx GetbyId(Nsx id)
+        public Nsx GetbyId(Guid id)
         {
             throw new NotImplementedException();
         }
