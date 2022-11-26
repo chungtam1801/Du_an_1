@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _1.DAL.Repositories
 {
-    public class SanPhamRepository : ISanPhamRepository
+    public class SanPhamRepository : IClassCRUDRepo<SanPham>
     {
         private FpolyDBContext _dbContext;
         public SanPhamRepository()
@@ -38,7 +38,7 @@ namespace _1.DAL.Repositories
            return _dbContext.SanPhams.ToList();
         }
 
-        public SanPham GetbyId(SanPham id)
+        public SanPham GetbyId(Guid  id)
         {
             throw new NotImplementedException();
         }

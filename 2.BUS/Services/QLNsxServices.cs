@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLNsxServices : IQLNsxServices
     {
-        private INsxRepository _iNsxRepository;
+        private IClassCRUDRepo<Nsx> _iNsxRepository;
         public QLNsxServices()
         {
             _iNsxRepository = new NsxRepository();

@@ -18,5 +18,6 @@ namespace _2.BUS.ViewModels
         public string KichThuoc { get; set; }
         public string ChatLieu { get; set; }
         public int? SoLuong { get; set; }
+        public Guid Id { get; set; }
     }
 }

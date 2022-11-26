@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _1.DAL.Repositories
 {
-    public class PhuongThucThanhToanRepository : IPhuongThucThanhToanRepository
+    public class PhuongThucThanhToanRepository : IClassCRUDRepo<PhuongThucThanhToan>
     {
         private FpolyDBContext _dbContext;
         public PhuongThucThanhToanRepository()
@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.PhuongThucThanhToans.ToList();
         }
 
-        public PhuongThucThanhToan GetbyId(PhuongThucThanhToan id)
+        public PhuongThucThanhToan GetbyId(Guid id)
         {
             throw new NotImplementedException();
         }

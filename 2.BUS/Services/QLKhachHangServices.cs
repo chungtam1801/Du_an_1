@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLKhachHangServices : IQLKhachHangServices
     {
-        private IKhachHangRepository _iKhachHangRepository;
+        private IClassCRUDRepo<KhachHang> _iKhachHangRepository;
         public QLKhachHangServices()
         {
             _iKhachHangRepository = new KhachHangRepository();

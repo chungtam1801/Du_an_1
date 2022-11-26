@@ -17,13 +17,11 @@ namespace _3.PL.Views
 {
     public partial class Frm_MauSac : Form
     {
-        private IMauSacRepository _imsRepository;
         private IQLMauSacServices _iqLmsServices;
         private Guid _id;
         public Frm_MauSac()
         {
             InitializeComponent();
-            _imsRepository = new MauSacRepository();
             _iqLmsServices = new QLMauSacServices();
             LoadData();
         }
@@ -107,6 +105,15 @@ namespace _3.PL.Views
             else if (ms.TrangThai == 0)
             {
                 rbtn_kohd.Checked = true;
+            }
+        }
+
+        private void btn_them_Click_1(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+            {
+                _iqLmsServices.Add(GetDataFromGUI());
+                LoadData();
             }
         }
     }

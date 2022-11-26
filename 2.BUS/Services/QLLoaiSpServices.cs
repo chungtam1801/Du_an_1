@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLLoaiSpServices : IQLLoaiSpServices
     {
-        private ILoaiSpRepository _iLoaiSpRepository;
+        private IClassCRUDRepo<LoaiSp> _iLoaiSpRepository;
         public QLLoaiSpServices()
         {
             _iLoaiSpRepository = new LoaiSpRepository();

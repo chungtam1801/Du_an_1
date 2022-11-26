@@ -17,12 +17,10 @@ namespace _3.PL.Views
 {
     public partial class Frm_KichThuoc : Form
     {
-        private IKichThuocRepository _ikichThuocRepository;
         private IQLKichThuocServices _iqlkichThuocServices;
         private Guid _id;
         public Frm_KichThuoc()
         {
-            _ikichThuocRepository = new KichThuocRepository();
             _iqlkichThuocServices = new QLKichThuocServices();
             InitializeComponent();
         }

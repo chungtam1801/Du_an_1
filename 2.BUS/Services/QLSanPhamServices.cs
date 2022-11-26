@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLSanPhamServices : IQLSanPhamServices
     {
-        private ISanPhamRepository _iSanPhamRepository;
+        private IClassCRUDRepo<SanPham> _iSanPhamRepository;
         public QLSanPhamServices()
         {
             _iSanPhamRepository = new SanPhamRepository();

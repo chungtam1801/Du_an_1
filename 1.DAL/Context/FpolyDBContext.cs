@@ -127,6 +127,8 @@ namespace _1.DAL.Context
 
                 entity.Property(e => e.GiaNhap).HasDefaultValueSql("((0))");
 
+                entity.Property(e => e.Ma).IsUnicode(false);
+
                 entity.Property(e => e.MoTa).HasDefaultValueSql("('')");
 
                 entity.Property(e => e.SoLuongTon).HasDefaultValueSql("((0))");

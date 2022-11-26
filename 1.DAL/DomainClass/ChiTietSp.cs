@@ -39,6 +39,8 @@ namespace _1.DAL.DomainClass
         public int? TrangThai { get; set; }
         [Column(TypeName = "image")]
         public byte[] Anh { get; set; }
+        [StringLength(20)]
+        public string Ma { get; set; }
 
         [ForeignKey(nameof(IdClieu))]
         [InverseProperty(nameof(ChatLieu.ChiTietSps))]

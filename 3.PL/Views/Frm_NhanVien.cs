@@ -13,12 +13,14 @@ using _2.BUS.ViewModels;
 using _1.DAL.DomainClass;
 using _1.DAL.IRepositories;
 using _1.DAL.Repositories;
+using System.ComponentModel.DataAnnotations;
 
 namespace _3.PL.Views
 {
     public partial class Frm_NhanVien : Form
     {
         private IQLNhanVienServices _IqlNhanVienServices;
+        private ViewQLNhanVien _vnv = new ViewQLNhanVien();
         private Guid _id;
         public Frm_NhanVien()
         {
@@ -100,27 +102,42 @@ namespace _3.PL.Views
             LoadNV();
             rbtn_conlam.Checked = true;
         }
-
+        
         private void btn_them_Click(object sender, EventArgs e)
         {
-            NhanVien nv = new NhanVien();
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
                 if (tb_ma.Text.Trim() == "")
                 {
                     MessageBox.Show("Mã nhân viên không được bỏ trống!");
                 }
+                else if (_IqlNhanVienServices.GetAll().Any(p => p.Ma == tb_ma.Text))
+                {
+                    MessageBox.Show("Mã nhân viên đã tồn tại!");
+                }
                 else if (tb_ho.Text.Trim() == "")
                 {
                     MessageBox.Show("Họ nhân viên không được bỏ trống!");
-                } 
-                else if (nv_cbb_gioitinh.Text.Trim() == "")
+                }
+                else if (tb_ten.Text.Trim() == "")
                 {
                     MessageBox.Show("Tên nhân viên không được bỏ trống!");
+                }
+                else if (nv_cbb_gioitinh.Text.Trim() == "")
+                {
+                    MessageBox.Show("Giới tính nhân viên không được bỏ trống!");
                 }
                 else if (dtp_ngaysinh.Value.ToString().Trim() == "")
                 {
                     MessageBox.Show("Ngày sinh nhân viên không được bỏ trống!");
+                }
+                else if (nv_cbb_gioitinh.Text.Trim() == "")
+                {
+                    MessageBox.Show("Giới tính nhân viên không được bỏ trống!");
+                }
+                else if (DateTime.Now.Year - dtp_ngaysinh.Value.Year < 18)
+                {
+                    MessageBox.Show("Người này chưa đủ 18 tuổi!");
                 }
                 else if (tb_sdt.Text.Trim() == "")
                 {
@@ -130,13 +147,9 @@ namespace _3.PL.Views
                 {
                     MessageBox.Show("SDT nhân viên không hợp lệ 0xxxxxxxxx!");
                 }
-                //else if (tb_sdt.Text.Trim())
-                //{
-                //    MessageBox.Show("SDT nhân viên không hợp lệ 0xxxxxxxxx!");
-                //}
-                else if (nv_cbb_gioitinh.Text.Trim() == "")
+                else if (_IqlNhanVienServices.GetAll().Any(p => p.Sdt == tb_sdt.Text))
                 {
-                    MessageBox.Show("Giới tính nhân viên không được bỏ trống!");
+                    MessageBox.Show("SDT nhân viên đã tồn tại!");
                 }
                 else if (tb_matkhau.Text.Trim() == "")
                 {
@@ -182,7 +195,7 @@ namespace _3.PL.Views
             tb_ten.Text = "";
             tb_tendem.Text = "";
             tb_ho.Text = "";
-            nv_cbb_gioitinh.Text = " ";
+            nv_cbb_gioitinh.SelectedIndex = 2;
             tb_sdt.Text = "";
             tb_matkhau.Text = "";
             tb_diachi.Text = "";
@@ -232,6 +245,39 @@ namespace _3.PL.Views
             {
                 rbtn_nghilam.Checked = true;
             }
+        }
+
+        private void tk_timkiem_TextChanged(object sender, EventArgs e)
+        {
+            var tk = _IqlNhanVienServices.GetAll().Where(p => p.Ma == tk_timkiem.Text);
+            dtg_nhanvien.Rows.Clear();
+            dtg_nhanvien.ColumnCount = 14;
+            dtg_nhanvien.Columns[0].Name = "STT";
+            dtg_nhanvien.Columns[1].Name = "ID";
+            dtg_nhanvien.Columns[1].Visible = false;
+            dtg_nhanvien.Columns[2].Name = "IDCV";
+            dtg_nhanvien.Columns[2].Visible = false;
+            dtg_nhanvien.Columns[3].Name = "Mã";
+            dtg_nhanvien.Columns[4].Name = "Tên";
+            dtg_nhanvien.Columns[5].Name = "Tên đệm";
+            dtg_nhanvien.Columns[6].Name = "Họ";
+            dtg_nhanvien.Columns[7].Name = "Họ và tên";
+            dtg_nhanvien.Columns[7].Width = 150;
+            dtg_nhanvien.Columns[8].Name = "Giới tính";
+            dtg_nhanvien.Columns[9].Name = "Ngày sinh";
+            dtg_nhanvien.Columns[9].Width = 160;
+            dtg_nhanvien.Columns[10].Name = "Địa chỉ";
+            dtg_nhanvien.Columns[10].Width = 130;
+            dtg_nhanvien.Columns[11].Name = "Số DT";
+            dtg_nhanvien.Columns[12].Name = "Mật khẩu";
+            dtg_nhanvien.Columns[12].Width = 110;
+            dtg_nhanvien.Columns[13].Name = "Trạng thái";
+            int stt = 1;
+            foreach (var x in tk)
+            {
+                dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.GioiTinh, x.NgaySinh, x.DiaChi, x.Sdt, x.MatKhau, x.TrangThai == 1 ? "còn làm" : "nghỉ làm");
+            }
+
         }
     }
 }

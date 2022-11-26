@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLMauSacServices : IQLMauSacServices
     {
-        private IMauSacRepository _iMauSacRepository;
+        private IClassCRUDRepo<MauSac> _iMauSacRepository;
         public QLMauSacServices()
         {
             _iMauSacRepository = new MauSacRepository();

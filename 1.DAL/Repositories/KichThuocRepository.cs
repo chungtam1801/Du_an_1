@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _1.DAL.Repositories
 {
-    public class KichThuocRepository : IKichThuocRepository
+    public class KichThuocRepository : IClassCRUDRepo<KichThuoc>
     {
         private FpolyDBContext _dbContext;
         public KichThuocRepository()
@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.KichThuocs.ToList();
         }
 
-        public KichThuoc GetbyId(KichThuoc id)
+        public KichThuoc GetbyId(Guid id)
         {
             throw new NotImplementedException();
         }

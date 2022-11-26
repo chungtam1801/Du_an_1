@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLQuyDoiDiemServices : IQLQuyDoiDiemServices
     {
-        private IQuyDoiDiemRepository _iQuyDoiDiemRepository;
+        private IClassCRUDRepo<QuyDoiDiem> _iQuyDoiDiemRepository;
         public QLQuyDoiDiemServices()
         {
             _iQuyDoiDiemRepository = new QuyDoiDiemRepository();

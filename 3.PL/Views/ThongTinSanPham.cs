@@ -49,17 +49,6 @@ namespace _3.PL.Views
         }
 
         public string Id { get => id; set => id = value; }
-
-        private void ThongTinSanPham_Leave(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ThongTinSanPham_Enter(object sender, EventArgs e)
-        {
-            
-        }
-
         private void ThongTinSanPham_MouseEnter(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(217, 229, 242);

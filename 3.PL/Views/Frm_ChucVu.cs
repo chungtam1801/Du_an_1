@@ -17,13 +17,11 @@ namespace _3.PL.Views
 {
     public partial class Frm_ChucVu : Form
     {
-        private IChucVuRepository _icvRepository;
         private IQLChucVuServices _iqLcvServices;
         private Guid _id;
         public Frm_ChucVu()
         {
             InitializeComponent();
-            _icvRepository = new ChucVuRepository();
             _iqLcvServices = new QLChucVuServices();
             LoadData();
         }
