@@ -1,4 +1,7 @@
-﻿using System;
+﻿using _1.DAL.DomainClass;
+using _2.BUS.IServices;
+using _2.BUS.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +15,11 @@ namespace _3.PL.Views
 {
     public partial class Frm_DangNhap : Form
     {
-        
+        private IQLNhanVienServices _inhanVienServices;
         public Frm_DangNhap()
         {
             InitializeComponent();
+            _inhanVienServices = new QLNhanVienServices();
         }
 
         private void btn_Thoat_Click(object sender, EventArgs e)
@@ -34,12 +38,13 @@ namespace _3.PL.Views
             }
             else
             {
-                if (this.tb_taikhoan.Text == "abc")
-                    if (this.tb_matkhau.Text == "123456")
+                NhanVien nv = new NhanVien();
+                if (this.tb_taikhoan.Text == nv.Ma)
+                    if (this.tb_matkhau.Text == nv.MatKhau)
                     {
                         this.Hide();
-                        Frm_DangNhap dn = new Frm_DangNhap();
-                        dn.ShowDialog();
+                        Frm_Main main = new Frm_Main();
+                        main.ShowDialog();
                     }
                     else
                     {
@@ -54,5 +59,33 @@ namespace _3.PL.Views
             this.tb_taikhoan.Focus();
         }
 
+        private void bt_dangnhap_Click_1(object sender, EventArgs e)
+        {
+            if (this.tb_taikhoan.Text == "" || this.tb_matkhau.Text == "")
+            {
+                MessageBox.Show(" Vui lòng nhập tài khoản ! ");
+            }
+            else
+            {
+                NhanVien nv = new NhanVien();
+                if (this.tb_taikhoan.Text == nv.Ma)
+                    if (this.tb_matkhau.Text == nv.MatKhau)
+                    {
+                        this.Hide();
+                        Frm_Main main = new Frm_Main();
+                        main.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+                    }
+                else
+                {
+                    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+                }
+            }
+
+            this.tb_taikhoan.Focus();
+        }
     }
 }

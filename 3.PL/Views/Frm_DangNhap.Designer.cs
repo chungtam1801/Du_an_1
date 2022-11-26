@@ -39,31 +39,30 @@
             // 
             // tb_taikhoan
             // 
-            this.tb_taikhoan.Location = new System.Drawing.Point(267, 68);
-            this.tb_taikhoan.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tb_taikhoan.Location = new System.Drawing.Point(234, 51);
             this.tb_taikhoan.Multiline = true;
             this.tb_taikhoan.Name = "tb_taikhoan";
-            this.tb_taikhoan.Size = new System.Drawing.Size(390, 34);
+            this.tb_taikhoan.Size = new System.Drawing.Size(342, 26);
             this.tb_taikhoan.TabIndex = 9;
             // 
             // bt_dangnhap
             // 
             this.bt_dangnhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.bt_dangnhap.Location = new System.Drawing.Point(134, 321);
-            this.bt_dangnhap.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.bt_dangnhap.Location = new System.Drawing.Point(117, 241);
             this.bt_dangnhap.Name = "bt_dangnhap";
-            this.bt_dangnhap.Size = new System.Drawing.Size(133, 58);
+            this.bt_dangnhap.Size = new System.Drawing.Size(116, 44);
             this.bt_dangnhap.TabIndex = 8;
             this.bt_dangnhap.Text = "Đăng nhập";
             this.bt_dangnhap.UseVisualStyleBackColor = true;
+            this.bt_dangnhap.Click += new System.EventHandler(this.bt_dangnhap_Click_1);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(76, 198);
+            this.label2.Location = new System.Drawing.Point(66, 148);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 29);
+            this.label2.Size = new System.Drawing.Size(96, 24);
             this.label2.TabIndex = 7;
             this.label2.Text = "Mật khẩu :";
             // 
@@ -71,38 +70,38 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(76, 73);
+            this.label1.Location = new System.Drawing.Point(66, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 29);
+            this.label1.Size = new System.Drawing.Size(108, 24);
             this.label1.TabIndex = 6;
             this.label1.Text = "Tài khoản : ";
             // 
             // lb_QuenMatKhau
             // 
             this.lb_QuenMatKhau.AutoSize = true;
-            this.lb_QuenMatKhau.Location = new System.Drawing.Point(307, 271);
+            this.lb_QuenMatKhau.Location = new System.Drawing.Point(269, 203);
             this.lb_QuenMatKhau.Name = "lb_QuenMatKhau";
-            this.lb_QuenMatKhau.Size = new System.Drawing.Size(109, 20);
+            this.lb_QuenMatKhau.Size = new System.Drawing.Size(89, 15);
             this.lb_QuenMatKhau.TabIndex = 11;
             this.lb_QuenMatKhau.TabStop = true;
             this.lb_QuenMatKhau.Text = "Quên mật khẩu";
             // 
             // tb_matkhau
             // 
-            this.tb_matkhau.Location = new System.Drawing.Point(267, 193);
-            this.tb_matkhau.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tb_matkhau.Location = new System.Drawing.Point(234, 145);
             this.tb_matkhau.Multiline = true;
             this.tb_matkhau.Name = "tb_matkhau";
             this.tb_matkhau.PasswordChar = '*';
-            this.tb_matkhau.Size = new System.Drawing.Size(390, 34);
+            this.tb_matkhau.Size = new System.Drawing.Size(342, 26);
             this.tb_matkhau.TabIndex = 12;
             // 
             // btn_Thoat
             // 
             this.btn_Thoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
-            this.btn_Thoat.Location = new System.Drawing.Point(454, 321);
+            this.btn_Thoat.Location = new System.Drawing.Point(397, 241);
+            this.btn_Thoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Thoat.Name = "btn_Thoat";
-            this.btn_Thoat.Size = new System.Drawing.Size(140, 58);
+            this.btn_Thoat.Size = new System.Drawing.Size(122, 44);
             this.btn_Thoat.TabIndex = 13;
             this.btn_Thoat.Text = "Thoát";
             this.btn_Thoat.UseVisualStyleBackColor = true;
@@ -110,9 +109,9 @@
             // 
             // Frm_DangNhap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 404);
+            this.ClientSize = new System.Drawing.Size(640, 303);
             this.Controls.Add(this.btn_Thoat);
             this.Controls.Add(this.tb_matkhau);
             this.Controls.Add(this.lb_QuenMatKhau);
@@ -120,6 +119,7 @@
             this.Controls.Add(this.bt_dangnhap);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Frm_DangNhap";
             this.Text = "Frm_DangNhap";
             this.ResumeLayout(false);

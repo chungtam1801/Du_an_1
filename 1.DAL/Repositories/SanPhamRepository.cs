@@ -19,7 +19,6 @@ namespace _1.DAL.Repositories
         public bool Add(SanPham obj)
         {
             if (obj == null) return false;
-            obj.Id = Guid.NewGuid();//Tự động zen khóa chính
             _dbContext.SanPhams.Add(obj);
             _dbContext.SaveChanges();
             return true;
@@ -29,7 +28,6 @@ namespace _1.DAL.Repositories
         {
             if (obj == null) return false;
             var tempobj = _dbContext.SanPhams.FirstOrDefault(c => c.Id == obj.Id);
-
             _dbContext.Remove(tempobj);
             _dbContext.SaveChanges();
             return true;

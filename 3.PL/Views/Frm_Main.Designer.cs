@@ -90,7 +90,7 @@
             this.btn_nhanvien.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_nhanvien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
             this.btn_nhanvien.Image = global::_3.PL.Properties.Resources.nhanvien;
-            this.btn_nhanvien.Location = new System.Drawing.Point(0, 27);
+            this.btn_nhanvien.Location = new System.Drawing.Point(0, 279);
             this.btn_nhanvien.Name = "btn_nhanvien";
             this.btn_nhanvien.Size = new System.Drawing.Size(190, 45);
             this.btn_nhanvien.TabIndex = 5;

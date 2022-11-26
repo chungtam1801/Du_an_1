@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using _1.DAL.DomainClass;
 using _3.PL.Views;
 
 namespace _3.PL
