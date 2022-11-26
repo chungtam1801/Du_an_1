@@ -48,6 +48,26 @@ namespace _3.PL.Views
             OpenChildForm(new Frm_ChiTietSanPham(), sender);
 
         }
+        private void btn_nhanvien_Click(object sender, EventArgs e)
+        {
+            pnl_Nav.Height = btn_nhanvien.Height;
+            pnl_Nav.Top = btn_nhanvien.Top;
+            pnl_Nav.Left = btn_nhanvien.Left;
+            btn_nhanvien.BackColor = Color.FromArgb(46, 51, 73);
+            lbl_tilte.Text = "NHÂN VIÊN";
+            OpenChildForm(new Frm_NhanVien(), sender);
+        }
+
+        private void btn_khachHang_Click(object sender, EventArgs e)
+        {
+            pnl_Nav.Height = btn_khachhang.Height;
+            pnl_Nav.Top = btn_khachhang.Top;
+            pnl_Nav.Left = btn_khachhang.Left;
+            btn_khachhang.BackColor = Color.FromArgb(46, 51, 73);
+            lbl_tilte.Text = "KHÁCH HÀNG";
+            // Trần Văn Lâm sửa 
+            OpenChildForm(new Frm_KhachHang1(), sender);
+        }
         private void OpenChildForm(Form childForm, object btnSender)
         {
             if (activeForm != null)
@@ -164,7 +184,7 @@ namespace _3.PL.Views
             btn_khachhang.BackColor = Color.FromArgb(46, 51, 73);
             hideMenuCon();
             lbl_tilte.Text = "KHÁCH HÀNG";
-            OpenChildForm(new Frm_KhachHang(), sender);
+            OpenChildForm(new Frm_KhachHang1(), sender);
         }
 
         private void btn_khuyenmai_Click(object sender, EventArgs e)

@@ -513,7 +513,6 @@
             this.tbx_gianhap.Name = "tbx_gianhap";
             this.tbx_gianhap.Size = new System.Drawing.Size(182, 25);
             this.tbx_gianhap.TabIndex = 38;
-            this.tbx_gianhap.TextChanged += new System.EventHandler(this.tbx_gianhap_TextChanged);
             // 
             // label6
             // 
