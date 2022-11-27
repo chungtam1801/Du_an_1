@@ -26,6 +26,7 @@ namespace _3.PL.Views
             InitializeComponent();
             _IqlKhachHangServices = new QLKhachHangServices();
             kh_ma.Enabled = false;
+            kh_ma.Text = MaTuSinh();
             kh_diemtich.Enabled = false;
 
         }
@@ -55,7 +56,7 @@ namespace _3.PL.Views
        
         public void Clear() 
         {
-            kh_ma.Text = "";
+            kh_ma.Text = MaTuSinh();
             kh_ten.Text = "";
             kh_tendem.Text = "";
             kh_ho.Text = "";
@@ -93,7 +94,7 @@ namespace _3.PL.Views
         {
             KhachHang kh = new KhachHang();
             kh.Id = _id;
-            kh.Ma = kh_ma.Text;
+            kh.Ma = MaTuSinh();
             kh.Ten = kh_ten.Text;
             kh.TenDem = kh_tendem.Text;
             kh.Ho = kh_ho.Text;
@@ -117,9 +118,54 @@ namespace _3.PL.Views
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
-                _IqlKhachHangServices.Add(GetDataFormGui());
-                LoadKH();
+                if(kh_ma.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mã khách hàng không được bỏ trống");
+                }
+                else if(_IqlKhachHangServices.GetAll().Any(c=>c.Ma== kh_ma.Text))
+                {
+                    MessageBox.Show("Mã khách hàng đã tồn tại");
+                }
+                else if(kh_ten.Text.Trim() == "")
+                {
+                    MessageBox.Show("Tên khách hàng không được bỏ trống");
+                }
+                else if (kh_tendem.Text.Trim() == "")
+                {
+                    MessageBox.Show("Tên đệm khách hàng không được bỏ trống");
+                }
+                else if (kh_ho.Text.Trim() == "")
+                {
+                    MessageBox.Show("Họ khách hàng không được bỏ trống");
+                }
+                else if (kh_sdt.Text.Trim() == "")
+                {
+                    MessageBox.Show("SDT khách hàng không được bỏ trống!");
+                }
+                else if (kh_sdt.Text.Trim().Count() != 10)
+                {
+                    MessageBox.Show("SDT khách hàng không hợp lệ !");
+                }
+                else if (_IqlKhachHangServices.GetAll().Any(p => p.Sdt == kh_sdt.Text))
+                {
+                    MessageBox.Show("SDT khách hàng đã tồn tại!");
+                }
+                else if (kh_diachi.Text.Trim() == "")
+                {
+                    MessageBox.Show("Địa chỉ khách hàng không được bỏ trống!");
+                }
+                else if (radioButton1.Checked == false && radioButton2.Checked == false)
+                {
+                    MessageBox.Show("Trạng thái khách hàng không được bỏ trống!");
+                }
+                else
+                {
+                    _IqlKhachHangServices.Add(GetDataFormGui());
+                    LoadKH();
+                }
+
             }
+            
         }
 
         private void btn_sua_Click(object sender, EventArgs e)
@@ -186,6 +232,23 @@ namespace _3.PL.Views
         private void Frm_KhachHang1_Load(object sender, EventArgs e)
         {
             LoadKH();
+        }
+        private string MaTuSinh()
+        {
+            string s;
+            int max = 0;
+            for (int i = 0; i < _IqlKhachHangServices.GetAll().Count; i++)
+            {
+                string ma = _IqlKhachHangServices.GetAll()[i].Ma;
+                string so = ma.Substring(2);
+                int x = Convert.ToInt32(so);
+                if (x > max)
+                {
+                    max = x;
+                }
+            }
+            s = "KH00" + (max + 1);
+            return s;
         }
     }
 }
