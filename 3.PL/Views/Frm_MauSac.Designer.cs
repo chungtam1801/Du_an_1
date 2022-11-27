@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_MauSac));
             this.btn_clear = new System.Windows.Forms.Button();
             this.btn_xoa = new System.Windows.Forms.Button();
             this.btn_sua = new System.Windows.Forms.Button();
@@ -40,41 +41,48 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbx_ma = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tk_timkiem = new System.Windows.Forms.TextBox();
+            this.btn_seachbyma = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgrd_mausac)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_seachbyma)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_clear
             // 
-            this.btn_clear.Location = new System.Drawing.Point(593, 145);
+            this.btn_clear.Location = new System.Drawing.Point(624, 177);
+            this.btn_clear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(109, 29);
+            this.btn_clear.Size = new System.Drawing.Size(125, 39);
             this.btn_clear.TabIndex = 41;
             this.btn_clear.Text = "Clear";
             this.btn_clear.UseVisualStyleBackColor = true;
             // 
             // btn_xoa
             // 
-            this.btn_xoa.Location = new System.Drawing.Point(452, 145);
+            this.btn_xoa.Location = new System.Drawing.Point(447, 177);
+            this.btn_xoa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_xoa.Name = "btn_xoa";
-            this.btn_xoa.Size = new System.Drawing.Size(109, 29);
+            this.btn_xoa.Size = new System.Drawing.Size(125, 39);
             this.btn_xoa.TabIndex = 40;
             this.btn_xoa.Text = "Xóa";
             this.btn_xoa.UseVisualStyleBackColor = true;
             // 
             // btn_sua
             // 
-            this.btn_sua.Location = new System.Drawing.Point(313, 145);
+            this.btn_sua.Location = new System.Drawing.Point(262, 177);
+            this.btn_sua.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_sua.Name = "btn_sua";
-            this.btn_sua.Size = new System.Drawing.Size(109, 29);
+            this.btn_sua.Size = new System.Drawing.Size(125, 39);
             this.btn_sua.TabIndex = 39;
             this.btn_sua.Text = "Sửa";
             this.btn_sua.UseVisualStyleBackColor = true;
             // 
             // btn_them
             // 
-            this.btn_them.Location = new System.Drawing.Point(170, 145);
+            this.btn_them.Location = new System.Drawing.Point(95, 177);
+            this.btn_them.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_them.Name = "btn_them";
-            this.btn_them.Size = new System.Drawing.Size(109, 29);
+            this.btn_them.Size = new System.Drawing.Size(125, 39);
             this.btn_them.TabIndex = 38;
             this.btn_them.Text = "Thêm";
             this.btn_them.UseVisualStyleBackColor = true;
@@ -85,28 +93,30 @@
             this.dgrd_mausac.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgrd_mausac.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgrd_mausac.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgrd_mausac.Location = new System.Drawing.Point(139, 190);
+            this.dgrd_mausac.Location = new System.Drawing.Point(79, 319);
+            this.dgrd_mausac.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgrd_mausac.Name = "dgrd_mausac";
             this.dgrd_mausac.RowHeadersWidth = 51;
             this.dgrd_mausac.RowTemplate.Height = 25;
-            this.dgrd_mausac.Size = new System.Drawing.Size(776, 260);
+            this.dgrd_mausac.Size = new System.Drawing.Size(887, 347);
             this.dgrd_mausac.TabIndex = 37;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(495, 45);
+            this.label4.Location = new System.Drawing.Point(564, 84);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 15);
+            this.label4.Size = new System.Drawing.Size(75, 20);
             this.label4.TabIndex = 36;
             this.label4.Text = "Trạng thái";
             // 
             // rbtn_kohd
             // 
             this.rbtn_kohd.AutoSize = true;
-            this.rbtn_kohd.Location = new System.Drawing.Point(593, 61);
+            this.rbtn_kohd.Location = new System.Drawing.Point(670, 126);
+            this.rbtn_kohd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtn_kohd.Name = "rbtn_kohd";
-            this.rbtn_kohd.Size = new System.Drawing.Size(118, 19);
+            this.rbtn_kohd.Size = new System.Drawing.Size(146, 24);
             this.rbtn_kohd.TabIndex = 35;
             this.rbtn_kohd.TabStop = true;
             this.rbtn_kohd.Text = "Không hoạt động";
@@ -115,9 +125,10 @@
             // rbtn_hd
             // 
             this.rbtn_hd.AutoSize = true;
-            this.rbtn_hd.Location = new System.Drawing.Point(593, 20);
+            this.rbtn_hd.Location = new System.Drawing.Point(670, 57);
+            this.rbtn_hd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbtn_hd.Name = "rbtn_hd";
-            this.rbtn_hd.Size = new System.Drawing.Size(82, 19);
+            this.rbtn_hd.Size = new System.Drawing.Size(102, 24);
             this.rbtn_hd.TabIndex = 34;
             this.rbtn_hd.TabStop = true;
             this.rbtn_hd.Text = "Hoạt động";
@@ -125,41 +136,67 @@
             // 
             // tbx_ten
             // 
-            this.tbx_ten.Location = new System.Drawing.Point(239, 83);
+            this.tbx_ten.Location = new System.Drawing.Point(273, 111);
+            this.tbx_ten.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbx_ten.Name = "tbx_ten";
-            this.tbx_ten.Size = new System.Drawing.Size(196, 23);
+            this.tbx_ten.Size = new System.Drawing.Size(223, 27);
             this.tbx_ten.TabIndex = 31;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(166, 86);
+            this.label2.Location = new System.Drawing.Point(190, 115);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 15);
+            this.label2.Size = new System.Drawing.Size(32, 20);
             this.label2.TabIndex = 30;
             this.label2.Text = "Tên";
             // 
             // tbx_ma
             // 
-            this.tbx_ma.Location = new System.Drawing.Point(239, 40);
+            this.tbx_ma.Location = new System.Drawing.Point(273, 53);
+            this.tbx_ma.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbx_ma.Name = "tbx_ma";
-            this.tbx_ma.Size = new System.Drawing.Size(196, 23);
+            this.tbx_ma.Size = new System.Drawing.Size(223, 27);
             this.tbx_ma.TabIndex = 29;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(166, 43);
+            this.label1.Location = new System.Drawing.Point(190, 57);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 15);
+            this.label1.Size = new System.Drawing.Size(30, 20);
             this.label1.TabIndex = 28;
             this.label1.Text = "Mã";
             // 
+            // tk_timkiem
+            // 
+            this.tk_timkiem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.tk_timkiem.Location = new System.Drawing.Point(177, 257);
+            this.tk_timkiem.Multiline = true;
+            this.tk_timkiem.Name = "tk_timkiem";
+            this.tk_timkiem.PlaceholderText = "   Tìm kiếm màu sắc theo thông tin màu sắc";
+            this.tk_timkiem.Size = new System.Drawing.Size(422, 37);
+            this.tk_timkiem.TabIndex = 54;
+            // 
+            // btn_seachbyma
+            // 
+            this.btn_seachbyma.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_seachbyma.Image = ((System.Drawing.Image)(resources.GetObject("btn_seachbyma.Image")));
+            this.btn_seachbyma.Location = new System.Drawing.Point(606, 257);
+            this.btn_seachbyma.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.btn_seachbyma.Name = "btn_seachbyma";
+            this.btn_seachbyma.Size = new System.Drawing.Size(35, 37);
+            this.btn_seachbyma.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btn_seachbyma.TabIndex = 55;
+            this.btn_seachbyma.TabStop = false;
+            // 
             // Frm_MauSac
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1054, 489);
+            this.ClientSize = new System.Drawing.Size(1204, 636);
+            this.Controls.Add(this.tk_timkiem);
+            this.Controls.Add(this.btn_seachbyma);
             this.Controls.Add(this.btn_clear);
             this.Controls.Add(this.btn_xoa);
             this.Controls.Add(this.btn_sua);
@@ -172,10 +209,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbx_ma);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Frm_MauSac";
             this.Text = "Frm_MauSac";
             ((System.ComponentModel.ISupportInitialize)(this.dgrd_mausac)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btn_seachbyma)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -195,5 +232,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbx_ma;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tk_timkiem;
+        private System.Windows.Forms.PictureBox btn_seachbyma;
     }
 }
