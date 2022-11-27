@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLChatLieuServices : IQLChatLieuServices
     {
-        private IChatLieuRepository _iChatLieuRepository;
+        private IClassCRUDRepo<ChatLieu> _iChatLieuRepository;
         public QLChatLieuServices()
         {
             _iChatLieuRepository = new ChatLieuRepository();

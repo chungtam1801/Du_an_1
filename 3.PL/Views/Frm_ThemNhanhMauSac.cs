@@ -42,19 +42,27 @@ namespace _3.PL.Views
         }
         private void btn_luu_Click(object sender, EventArgs e)
         {
-            MauSac mausac = new MauSac();
-            mausac.Ten = tbx_ten.Text;
-            mausac.Ma = MaMauSac();
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+            if(tbx_ten.Text != "")
             {
-                MessageBox.Show(_iQLMauSacServices.Add(mausac));
-            }
+                MauSac mausac = new MauSac();
+                mausac.Ten = tbx_ten.Text;
+                mausac.Ma = MaMauSac();
+                if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+                {
+                    MessageBox.Show(_iQLMauSacServices.Add(mausac));
+                }
+            }MessageBox.Show("Bạn chưa nhập tên màu sắc");
         }
 
         private void btn_boqua_Click(object sender, EventArgs e)
         {
             Themms(tbx_ten.Text);
             this.Close();
+        }
+
+        private void Frm_ThemNhanhMauSac_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Themms(tbx_ten.Text);
         }
     }
 }

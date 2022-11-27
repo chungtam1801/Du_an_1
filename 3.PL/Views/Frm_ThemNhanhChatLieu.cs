@@ -42,12 +42,18 @@ namespace _3.PL.Views
         }
         private void btn_luu_Click_1(object sender, EventArgs e)
         {
-            ChatLieu cl = new ChatLieu();
-            cl.Ten = tbx_ten.Text;
-            cl.Ma = MaTuSinh();
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+            if(tbx_ten.Text != "")
             {
-                MessageBox.Show(_iQLChatLieuServices.Add(cl));
+                ChatLieu cl = new ChatLieu();
+                cl.Ten = tbx_ten.Text;
+                cl.Ma = MaTuSinh();
+                if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+                {
+                    MessageBox.Show(_iQLChatLieuServices.Add(cl));
+                }
+            }else
+            {
+                MessageBox.Show("Bạn chưa nhập tên chất liệu");
             }
         }
 
@@ -55,6 +61,11 @@ namespace _3.PL.Views
         {
             ThemChatLieu(tbx_ten.Text);
             this.Close();
+        }
+
+        private void Frm_ThemNhanhChatLieu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ThemChatLieu(tbx_ten.Text);
         }
     }
 }

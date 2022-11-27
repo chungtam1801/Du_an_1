@@ -144,6 +144,7 @@
             this.Name = "Frm_ThemNhanhLoaiSP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Frm_ThemNhanhLoaiSP";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm_ThemNhanhLoaiSP_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

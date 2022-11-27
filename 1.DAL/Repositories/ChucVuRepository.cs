@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _1.DAL.Repositories
 {
-    public class ChucVuRepository : IChucVuRepository
+    public class ChucVuRepository : IClassCRUDRepo<ChucVu>
     {
         private FpolyDBContext _dbContext;
         public ChucVuRepository()
@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
            return _dbContext.ChucVus.ToList();
         }
 
-        public ChucVu GetbyId(ChucVu id)
+        public ChucVu GetbyId(Guid id)
         {
             throw new NotImplementedException();
         }

@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLKhuyenMaiServices : IQLKhuyenMaiServices
     {
-        private IKhuyenMaiRepository _iKhuyenMaiRepository;
+        private IClassCRUDRepo<KhuyenMai> _iKhuyenMaiRepository;
         public QLKhuyenMaiServices()
         {
             _iKhuyenMaiRepository = new KhuyenMaiRepository();

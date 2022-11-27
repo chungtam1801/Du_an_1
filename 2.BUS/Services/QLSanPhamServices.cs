@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLSanPhamServices : IQLSanPhamServices
     {
-        private ISanPhamRepository _iSanPhamRepository;
+        private IClassCRUDRepo<SanPham> _iSanPhamRepository;
         public QLSanPhamServices()
         {
             _iSanPhamRepository = new SanPhamRepository();
@@ -36,6 +36,12 @@ namespace _2.BUS.Services
         public List<SanPham> GetAll()
         {
             return _iSanPhamRepository.GetAll();
+        }
+
+        public List<SanPham> GetAll(string s)
+        {
+            if(s == null) return GetAll();
+            return GetAll().Where(c=> c.Ten.ToLower().Contains(s.ToLower())).ToList();
         }
 
         public SanPham GetByID(Guid id)

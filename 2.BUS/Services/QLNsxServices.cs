@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLNsxServices : IQLNsxServices
     {
-        private INsxRepository _iNsxRepository;
+        private IClassCRUDRepo<Nsx> _iNsxRepository;
         public QLNsxServices()
         {
             _iNsxRepository = new NsxRepository();
@@ -36,6 +36,12 @@ namespace _2.BUS.Services
         public List<Nsx> GetAll()
         {
             return _iNsxRepository.GetAll();
+        }
+
+        public List<Nsx> GetAll(string s)
+        {
+            if(s == null) return GetAll();
+            return GetAll().Where(c=>c.Ten.ToLower().Contains(s.ToLower())).ToList();
         }
 
         public Nsx GetByID(Guid id)

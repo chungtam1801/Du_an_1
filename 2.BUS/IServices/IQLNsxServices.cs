@@ -13,6 +13,7 @@ namespace _2.BUS.IServices
         string Update(Nsx obj);
         string Delete(Nsx obj);
         List<Nsx> GetAll();
+        List<Nsx> GetAll(string s);
         Nsx GetByID(Guid id);
     }
 }

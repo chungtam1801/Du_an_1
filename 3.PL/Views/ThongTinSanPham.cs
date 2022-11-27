@@ -47,19 +47,7 @@ namespace _3.PL.Views
             get => _soLuong;
             set { _soLuong = value; lbl_SoLuong.Text = value; }
         }
-
         public string Id { get => id; set => id = value; }
-
-        private void ThongTinSanPham_Leave(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ThongTinSanPham_Enter(object sender, EventArgs e)
-        {
-            
-        }
-
         private void ThongTinSanPham_MouseEnter(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(217, 229, 242);
@@ -67,7 +55,7 @@ namespace _3.PL.Views
 
         private void ThongTinSanPham_MouseLeave(object sender, EventArgs e)
         {
-            this.BackColor = Color.White;
+            this.BackColor = Color.WhiteSmoke;
         }
     }
 }

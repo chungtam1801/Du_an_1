@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLNhanVienServices : IQLNhanVienServices
     {
-        private INhanVienRepository _iNhanVienRepository;
+        private IClassCRUDRepo<NhanVien> _iNhanVienRepository;
         public QLNhanVienServices()
         {
             _iNhanVienRepository = new NhanVienRepository();

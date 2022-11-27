@@ -42,19 +42,31 @@ namespace _3.PL.Views
         }
         private void btn_luu_Click(object sender, EventArgs e)
         {
-            Nsx nsx = new Nsx();
-            nsx.Ten = tbx_ten.Text;
-            nsx.Ma = MaTuSinh();
-            nsx.DiaChi = tbx_diachi.Text;
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+            if(tbx_ten.Text != "")
             {
-                MessageBox.Show(_iqLNsxServices.Add(nsx));
+                Nsx nsx = new Nsx();
+                nsx.Ten = tbx_ten.Text;
+                nsx.Ma = MaTuSinh();
+                nsx.DiaChi = tbx_diachi.Text;
+                if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+                {
+                    MessageBox.Show(_iqLNsxServices.Add(nsx));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Tên Nhà sản xuất không được để trống");
             }
         }
         private void btn_boqua_Click(object sender, EventArgs e)
         {
             Themnsx(tbx_ten.Text);
             this.Close();
+        }
+
+        private void Frm_ThemNhanhNSX_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Themnsx(tbx_ten.Text);
         }
     }
 }

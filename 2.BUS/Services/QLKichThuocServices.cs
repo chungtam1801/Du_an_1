@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLKichThuocServices : IQLKichThuocServices
     {
-        private IKichThuocRepository _iKichThuocRepository;
+        private IClassCRUDRepo<KichThuoc> _iKichThuocRepository;
         public QLKichThuocServices()
         {
             _iKichThuocRepository= new KichThuocRepository();

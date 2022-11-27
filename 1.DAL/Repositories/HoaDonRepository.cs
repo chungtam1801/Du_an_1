@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _1.DAL.Repositories
 {
-    public class HoaDonRepository : IHoaDonRepository
+    public class HoaDonRepository : IClassCRUDRepo<HoaDon>
     {
         private FpolyDBContext _dbContext;
         public HoaDonRepository()
@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
            return _dbContext.HoaDons.ToList();
         }
 
-        public HoaDon GetbyId(HoaDon id)
+        public HoaDon GetbyId(Guid id)
         {
             throw new NotImplementedException();
         }

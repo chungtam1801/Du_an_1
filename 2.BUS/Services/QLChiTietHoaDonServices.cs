@@ -13,9 +13,9 @@ namespace _2.BUS.Services
 {
     public class QLChiTietHoaDonServices : IQLChiTietHoaDonServices
     {
-        private IChiTietHoaDonRepository _iChiTietHoaDonRepository;
+        private IClassCRUDRepo<ChiTietHoaDon> _iChiTietHoaDonRepository;
         private IQLChiTietSpServices _iQLChiTietSpServices;
-        private IHoaDonRepository _iHoaDonRepository;
+        private IClassCRUDRepo<HoaDon> _iHoaDonRepository;
         public QLChiTietHoaDonServices()
         {
             _iChiTietHoaDonRepository = new ChiTietHoaDonRepository();
@@ -57,14 +57,15 @@ namespace _2.BUS.Services
                            LoaiSp = a.LoaiSp,
                            KichThuoc = a.KichThuoc,
                            ChatLieu = a.ChatLieu,
-                           SoLuong = b.SoLuong
+                           SoLuong = b.SoLuong,
+                           Id = b.Id
                        }).ToList();
             return lstView;
         }
 
         public ChiTietHoaDon GetByID(Guid id)
         {
-            throw new NotImplementedException();
+            return _iChiTietHoaDonRepository.GetbyId(id);
         }
 
         public string Update(ChiTietHoaDon obj)

@@ -17,13 +17,11 @@ namespace _3.PL.Views
 {
     public partial class Frm_ChatLieu : Form
     {
-        private IChatLieuRepository _iclRepository;
         private IQLChatLieuServices _iqLclServices;
         private Guid _id;
         public Frm_ChatLieu()
         {
             InitializeComponent();
-            _iclRepository = new ChatLieuRepository();
             _iqLclServices = new QLChatLieuServices();
             LoadData();
         }

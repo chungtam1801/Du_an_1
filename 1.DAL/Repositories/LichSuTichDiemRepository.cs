@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _1.DAL.Repositories
 {
-    public class LichSuTichDiemRepository : ILichSuTichDiemRepository
+    public class LichSuTichDiemRepository : IClassCRUDRepo<LichSuTichDiem>
     {
         private FpolyDBContext _dbContext;
         public LichSuTichDiemRepository()
@@ -41,7 +41,7 @@ namespace _1.DAL.Repositories
             return _dbContext.LichSuTichDiems.ToList();
         }
 
-        public LichSuTichDiem GetbyId(LichSuTichDiem id)
+        public LichSuTichDiem GetbyId(Guid id)
         {
             throw new NotImplementedException();
         }

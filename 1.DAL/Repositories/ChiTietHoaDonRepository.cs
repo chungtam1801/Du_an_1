@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace _1.DAL.Repositories
 {
-    public class ChiTietHoaDonRepository : IChiTietHoaDonRepository
+    public class ChiTietHoaDonRepository : IClassCRUDRepo<ChiTietHoaDon>
     {
         private FpolyDBContext _dbContext;
         public ChiTietHoaDonRepository()
@@ -41,9 +41,9 @@ namespace _1.DAL.Repositories
            return _dbContext.ChiTietHoaDons.ToList();   
         }
 
-        public ChiTietHoaDon GetbyId(ChiTietHoaDon id)
+        public ChiTietHoaDon GetbyId(Guid id)
         {
-            throw new NotImplementedException();
+            return _dbContext.ChiTietHoaDons.FirstOrDefault(p => p.Id == id);
         }
 
         public bool Update(ChiTietHoaDon obj)

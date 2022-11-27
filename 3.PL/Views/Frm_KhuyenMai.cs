@@ -19,13 +19,11 @@ namespace _3.PL.Views
     public partial class Frm_KhuyenMai : Form
     {
         FpolyDBContext context;
-        private IKhuyenMaiRepository _ikmRepository;
         private IQLKhuyenMaiServices _iqLkmServices;
         private Guid _id;
         public Frm_KhuyenMai()
         {
             InitializeComponent();
-            _ikmRepository = new KhuyenMaiRepository();
             _iqLkmServices = new QLKhuyenMaiServices();
             context = new FpolyDBContext();
             LoadData();
@@ -51,7 +49,7 @@ namespace _3.PL.Views
             {
                 return _iqLkmServices.GetAll();
             }
-            return _ikmRepository.GetAll().Where(c => c.Ten.ToLower().StartsWith(input.ToLower())).ToList();
+            return _iqLkmServices.GetAll().Where(c => c.Ten.ToLower().StartsWith(input.ToLower())).ToList();
         }
 
         private void LoadData1(string input)

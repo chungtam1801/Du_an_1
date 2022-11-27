@@ -13,13 +13,13 @@ namespace _2.BUS.Services
 {
     public class QLChiTietSpServices : IQLChiTietSpServices
     {
-        private IChiTietSpRepository _iChiTietSpRepository;
-        private ISanPhamRepository _iSanPhamRepository;
-        private IMauSacRepository _iMauSacRepository;
-        private IChatLieuRepository _iChatLieuRepository;
-        private IKichThuocRepository _iKichThuocRepository;
-        private INsxRepository _iNsxRepository;
-        private ILoaiSpRepository _iLoaiSpRepository;
+        private IClassCRUDRepo<ChiTietSp> _iChiTietSpRepository;
+        private IClassCRUDRepo<SanPham> _iSanPhamRepository;
+        private IClassCRUDRepo<MauSac> _iMauSacRepository;
+        private IClassCRUDRepo<ChatLieu> _iChatLieuRepository;
+        private IClassCRUDRepo<KichThuoc> _iKichThuocRepository;
+        private IClassCRUDRepo<Nsx> _iNsxRepository;
+        private IClassCRUDRepo<LoaiSp> _iLoaiSpRepository;
         public QLChiTietSpServices()
         {
             _iChiTietSpRepository = new ChiTietSpRepository();
@@ -64,7 +64,7 @@ namespace _2.BUS.Services
                          select new ViewQLChiTietSp()
                          { 
                              Id = a.Id,
-                             Ma = b.Ma,
+                             Ma = a.Ma,
                              Ten = b.Ten,
                              Nsx = g.Ten,
                              MauSac = e.Ten,

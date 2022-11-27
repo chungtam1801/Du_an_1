@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _1.DAL.Repositories
 {
-    public class MauSacRepository : IMauSacRepository
+    public class MauSacRepository : IClassCRUDRepo<MauSac>
     {
         private FpolyDBContext _dbContext;
         public MauSacRepository()
@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.MauSacs.ToList();
         }
 
-        public MauSac GetbyId(MauSac id)
+        public MauSac GetbyId(Guid id)
         {
             throw new NotImplementedException();
         }

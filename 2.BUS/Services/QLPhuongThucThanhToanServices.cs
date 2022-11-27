@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLPhuongThucThanhToanServices : IQLPhuongThucThanhToanServices
     {
-        private IPhuongThucThanhToanRepository _iPhuongThucThanhToanRepository;
+        private IClassCRUDRepo<PhuongThucThanhToan> _iPhuongThucThanhToanRepository;
         public QLPhuongThucThanhToanServices()
         {
             _iPhuongThucThanhToanRepository = new PhuongThucThanhToanRepository();

@@ -42,8 +42,8 @@ namespace _1.DAL.Context
         {
             if (!optionsBuilder.IsConfigured)
                 {
-                    optionsBuilder.UseSqlServer("Data Source=oh\\sqlexpress;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;Persist Security Info=True;User ID=sa;Password=111111");
-                }
+                optionsBuilder.UseSqlServer("Data Source=oh\\sqlexpress;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;Persist Security Info=True;User ID=sa;Password=111111");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -126,6 +126,8 @@ namespace _1.DAL.Context
 
                 entity.Property(e => e.GiaNhap).HasDefaultValueSql("((0))");
 
+                entity.Property(e => e.Ma).IsUnicode(false);
+
                 entity.Property(e => e.MoTa).HasDefaultValueSql("('')");
 
                 entity.Property(e => e.SoLuongTon).HasDefaultValueSql("((0))");
@@ -192,6 +194,8 @@ namespace _1.DAL.Context
             modelBuilder.Entity<HoaDon>(entity =>
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.IdKh).IsUnicode(false);
 
                 entity.Property(e => e.Ma).IsUnicode(false);
 

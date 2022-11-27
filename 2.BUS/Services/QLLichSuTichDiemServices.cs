@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLLichSuTichDiemServices : IQLLichSuTichDiemServices
     {
-        private ILichSuTichDiemRepository _iLichSuTichDiemRepository;
+        private IClassCRUDRepo<LichSuTichDiem> _iLichSuTichDiemRepository;
         public QLLichSuTichDiemServices()
         {
             _iLichSuTichDiemRepository = new LichSuTichDiemRepository();

@@ -12,7 +12,7 @@ namespace _2.BUS.Services
 {
     public class QLChucVuServices : IQLChucVuServices
     {
-        private IChucVuRepository _iChucVuRepository;
+        private IClassCRUDRepo<ChucVu> _iChucVuRepository;
         public QLChucVuServices()
         {
             _iChucVuRepository = new ChucVuRepository();

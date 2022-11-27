@@ -9,12 +9,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Frm_BanHangTaiQuay.cs" />
+    <Compile Remove="Views\Frm_BanHangTaiQuay.Designer.cs" />
+    <Compile Remove="Views\Frm_DatHang.cs" />
+    <Compile Remove="Views\Frm_DatHang.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\Frm_BanHangTaiQuay.resx" />
+    <EmbeddedResource Remove="Views\Frm_DatHang.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\2.BUS\2.BUS.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="Utilities\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AForge.Video.DirectShow" Version="2.2.5" />
+    <PackageReference Include="ZXing.Net" Version="0.16.6" />
   </ItemGroup>
 
   <ItemGroup>

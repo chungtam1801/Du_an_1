@@ -18,5 +18,11 @@ namespace _2.BUS.ViewModels
         public DateTime NgayThanhToan { get; set; }
         public string GiamGia { get; set; }
         public int? TrangThai { get; set; }
+        //0-Cho-BanHang
+        //1-Da thanh toan
+        //2-Cho-DatHang
+        //3-DangGiao
+        //4-DaGiao
+        //5-Huy
     }
 }
