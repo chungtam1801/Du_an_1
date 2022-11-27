@@ -53,24 +53,24 @@ namespace _3.PL.Views
             dtg_nhanvien.Columns[12].Width = 110;
             dtg_nhanvien.Columns[13].Name = "Trạng thái";
             int stt = 1;
-            foreach (var  x in _IqlNhanVienServices.GetAll())
+            foreach (var x in _IqlNhanVienServices.GetAll())
             {
-                dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten),x.GioiTinh,x.NgaySinh,x.DiaChi,x.Sdt,x.MatKhau,x.TrangThai==1?"còn làm":"nghỉ làm");
+                dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.GioiTinh, x.NgaySinh, x.DiaChi, x.Sdt, x.MatKhau, x.TrangThai == 1 ? "còn làm" : "nghỉ làm");
             }
         }
-        public void Clear() 
+        public void Clear()
         {
             tb_ma.Text = "";
             tb_ten.Text = "";
             tb_tendem.Text = "";
             tb_ho.Text = "";
             nv_cbb_gioitinh.Text = "";
-            dtp_ngaysinh.Value=DateTime.Now;
+            dtp_ngaysinh.Value = DateTime.Now;
             tb_diachi.Text = "";
             tb_sdt.Text = "";
             tb_matkhau.Text = "";
-            rbtn_conlam.Checked=false;
-            rbtn_nghilam.Checked=false;
+            rbtn_conlam.Checked = false;
+            rbtn_nghilam.Checked = false;
             LoadNV();
         }
 
@@ -80,20 +80,20 @@ namespace _3.PL.Views
             nv.Id = _id;
             nv.Ma = tb_ma.Text;
             nv.Ten = tb_ten.Text;
-            nv.TenDem=tb_tendem.Text;
-            nv.Ho=tb_ho.Text;
-            nv.GioiTinh=nv_cbb_gioitinh.Text;
+            nv.TenDem = tb_tendem.Text;
+            nv.Ho = tb_ho.Text;
+            nv.GioiTinh = nv_cbb_gioitinh.Text;
             nv.NgaySinh = dtp_ngaysinh.Value;
             nv.DiaChi = tb_diachi.Text;
-            nv.Sdt=tb_sdt.Text;
+            nv.Sdt = tb_sdt.Text;
             nv.MatKhau = tb_matkhau.Text;
             if (rbtn_conlam.Checked == true)
             {
                 nv.TrangThai = 1;
             }
-            else if(rbtn_nghilam.Checked == true)
+            else if (rbtn_nghilam.Checked == true)
             {
-                nv.TrangThai= 0;
+                nv.TrangThai = 0;
             }
             return nv;
         }
@@ -224,10 +224,10 @@ namespace _3.PL.Views
         }
         private void btn_seachbyma_Click(object sender, EventArgs e)
         {
-            
+
             //foreach (var item in nv.Ma)
             //{
-                
+
             //}
         }
         private void tk_timkiem_TextChanged(object sender, EventArgs e, string s)
@@ -257,38 +257,274 @@ namespace _3.PL.Views
                 rbtn_nghilam.Checked = true;
             }
         }
+        public void cbbtimkiem()
+        {
+            if (cbb_timkiem.Text == "Tìm kiếm theo mã")
+            {
+                var tk = _IqlNhanVienServices.GetAll().Where(p => p.Ma == tk_timkiem.Text);
+                dtg_nhanvien.Rows.Clear();
+                dtg_nhanvien.ColumnCount = 14;
+                dtg_nhanvien.Columns[0].Name = "STT";
+                dtg_nhanvien.Columns[1].Name = "ID";
+                dtg_nhanvien.Columns[1].Visible = false;
+                dtg_nhanvien.Columns[2].Name = "IDCV";
+                dtg_nhanvien.Columns[2].Visible = false;
+                dtg_nhanvien.Columns[3].Name = "Mã";
+                dtg_nhanvien.Columns[4].Name = "Tên";
+                dtg_nhanvien.Columns[5].Name = "Tên đệm";
+                dtg_nhanvien.Columns[6].Name = "Họ";
+                dtg_nhanvien.Columns[7].Name = "Họ và tên";
+                dtg_nhanvien.Columns[7].Width = 150;
+                dtg_nhanvien.Columns[8].Name = "Giới tính";
+                dtg_nhanvien.Columns[9].Name = "Ngày sinh";
+                dtg_nhanvien.Columns[9].Width = 160;
+                dtg_nhanvien.Columns[10].Name = "Địa chỉ";
+                dtg_nhanvien.Columns[10].Width = 130;
+                dtg_nhanvien.Columns[11].Name = "Số DT";
+                dtg_nhanvien.Columns[12].Name = "Mật khẩu";
+                dtg_nhanvien.Columns[12].Width = 110;
+                dtg_nhanvien.Columns[13].Name = "Trạng thái";
+                int stt = 1;
+                foreach (var x in tk)
+                {
+                    dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.GioiTinh, x.NgaySinh, x.DiaChi, x.Sdt, x.MatKhau, x.TrangThai == 1 ? "còn làm" : "nghỉ làm");
+                }
 
+            }
+            else if (cbb_timkiem.Text == "Tìm kiếm theo họ")
+            {
+                var tk = _IqlNhanVienServices.GetAll().Where(p => p.Ho == tk_timkiem.Text);
+                dtg_nhanvien.Rows.Clear();
+                dtg_nhanvien.ColumnCount = 14;
+                dtg_nhanvien.Columns[0].Name = "STT";
+                dtg_nhanvien.Columns[1].Name = "ID";
+                dtg_nhanvien.Columns[1].Visible = false;
+                dtg_nhanvien.Columns[2].Name = "IDCV";
+                dtg_nhanvien.Columns[2].Visible = false;
+                dtg_nhanvien.Columns[3].Name = "Mã";
+                dtg_nhanvien.Columns[4].Name = "Tên";
+                dtg_nhanvien.Columns[5].Name = "Tên đệm";
+                dtg_nhanvien.Columns[6].Name = "Họ";
+                dtg_nhanvien.Columns[7].Name = "Họ và tên";
+                dtg_nhanvien.Columns[7].Width = 150;
+                dtg_nhanvien.Columns[8].Name = "Giới tính";
+                dtg_nhanvien.Columns[9].Name = "Ngày sinh";
+                dtg_nhanvien.Columns[9].Width = 160;
+                dtg_nhanvien.Columns[10].Name = "Địa chỉ";
+                dtg_nhanvien.Columns[10].Width = 130;
+                dtg_nhanvien.Columns[11].Name = "Số DT";
+                dtg_nhanvien.Columns[12].Name = "Mật khẩu";
+                dtg_nhanvien.Columns[12].Width = 110;
+                dtg_nhanvien.Columns[13].Name = "Trạng thái";
+                int stt = 1;
+                foreach (var x in tk)
+                {
+                    dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.GioiTinh, x.NgaySinh, x.DiaChi, x.Sdt, x.MatKhau, x.TrangThai == 1 ? "còn làm" : "nghỉ làm");
+                }
+            }
+            else if (cbb_timkiem.Text == "Tìm kiếm theo tên đệm")
+            {
+                var tk = _IqlNhanVienServices.GetAll().Where(p => p.TenDem == tk_timkiem.Text);
+                dtg_nhanvien.Rows.Clear();
+                dtg_nhanvien.ColumnCount = 14;
+                dtg_nhanvien.Columns[0].Name = "STT";
+                dtg_nhanvien.Columns[1].Name = "ID";
+                dtg_nhanvien.Columns[1].Visible = false;
+                dtg_nhanvien.Columns[2].Name = "IDCV";
+                dtg_nhanvien.Columns[2].Visible = false;
+                dtg_nhanvien.Columns[3].Name = "Mã";
+                dtg_nhanvien.Columns[4].Name = "Tên";
+                dtg_nhanvien.Columns[5].Name = "Tên đệm";
+                dtg_nhanvien.Columns[6].Name = "Họ";
+                dtg_nhanvien.Columns[7].Name = "Họ và tên";
+                dtg_nhanvien.Columns[7].Width = 150;
+                dtg_nhanvien.Columns[8].Name = "Giới tính";
+                dtg_nhanvien.Columns[9].Name = "Ngày sinh";
+                dtg_nhanvien.Columns[9].Width = 160;
+                dtg_nhanvien.Columns[10].Name = "Địa chỉ";
+                dtg_nhanvien.Columns[10].Width = 130;
+                dtg_nhanvien.Columns[11].Name = "Số DT";
+                dtg_nhanvien.Columns[12].Name = "Mật khẩu";
+                dtg_nhanvien.Columns[12].Width = 110;
+                dtg_nhanvien.Columns[13].Name = "Trạng thái";
+                int stt = 1;
+                foreach (var x in tk)
+                {
+                    dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.GioiTinh, x.NgaySinh, x.DiaChi, x.Sdt, x.MatKhau, x.TrangThai == 1 ? "còn làm" : "nghỉ làm");
+                }
+            }
+            else if (cbb_timkiem.Text == "Tìm kiếm theo tên")
+            {
+                var tk = _IqlNhanVienServices.GetAll().Where(p => p.Ten == tk_timkiem.Text);
+                dtg_nhanvien.Rows.Clear();
+                dtg_nhanvien.ColumnCount = 14;
+                dtg_nhanvien.Columns[0].Name = "STT";
+                dtg_nhanvien.Columns[1].Name = "ID";
+                dtg_nhanvien.Columns[1].Visible = false;
+                dtg_nhanvien.Columns[2].Name = "IDCV";
+                dtg_nhanvien.Columns[2].Visible = false;
+                dtg_nhanvien.Columns[3].Name = "Mã";
+                dtg_nhanvien.Columns[4].Name = "Tên";
+                dtg_nhanvien.Columns[5].Name = "Tên đệm";
+                dtg_nhanvien.Columns[6].Name = "Họ";
+                dtg_nhanvien.Columns[7].Name = "Họ và tên";
+                dtg_nhanvien.Columns[7].Width = 150;
+                dtg_nhanvien.Columns[8].Name = "Giới tính";
+                dtg_nhanvien.Columns[9].Name = "Ngày sinh";
+                dtg_nhanvien.Columns[9].Width = 160;
+                dtg_nhanvien.Columns[10].Name = "Địa chỉ";
+                dtg_nhanvien.Columns[10].Width = 130;
+                dtg_nhanvien.Columns[11].Name = "Số DT";
+                dtg_nhanvien.Columns[12].Name = "Mật khẩu";
+                dtg_nhanvien.Columns[12].Width = 110;
+                dtg_nhanvien.Columns[13].Name = "Trạng thái";
+                int stt = 1;
+                foreach (var x in tk)
+                {
+                    dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.GioiTinh, x.NgaySinh, x.DiaChi, x.Sdt, x.MatKhau, x.TrangThai == 1 ? "còn làm" : "nghỉ làm");
+                }
+            }
+            else if (cbb_timkiem.Text == "Tìm kiếm theo giới tính")
+            {
+                var tk = _IqlNhanVienServices.GetAll().Where(p => p.GioiTinh == tk_timkiem.Text);
+                dtg_nhanvien.Rows.Clear();
+                dtg_nhanvien.ColumnCount = 14;
+                dtg_nhanvien.Columns[0].Name = "STT";
+                dtg_nhanvien.Columns[1].Name = "ID";
+                dtg_nhanvien.Columns[1].Visible = false;
+                dtg_nhanvien.Columns[2].Name = "IDCV";
+                dtg_nhanvien.Columns[2].Visible = false;
+                dtg_nhanvien.Columns[3].Name = "Mã";
+                dtg_nhanvien.Columns[4].Name = "Tên";
+                dtg_nhanvien.Columns[5].Name = "Tên đệm";
+                dtg_nhanvien.Columns[6].Name = "Họ";
+                dtg_nhanvien.Columns[7].Name = "Họ và tên";
+                dtg_nhanvien.Columns[7].Width = 150;
+                dtg_nhanvien.Columns[8].Name = "Giới tính";
+                dtg_nhanvien.Columns[9].Name = "Ngày sinh";
+                dtg_nhanvien.Columns[9].Width = 160;
+                dtg_nhanvien.Columns[10].Name = "Địa chỉ";
+                dtg_nhanvien.Columns[10].Width = 130;
+                dtg_nhanvien.Columns[11].Name = "Số DT";
+                dtg_nhanvien.Columns[12].Name = "Mật khẩu";
+                dtg_nhanvien.Columns[12].Width = 110;
+                dtg_nhanvien.Columns[13].Name = "Trạng thái";
+                int stt = 1;
+                foreach (var x in tk)
+                {
+                    dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.GioiTinh, x.NgaySinh, x.DiaChi, x.Sdt, x.MatKhau, x.TrangThai == 1 ? "còn làm" : "nghỉ làm");
+                }
+            }
+            else if (cbb_timkiem.Text == "Tìm kiếm theo SDT")
+            {
+                var tk = _IqlNhanVienServices.GetAll().Where(p => p.Sdt == tk_timkiem.Text);
+                dtg_nhanvien.Rows.Clear();
+                dtg_nhanvien.ColumnCount = 14;
+                dtg_nhanvien.Columns[0].Name = "STT";
+                dtg_nhanvien.Columns[1].Name = "ID";
+                dtg_nhanvien.Columns[1].Visible = false;
+                dtg_nhanvien.Columns[2].Name = "IDCV";
+                dtg_nhanvien.Columns[2].Visible = false;
+                dtg_nhanvien.Columns[3].Name = "Mã";
+                dtg_nhanvien.Columns[4].Name = "Tên";
+                dtg_nhanvien.Columns[5].Name = "Tên đệm";
+                dtg_nhanvien.Columns[6].Name = "Họ";
+                dtg_nhanvien.Columns[7].Name = "Họ và tên";
+                dtg_nhanvien.Columns[7].Width = 150;
+                dtg_nhanvien.Columns[8].Name = "Giới tính";
+                dtg_nhanvien.Columns[9].Name = "Ngày sinh";
+                dtg_nhanvien.Columns[9].Width = 160;
+                dtg_nhanvien.Columns[10].Name = "Địa chỉ";
+                dtg_nhanvien.Columns[10].Width = 130;
+                dtg_nhanvien.Columns[11].Name = "Số DT";
+                dtg_nhanvien.Columns[12].Name = "Mật khẩu";
+                dtg_nhanvien.Columns[12].Width = 110;
+                dtg_nhanvien.Columns[13].Name = "Trạng thái";
+                int stt = 1;
+                foreach (var x in tk)
+                {
+                    dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.GioiTinh, x.NgaySinh, x.DiaChi, x.Sdt, x.MatKhau, x.TrangThai == 1 ? "còn làm" : "nghỉ làm");
+                }
+            }
+            else if (cbb_timkiem.Text == "Tìm kiếm theo địa chỉ")
+            {
+                var tk = _IqlNhanVienServices.GetAll().Where(p => p.DiaChi == tk_timkiem.Text);
+                dtg_nhanvien.Rows.Clear();
+                dtg_nhanvien.ColumnCount = 14;
+                dtg_nhanvien.Columns[0].Name = "STT";
+                dtg_nhanvien.Columns[1].Name = "ID";
+                dtg_nhanvien.Columns[1].Visible = false;
+                dtg_nhanvien.Columns[2].Name = "IDCV";
+                dtg_nhanvien.Columns[2].Visible = false;
+                dtg_nhanvien.Columns[3].Name = "Mã";
+                dtg_nhanvien.Columns[4].Name = "Tên";
+                dtg_nhanvien.Columns[5].Name = "Tên đệm";
+                dtg_nhanvien.Columns[6].Name = "Họ";
+                dtg_nhanvien.Columns[7].Name = "Họ và tên";
+                dtg_nhanvien.Columns[7].Width = 150;
+                dtg_nhanvien.Columns[8].Name = "Giới tính";
+                dtg_nhanvien.Columns[9].Name = "Ngày sinh";
+                dtg_nhanvien.Columns[9].Width = 160;
+                dtg_nhanvien.Columns[10].Name = "Địa chỉ";
+                dtg_nhanvien.Columns[10].Width = 130;
+                dtg_nhanvien.Columns[11].Name = "Số DT";
+                dtg_nhanvien.Columns[12].Name = "Mật khẩu";
+                dtg_nhanvien.Columns[12].Width = 110;
+                dtg_nhanvien.Columns[13].Name = "Trạng thái";
+                int stt = 1;
+                foreach (var x in tk)
+                {
+                    dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.GioiTinh, x.NgaySinh, x.DiaChi, x.Sdt, x.MatKhau, x.TrangThai == 1 ? "còn làm" : "nghỉ làm");
+                }
+            }
+            //else if (cbb_timkiem.Text == "Tìm kiếm theo trạng thái")
+            //{
+            //    int index = 0;
+            //    if (rbtn_conlam.Checked == true)
+            //    {
+            //        index = 1;
+            //    }else if (rbtn_nghilam.Checked == true)
+            //    {
+            //        index = 0;
+            //    }
+            //    var tk = _IqlNhanVienServices.GetAll(index);
+            //    dtg_nhanvien.Rows.Clear();
+            //    dtg_nhanvien.ColumnCount = 14;
+            //    dtg_nhanvien.Columns[0].Name = "STT";
+            //    dtg_nhanvien.Columns[1].Name = "ID";
+            //    dtg_nhanvien.Columns[1].Visible = false;
+            //    dtg_nhanvien.Columns[2].Name = "IDCV";
+            //    dtg_nhanvien.Columns[2].Visible = false;
+            //    dtg_nhanvien.Columns[3].Name = "Mã";
+            //    dtg_nhanvien.Columns[4].Name = "Tên";
+            //    dtg_nhanvien.Columns[5].Name = "Tên đệm";
+            //    dtg_nhanvien.Columns[6].Name = "Họ";
+            //    dtg_nhanvien.Columns[7].Name = "Họ và tên";
+            //    dtg_nhanvien.Columns[7].Width = 150;
+            //    dtg_nhanvien.Columns[8].Name = "Giới tính";
+            //    dtg_nhanvien.Columns[9].Name = "Ngày sinh";
+            //    dtg_nhanvien.Columns[9].Width = 160;
+            //    dtg_nhanvien.Columns[10].Name = "Địa chỉ";
+            //    dtg_nhanvien.Columns[10].Width = 130;
+            //    dtg_nhanvien.Columns[11].Name = "Số DT";
+            //    dtg_nhanvien.Columns[12].Name = "Mật khẩu";
+            //    dtg_nhanvien.Columns[12].Width = 110;
+            //    dtg_nhanvien.Columns[13].Name = "Trạng thái";
+            //    int stt = 1;
+            //    foreach (var x in tk)
+            //    {
+            //        dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.GioiTinh, x.NgaySinh, x.DiaChi, x.Sdt, x.MatKhau, x.TrangThai == 1 ? "còn làm" : "nghỉ làm");
+            //    }
+            //}
+        }
         private void tk_timkiem_TextChanged(object sender, EventArgs e)
         {
-            var tk = _IqlNhanVienServices.GetAll().Where(p => p.Ma == tk_timkiem.Text);
-            dtg_nhanvien.Rows.Clear();
-            dtg_nhanvien.ColumnCount = 14;
-            dtg_nhanvien.Columns[0].Name = "STT";
-            dtg_nhanvien.Columns[1].Name = "ID";
-            dtg_nhanvien.Columns[1].Visible = false;
-            dtg_nhanvien.Columns[2].Name = "IDCV";
-            dtg_nhanvien.Columns[2].Visible = false;
-            dtg_nhanvien.Columns[3].Name = "Mã";
-            dtg_nhanvien.Columns[4].Name = "Tên";
-            dtg_nhanvien.Columns[5].Name = "Tên đệm";
-            dtg_nhanvien.Columns[6].Name = "Họ";
-            dtg_nhanvien.Columns[7].Name = "Họ và tên";
-            dtg_nhanvien.Columns[7].Width = 150;
-            dtg_nhanvien.Columns[8].Name = "Giới tính";
-            dtg_nhanvien.Columns[9].Name = "Ngày sinh";
-            dtg_nhanvien.Columns[9].Width = 160;
-            dtg_nhanvien.Columns[10].Name = "Địa chỉ";
-            dtg_nhanvien.Columns[10].Width = 130;
-            dtg_nhanvien.Columns[11].Name = "Số DT";
-            dtg_nhanvien.Columns[12].Name = "Mật khẩu";
-            dtg_nhanvien.Columns[12].Width = 110;
-            dtg_nhanvien.Columns[13].Name = "Trạng thái";
-            int stt = 1;
-            foreach (var x in tk)
-            {
-                dtg_nhanvien.Rows.Add(stt++, x.Id, x.IdCv, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.GioiTinh, x.NgaySinh, x.DiaChi, x.Sdt, x.MatKhau, x.TrangThai == 1 ? "còn làm" : "nghỉ làm");
-            }
+            cbbtimkiem();
+        }
 
+        private void tk_timkiem_Leave(object sender, EventArgs e)
+        {
+            LoadNV();
         }
     }
 }

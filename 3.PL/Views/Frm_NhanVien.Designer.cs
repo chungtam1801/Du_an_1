@@ -60,6 +60,7 @@
             this.btn_seachbyma = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cbb_timkiem = new System.Windows.Forms.ComboBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -283,14 +284,15 @@
             // tk_timkiem
             // 
             this.tk_timkiem.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.tk_timkiem.Location = new System.Drawing.Point(11, 5);
+            this.tk_timkiem.Location = new System.Drawing.Point(265, 4);
             this.tk_timkiem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tk_timkiem.Multiline = true;
             this.tk_timkiem.Name = "tk_timkiem";
-            this.tk_timkiem.PlaceholderText = "   Tìm kiếm theo mã nhân viên";
+            this.tk_timkiem.PlaceholderText = "  Nhập dữ liệu cần tìm";
             this.tk_timkiem.Size = new System.Drawing.Size(370, 29);
             this.tk_timkiem.TabIndex = 46;
             this.tk_timkiem.TextChanged += new System.EventHandler(this.tk_timkiem_TextChanged);
+            this.tk_timkiem.Leave += new System.EventHandler(this.tk_timkiem_Leave);
             // 
             // nv_cbb_gioitinh
             // 
@@ -368,7 +370,7 @@
             // 
             this.btn_seachbyma.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btn_seachbyma.Image = ((System.Drawing.Image)(resources.GetObject("btn_seachbyma.Image")));
-            this.btn_seachbyma.Location = new System.Drawing.Point(387, 5);
+            this.btn_seachbyma.Location = new System.Drawing.Point(12, 4);
             this.btn_seachbyma.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_seachbyma.Name = "btn_seachbyma";
             this.btn_seachbyma.Size = new System.Drawing.Size(31, 28);
@@ -413,6 +415,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(87)))), ((int)(((byte)(122)))));
+            this.panel3.Controls.Add(this.cbb_timkiem);
             this.panel3.Controls.Add(this.tk_timkiem);
             this.panel3.Controls.Add(this.btn_seachbyma);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -420,6 +423,26 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1698, 37);
             this.panel3.TabIndex = 55;
+            // 
+            // cbb_timkiem
+            // 
+            this.cbb_timkiem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.cbb_timkiem.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.cbb_timkiem.FormattingEnabled = true;
+            this.cbb_timkiem.Items.AddRange(new object[] {
+            "Tìm kiếm theo mã",
+            "Tìm kiếm theo họ",
+            "Tìm kiếm theo tên đệm",
+            "Tìm kiếm theo tên",
+            "Tìm kiếm theo giới tính",
+            "Tìm kiếm theo SDT",
+            "Tìm kiếm theo địa chỉ",
+            "Tìm kiếm theo trạng thái"});
+            this.cbb_timkiem.Location = new System.Drawing.Point(49, 7);
+            this.cbb_timkiem.Name = "cbb_timkiem";
+            this.cbb_timkiem.Size = new System.Drawing.Size(210, 23);
+            this.cbb_timkiem.TabIndex = 54;
+            this.cbb_timkiem.Text = "  Tìm kiếm theo...";
             // 
             // panel4
             // 
@@ -543,5 +566,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.DataGridView dtg_nhanvien;
+        private System.Windows.Forms.ComboBox cbb_timkiem;
     }
 }

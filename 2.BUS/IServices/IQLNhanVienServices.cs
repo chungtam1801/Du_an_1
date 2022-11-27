@@ -13,6 +13,7 @@ namespace _2.BUS.IServices
         string Update(NhanVien obj);
         string Delete(NhanVien obj);
         List<NhanVien> GetAll();
+        List<NhanVien> GetAll(int hd);
         NhanVien GetByID(Guid id);
     }
 }
