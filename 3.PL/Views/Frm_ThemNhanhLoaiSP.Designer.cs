@@ -89,7 +89,6 @@
             this.tbx_ten.Name = "tbx_ten";
             this.tbx_ten.Size = new System.Drawing.Size(230, 23);
             this.tbx_ten.TabIndex = 20;
-            this.tbx_ten.Text = "j";
             // 
             // panel1
             // 
@@ -145,6 +144,7 @@
             this.Name = "Frm_ThemNhanhLoaiSP";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Frm_ThemNhanhLoaiSP";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm_ThemNhanhLoaiSP_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

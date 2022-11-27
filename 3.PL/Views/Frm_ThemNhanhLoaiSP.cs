@@ -50,20 +50,27 @@ namespace _3.PL.Views
         }
         private void btn_luu_Click(object sender, EventArgs e)
         {
-            LoaiSp lsp = new LoaiSp();
-            lsp.Ten = tbx_ten.Text;
-            lsp.Ma = MaTuSinh();
-            if(cmb_lspcha.Text == "")
+            if(tbx_ten.Text != "")
             {
-                lsp.MaLoaiSpcha = null;
+                LoaiSp lsp = new LoaiSp();
+                lsp.Ten = tbx_ten.Text;
+                lsp.Ma = MaTuSinh();
+                if (cmb_lspcha.Text == "")
+                {
+                    lsp.MaLoaiSpcha = null;
+                }
+                else
+                {
+                    lsp.MaLoaiSpcha = _iqLLoaiSpServices.GetAll().First(c => c.Ten == cmb_lspcha.Text).Id;
+                }
+                if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+                {
+                    MessageBox.Show(_iqLLoaiSpServices.Add(lsp));
+                }
             }
             else
             {
-                lsp.MaLoaiSpcha = _iqLLoaiSpServices.GetAll().First(c => c.Ten == cmb_lspcha.Text).Id;
-            }
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
-            {
-                    MessageBox.Show(_iqLLoaiSpServices.Add(lsp));
+                MessageBox.Show("Bạn chưa nhập loại sản phẩm");
             }
         }
 
@@ -72,6 +79,12 @@ namespace _3.PL.Views
             cmb_lspcha.SelectedIndex = 0;
             Themlsp(tbx_ten.Text);
             this.Close();
+        }
+
+        private void Frm_ThemNhanhLoaiSP_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            cmb_lspcha.SelectedIndex = 0;
+            Themlsp(tbx_ten.Text);
         }
     }
 }

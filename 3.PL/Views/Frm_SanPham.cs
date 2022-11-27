@@ -76,10 +76,17 @@ namespace _3.PL.Views
         }
         private void btn_them_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+            if(tbx_ten.Text != "")
             {
-                MessageBox.Show(_iqLSanPhamServices.Add(GetDataFromGUI()));
-                LoadData(null);
+                if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+                {
+                    MessageBox.Show(_iqLSanPhamServices.Add(GetDataFromGUI()));
+                    LoadData(null);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa nhập tên sản phẩm");
             }
         }
 

@@ -122,6 +122,7 @@
             this.Name = "Frm_ThemNhanhMauSac";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Frm_ThemNhanhMauSac";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm_ThemNhanhMauSac_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

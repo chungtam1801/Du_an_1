@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_SanPham));
             this.btn_clear = new System.Windows.Forms.Button();
             this.btn_xoa = new System.Windows.Forms.Button();
@@ -130,13 +131,21 @@
             this.dgrd_sanpham.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Noto Sans", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Noto Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgrd_sanpham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgrd_sanpham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Noto Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgrd_sanpham.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgrd_sanpham.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgrd_sanpham.Location = new System.Drawing.Point(0, 384);
             this.dgrd_sanpham.Margin = new System.Windows.Forms.Padding(4);
@@ -188,7 +197,7 @@
             this.tbx_mota.Margin = new System.Windows.Forms.Padding(4);
             this.tbx_mota.Multiline = true;
             this.tbx_mota.Name = "tbx_mota";
-            this.tbx_mota.Size = new System.Drawing.Size(421, 58);
+            this.tbx_mota.Size = new System.Drawing.Size(361, 58);
             this.tbx_mota.TabIndex = 19;
             // 
             // label3
@@ -204,17 +213,17 @@
             // 
             // tbx_ten
             // 
-            this.tbx_ten.Location = new System.Drawing.Point(201, 95);
+            this.tbx_ten.Location = new System.Drawing.Point(258, 95);
             this.tbx_ten.Margin = new System.Windows.Forms.Padding(4);
             this.tbx_ten.Name = "tbx_ten";
-            this.tbx_ten.Size = new System.Drawing.Size(293, 28);
+            this.tbx_ten.Size = new System.Drawing.Size(249, 28);
             this.tbx_ten.TabIndex = 17;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(139, 98);
+            this.label2.Location = new System.Drawing.Point(196, 98);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 20);
@@ -223,17 +232,17 @@
             // 
             // tbx_ma
             // 
-            this.tbx_ma.Location = new System.Drawing.Point(201, 22);
+            this.tbx_ma.Location = new System.Drawing.Point(258, 22);
             this.tbx_ma.Margin = new System.Windows.Forms.Padding(4);
             this.tbx_ma.Name = "tbx_ma";
-            this.tbx_ma.Size = new System.Drawing.Size(293, 28);
+            this.tbx_ma.Size = new System.Drawing.Size(249, 28);
             this.tbx_ma.TabIndex = 15;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(139, 25);
+            this.label1.Location = new System.Drawing.Point(196, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 20);

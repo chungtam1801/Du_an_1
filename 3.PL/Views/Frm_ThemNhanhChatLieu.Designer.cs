@@ -122,6 +122,7 @@
             this.Name = "Frm_ThemNhanhChatLieu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Frm_ThemNhanhChatLieu";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm_ThemNhanhChatLieu_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
