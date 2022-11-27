@@ -124,6 +124,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Frm_ThemNhanhSP";
             this.TopMost = true;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm_ThemNhanhSP_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

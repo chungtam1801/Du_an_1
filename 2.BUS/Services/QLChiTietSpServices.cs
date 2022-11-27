@@ -64,7 +64,7 @@ namespace _2.BUS.Services
                          select new ViewQLChiTietSp()
                          { 
                              Id = a.Id,
-                             Ma = b.Ma,
+                             Ma = a.Ma,
                              Ten = b.Ten,
                              Nsx = g.Ten,
                              MauSac = e.Ten,

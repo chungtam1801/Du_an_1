@@ -86,6 +86,7 @@ namespace _3.PL.Views
             }
 
             this.tb_taikhoan.Focus();
+
         }
     }
 }

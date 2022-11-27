@@ -42,12 +42,19 @@ namespace _3.PL.Views
         }
         private void btn_luu_Click(object sender, EventArgs e)
         {
-            KichThuoc kichThuoc = new KichThuoc();
-            kichThuoc.Size = tbx_ten.Text;
-            kichThuoc.Ma = MaTuSinh();
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+            if(tbx_ten.Text != "")
             {
-                MessageBox.Show(_iQLKichThuocServices.Add(kichThuoc));
+                KichThuoc kichThuoc = new KichThuoc();
+                kichThuoc.Size = tbx_ten.Text;
+                kichThuoc.Ma = MaTuSinh();
+                if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+                {
+                    MessageBox.Show(_iQLKichThuocServices.Add(kichThuoc));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa nhập size");
             }
         }
 
@@ -55,6 +62,11 @@ namespace _3.PL.Views
         {
             ThemKichThuoc(tbx_ten.Text);
             this.Close();
+        }
+
+        private void Frm_ThemNhanhKichThuoc_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ThemKichThuoc(tbx_ten.Text);
         }
     }
 }

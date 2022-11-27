@@ -45,18 +45,30 @@ namespace _3.PL.Views
         }
         private void btn_luu_Click_1(object sender, EventArgs e)
         {
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+            if(tbx_tensp.Text != "")
             {
-                SanPham sanPham = new SanPham();
-                sanPham.Ten = tbx_tensp.Text;
-                sanPham.Ma = MaTuSinh();
-                MessageBox.Show(_iqLSanPhamServices.Add(sanPham));
+                if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+                {
+                    SanPham sanPham = new SanPham();
+                    sanPham.Ten = tbx_tensp.Text;
+                    sanPham.Ma = MaTuSinh();
+                    MessageBox.Show(_iqLSanPhamServices.Add(sanPham));
+                }
+            }
+            else
+            {
+                MessageBox.Show("Tên Sản phẩm không được để trống");
             }
         }
         private void btn_boqua_Click_1(object sender, EventArgs e)
         {
             Themsp(tbx_tensp.Text);
             this.Close();
+        }
+
+        private void Frm_ThemNhanhSP_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Themsp(tbx_tensp.Text);
         }
     }
 }

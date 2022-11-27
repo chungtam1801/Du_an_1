@@ -9,7 +9,7 @@ namespace _3.PL.Utilities
     public class Utility
     {
         // Check là số
-        public bool IsNumber(string pValue)
+        public static bool IsNumber(string pValue)
         {
             foreach (Char c in pValue)
             {
