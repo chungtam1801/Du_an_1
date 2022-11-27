@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _3.PL
+namespace _2.BUS
 {
     internal static class ClassSP
     {

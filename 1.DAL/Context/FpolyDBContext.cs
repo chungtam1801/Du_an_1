@@ -43,7 +43,7 @@ namespace _1.DAL.Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-S6G7NFV\\SQLEXPRESS;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;Persist Security Info=True;User ID=sa;Password=123456");
+                optionsBuilder.UseSqlServer("Data Source=TAM-LAPTOP\\SQLEXPRESS;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;Persist Security Info=True;User ID=tam;Password=123456789");
             }
         }
 
@@ -195,6 +195,8 @@ namespace _1.DAL.Context
             modelBuilder.Entity<HoaDon>(entity =>
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+
+                entity.Property(e => e.IdKh).IsUnicode(false);
 
                 entity.Property(e => e.Ma).IsUnicode(false);
 
