@@ -305,7 +305,7 @@ namespace _3.PL.Views
         }
         void ThemNhanhSP(string s)
         {
-            LoadSanPham();
+            //LoadSanPham();
             cmb_sp.Text = s;
         }
         private void pic_themnhanhsp_Click(object sender, EventArgs e)

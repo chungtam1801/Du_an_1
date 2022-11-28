@@ -72,7 +72,7 @@
             this.pnl_menu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnl_menu.Location = new System.Drawing.Point(0, 0);
             this.pnl_menu.Name = "pnl_menu";
-            this.pnl_menu.Size = new System.Drawing.Size(190, 749);
+            this.pnl_menu.Size = new System.Drawing.Size(190, 729);
             this.pnl_menu.TabIndex = 0;
             // 
             // btn_khuyenmai
@@ -376,7 +376,7 @@
             this.pnl_title.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_title.Location = new System.Drawing.Point(190, 0);
             this.pnl_title.Name = "pnl_title";
-            this.pnl_title.Size = new System.Drawing.Size(1022, 39);
+            this.pnl_title.Size = new System.Drawing.Size(1160, 75);
             this.pnl_title.TabIndex = 4;
             // 
             // lbl_tilte
@@ -385,7 +385,7 @@
             this.lbl_tilte.AutoSize = true;
             this.lbl_tilte.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_tilte.ForeColor = System.Drawing.Color.White;
-            this.lbl_tilte.Location = new System.Drawing.Point(441, 3);
+            this.lbl_tilte.Location = new System.Drawing.Point(540, 21);
             this.lbl_tilte.Name = "lbl_tilte";
             this.lbl_tilte.Size = new System.Drawing.Size(89, 29);
             this.lbl_tilte.TabIndex = 0;
@@ -395,9 +395,9 @@
             // 
             this.pnl_desktop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnl_desktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_desktop.Location = new System.Drawing.Point(190, 39);
+            this.pnl_desktop.Location = new System.Drawing.Point(190, 75);
             this.pnl_desktop.Name = "pnl_desktop";
-            this.pnl_desktop.Size = new System.Drawing.Size(1022, 710);
+            this.pnl_desktop.Size = new System.Drawing.Size(1160, 654);
             this.pnl_desktop.TabIndex = 5;
             // 
             // Frm_Main
@@ -405,7 +405,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(1212, 749);
+            this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.pnl_desktop);
             this.Controls.Add(this.pnl_title);
             this.Controls.Add(this.pnl_Nav);
