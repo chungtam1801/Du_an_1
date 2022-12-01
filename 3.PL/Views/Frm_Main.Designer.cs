@@ -49,6 +49,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnl_Nav = new System.Windows.Forms.Panel();
             this.pnl_title = new System.Windows.Forms.Panel();
+            this.tbx_giohethong = new System.Windows.Forms.TextBox();
             this.lbl_tilte = new System.Windows.Forms.Label();
             this.pnl_desktop = new System.Windows.Forms.Panel();
             this.pnl_menu.SuspendLayout();
@@ -372,6 +373,7 @@
             // pnl_title
             // 
             this.pnl_title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(59)))), ((int)(((byte)(108)))));
+            this.pnl_title.Controls.Add(this.tbx_giohethong);
             this.pnl_title.Controls.Add(this.lbl_tilte);
             this.pnl_title.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_title.Location = new System.Drawing.Point(190, 0);
@@ -379,15 +381,27 @@
             this.pnl_title.Size = new System.Drawing.Size(1160, 75);
             this.pnl_title.TabIndex = 4;
             // 
+            // tbx_giohethong
+            // 
+            this.tbx_giohethong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbx_giohethong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(59)))), ((int)(((byte)(108)))));
+            this.tbx_giohethong.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbx_giohethong.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tbx_giohethong.ForeColor = System.Drawing.Color.White;
+            this.tbx_giohethong.Location = new System.Drawing.Point(937, 49);
+            this.tbx_giohethong.Name = "tbx_giohethong";
+            this.tbx_giohethong.Size = new System.Drawing.Size(220, 20);
+            this.tbx_giohethong.TabIndex = 1;
+            // 
             // lbl_tilte
             // 
             this.lbl_tilte.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_tilte.AutoSize = true;
-            this.lbl_tilte.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_tilte.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_tilte.ForeColor = System.Drawing.Color.White;
             this.lbl_tilte.Location = new System.Drawing.Point(540, 21);
             this.lbl_tilte.Name = "lbl_tilte";
-            this.lbl_tilte.Size = new System.Drawing.Size(89, 29);
+            this.lbl_tilte.Size = new System.Drawing.Size(99, 31);
             this.lbl_tilte.TabIndex = 0;
             this.lbl_tilte.Text = "HOME";
             // 
@@ -452,5 +466,6 @@
         private System.Windows.Forms.Button btn_khuyenmai;
         private System.Windows.Forms.Button btn_khachhang;
         private System.Windows.Forms.Button btn_nhanvien;
+        private System.Windows.Forms.TextBox tbx_giohethong;
     }
 }

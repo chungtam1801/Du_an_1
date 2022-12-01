@@ -196,6 +196,8 @@ namespace _1.DAL.Context
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
+                entity.Property(e => e.IdKh).IsUnicode(false);
+
                 entity.Property(e => e.Ma).IsUnicode(false);
 
                 entity.Property(e => e.TrangThai).HasDefaultValueSql("((0))");

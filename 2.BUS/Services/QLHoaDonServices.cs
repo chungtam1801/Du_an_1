@@ -42,12 +42,11 @@ namespace _2.BUS.Services
         {
             throw new NotImplementedException();
         }
-
         public string Update(HoaDon obj)
         {
             if (obj == null) return "Sửa thất bại";
             var tempobj = obj;
-            if (_iHoaDonRepository.Update(tempobj)) return "Thanh toán thành công";
+            if (_iHoaDonRepository.Update(tempobj)) return "Thanh toán hoàn tất";
             return "Sửa thất bại";
         }
     }

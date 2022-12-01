@@ -116,5 +116,41 @@ namespace _3.PL.Views
                 LoadData();
             }
         }
+
+        private void tk_timkiem_TextChanged(object sender, EventArgs e)
+        {
+            if (cbb_timkiem.Text == "Tìm kiếm theo mã")
+            {
+                var tk = _iqLclServices.GetAll().Where(p => p.Ma == cbb_timkiem.Text);
+                dgvChatLieu.Rows.Clear();
+                dgvChatLieu.ColumnCount = 4;
+                dgvChatLieu.Columns[0].Name = "ID";
+                dgvChatLieu.Columns[0].Width = 385;
+                dgvChatLieu.Columns[1].Name = "Mã";
+                dgvChatLieu.Columns[2].Name = "Tên";
+                dgvChatLieu.Columns[3].Name = "Trạng thái";
+                foreach (var x in tk)
+                {
+                    dgvChatLieu.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                }
+            }
+            else if (cbb_timkiem.Text == "Tìm kiếm theo Ten")
+            {
+                var tk = _iqLclServices.GetAll().Where(p => p.Ten == cbb_timkiem.Text);
+                dgvChatLieu.Rows.Clear();
+                dgvChatLieu.ColumnCount = 4;
+                dgvChatLieu.Columns[0].Name = "ID";
+                dgvChatLieu.Columns[0].Width = 385;
+                dgvChatLieu.Columns[1].Name = "Mã";
+                dgvChatLieu.Columns[2].Name = "Tên";
+                dgvChatLieu.Columns[3].Name = "Trạng thái";
+                foreach (var x in tk)
+                {
+                    dgvChatLieu.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                }
+
+            }
+        }
     }
 }
+

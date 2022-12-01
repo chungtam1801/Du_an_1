@@ -19,11 +19,10 @@ namespace _2.BUS.ViewModels
         public string GiamGia { get; set; }
         public int? TrangThai { get; set; }
         //0-Cho-BanHang
-        //1-DaThanhToan
-        //2-Huy
-        //3-Cho-DatHang
-        //4-DangGiao
-        //5-DaGiao
-        //6-HoanTra
+        //1-Da thanh toan
+        //2-Cho-DatHang
+        //3-DangGiao
+        //4-DaGiao
+        //5-Huy
     }
 }

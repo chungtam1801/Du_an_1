@@ -24,6 +24,7 @@ namespace _3.PL.Views
         private void Frm_Main_Load(object sender, EventArgs e)
         {
             pnl_menucon.Visible = false;
+            tbx_giohethong.Text = Convert.ToString(DateTime.Now);
         }
 
         private void btn_banHang_Click(object sender, EventArgs e)

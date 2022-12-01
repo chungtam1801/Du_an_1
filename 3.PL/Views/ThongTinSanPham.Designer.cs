@@ -97,6 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.lbl_Ten);
             this.Controls.Add(this.label2);
