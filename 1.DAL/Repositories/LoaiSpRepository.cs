@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.LoaiSps.ToList();
         }
 
-        public LoaiSp GetbyId(Guid id)
+        public LoaiSp GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

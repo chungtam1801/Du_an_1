@@ -23,9 +23,10 @@ namespace _2.BUS.ViewModels
         public string TrangThai { get; set; }
         //0-Cho-BanHang
         //1-Da thanh toan
-        //2-Cho-DatHang
-        //3-DangGiao
-        //4-DaGiao
-        //5-Huy
+        //2-Huy thanh toan
+        //3-Cho-DatHang
+        //4-DangGiao
+        //5-DaGiao
+        //6-Huy
     }
 }

@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
            return _dbContext.KhuyenMais.ToList();
         }
 
-        public KhuyenMai GetbyId(Guid id)
+        public KhuyenMai GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

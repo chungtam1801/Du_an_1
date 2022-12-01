@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.QuyDoiDiems.ToList();
         }
 
-        public QuyDoiDiem GetbyId(Guid id)
+        public QuyDoiDiem GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

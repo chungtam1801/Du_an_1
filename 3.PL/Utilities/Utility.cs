@@ -26,5 +26,10 @@ namespace _3.PL.Utilities
             }
             else return false;
         }
+        public static bool CheckNumber(string temp)
+        {
+            int n;
+            return int.TryParse(temp, out n);    
+        }
     }
 }
