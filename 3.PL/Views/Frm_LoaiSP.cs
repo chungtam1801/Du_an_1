@@ -198,7 +198,23 @@ namespace _3.PL.Views
             }
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
-                MessageBox.Show(_IplLoaiSPServices.Add(LSP));
+                if(loai_ten.Text.Trim()== "")
+                {
+                    MessageBox.Show("tên không được bỏ trống");
+                }
+                else if (_IplLoaiSPServices.GetAll().Any(c => c.Ten == loai_ten.Text))
+                {
+                    MessageBox.Show("Tên loại SP đã có ");
+                }
+                else if (radioButton1.Checked == false && radioButton2.Checked == false)
+                {
+                    MessageBox.Show("Trạng thái  không được bỏ trống!");
+                }
+                else
+                {
+                    MessageBox.Show(_IplLoaiSPServices.Add(LSP));
+                }
+                 
             }
             LoadLSP();
             LoadLSPCha();

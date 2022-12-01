@@ -29,6 +29,7 @@ namespace _3.PL.Views
             dtg_KichThuoc.Rows.Clear();
             dtg_KichThuoc.ColumnCount = 4;
             dtg_KichThuoc.Columns[0].Name = "ID";
+            dtg_KichThuoc.Columns[0].Width = 385;
             dtg_KichThuoc.Columns[1].Name = "Mã";
             dtg_KichThuoc.Columns[2].Name = "Size";
             dtg_KichThuoc.Columns[3].Name = "Trạng thái";
@@ -58,8 +59,30 @@ namespace _3.PL.Views
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
-                _iqlkichThuocServices.Add(GetDataFromGUI());
-                LoadData();
+                if (_iqlkichThuocServices.GetAll().Any(p => p.Ma == tb_ma.Text))
+                {
+                    MessageBox.Show("Mã kích thước đã tồn tại!");
+                }else if (tb_ma.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mã kích thước không được để trống!");
+                }
+                else if (tb_size.Text.Trim() == "")
+                {
+                    MessageBox.Show("kích thước không được để trống!");
+                }
+                else if (_iqlkichThuocServices.GetAll().Any(p => p.Size == tb_size.Text))
+                {
+                    MessageBox.Show("kích thước đã tồn tại!");
+                }
+                else if (rbtn_conhang.Checked == false && rbtn_hethang.Checked)
+                {
+                    MessageBox.Show("Trạng thái kích thước không được bỏ trống!");
+                }
+                else
+                {
+                    _iqlkichThuocServices.Add(GetDataFromGUI());
+                    LoadData();
+                }
             }
         }
 
@@ -85,7 +108,8 @@ namespace _3.PL.Views
         {
             tb_ma.Text = "";
             tb_size.Text = "";
-            rbtn_conhang.Checked = true;
+            rbtn_conhang.Checked = false;
+            rbtn_hethang.Checked = false;
             LoadData();
         }
 
@@ -107,6 +131,45 @@ namespace _3.PL.Views
         }
 
         private void Frm_KichThuoc_Load(object sender, EventArgs e)
+        {
+            LoadData();
+            rbtn_conhang.Checked = true;
+        }
+
+        private void tb_timkiem_TextChanged(object sender, EventArgs e)
+        {
+            if (cbb_timkiem.Text == "Tìm kiếm theo mã")
+            {
+                var tk = _iqlkichThuocServices.GetAll().Where(p => p.Ma == tb_timkiem.Text);
+                dtg_KichThuoc.Rows.Clear();
+                dtg_KichThuoc.ColumnCount = 4;
+                dtg_KichThuoc.Columns[0].Name = "ID";
+                dtg_KichThuoc.Columns[0].Width = 385;
+                dtg_KichThuoc.Columns[1].Name = "Mã";
+                dtg_KichThuoc.Columns[2].Name = "Size";
+                dtg_KichThuoc.Columns[3].Name = "Trạng thái";
+                foreach (var x in tk)
+                {
+                    dtg_KichThuoc.Rows.Add(x.Id, x.Ma, x.Size, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng");
+                }
+            }else if (cbb_timkiem.Text == "Tìm kiếm theo size")
+            {
+                var tk = _iqlkichThuocServices.GetAll().Where(p => p.Size == tb_timkiem.Text);
+                dtg_KichThuoc.Rows.Clear();
+                dtg_KichThuoc.ColumnCount = 4;
+                dtg_KichThuoc.Columns[0].Name = "ID";
+                dtg_KichThuoc.Columns[0].Width = 385;
+                dtg_KichThuoc.Columns[1].Name = "Mã";
+                dtg_KichThuoc.Columns[2].Name = "Size";
+                dtg_KichThuoc.Columns[3].Name = "Trạng thái";
+                foreach (var x in tk)
+                {
+                    dtg_KichThuoc.Rows.Add(x.Id, x.Ma, x.Size, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng");
+                }
+            }
+        }
+
+        private void tb_timkiem_Leave(object sender, EventArgs e)
         {
             LoadData();
         }

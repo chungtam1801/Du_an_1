@@ -50,5 +50,10 @@ namespace _2.BUS.Services
             if (_iNhanVienRepository.Update(tempobj)) return "Sửa thành công";
             return "Sửa thất bại";
         }
+        public List<NhanVien> GetAll(int hd)
+        {
+            return _iNhanVienRepository.GetAll().Where(c => c.TrangThai == hd).ToList();
+            
+        }
     }
 }

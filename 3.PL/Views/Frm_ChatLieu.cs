@@ -30,6 +30,7 @@ namespace _3.PL.Views
         {
             dgvChatLieu.ColumnCount = 4;
             dgvChatLieu.Columns[0].Name = "ID";
+            dgvChatLieu.Columns[0].Width = 385;
             dgvChatLieu.Columns[1].Name = "Mã";
             dgvChatLieu.Columns[2].Name = "Tên";
             dgvChatLieu.Columns[3].Name = "Trạng thái";
@@ -57,11 +58,34 @@ namespace _3.PL.Views
         }
         private void btn_them_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
-            {
-                _iqLclServices.Add(GetDataFromGUI());
-                LoadData();
-            }
+           
+             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+                {
+                    if (txtMa.Text.Trim() == "")
+                    {
+                        MessageBox.Show("Mã chất liệu không được bỏ trống!");
+                    }
+                    else if (_iqLclServices.GetAll().Any(p => p.Ma == txtMa.Text))
+                    {
+                        MessageBox.Show("Mã chất liệu đã tồn tại!");
+                    }
+
+                    else if (txtTen.Text.Trim() == "")
+                    {
+                        MessageBox.Show("Tên chất liệu không được bỏ trống!");
+                    }
+
+                    else if (rbtn_hd.Checked == false && rbtn_kohd.Checked == false)
+                    {
+                        MessageBox.Show("Trạng thái chất liệu không được bỏ trống!");
+                    }
+                    else
+                    {
+                        _iqLclServices.Add(GetDataFromGUI());
+                        LoadData();
+                    }
+             }
+            
         }
 
         private void btn_sua_Click(object sender, EventArgs e)
@@ -116,5 +140,41 @@ namespace _3.PL.Views
                 LoadData();
             }
         }
+
+        private void tk_timkiem_TextChanged(object sender, EventArgs e)
+        {
+            if (cbb_timkiem.Text == "Tìm kiếm theo mã")
+            {
+                var tk = _iqLclServices.GetAll().Where(p => p.Ma == cbb_timkiem.Text);
+                dgvChatLieu.Rows.Clear();
+                dgvChatLieu.ColumnCount = 4;
+                dgvChatLieu.Columns[0].Name = "ID";
+                dgvChatLieu.Columns[0].Width = 385;
+                dgvChatLieu.Columns[1].Name = "Mã";
+                dgvChatLieu.Columns[2].Name = "Tên";
+                dgvChatLieu.Columns[3].Name = "Trạng thái";
+                foreach (var x in tk)
+                {
+                    dgvChatLieu.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                }
+            }
+            else if (cbb_timkiem.Text == "Tìm kiếm theo Ten")
+            {
+                var tk = _iqLclServices.GetAll().Where(p => p.Ten == cbb_timkiem.Text);
+                dgvChatLieu.Rows.Clear();
+                dgvChatLieu.ColumnCount = 4;
+                dgvChatLieu.Columns[0].Name = "ID";
+                dgvChatLieu.Columns[0].Width = 385;
+                dgvChatLieu.Columns[1].Name = "Mã";
+                dgvChatLieu.Columns[2].Name = "Tên";
+                dgvChatLieu.Columns[3].Name = "Trạng thái";
+                foreach (var x in tk)
+                {
+                    dgvChatLieu.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                }
+
+            }
+        }
     }
 }
+
