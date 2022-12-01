@@ -80,6 +80,7 @@ namespace _3.PL.Views
         // Load thuộc tính
         private void LoadSanPham()
         {
+            cmb_sp.Items.Clear();
             if (_iqlSanPhamServices.GetAll().Count == 0) return;
             {
                 foreach (var x in _iqlSanPhamServices.GetAll())
@@ -90,7 +91,8 @@ namespace _3.PL.Views
             }
         }
         private void LoadNSX()
-        {
+        { 
+            cmb_nsx.Items.Clear();
             if (_iqlNsxServices.GetAll().Count == 0) return;
             foreach (var x in _iqlNsxServices.GetAll())
             {
@@ -100,6 +102,7 @@ namespace _3.PL.Views
         }
         private void LoadMauSac()
         {
+            cmb_mausac.Items.Clear();
             if (_iqlMauSacServices.GetAll().Count == 0) return;
             foreach (var x in _iqlMauSacServices.GetAll())
             {
@@ -109,6 +112,7 @@ namespace _3.PL.Views
         }
         private void LoadChatLieu()
         {
+            cmb_chatlieu.Items.Clear();
             if (_iqLChatLieuServices.GetAll().Count == 0) return;
             foreach (var x in _iqLChatLieuServices.GetAll())
             {
@@ -118,6 +122,7 @@ namespace _3.PL.Views
         }
         private void LoadKichThuoc()
         {
+            cmb_kichthuoc.Items.Clear();
             if (_iqlLKichThuocServices.GetAll().Count == 0) return;
             foreach (var x in _iqlLKichThuocServices.GetAll())
             {
@@ -127,6 +132,7 @@ namespace _3.PL.Views
         }
         private void LoadLoaiSP()
         {
+            cmb_loaisp.Items.Clear();
             List<LoaiSp> _lstlsp = _iqLLoaiSpServices.GetAll().Where(c=> c.MaLoaiSpcha != null).ToList();
             if (_lstlsp.Count == 0) return;
             foreach (var x in _lstlsp)
@@ -190,7 +196,7 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Giá bán phải lớn hơn giá nhập");
             }
-            if (tbx_masp.Text == _iqLChiTietSpServices.GetAllView().First(c => c.Ma == tbx_masp.Text).Ma)
+            if (_iqLChiTietSpServices.GetAllView().Any(c => c.Ma == tbx_masp.Text))
             {
                 MessageBox.Show("Sản phẩm bạn nhập đã tồn tại trong ứng dụng");
             }
@@ -301,7 +307,6 @@ namespace _3.PL.Views
             toolTip.SetToolTip(pic_themnhanhmausac, "Thêm nhanh");
             toolTip.SetToolTip(pic_anhsp, "CLick để thêm ảnh");
             pic_anhsp.AllowDrop = true;
-
         }
         void ThemNhanhSP(string s)
         {

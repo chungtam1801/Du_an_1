@@ -56,29 +56,55 @@ namespace _2.BUS.Services
         }
         public string Chot(Guid idPTTT,HoaDon hoaDon,decimal tienKhachDua,decimal tienkhachcandua,int trangThai,decimal? tienShip)
         {
-            ChiTietPttt chiTietPttt = new ChiTietPttt();
-            chiTietPttt.IdPttt = idPTTT;
-            chiTietPttt.IdHd = hoaDon.Id;
-            chiTietPttt.Ma = ClassSP.AutoID("PTTT", _CRUDChiTietPTTT.GetAll().Count);
-            chiTietPttt.TienKhachDua = tienKhachDua;
-            _CRUDChiTietPTTT.Add(chiTietPttt);
-            if (tienKhachDua >= tienkhachcandua)
+            ChiTietPttt chiTietPttt1 = _CRUDChiTietPTTT.GetAll().FirstOrDefault(c => c.IdPttt == idPTTT && c.IdHd == hoaDon.Id);
+            if (chiTietPttt1 == null)
             {
-                if(trangThai == 0)
+                ChiTietPttt chiTietPttt = new ChiTietPttt();
+                chiTietPttt.IdPttt = idPTTT;
+                chiTietPttt.IdHd = hoaDon.Id;
+                chiTietPttt.Ma = ClassSP.AutoID("PTTT", _CRUDChiTietPTTT.GetAll().Count);
+                chiTietPttt.TienKhachDua = tienKhachDua;
+                _CRUDChiTietPTTT.Add(chiTietPttt);
+                if (tienKhachDua >= tienkhachcandua)
                 {
-                    hoaDon.NgayThanhToan = DateTime.Now;
-                    hoaDon.TrangThai = 1;
+                    if (trangThai == 0)
+                    {
+                        hoaDon.NgayThanhToan = DateTime.Now;
+                        hoaDon.TrangThai = 1;
+                    }
+                    else if (trangThai == 2)
+                    {
+                        hoaDon.NgayShip = DateTime.Now;
+                        hoaDon.TrangThai = 3;
+                        hoaDon.TienShip = tienShip;
+                    }
+                    if (_CRUDHoaDon.Update(hoaDon)) return "Thanh toán hoàn tất";
+                    else return "Thanh toán thất bại";
                 }
-                else if(trangThai == 2)
-                {
-                    hoaDon.NgayShip = DateTime.Now;
-                    hoaDon.TrangThai = 3;
-                    hoaDon.TienShip = tienShip;
-                }
-                if (_CRUDHoaDon.Update(hoaDon)) return "Thanh toán hoàn tất";
-                else return "Thanh toán thất bại";
+                else return "Hóa đơn vẫn chưa được trả hết";
             }
-            else return "Hóa đơn vẫn chưa được trả hết";
+            else
+            {
+                chiTietPttt1.TienKhachDua += tienKhachDua;
+                _CRUDChiTietPTTT.Update(chiTietPttt1);
+                if (tienKhachDua >= tienkhachcandua)
+                {
+                    if (trangThai == 0)
+                    {
+                        hoaDon.NgayThanhToan = DateTime.Now;
+                        hoaDon.TrangThai = 1;
+                    }
+                    else if (trangThai == 2)
+                    {
+                        hoaDon.NgayShip = DateTime.Now;
+                        hoaDon.TrangThai = 3;
+                        hoaDon.TienShip = tienShip;
+                    }
+                    if (_CRUDHoaDon.Update(hoaDon)) return "Thanh toán hoàn tất";
+                    else return "Thanh toán thất bại";
+                }
+                else return "Hóa đơn vẫn chưa được trả hết";
+            }    
         }
         public decimal? SumTienKhachDua(Guid idHD)
         {
@@ -148,10 +174,19 @@ namespace _2.BUS.Services
             _CRUDChiTietHD.Update(chiTietHoaDon);
             _CRUDChiTietSP.Update(chiTietSp);
         }
-        public void UpdateTrangThaiHD(HoaDon hoaDon)
+        public string UpdateTrangThaiHD(HoaDon hoaDon,int trangThai)
         {
-            hoaDon.TrangThai = 4;
-            _CRUDHoaDon.Update(hoaDon);
+            hoaDon.TrangThai = trangThai;
+            if (_CRUDHoaDon.Update(hoaDon)) return "Cập nhật trạng thái thành công";
+            else return "Cập nhật trạng thái thất bại";
+        }
+        public bool CheckHDThanhToan(HoaDon hoaDon)
+        {
+            if (_CRUDChiTietPTTT.GetAll().FirstOrDefault(c => c.IdHd == hoaDon.Id) == null)
+            {
+                return false;
+            }
+            else return true;
         }
     }
 }

@@ -18,5 +18,13 @@ namespace _3.PL.Utilities
             }
             return true;
         }
+        public static bool CheckStringEmpty(string x)
+        {
+            if(x == String.Empty)
+            {
+                return true;
+            }
+            else return false;
+        }
     }
 }

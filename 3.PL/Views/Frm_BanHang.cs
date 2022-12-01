@@ -15,6 +15,7 @@ using System.IO;
 using AForge.Video.DirectShow;
 using System.Threading;
 using ZXing;
+using _3.PL.Utilities;
 
 namespace _3.PL.Views
 {
@@ -129,18 +130,22 @@ namespace _3.PL.Views
                 _hoaDon = _banHangServices.CreateHD(_trangThaiBH);
                 LoadDTG_HoaDon(_trangThaiHD);
             }
-            ChiTietSp temp = _iQLChiTietSpServices.GetAll().First(c => c.Id == new Guid(obj.Id));
-            if(temp.SoLuongTon>0)
+            if (!_banHangServices.CheckHDThanhToan(_hoaDon))
             {
-                _banHangServices.AddChiTietHD(temp, _hoaDon);
-                obj.lbl_SoLuong.Text = temp.SoLuongTon.ToString();
-            } 
-            else
-            {
-                MessageBox.Show("Sản phẩm hết hàng");
+                ChiTietSp temp = _iQLChiTietSpServices.GetAll().First(c => c.Id == new Guid(obj.Id));
+                if (temp.SoLuongTon > 0)
+                {
+                    _banHangServices.AddChiTietHD(temp, _hoaDon);
+                    obj.lbl_SoLuong.Text = temp.SoLuongTon.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Sản phẩm hết hàng");
+                }
+                LoadThongTinHoaDon(_hoaDon);
+                LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
             }
-            LoadThongTinHoaDon(_hoaDon);
-            LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
+            else MessageBox.Show("Hóa đơn đang được thanh toán");               
         }  
         private void dtg_HoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -248,7 +253,7 @@ namespace _3.PL.Views
             }
             else if(btn_Chot.Text== "Đã giao hàng")
             {
-                _banHangServices.UpdateTrangThaiHD(_hoaDon);
+                MessageBox.Show(_banHangServices.UpdateTrangThaiHD(_hoaDon, 4));
                 LoadDTG_HoaDon(_trangThaiHD);
             }    
             else
@@ -260,7 +265,15 @@ namespace _3.PL.Views
         }
         private void btn_Huy_Click(object sender, EventArgs e)
         {
-
+            if (Utility.CheckStringEmpty(tbx_GhiChu.Text))
+            {
+                MessageBox.Show("Vui lòng điền ghi chú");
+            }
+            else
+            {
+                MessageBox.Show(_banHangServices.UpdateTrangThaiHD(_hoaDon, 5));
+                LoadDTG_HoaDon(_trangThaiHD);
+            }
         }
         private void tbx_TienKhachDua_TextChanged(object sender, EventArgs e)
         {
@@ -298,6 +311,11 @@ namespace _3.PL.Views
             {
                 tbx_TenKH.Text = _khachHang.Ho +" "+ _khachHang.TenDem +" "+ _khachHang.Ten;
                 tbx_DiaChi.Text = _khachHang.DiaChi;
+            }
+            else
+            {
+                tbx_TenKH.Text = "";
+                tbx_DiaChi.Text = "";
             }
         }
 
@@ -350,8 +368,17 @@ namespace _3.PL.Views
         }
         private void dtg_ChiTietHD_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            _banHangServices.UpdateChiTietHD(new Guid(dtg_ChiTietHD.CurrentRow.Cells[8].Value.ToString()), Convert.ToInt32(dtg_ChiTietHD.CurrentRow.Cells[7].Value));
-            LoadThongTinHoaDon(_hoaDon);
+            if (!_banHangServices.CheckHDThanhToan(_hoaDon))
+            {
+                _banHangServices.UpdateChiTietHD(new Guid(dtg_ChiTietHD.CurrentRow.Cells[8].Value.ToString()), Convert.ToInt32(dtg_ChiTietHD.CurrentRow.Cells[7].Value));
+                LoadThongTinHoaDon(_hoaDon);
+            }
+            else MessageBox.Show("Hoá đơn đang được thanh toán");
+        }
+
+        private void btn_XoaAll_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

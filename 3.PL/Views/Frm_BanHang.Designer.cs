@@ -41,6 +41,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tsc_HoaDon = new System.Windows.Forms.ToolStripContainer();
+            this.tbx_GhiChu = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.btn_Huy = new System.Windows.Forms.Button();
             this.tbx_TienKhachCD = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -213,6 +215,8 @@
             // 
             // tsc_HoaDon.ContentPanel
             // 
+            this.tsc_HoaDon.ContentPanel.Controls.Add(this.tbx_GhiChu);
+            this.tsc_HoaDon.ContentPanel.Controls.Add(this.label12);
             this.tsc_HoaDon.ContentPanel.Controls.Add(this.btn_Huy);
             this.tsc_HoaDon.ContentPanel.Controls.Add(this.tbx_TienKhachCD);
             this.tsc_HoaDon.ContentPanel.Controls.Add(this.label5);
@@ -251,6 +255,22 @@
             // tsc_HoaDon.TopToolStripPanel
             // 
             this.tsc_HoaDon.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            // 
+            // tbx_GhiChu
+            // 
+            this.tbx_GhiChu.Location = new System.Drawing.Point(538, 286);
+            this.tbx_GhiChu.Name = "tbx_GhiChu";
+            this.tbx_GhiChu.Size = new System.Drawing.Size(194, 25);
+            this.tbx_GhiChu.TabIndex = 104;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(425, 289);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(53, 18);
+            this.label12.TabIndex = 103;
+            this.label12.Text = "Ghi chú";
             // 
             // btn_Huy
             // 
@@ -513,6 +533,7 @@
             this.btn_XoaAll.TabIndex = 11;
             this.btn_XoaAll.Text = "Xoá toàn bộ";
             this.btn_XoaAll.UseVisualStyleBackColor = true;
+            this.btn_XoaAll.Click += new System.EventHandler(this.btn_XoaAll_Click);
             // 
             // dtg_ChiTietHD
             // 
@@ -605,8 +626,7 @@
             "Chờ giao hàng",
             "Đang giao hàng",
             "Đã giao hàng",
-            "Hủy",
-            "Tất cả"});
+            "Hủy"});
             this.cbx_TrangThai.Location = new System.Drawing.Point(377, 27);
             this.cbx_TrangThai.Name = "cbx_TrangThai";
             this.cbx_TrangThai.Size = new System.Drawing.Size(151, 26);
@@ -733,5 +753,7 @@
         private System.Windows.Forms.PictureBox pic_TimKiem;
         private System.Windows.Forms.FlowLayoutPanel flp_SanPham;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox tbx_GhiChu;
+        private System.Windows.Forms.Label label12;
     }
 }
