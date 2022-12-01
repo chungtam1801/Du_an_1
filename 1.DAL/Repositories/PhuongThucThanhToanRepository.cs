@@ -42,7 +42,7 @@ namespace _1.DAL.Repositories
 
         public PhuongThucThanhToan GetbyId(Guid id)
         {
-            throw new NotImplementedException();
+            return _dbContext.PhuongThucThanhToans.FirstOrDefault(c =>c.Id==id);
         }
 
         public bool Update(PhuongThucThanhToan obj)

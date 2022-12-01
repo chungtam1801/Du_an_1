@@ -16,7 +16,7 @@ namespace _2.BUS.Services
         {
             _CRUDQuyDoiDiem = new QuyDoiDiemRepository();
         }
-        public string QuyDoiDiem(decimal tien1,int diem,decimal tien2)
+        public string CreateQuyDoiDiem(decimal tien1,int diem,decimal tien2)
         {
             QuyDoiDiem temp = _CRUDQuyDoiDiem.GetAll().FirstOrDefault(c => c.TrangThai == 1);
             if(temp != null)
@@ -42,6 +42,10 @@ namespace _2.BUS.Services
                 else return "Lưu thất bại";
             }
         }
+        public List<QuyDoiDiem> GetAll()
+        {
+            return _CRUDQuyDoiDiem.GetAll();
+        }
         //public void SetQDD(QuyDoiDiem quyDoiDiem)
         //{
         //    QuyDoiDiem temp = _CRUDQuyDoiDiem.GetAll().FirstOrDefault(c => c.TrangThai == 1);
@@ -53,9 +57,5 @@ namespace _2.BUS.Services
         //    quyDoiDiem.TrangThai = 1;
         //    _CRUDQuyDoiDiem.Update(quyDoiDiem);
         //}
-        public List<QuyDoiDiem> GetAll()
-        {
-            return _CRUDQuyDoiDiem.GetAll();
-        }
     }
 }

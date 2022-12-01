@@ -93,7 +93,7 @@ namespace _3.PL.Views
         private void LoadDTG_ChiTietHD(List<ViewQLChiTietHoaDon> lstView)
         {
             dtg_ChiTietHD.Rows.Clear();
-            dtg_ChiTietHD.ColumnCount = 9;
+            dtg_ChiTietHD.ColumnCount = 11;
             dtg_ChiTietHD.Columns[0].Name = "Ma";
             dtg_ChiTietHD.Columns[1].Name = "Ten";
             dtg_ChiTietHD.Columns[2].Name = "Nsx";
@@ -104,22 +104,27 @@ namespace _3.PL.Views
             dtg_ChiTietHD.Columns[7].Name = "So Luong";
             dtg_ChiTietHD.Columns[8].Name = "Id";
             dtg_ChiTietHD.Columns[8].Visible = false;
+            dtg_ChiTietHD.Columns[9].Name = "Đơn giá";
+            dtg_ChiTietHD.Columns[10].Name = "Tổng tiền";
             foreach (ViewQLChiTietHoaDon x in lstView)
             {
-                dtg_ChiTietHD.Rows.Add(x.Ma, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu, x.SoLuong, x.Id);
+                dtg_ChiTietHD.Rows.Add(x.Ma, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu, x.SoLuong, x.Id,x.DonGia,x.TongTien);
             }
         }
+        //Sửa
         public void LoadDTG_HoaDon(int trangthai)
         {
             dtg_HoaDon.Rows.Clear();
-            dtg_HoaDon.ColumnCount = 4;
-            dtg_HoaDon.Columns[0].Name = "Ma";
-            dtg_HoaDon.Columns[1].Name = "Nhan vien";
-            dtg_HoaDon.Columns[2].Name = "Ngay Tao";
-            dtg_HoaDon.Columns[3].Name = "Ngay Thanh Toan";
+            dtg_HoaDon.ColumnCount = 6;
+            dtg_HoaDon.Columns[0].Name = "Mã";
+            dtg_HoaDon.Columns[1].Name = "Nhân viên";
+            dtg_HoaDon.Columns[2].Name = "Ngày tạo";
+            dtg_HoaDon.Columns[3].Name = "Ngay thanh toán";
+            dtg_HoaDon.Columns[4].Name = "Tổng tiền";
+            dtg_HoaDon.Columns[5].Name = "Trạng thái";
             foreach (HoaDon hoaDon in _banHangServices.GetAllHD().Where(c=>c.TrangThai==trangthai))
             {
-                dtg_HoaDon.Rows.Add(hoaDon.Ma, _iQLNhanVienServices.GetAll().First(c => c.Id == hoaDon.IdNv).Ten, hoaDon.NgayTao, hoaDon.NgayThanhToan);
+                dtg_HoaDon.Rows.Add(hoaDon.Ma, _iQLNhanVienServices.GetAll().First(c => c.Id == hoaDon.IdNv).Ten, hoaDon.NgayTao, hoaDon.NgayThanhToan,_banHangServices.SumTienHang(hoaDon.Id),hoaDon.TrangThai);
             }
         }
         private void UserContrel_Click(object sender, EventArgs e)
@@ -258,7 +263,7 @@ namespace _3.PL.Views
             }    
             else
             {
-                MessageBox.Show(_banHangServices.Chot(_lstIDPTTT[cbx_HTTT.SelectedIndex], _hoaDon, Convert.ToDecimal(tbx_TienKhachDua.Text), Convert.ToDecimal(tbx_TienKhachCD.Text),_trangThaiBH,tbx_TienShip.Text==""?null:Convert.ToDecimal(tbx_TienShip.Text)));
+                MessageBox.Show(_banHangServices.Chot(_lstIDPTTT[cbx_HTTT.SelectedIndex], _hoaDon, _khachHang,tbx_TienKhachDua.Text==String.Empty?0:Convert.ToDecimal(tbx_TienKhachDua.Text), Convert.ToDecimal(tbx_TienKhachCD.Text), _trangThaiBH, tbx_TienShip.Text == String.Empty ? null : Convert.ToDecimal(tbx_TienShip.Text), tbx_DiemSD.Text == String.Empty ? 0 : Convert.ToInt32(tbx_DiemSD.Text)));
                 LoadThongTinHoaDon(_hoaDon);
                 LoadDTG_HoaDon(_trangThaiHD);         
             }
@@ -311,11 +316,13 @@ namespace _3.PL.Views
             {
                 tbx_TenKH.Text = _khachHang.Ho +" "+ _khachHang.TenDem +" "+ _khachHang.Ten;
                 tbx_DiaChi.Text = _khachHang.DiaChi;
+                tbx_DiemHT.Text = _khachHang.DiemTich.ToString();
             }
             else
             {
                 tbx_TenKH.Text = "";
                 tbx_DiaChi.Text = "";
+                tbx_DiemHT.Text = "";
             }
         }
 
@@ -379,6 +386,12 @@ namespace _3.PL.Views
         private void btn_XoaAll_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void cbx_HTTT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbx_HTTT.Text == "Điểm") tbx_DiemSD.Enabled = true;
+            else tbx_DiemSD.Enabled = false;
         }
     }
 }

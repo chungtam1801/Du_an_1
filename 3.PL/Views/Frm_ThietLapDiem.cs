@@ -39,7 +39,7 @@ namespace _3.PL.Views
 
         private void btn_Luu_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_quyDoiDiemServices.QuyDoiDiem(Convert.ToDecimal(tbx_Tien1.Text), Convert.ToInt32(tbx_Diem.Text), Convert.ToDecimal(tbx_Tien2.Text)));
+            MessageBox.Show(_quyDoiDiemServices.CreateQuyDoiDiem(Convert.ToDecimal(tbx_Tien1.Text), Convert.ToInt32(tbx_Diem.Text), Convert.ToDecimal(tbx_Tien2.Text)));
             LoadDTG_Diem();
         }
         private void btn_BoQua_Click(object sender, EventArgs e)

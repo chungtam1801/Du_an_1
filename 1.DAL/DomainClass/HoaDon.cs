@@ -39,9 +39,11 @@ namespace _1.DAL.DomainClass
         public DateTime? NgayNhan { get; set; }
         public string GhiChu { get; set; }
         [Column("IdKH")]
-        [StringLength(20)]
-        public string IdKh { get; set; }
+        public Guid? IdKh { get; set; }
 
+        [ForeignKey(nameof(IdKh))]
+        [InverseProperty(nameof(KhachHang.HoaDons))]
+        public virtual KhachHang IdKhNavigation { get; set; }
         [ForeignKey(nameof(IdNv))]
         [InverseProperty(nameof(NhanVien.HoaDons))]
         public virtual NhanVien IdNvNavigation { get; set; }
