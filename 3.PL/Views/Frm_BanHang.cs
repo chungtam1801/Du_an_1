@@ -86,7 +86,7 @@ namespace _3.PL.Views
                 tbx_TienKhachCD.Text = (_banHangServices.SumTienHang(hoaDon.Id) - _banHangServices.SumTienKhachDua(hoaDon.Id)).ToString();
                 if (hoaDon.TrangThai == 4) btn_Chot.Text = "Đã giao hàng";
                 else if (hoaDon.TrangThai == 3) btn_Chot.Text = "Giao hàng";
-                else if (hoaDon.TrangThai == 0) btn_Chot.Text = "Thanh toán";
+                else if (hoaDon.TrangThai <3) btn_Chot.Text = "Thanh toán";
             }           
         }
         private void LoadDTG_ChiTietHD(List<ViewQLChiTietHoaDon> lstView)
@@ -371,10 +371,21 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Vui lòng chọn sản phẩm");
             }
+            else if(cbx_HTTT.Text == "Điểm" && _khachHang==null)
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng khi sử dụng điểm");
+            }
             else if (btn_Chot.Text == "Đã giao hàng")
             {
                 MessageBox.Show(_banHangServices.UpdateTrangThaiHD(_hoaDon, 5));
-                LoadDTG_HoaDon(_trangThaiHD);
+                if (_trangThaiBH < 3)
+                {
+                    LoadDTG_HoaDon(_trangThaiHD);
+                }
+                else
+                {
+                    LoadDTG_DatHang(_trangThaiDH);
+                }
             }
             else
             {
@@ -450,7 +461,5 @@ namespace _3.PL.Views
         {
             GetData(_iQLChiTietSpServices.GetAllView().Where(c => c.Ten.Contains(tbx_TimKiem.Text)).ToList());
         }
-
-        
     }
 }
