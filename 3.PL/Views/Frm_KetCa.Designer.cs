@@ -68,20 +68,14 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.btn_thoat = new System.Windows.Forms.Button();
             this.btn_ketca = new System.Windows.Forms.Button();
-            this.tbx_chenhlechtienmat = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
             this.tbx_nvtrucca = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.cmb_nvbangiao = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
             this.tbx_ghichu = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.tbx_tongtienhang = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.tbx_ttienmatcuoica = new System.Windows.Forms.TextBox();
             this.tbx_trabangtienmat = new System.Windows.Forms.TextBox();
             this.tbx_trabangnganhang = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.tbx_hdchothanhtoan = new System.Windows.Forms.TextBox();
@@ -98,6 +92,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.tbx_ttienmatcuoica = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.tbx_tongtienhang = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.tbx_chenhlechtienmat = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -678,24 +678,6 @@
             this.btn_ketca.UseVisualStyleBackColor = false;
             this.btn_ketca.Click += new System.EventHandler(this.btn_ketca_Click);
             // 
-            // tbx_chenhlechtienmat
-            // 
-            this.tbx_chenhlechtienmat.Location = new System.Drawing.Point(186, 484);
-            this.tbx_chenhlechtienmat.Multiline = true;
-            this.tbx_chenhlechtienmat.Name = "tbx_chenhlechtienmat";
-            this.tbx_chenhlechtienmat.Size = new System.Drawing.Size(147, 24);
-            this.tbx_chenhlechtienmat.TabIndex = 34;
-            this.tbx_chenhlechtienmat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(17, 490);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(142, 18);
-            this.label29.TabIndex = 33;
-            this.label29.Text = "Chênh lệch tiền mặt:";
-            // 
             // tbx_nvtrucca
             // 
             this.tbx_nvtrucca.BackColor = System.Drawing.SystemColors.Control;
@@ -737,7 +719,7 @@
             // 
             // tbx_ghichu
             // 
-            this.tbx_ghichu.Location = new System.Drawing.Point(376, 242);
+            this.tbx_ghichu.Location = new System.Drawing.Point(376, 314);
             this.tbx_ghichu.Multiline = true;
             this.tbx_ghichu.Name = "tbx_ghichu";
             this.tbx_ghichu.Size = new System.Drawing.Size(233, 75);
@@ -746,70 +728,36 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(368, 215);
+            this.label27.Location = new System.Drawing.Point(368, 287);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(63, 18);
             this.label27.TabIndex = 27;
             this.label27.Text = "Ghi chú:";
             // 
-            // tbx_tongtienhang
-            // 
-            this.tbx_tongtienhang.Location = new System.Drawing.Point(186, 409);
-            this.tbx_tongtienhang.Multiline = true;
-            this.tbx_tongtienhang.Name = "tbx_tongtienhang";
-            this.tbx_tongtienhang.Size = new System.Drawing.Size(147, 24);
-            this.tbx_tongtienhang.TabIndex = 25;
-            this.tbx_tongtienhang.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(17, 412);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(166, 18);
-            this.label23.TabIndex = 24;
-            this.label23.Text = "Tổng tiền hàng: (2) + (3)";
-            // 
-            // tbx_ttienmatcuoica
-            // 
-            this.tbx_ttienmatcuoica.Location = new System.Drawing.Point(186, 447);
-            this.tbx_ttienmatcuoica.Multiline = true;
-            this.tbx_ttienmatcuoica.Name = "tbx_ttienmatcuoica";
-            this.tbx_ttienmatcuoica.Size = new System.Drawing.Size(147, 24);
-            this.tbx_ttienmatcuoica.TabIndex = 22;
-            this.tbx_ttienmatcuoica.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // tbx_trabangtienmat
             // 
+            this.tbx_trabangtienmat.Enabled = false;
             this.tbx_trabangtienmat.Location = new System.Drawing.Point(153, 319);
             this.tbx_trabangtienmat.Multiline = true;
             this.tbx_trabangtienmat.Name = "tbx_trabangtienmat";
-            this.tbx_trabangtienmat.Size = new System.Drawing.Size(180, 24);
+            this.tbx_trabangtienmat.Size = new System.Drawing.Size(192, 24);
             this.tbx_trabangtienmat.TabIndex = 21;
             this.tbx_trabangtienmat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbx_trabangnganhang
             // 
+            this.tbx_trabangnganhang.Enabled = false;
             this.tbx_trabangnganhang.Location = new System.Drawing.Point(186, 365);
             this.tbx_trabangnganhang.Multiline = true;
             this.tbx_trabangnganhang.Name = "tbx_trabangnganhang";
-            this.tbx_trabangnganhang.Size = new System.Drawing.Size(147, 24);
+            this.tbx_trabangnganhang.Size = new System.Drawing.Size(159, 24);
             this.tbx_trabangnganhang.TabIndex = 20;
             this.tbx_trabangnganhang.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(17, 453);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(158, 36);
-            this.label26.TabIndex = 18;
-            this.label26.Text = "Tổng tiền mặt cuối ca: \r\n(1) + (2)";
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(18, 322);
+            this.label25.Location = new System.Drawing.Point(14, 322);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(91, 18);
             this.label25.TabIndex = 17;
@@ -818,7 +766,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(17, 363);
+            this.label24.Location = new System.Drawing.Point(16, 357);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(143, 36);
             this.label24.TabIndex = 16;
@@ -826,37 +774,41 @@
             // 
             // tbx_hdchothanhtoan
             // 
+            this.tbx_hdchothanhtoan.Enabled = false;
             this.tbx_hdchothanhtoan.Location = new System.Drawing.Point(195, 278);
             this.tbx_hdchothanhtoan.Multiline = true;
             this.tbx_hdchothanhtoan.Name = "tbx_hdchothanhtoan";
-            this.tbx_hdchothanhtoan.Size = new System.Drawing.Size(138, 24);
+            this.tbx_hdchothanhtoan.Size = new System.Drawing.Size(150, 24);
             this.tbx_hdchothanhtoan.TabIndex = 13;
             this.tbx_hdchothanhtoan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbx_hđthanhtoan
             // 
+            this.tbx_hđthanhtoan.Enabled = false;
             this.tbx_hđthanhtoan.Location = new System.Drawing.Point(195, 234);
             this.tbx_hđthanhtoan.Multiline = true;
             this.tbx_hđthanhtoan.Name = "tbx_hđthanhtoan";
-            this.tbx_hđthanhtoan.Size = new System.Drawing.Size(138, 24);
+            this.tbx_hđthanhtoan.Size = new System.Drawing.Size(150, 24);
             this.tbx_hđthanhtoan.TabIndex = 12;
             this.tbx_hđthanhtoan.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbx_soluonghoadon
             // 
-            this.tbx_soluonghoadon.Location = new System.Drawing.Point(153, 196);
+            this.tbx_soluonghoadon.Enabled = false;
+            this.tbx_soluonghoadon.Location = new System.Drawing.Point(159, 196);
             this.tbx_soluonghoadon.Multiline = true;
             this.tbx_soluonghoadon.Name = "tbx_soluonghoadon";
-            this.tbx_soluonghoadon.Size = new System.Drawing.Size(180, 24);
+            this.tbx_soluonghoadon.Size = new System.Drawing.Size(186, 24);
             this.tbx_soluonghoadon.TabIndex = 11;
             this.tbx_soluonghoadon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tbx_tiendauca
             // 
-            this.tbx_tiendauca.Location = new System.Drawing.Point(153, 155);
+            this.tbx_tiendauca.Enabled = false;
+            this.tbx_tiendauca.Location = new System.Drawing.Point(159, 155);
             this.tbx_tiendauca.Multiline = true;
             this.tbx_tiendauca.Name = "tbx_tiendauca";
-            this.tbx_tiendauca.Size = new System.Drawing.Size(180, 24);
+            this.tbx_tiendauca.Size = new System.Drawing.Size(186, 24);
             this.tbx_tiendauca.TabIndex = 10;
             this.tbx_tiendauca.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -889,7 +841,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(18, 281);
+            this.label21.Location = new System.Drawing.Point(14, 281);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(171, 18);
             this.label21.TabIndex = 6;
@@ -963,6 +915,63 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "BÀN GIAO CA";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(17, 442);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(158, 36);
+            this.label26.TabIndex = 18;
+            this.label26.Text = "Tổng tiền mặt cuối ca: \r\n(1) + (2)";
+            // 
+            // tbx_ttienmatcuoica
+            // 
+            this.tbx_ttienmatcuoica.Enabled = false;
+            this.tbx_ttienmatcuoica.Location = new System.Drawing.Point(186, 447);
+            this.tbx_ttienmatcuoica.Multiline = true;
+            this.tbx_ttienmatcuoica.Name = "tbx_ttienmatcuoica";
+            this.tbx_ttienmatcuoica.Size = new System.Drawing.Size(159, 24);
+            this.tbx_ttienmatcuoica.TabIndex = 22;
+            this.tbx_ttienmatcuoica.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(16, 409);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(166, 18);
+            this.label23.TabIndex = 24;
+            this.label23.Text = "Tổng tiền hàng: (2) + (3)";
+            // 
+            // tbx_tongtienhang
+            // 
+            this.tbx_tongtienhang.Enabled = false;
+            this.tbx_tongtienhang.Location = new System.Drawing.Point(186, 409);
+            this.tbx_tongtienhang.Multiline = true;
+            this.tbx_tongtienhang.Name = "tbx_tongtienhang";
+            this.tbx_tongtienhang.Size = new System.Drawing.Size(159, 24);
+            this.tbx_tongtienhang.TabIndex = 25;
+            this.tbx_tongtienhang.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(17, 487);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(142, 18);
+            this.label29.TabIndex = 33;
+            this.label29.Text = "Chênh lệch tiền mặt:";
+            // 
+            // tbx_chenhlechtienmat
+            // 
+            this.tbx_chenhlechtienmat.Enabled = false;
+            this.tbx_chenhlechtienmat.Location = new System.Drawing.Point(186, 484);
+            this.tbx_chenhlechtienmat.Multiline = true;
+            this.tbx_chenhlechtienmat.Name = "tbx_chenhlechtienmat";
+            this.tbx_chenhlechtienmat.Size = new System.Drawing.Size(159, 24);
+            this.tbx_chenhlechtienmat.TabIndex = 34;
+            this.tbx_chenhlechtienmat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Frm_KetCa
             // 
@@ -1043,12 +1052,8 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox tbx_ghichu;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox tbx_tongtienhang;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox tbx_ttienmatcuoica;
         private System.Windows.Forms.TextBox tbx_trabangtienmat;
         private System.Windows.Forms.TextBox tbx_trabangnganhang;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox tbx_hdchothanhtoan;
@@ -1061,5 +1066,9 @@
         private System.Windows.Forms.Button btn_ketca;
         private System.Windows.Forms.TextBox tbx_chenhlechtienmat;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox tbx_tongtienhang;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox tbx_ttienmatcuoica;
+        private System.Windows.Forms.Label label26;
     }
 }

@@ -48,16 +48,17 @@ namespace _3.PL.Views
             this.BringToFront();
             // Tìm ca được lưu gần nhất lưu 
             List<GiaoCa> ca = _iQLGiaoCaServices.GetAll().OrderByDescending(c => c.ThoiGianVaoCa).ToList();
+            //Lấy id của ca
             _id = ca[0].Id;
             // Nhân viên trực ca
             tbx_nvtrucca.Enabled = false;
             var idnv = ca[0].IdNguoiNhanCa;
             tbx_nvtrucca.Text = _iQLNhanVienServices.GetAll().First(c => c.Id == idnv).Ho;
-            ////Lấy thời gian vào ca gần nhất trong csdl
-            //tbx_giovao.Enabled = false;
-            //DateTime thoigian = Convert.ToDateTime(ca[0].ThoiGianVaoCa);
-            //tbx_giovao.Text = thoigian.ToString();
-            tbx_giovao.Text = Convert.ToString("2022-12-02");
+            //Lấy thời gian vào ca gần nhất trong csdl
+            tbx_giovao.Enabled = false;
+            DateTime thoigian = Convert.ToDateTime(ca[0].ThoiGianVaoCa);
+            tbx_giovao.Text = thoigian.ToString();
+            //tbx_giovao.Text = Convert.ToString("2022-12-02");
             // Thời gian kết ca
             tbx_gioketca.Text = Convert.ToString(DateTime.Now);
             // Tiền mặt đầu ca

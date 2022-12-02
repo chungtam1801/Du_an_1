@@ -46,17 +46,24 @@ namespace _3.PL.Views
             tbx_ttien5.Text = "0";
             tbx_ttien2.Text = "0";
             tbx_ttien1.Text = "0";
-            // Lấy thời gian kết thúc ca gần nhất
-            List<GiaoCa> ca = _iQLGiaoCaServices.GetAll().OrderByDescending(c=>c.ThoiGianKetCa).ToList();
-            DateTime thoigian = Convert.ToDateTime(ca[0].ThoiGianKetCa);
-
-            if(DateTime.Now.Day == thoigian.Day)
+            if(_iQLGiaoCaServices.GetAll().Count == 0)
             {
-                tbx_tongtien.Text = Convert.ToString(ca[0].TienCuoiCa);
+                tbx_tongtien.Text = "0";
             }
             else
             {
-                tbx_tongtien.Text = Convert.ToString(_iQLGiaoCaServices.GetAll().First(c => c.Id == ca[0].Id).TienCuoiCa);
+                // Lấy thời gian kết thúc ca gần nhất
+                List<GiaoCa> ca = _iQLGiaoCaServices.GetAll().OrderByDescending(c => c.ThoiGianKetCa).ToList();
+                DateTime thoigian = Convert.ToDateTime(ca[0].ThoiGianKetCa);
+
+                if (DateTime.Now.Day == thoigian.Day)
+                {
+                    tbx_tongtien.Text = Convert.ToString(ca[0].TienCuoiCa);
+                }
+                else
+                {
+                    tbx_tongtien.Text = "0";
+                }
             }
             tbx_tongtien.Enabled = true;
         }
