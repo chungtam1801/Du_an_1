@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Main));
             this.pnl_menu = new System.Windows.Forms.Panel();
+            this.btn_ketca = new System.Windows.Forms.Button();
             this.btn_khuyenmai = new System.Windows.Forms.Button();
             this.btn_khachhang = new System.Windows.Forms.Button();
             this.btn_nhanvien = new System.Windows.Forms.Button();
@@ -62,6 +63,7 @@
             // pnl_menu
             // 
             this.pnl_menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.pnl_menu.Controls.Add(this.btn_ketca);
             this.pnl_menu.Controls.Add(this.btn_khuyenmai);
             this.pnl_menu.Controls.Add(this.btn_khachhang);
             this.pnl_menu.Controls.Add(this.btn_nhanvien);
@@ -75,6 +77,23 @@
             this.pnl_menu.Name = "pnl_menu";
             this.pnl_menu.Size = new System.Drawing.Size(190, 729);
             this.pnl_menu.TabIndex = 0;
+            // 
+            // btn_ketca
+            // 
+            this.btn_ketca.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_ketca.FlatAppearance.BorderSize = 0;
+            this.btn_ketca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ketca.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_ketca.ForeColor = System.Drawing.Color.White;
+            this.btn_ketca.Image = ((System.Drawing.Image)(resources.GetObject("btn_ketca.Image")));
+            this.btn_ketca.Location = new System.Drawing.Point(0, 686);
+            this.btn_ketca.Name = "btn_ketca";
+            this.btn_ketca.Size = new System.Drawing.Size(190, 45);
+            this.btn_ketca.TabIndex = 14;
+            this.btn_ketca.Text = "KẾT CA";
+            this.btn_ketca.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btn_ketca.UseVisualStyleBackColor = true;
+            this.btn_ketca.Click += new System.EventHandler(this.btn_ketca_Click);
             // 
             // btn_khuyenmai
             // 
@@ -407,6 +426,7 @@
             // 
             // pnl_desktop
             // 
+            this.pnl_desktop.AutoSize = true;
             this.pnl_desktop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnl_desktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_desktop.Location = new System.Drawing.Point(190, 75);
@@ -425,7 +445,7 @@
             this.Controls.Add(this.pnl_Nav);
             this.Controls.Add(this.pnl_menu);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Frm_Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_Main";
@@ -439,6 +459,7 @@
             this.pnl_title.ResumeLayout(false);
             this.pnl_title.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -467,5 +488,6 @@
         private System.Windows.Forms.Button btn_khachhang;
         private System.Windows.Forms.Button btn_nhanvien;
         private System.Windows.Forms.TextBox tbx_giohethong;
+        private System.Windows.Forms.Button btn_ketca;
     }
 }

@@ -46,8 +46,8 @@ namespace _2.BUS.Services
         {
             if (obj == null) return "Sửa thất bại";
             var tempobj = obj;
-            if (_iGiaoCaRepository.Update(tempobj)) return "Sửa thành công";
-            return "Sửa thất bại";
+            if (_iGiaoCaRepository.Update(tempobj)) return "Kết ca thành công";
+            return "Kết ca thất bại";
         }
     }
 }

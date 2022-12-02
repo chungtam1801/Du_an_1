@@ -21,7 +21,7 @@ namespace _3.PL.Views
         private IQLChiTietHoaDonServices _iQLChiTietHoaDonServices;
         private IQLChiTietPtttServices _iQLChiTietPtttServices;
         private IQLPhuongThucThanhToanServices _iQLPhuongThucThanhToanServices;
-       
+        private Guid _id;
         public Frm_KetCa()
         {
             InitializeComponent();
@@ -48,15 +48,16 @@ namespace _3.PL.Views
             this.BringToFront();
             // Tìm ca được lưu gần nhất lưu 
             List<GiaoCa> ca = _iQLGiaoCaServices.GetAll().OrderByDescending(c => c.ThoiGianVaoCa).ToList();
+            _id = ca[0].Id;
             // Nhân viên trực ca
             tbx_nvtrucca.Enabled = false;
             var idnv = ca[0].IdNguoiNhanCa;
             tbx_nvtrucca.Text = _iQLNhanVienServices.GetAll().First(c => c.Id == idnv).Ho;
-            // Lấy thời gian vào ca gần nhất trong csdl
+            ////Lấy thời gian vào ca gần nhất trong csdl
             //tbx_giovao.Enabled = false;
             //DateTime thoigian = Convert.ToDateTime(ca[0].ThoiGianVaoCa);
             //tbx_giovao.Text = thoigian.ToString();
-            tbx_giovao.Text = Convert.ToString("2022-11-25");
+            tbx_giovao.Text = Convert.ToString("2022-12-02");
             // Thời gian kết ca
             tbx_gioketca.Text = Convert.ToString(DateTime.Now);
             // Tiền mặt đầu ca
@@ -92,7 +93,7 @@ namespace _3.PL.Views
             tbx_hđthanhtoan.Text = Convert.ToString(hoadontt.Count());
 
             // Tính số lượng hóa đơn chờ thanh toán
-            List<HoaDon> hoadonchuatt = hoaDons.Where(c => c.TrangThai == 0).ToList();
+            List<HoaDon> hoadonchuatt = hoaDons.Where(c => c.TrangThai == 2).ToList();
             tbx_hđthanhtoan.Text = Convert.ToString(hoadonchuatt.Count());
 
             // List trả về hóa đơn thanh toán bằng tiền mặt 
@@ -127,6 +128,12 @@ namespace _3.PL.Views
             var tongtienhang = nganhang.Sum() + tienmat.Sum();
             tbx_tongtienhang.Text = String.Format("{0:0,00}", tongtienhang);
             tbx_tongtienhang.Enabled = false;
+            // Tổng tiền mặt cuối ca 
+            decimal tongtienmatcuoica = Convert.ToDecimal(tienmat.Sum()) + Convert.ToDecimal(tbx_tiendauca.Text);
+            tbx_ttienmatcuoica.Text = String.Format("{0:0,00}", tongtienmatcuoica);
+            //decimal chenhlech = (Convert.ToDecimal(tbx_tongtien.Text) - tongtienmatcuoica);
+            // Chênh lệch tiền mặt
+            //tbx_chenhlechtienmat.Text = String.Format("{0:0,00}", chenhlech);
         }
         private void tbx_sl500_KeyPress_1(object sender, KeyPressEventArgs e)
         {
@@ -311,6 +318,29 @@ namespace _3.PL.Views
             {
                 int thanhtien = 1000 * Convert.ToInt32(tbx_sl1.Text);
                 tbx_ttien1.Text = String.Format("{0:0,00}", thanhtien);
+            }
+        }
+
+        private void btn_ketca_Click(object sender, EventArgs e)
+        {
+            if(DialogResult.Yes == MessageBox.Show("Bạn chắc chắn muốn kết ca?", "", MessageBoxButtons.YesNo))
+            {
+                GiaoCa giaoca = new GiaoCa();
+                giaoca.Id = _id;
+                giaoca.TienCuoiCa = Convert.ToDecimal(tbx_ttienmatcuoica.Text);
+                giaoca.ThoiGianKetCa = Convert.ToDateTime(tbx_gioketca.Text);
+                giaoca.IdNguoiGiaoCa = _iQLNhanVienServices.GetAll().First(c => c.Ten == cmb_nvbangiao.Text).Id;
+                giaoca.SoHoaDon = Convert.ToInt32(tbx_soluonghoadon);
+                giaoca.GhiChu = tbx_ghichu.Text;
+                giaoca.Tongtienhang = Convert.ToDecimal(tbx_tongtienhang.Text);
+                MessageBox.Show(_iQLGiaoCaServices.Update(giaoca),"Thông báo");
+            }
+        }
+
+        private void btn_thoat_Click(object sender, EventArgs e)
+        {
+            if(DialogResult.Yes == MessageBox.Show("Bạn chắc chắn muốn thoát?", "", MessageBoxButtons.YesNo)){
+                this.Close();
             }
         }
     }

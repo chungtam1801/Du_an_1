@@ -46,6 +46,11 @@ namespace _1.DAL.Repositories
             throw new NotImplementedException();
         }
 
+        public GiaoCa GetbyId(Guid? id)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Update(GiaoCa obj)
         {
             if (obj == null) return false;
