@@ -16,6 +16,13 @@ namespace _3.PL.Views
         public Frm_Main()
         {
             InitializeComponent();
+            //lấy kích thước của màn hình
+            int widthScreen = Screen.PrimaryScreen.WorkingArea.Width;
+            int heightScreen = Screen.PrimaryScreen.WorkingArea.Height;
+
+            //cho form hiển thị theo kích thước của màn hình
+            this.Width = widthScreen;
+            this.Height = heightScreen;
             pnl_Nav.Height = btn_banHang.Height;
             pnl_Nav.Top = btn_banHang.Top;
             pnl_Nav.Left = btn_banHang.Left;
@@ -24,6 +31,7 @@ namespace _3.PL.Views
         private void Frm_Main_Load(object sender, EventArgs e)
         {
             pnl_menucon.Visible = false;
+            tbx_giohethong.Text = Convert.ToString(DateTime.Now);
         }
 
         private void btn_banHang_Click(object sender, EventArgs e)
@@ -34,7 +42,11 @@ namespace _3.PL.Views
             btn_banHang.BackColor = Color.FromArgb(46, 51, 73);
             lbl_tilte.Text = "BÁN HÀNG";
             hideMenuCon();
-            OpenChildForm(new Frm_BanHang(), sender);
+            if(DialogResult.Yes == MessageBox.Show("Bạn có chắc chắn vào ca?", "", MessageBoxButtons.YesNo)){
+                OpenChildForm(new Frm_BanHang(), sender);
+                Frm_QLVaoCa frm_QLVaoCa = new Frm_QLVaoCa();
+                frm_QLVaoCa.ShowDialog();
+            }
         }
 
         private void btn_sanpham_Click(object sender, EventArgs e)
@@ -219,6 +231,16 @@ namespace _3.PL.Views
             btn_nhanvien.BackColor = Color.FromArgb(46, 51, 73);
             lbl_tilte.Text = "NHÂN VIÊN";
             OpenChildForm(new Frm_NhanVien(), sender);
+        }
+
+        private void btn_ketca_Click(object sender, EventArgs e)
+        {
+            hideMenuCon();
+            pnl_Nav.Height = btn_nhanvien.Height;
+            pnl_Nav.Top = btn_nhanvien.Top;
+            pnl_Nav.Left = btn_nhanvien.Left;
+            btn_nhanvien.BackColor = Color.FromArgb(46, 51, 73);
+            OpenChildForm(new Frm_KetCa(), sender);
         }
 
         //private void btn_tichdiem_Click(object sender, EventArgs e)

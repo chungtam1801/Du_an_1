@@ -25,6 +25,13 @@ namespace _3.PL.Views
         {
             InitializeComponent();
             _IqlKhachHangServices = new QLKhachHangServices();
+            int widthScreen = Screen.PrimaryScreen.WorkingArea.Width;
+            int heightScreen = Screen.PrimaryScreen.WorkingArea.Height;
+
+            //cho form hiển thị theo kích thước của màn hình
+            this.Width = widthScreen;
+            this.Height = heightScreen;
+
             kh_ma.Enabled = false;
             kh_ma.Text = MaTuSinh();
             kh_diemtich.Enabled = false;
