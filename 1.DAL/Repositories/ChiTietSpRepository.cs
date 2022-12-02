@@ -39,7 +39,7 @@ namespace _1.DAL.Repositories
             return _dbContext.ChiTietSps.ToList();
         }
 
-        public ChiTietSp GetbyId(Guid id)
+        public ChiTietSp GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

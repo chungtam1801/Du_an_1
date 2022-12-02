@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.NhanViens.ToList();
         }
 
-        public NhanVien GetbyId(Guid id)
+        public NhanVien GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

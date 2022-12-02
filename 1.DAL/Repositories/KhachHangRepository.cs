@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.KhachHangs.ToList();
         }
 
-        public KhachHang GetbyId(Guid id)
+        public KhachHang GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

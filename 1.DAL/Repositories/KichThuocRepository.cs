@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.KichThuocs.ToList();
         }
 
-        public KichThuoc GetbyId(Guid id)
+        public KichThuoc GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

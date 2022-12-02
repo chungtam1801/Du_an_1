@@ -79,10 +79,10 @@
             this.dtg_ChiTietHD = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbx_THDatHang = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pic_TaoDatHang = new System.Windows.Forms.PictureBox();
+            this.dtg_DatHang = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbx_TrangThai = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -102,8 +102,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtg_ChiTietHD)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_TaoDatHang)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtg_DatHang)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_TaoHoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_HoaDon)).BeginInit();
@@ -172,15 +172,16 @@
             // tbx_DiemSD
             // 
             this.tbx_DiemSD.Enabled = false;
-            this.tbx_DiemSD.Location = new System.Drawing.Point(144, 491);
+            this.tbx_DiemSD.Location = new System.Drawing.Point(167, 494);
             this.tbx_DiemSD.Name = "tbx_DiemSD";
             this.tbx_DiemSD.Size = new System.Drawing.Size(194, 25);
             this.tbx_DiemSD.TabIndex = 106;
+            this.tbx_DiemSD.TextChanged += new System.EventHandler(this.tbx_DiemSD_TextChanged);
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(31, 494);
+            this.label13.Location = new System.Drawing.Point(31, 497);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(108, 18);
             this.label13.TabIndex = 105;
@@ -204,7 +205,7 @@
             // 
             // btn_Huy
             // 
-            this.btn_Huy.Location = new System.Drawing.Point(418, 754);
+            this.btn_Huy.Location = new System.Drawing.Point(408, 888);
             this.btn_Huy.Name = "btn_Huy";
             this.btn_Huy.Size = new System.Drawing.Size(159, 52);
             this.btn_Huy.TabIndex = 102;
@@ -231,6 +232,7 @@
             // 
             // cbx_HTTT
             // 
+            this.cbx_HTTT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_HTTT.FormattingEnabled = true;
             this.cbx_HTTT.Location = new System.Drawing.Point(167, 160);
             this.cbx_HTTT.Name = "cbx_HTTT";
@@ -318,14 +320,14 @@
             // tbx_TenKH
             // 
             this.tbx_TenKH.Enabled = false;
-            this.tbx_TenKH.Location = new System.Drawing.Point(144, 370);
+            this.tbx_TenKH.Location = new System.Drawing.Point(167, 373);
             this.tbx_TenKH.Name = "tbx_TenKH";
             this.tbx_TenKH.Size = new System.Drawing.Size(194, 25);
             this.tbx_TenKH.TabIndex = 89;
             // 
             // tbx_SDT
             // 
-            this.tbx_SDT.Location = new System.Drawing.Point(144, 330);
+            this.tbx_SDT.Location = new System.Drawing.Point(167, 333);
             this.tbx_SDT.Name = "tbx_SDT";
             this.tbx_SDT.Size = new System.Drawing.Size(194, 25);
             this.tbx_SDT.TabIndex = 88;
@@ -333,7 +335,7 @@
             // 
             // tbx_DiaChi
             // 
-            this.tbx_DiaChi.Location = new System.Drawing.Point(144, 410);
+            this.tbx_DiaChi.Location = new System.Drawing.Point(167, 413);
             this.tbx_DiaChi.Name = "tbx_DiaChi";
             this.tbx_DiaChi.Size = new System.Drawing.Size(194, 25);
             this.tbx_DiaChi.TabIndex = 87;
@@ -341,7 +343,7 @@
             // tbx_DiemHT
             // 
             this.tbx_DiemHT.Enabled = false;
-            this.tbx_DiemHT.Location = new System.Drawing.Point(144, 451);
+            this.tbx_DiemHT.Location = new System.Drawing.Point(167, 454);
             this.tbx_DiemHT.Name = "tbx_DiemHT";
             this.tbx_DiemHT.Size = new System.Drawing.Size(194, 25);
             this.tbx_DiemHT.TabIndex = 86;
@@ -349,7 +351,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(31, 454);
+            this.label11.Location = new System.Drawing.Point(31, 457);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(103, 18);
             this.label11.TabIndex = 85;
@@ -358,7 +360,7 @@
             // lbl_DiaChi
             // 
             this.lbl_DiaChi.AutoSize = true;
-            this.lbl_DiaChi.Location = new System.Drawing.Point(31, 413);
+            this.lbl_DiaChi.Location = new System.Drawing.Point(31, 416);
             this.lbl_DiaChi.Name = "lbl_DiaChi";
             this.lbl_DiaChi.Size = new System.Drawing.Size(47, 18);
             this.lbl_DiaChi.TabIndex = 84;
@@ -367,7 +369,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 333);
+            this.label2.Location = new System.Drawing.Point(31, 336);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 18);
             this.label2.TabIndex = 83;
@@ -376,7 +378,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 373);
+            this.label1.Location = new System.Drawing.Point(31, 376);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 18);
             this.label1.TabIndex = 82;
@@ -384,7 +386,7 @@
             // 
             // btn_Sua
             // 
-            this.btn_Sua.Location = new System.Drawing.Point(61, 754);
+            this.btn_Sua.Location = new System.Drawing.Point(51, 888);
             this.btn_Sua.Name = "btn_Sua";
             this.btn_Sua.Size = new System.Drawing.Size(159, 52);
             this.btn_Sua.TabIndex = 80;
@@ -394,7 +396,7 @@
             // 
             // tbx_TienShip
             // 
-            this.tbx_TienShip.Location = new System.Drawing.Point(144, 535);
+            this.tbx_TienShip.Location = new System.Drawing.Point(167, 538);
             this.tbx_TienShip.Name = "tbx_TienShip";
             this.tbx_TienShip.Size = new System.Drawing.Size(194, 25);
             this.tbx_TienShip.TabIndex = 81;
@@ -402,7 +404,7 @@
             // 
             // btn_Chot
             // 
-            this.btn_Chot.Location = new System.Drawing.Point(61, 696);
+            this.btn_Chot.Location = new System.Drawing.Point(51, 830);
             this.btn_Chot.Name = "btn_Chot";
             this.btn_Chot.Size = new System.Drawing.Size(516, 52);
             this.btn_Chot.TabIndex = 78;
@@ -413,7 +415,7 @@
             // lbl_TienShip
             // 
             this.lbl_TienShip.AutoSize = true;
-            this.lbl_TienShip.Location = new System.Drawing.Point(31, 538);
+            this.lbl_TienShip.Location = new System.Drawing.Point(31, 541);
             this.lbl_TienShip.Name = "lbl_TienShip";
             this.lbl_TienShip.Size = new System.Drawing.Size(61, 18);
             this.lbl_TienShip.TabIndex = 77;
@@ -515,6 +517,7 @@
             this.pic_TimKiem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_TimKiem.TabIndex = 61;
             this.pic_TimKiem.TabStop = false;
+            this.pic_TimKiem.Click += new System.EventHandler(this.pic_TimKiem_Click);
             // 
             // tbx_TimKiem
             // 
@@ -589,10 +592,10 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.comboBox1);
+            this.groupBox5.Controls.Add(this.cbx_THDatHang);
             this.groupBox5.Controls.Add(this.label14);
-            this.groupBox5.Controls.Add(this.pictureBox1);
-            this.groupBox5.Controls.Add(this.dataGridView1);
+            this.groupBox5.Controls.Add(this.pic_TaoDatHang);
+            this.groupBox5.Controls.Add(this.dtg_DatHang);
             this.groupBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox5.Location = new System.Drawing.Point(542, 0);
             this.groupBox5.Name = "groupBox5";
@@ -601,21 +604,20 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Danh sách đặt hàng";
             // 
-            // comboBox1
+            // cbx_THDatHang
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Chờ thanh toán",
-            "Đã thanh toán",
+            this.cbx_THDatHang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_THDatHang.FormattingEnabled = true;
+            this.cbx_THDatHang.Items.AddRange(new object[] {
             "Chờ giao hàng",
             "Đang giao hàng",
             "Đã giao hàng",
             "Hủy"});
-            this.comboBox1.Location = new System.Drawing.Point(414, 22);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(151, 26);
-            this.comboBox1.TabIndex = 46;
+            this.cbx_THDatHang.Location = new System.Drawing.Point(414, 22);
+            this.cbx_THDatHang.Name = "cbx_THDatHang";
+            this.cbx_THDatHang.Size = new System.Drawing.Size(151, 26);
+            this.cbx_THDatHang.TabIndex = 46;
+            this.cbx_THDatHang.SelectedIndexChanged += new System.EventHandler(this.cbx_THDatHang_SelectedIndexChanged);
             // 
             // label14
             // 
@@ -626,28 +628,30 @@
             this.label14.TabIndex = 45;
             this.label14.Text = "Trạng thái";
             // 
-            // pictureBox1
+            // pic_TaoDatHang
             // 
-            this.pictureBox1.Image = global::_3.PL.Properties.Resources.add4;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 21);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 44;
-            this.pictureBox1.TabStop = false;
+            this.pic_TaoDatHang.Image = global::_3.PL.Properties.Resources.add4;
+            this.pic_TaoDatHang.Location = new System.Drawing.Point(12, 21);
+            this.pic_TaoDatHang.Name = "pic_TaoDatHang";
+            this.pic_TaoDatHang.Size = new System.Drawing.Size(32, 32);
+            this.pic_TaoDatHang.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_TaoDatHang.TabIndex = 44;
+            this.pic_TaoDatHang.TabStop = false;
+            this.pic_TaoDatHang.Click += new System.EventHandler(this.pic_TaoDatHang_Click);
             // 
-            // dataGridView1
+            // dtg_DatHang
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 59);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(760, 216);
-            this.dataGridView1.TabIndex = 10;
+            this.dtg_DatHang.AllowUserToAddRows = false;
+            this.dtg_DatHang.AllowUserToDeleteRows = false;
+            this.dtg_DatHang.BackgroundColor = System.Drawing.Color.White;
+            this.dtg_DatHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtg_DatHang.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dtg_DatHang.Location = new System.Drawing.Point(3, 59);
+            this.dtg_DatHang.Name = "dtg_DatHang";
+            this.dtg_DatHang.RowTemplate.Height = 25;
+            this.dtg_DatHang.Size = new System.Drawing.Size(760, 216);
+            this.dtg_DatHang.TabIndex = 10;
+            this.dtg_DatHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_DatHang_CellClick);
             // 
             // groupBox1
             // 
@@ -670,14 +674,12 @@
             this.cbx_TrangThai.Items.AddRange(new object[] {
             "Chờ thanh toán",
             "Đã thanh toán",
-            "Chờ giao hàng",
-            "Đang giao hàng",
-            "Đã giao hàng",
             "Hủy"});
             this.cbx_TrangThai.Location = new System.Drawing.Point(380, 22);
             this.cbx_TrangThai.Name = "cbx_TrangThai";
             this.cbx_TrangThai.Size = new System.Drawing.Size(151, 26);
             this.cbx_TrangThai.TabIndex = 46;
+            this.cbx_TrangThai.SelectedIndexChanged += new System.EventHandler(this.cbx_TrangThai_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -697,6 +699,7 @@
             this.pic_TaoHoaDon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_TaoHoaDon.TabIndex = 44;
             this.pic_TaoHoaDon.TabStop = false;
+            this.pic_TaoHoaDon.Click += new System.EventHandler(this.pic_TaoHoaDon_Click);
             // 
             // dtg_HoaDon
             // 
@@ -710,6 +713,7 @@
             this.dtg_HoaDon.RowTemplate.Height = 25;
             this.dtg_HoaDon.Size = new System.Drawing.Size(536, 216);
             this.dtg_HoaDon.TabIndex = 10;
+            this.dtg_HoaDon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_HoaDon_CellClick);
             // 
             // Frm_BanHang
             // 
@@ -745,8 +749,8 @@
             this.panel2.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_TaoDatHang)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtg_DatHang)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_TaoHoaDon)).EndInit();
@@ -810,9 +814,9 @@
         private System.Windows.Forms.PictureBox pic_TaoHoaDon;
         private System.Windows.Forms.DataGridView dtg_HoaDon;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbx_THDatHang;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.PictureBox pic_TaoDatHang;
+        private System.Windows.Forms.DataGridView dtg_DatHang;
     }
 }

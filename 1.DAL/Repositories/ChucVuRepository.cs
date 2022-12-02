@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
            return _dbContext.ChucVus.ToList();
         }
 
-        public ChucVu GetbyId(Guid id)
+        public ChucVu GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

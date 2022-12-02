@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.PhuongThucThanhToans.ToList();
         }
 
-        public PhuongThucThanhToan GetbyId(Guid id)
+        public PhuongThucThanhToan GetbyId(Guid? id)
         {
             return _dbContext.PhuongThucThanhToans.FirstOrDefault(c =>c.Id==id);
         }

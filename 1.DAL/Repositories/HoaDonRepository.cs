@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
            return _dbContext.HoaDons.ToList();
         }
 
-        public HoaDon GetbyId(Guid id)
+        public HoaDon GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

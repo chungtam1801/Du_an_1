@@ -41,7 +41,7 @@ namespace _1.DAL.Repositories
            return _dbContext.ChiTietHoaDons.ToList();   
         }
 
-        public ChiTietHoaDon GetbyId(Guid id)
+        public ChiTietHoaDon GetbyId(Guid? id)
         {
             return _dbContext.ChiTietHoaDons.FirstOrDefault(p => p.Id == id);
         }
