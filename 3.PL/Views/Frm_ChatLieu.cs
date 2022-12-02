@@ -47,7 +47,7 @@ namespace _3.PL.Views
     {
         ChatLieu kt = new ChatLieu();
         kt.Id = _id;
-        kt.Ma = MaTuSinh();
+        kt.Ma = tbt_Ma.Text;
         kt.Ten = tbt_Ten.Text;
         if (rd_hd.Checked == true)
         {
@@ -122,6 +122,10 @@ namespace _3.PL.Views
                 }
 
             }
+            else
+            {
+                MessageBox.Show("Sửa  that bai");
+            }
         }
 
         private void btn_Xoa_Click(object sender, EventArgs e)
@@ -142,6 +146,11 @@ namespace _3.PL.Views
                     LoadData();
                 }
             }
+            else
+            {
+                MessageBox.Show("Xoa that bai");
+            }
+
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
