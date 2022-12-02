@@ -38,5 +38,13 @@ namespace _3.PL.Utilities
             sb = sb.Replace("Ê", "E");
             return (sb.ToString().Normalize(NormalizationForm.FormD));
         }
+        public static bool CheckStringEmpty(string x)
+        {
+            if(x == String.Empty)
+            {
+                return true;
+            }
+            else return false;
+        }
     }
 }

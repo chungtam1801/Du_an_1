@@ -88,5 +88,11 @@ namespace _3.PL.Views
             this.tb_taikhoan.Focus();
 
         }
+
+        private void lb_QuenMatKhau_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Frm_QuenMatKhau qmk = new Frm_QuenMatKhau();
+            qmk.ShowDialog();
+        }
     }
 }

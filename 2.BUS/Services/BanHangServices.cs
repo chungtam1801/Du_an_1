@@ -22,6 +22,8 @@ namespace _2.BUS.Services
         private IClassCRUDRepo<ChiTietSp> _CRUDChiTietSP;
         private IClassCRUDRepo<PhuongThucThanhToan> _CRUDPTTT;
         private IClassCRUDRepo<KhachHang> _CRUDKhachHang;
+        private IClassCRUDRepo<LichSuTichDiem> _CRUDLSTD;
+        private IClassCRUDRepo<QuyDoiDiem> _CRUDQDD;
         public BanHangServices()
         {
             _iQLChiTietSpServices = new QLChiTietSpServices();
@@ -31,6 +33,8 @@ namespace _2.BUS.Services
             _CRUDChiTietSP = new ChiTietSpRepository();
             _CRUDPTTT = new PhuongThucThanhToanRepository();
             _CRUDKhachHang = new KhachHangRepository();
+            _CRUDLSTD = new LichSuTichDiemRepository();
+            _CRUDQDD = new QuyDoiDiemRepository();
         }
         public HoaDon CreateHD(int trangthai)
         {
@@ -54,31 +58,67 @@ namespace _2.BUS.Services
         {
             return _CRUDKhachHang.GetAll().FirstOrDefault(c => c.Sdt == sdt);
         }
-        public string Chot(Guid idPTTT,HoaDon hoaDon,decimal tienKhachDua,decimal tienkhachcandua,int trangThai,decimal? tienShip)
+        public string Chot(Guid idPTTT,HoaDon hoaDon,KhachHang khachHang,decimal tienKhachDua,decimal tienkhachcandua,int trangThai,decimal? tienShip,int diemSD)
         {
-            ChiTietPttt chiTietPttt = new ChiTietPttt();
-            chiTietPttt.IdPttt = idPTTT;
-            chiTietPttt.IdHd = hoaDon.Id;
-            chiTietPttt.Ma = ClassSP.AutoID("PTTT", _CRUDChiTietPTTT.GetAll().Count);
-            chiTietPttt.TienKhachDua = tienKhachDua;
-            _CRUDChiTietPTTT.Add(chiTietPttt);
-            if (tienKhachDua >= tienkhachcandua)
+            ChiTietPttt chiTietPttt1 = _CRUDChiTietPTTT.GetAll().FirstOrDefault(c => c.IdPttt == idPTTT && c.IdHd == hoaDon.Id);
+            if (chiTietPttt1 == null)
             {
-                if(trangThai == 0)
+                ChiTietPttt chiTietPttt = new ChiTietPttt();
+                chiTietPttt.IdPttt = idPTTT;
+                chiTietPttt.IdHd = hoaDon.Id;
+                chiTietPttt.Ma = ClassSP.AutoID("PTTT", _CRUDChiTietPTTT.GetAll().Count);
+                if(CheckPTTTDiem(idPTTT)) chiTietPttt.TienKhachDua = TruDiem(hoaDon, khachHang, diemSD);
+                else chiTietPttt.TienKhachDua = tienKhachDua;
+                _CRUDChiTietPTTT.Add(chiTietPttt);
+                //Sua
+                if (tienKhachDua >= tienkhachcandua)
                 {
-                    hoaDon.NgayThanhToan = DateTime.Now;
-                    hoaDon.TrangThai = 1;
+                    if (_CRUDChiTietPTTT.GetAll().FirstOrDefault(c => c.IdHd == hoaDon.Id && CheckPTTTDiem(idPTTT)) == null)
+                    {
+                        CongDiem(hoaDon, khachHang);
+                    }
+                    if (trangThai == 0)
+                    {
+                        hoaDon.NgayThanhToan = DateTime.Now;
+                        hoaDon.TrangThai = 1;
+                    }
+                    else if (trangThai == 2)
+                    {
+                        hoaDon.NgayShip = DateTime.Now;
+                        hoaDon.TrangThai = 3;
+                        hoaDon.TienShip = tienShip;
+                    }
+                    if (_CRUDHoaDon.Update(hoaDon)) return "Thanh toán hoàn tất";
+                    else return "Thanh toán thất bại";
                 }
-                else if(trangThai == 2)
-                {
-                    hoaDon.NgayShip = DateTime.Now;
-                    hoaDon.TrangThai = 3;
-                    hoaDon.TienShip = tienShip;
-                }
-                if (_CRUDHoaDon.Update(hoaDon)) return "Thanh toán hoàn tất";
-                else return "Thanh toán thất bại";
+                else return "Hóa đơn vẫn chưa được trả hết";
             }
-            else return "Hóa đơn vẫn chưa được trả hết";
+            else
+            {
+                chiTietPttt1.TienKhachDua += tienKhachDua;
+                _CRUDChiTietPTTT.Update(chiTietPttt1);
+                if (tienKhachDua >= tienkhachcandua)
+                {
+                    if(_CRUDChiTietPTTT.GetAll().FirstOrDefault(c=>c.IdHd == hoaDon.Id && CheckPTTTDiem(idPTTT)) == null)
+                    {
+                        CongDiem(hoaDon, khachHang);
+                    }    
+                    if (trangThai == 0)
+                    {
+                        hoaDon.NgayThanhToan = DateTime.Now;
+                        hoaDon.TrangThai = 1;
+                    }
+                    else if (trangThai == 2)
+                    {
+                        hoaDon.NgayShip = DateTime.Now;
+                        hoaDon.TrangThai = 3;
+                        hoaDon.TienShip = tienShip;
+                    }
+                    if (_CRUDHoaDon.Update(hoaDon)) return "Thanh toán hoàn tất";
+                    else return "Thanh toán thất bại";
+                }
+                else return "Hóa đơn vẫn chưa được trả hết";
+            }    
         }
         public decimal? SumTienKhachDua(Guid idHD)
         {
@@ -115,7 +155,9 @@ namespace _2.BUS.Services
                            KichThuoc = a.KichThuoc,
                            ChatLieu = a.ChatLieu,
                            SoLuong = b.SoLuong,
-                           Id = b.Id
+                           Id = b.Id,
+                           DonGia = b.DonGia,
+                           TongTien = b.DonGia*b.SoLuong
                        }).ToList();
             return lstView;
         }
@@ -148,10 +190,65 @@ namespace _2.BUS.Services
             _CRUDChiTietHD.Update(chiTietHoaDon);
             _CRUDChiTietSP.Update(chiTietSp);
         }
-        public void UpdateTrangThaiHD(HoaDon hoaDon)
+        public string UpdateTrangThaiHD(HoaDon hoaDon,int trangThai)
         {
-            hoaDon.TrangThai = 4;
-            _CRUDHoaDon.Update(hoaDon);
+            hoaDon.TrangThai = trangThai;
+            if (_CRUDHoaDon.Update(hoaDon)) return "Cập nhật trạng thái thành công";
+            else return "Cập nhật trạng thái thất bại";
+        }
+        public bool CheckHDThanhToan(HoaDon hoaDon)
+        {
+            if (_CRUDChiTietPTTT.GetAll().FirstOrDefault(c => c.IdHd == hoaDon.Id) == null)
+            {
+                return false;
+            }
+            else return true;
+        }
+        //Quy doi diem
+        public void CongDiem(HoaDon hoaDon,KhachHang khachHang)
+        {
+            QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai == 1);
+            if(qdd != null)
+            {
+                LichSuTichDiem lichSuTichDiem = new LichSuTichDiem();
+                lichSuTichDiem.IdQuyDoiDiem = qdd.Id;
+                lichSuTichDiem.IdHd = hoaDon.Id;
+                lichSuTichDiem.Diem = Convert.ToInt32(SumTienHang(hoaDon.Id) / qdd.TiLeTichDiem);
+                Console.WriteLine(lichSuTichDiem.Diem);
+                khachHang.DiemTich += lichSuTichDiem.Diem;
+                _CRUDKhachHang.Update(khachHang);
+                _CRUDLSTD.Add(lichSuTichDiem);
+            }
+        }
+        public decimal TruDiem(HoaDon hoaDon,KhachHang khachHang,int diemSD)
+        {
+            QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai == 1);
+            if (qdd != null)
+            {
+                LichSuTichDiem lichSuTichDiem = new LichSuTichDiem();
+                lichSuTichDiem.IdQuyDoiDiem = qdd.Id;
+                lichSuTichDiem.IdHd = hoaDon.Id;
+                lichSuTichDiem.Diem = -diemSD;
+                khachHang.DiemTich -= diemSD;
+                ChiTietPttt chiTietPttt = new ChiTietPttt();
+                _CRUDKhachHang.Update(khachHang);
+                _CRUDLSTD.Add(lichSuTichDiem);
+                _CRUDChiTietPTTT.Add(chiTietPttt);
+                return diemSD * qdd.TiLeTieuDiem;
+            }
+            else return 0;
+        }
+        public bool CheckPTTTDiem(Guid id)
+        {
+            PhuongThucThanhToan phuongThucThanhToan = _CRUDPTTT.GetbyId(id);
+            if(phuongThucThanhToan == null)
+            {
+                return false;
+            }
+            else
+            {
+                return phuongThucThanhToan.Ten == "Điểm";
+            }
         }
     }
 }

@@ -8,13 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using _2.BUS.IServices;
+using _2.BUS.Services;
+using _1.DAL.DomainClass;
+
 namespace _3.PL.Views
 {
     public partial class Frm_QLVaoCa : Form
     {
+        private IQLGiaoCaServices _iQLGiaoCaServices;
+        private IQLNhanVienServices _iQLNhanVienServices;
         public Frm_QLVaoCa()
         {
             InitializeComponent();
+            _iQLGiaoCaServices = new QLGiaoCaServices();
+            _iQLNhanVienServices = new QLNhanVienServices();
             this.TopMost = true;
             this.BringToFront();
             tbx_nhanvien.Enabled = false;
@@ -38,6 +46,18 @@ namespace _3.PL.Views
             tbx_ttien5.Text = "0";
             tbx_ttien2.Text = "0";
             tbx_ttien1.Text = "0";
+            // Lấy thời gian kết thúc ca gần nhất
+            List<GiaoCa> ca = _iQLGiaoCaServices.GetAll().OrderByDescending(c=>c.ThoiGianKetCa).ToList();
+            DateTime thoigian = Convert.ToDateTime(ca[0].ThoiGianKetCa);
+
+            if(DateTime.Now.Day == thoigian.Day)
+            {
+                tbx_tongtien.Text = Convert.ToString(ca[0].TienCuoiCa);
+            }
+            else
+            {
+                tbx_tongtien.Text = Convert.ToString(_iQLGiaoCaServices.GetAll().First(c => c.Id == ca[0].Id).TienCuoiCa);
+            }
             tbx_tongtien.Enabled = true;
         }
 
@@ -228,7 +248,30 @@ namespace _3.PL.Views
 
         private void btn_luu_Click(object sender, EventArgs e)
         {
-            
+            if (String.IsNullOrEmpty(tbx_tongtien.Text))
+            {
+                MessageBox.Show("Chưa nhập tiền vào cao");
+            }
+            else
+            {
+                GiaoCa giaoca = new GiaoCa();
+                //giaoca.IdNguoiNhanCa = _iQLNhanVienServices.GetAll().First(c=> c.Ma == tbx_nhanvien.Text).Id;
+                giaoca.IdNguoiNhanCa = Guid.Parse("35341215-8D86-4220-93D2-719BA3EF0616");
+                giaoca.TienDauca = Convert.ToDecimal(tbx_tongtien.Text);
+                giaoca.ThoiGianVaoCa = Convert.ToDateTime(tbx_giovaoca.Text);
+                if (DialogResult.OK == MessageBox.Show("Bạn có chắc chắn muốn vào ca?", "", MessageBoxButtons.OKCancel))
+                {
+                    MessageBox.Show(_iQLGiaoCaServices.Add(giaoca), "Thông báo");
+                    this.Close();
+                }
+            }
+        }
+
+        private void tbx_tongtien_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsControl(e.KeyChar))
+                e.Handled = true;
+            tbx_tongtien.Text = String.Format("{0:0,00}", tbx_tongtien.Text);
         }
     }
 }

@@ -10,7 +10,7 @@ using _1.DAL.IRepositories;
 
 namespace _1.DAL.Repositories
 {
-    internal class GiaoCaRepository : IClassCRUDRepo<GiaoCa>
+    public class GiaoCaRepository : IClassCRUDRepo<GiaoCa>
     {
         private FpolyDBContext _dbContext;
         public GiaoCaRepository()
@@ -51,14 +51,12 @@ namespace _1.DAL.Repositories
             if (obj == null) return false;
             var tempobj = _dbContext.GiaoCas.FirstOrDefault(c => c.Id == obj.Id);
             tempobj.IdNguoiGiaoCa = obj.IdNguoiGiaoCa;
-            tempobj.ThoiGianNhan = obj.ThoiGianNhan;
-            tempobj.ThoiGianGiao = obj.ThoiGianGiao;
+            tempobj.ThoiGianVaoCa = obj.ThoiGianVaoCa;
+            tempobj.ThoiGianKetCa = obj.ThoiGianKetCa;
             tempobj.GhiChu = obj.GhiChu;
-            
-
-
             tempobj.TrangThai = obj.TrangThai;
-
+            tempobj.Tongtienhang = obj.Tongtienhang;
+            tempobj.SoHoaDon = obj.SoHoaDon;
             //Còn bao nhiêu thuộc tính làm tương tự
             _dbContext.Update(tempobj);
             _dbContext.SaveChanges();

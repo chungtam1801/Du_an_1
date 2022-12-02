@@ -51,7 +51,8 @@ namespace _3.PL.Views
                 {
                     MessageBox.Show(_iQLMauSacServices.Add(mausac));
                 }
-            }MessageBox.Show("Bạn chưa nhập tên màu sắc");
+            }
+            else MessageBox.Show("Bạn chưa nhập tên màu sắc");
         }
 
         private void btn_boqua_Click(object sender, EventArgs e)

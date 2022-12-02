@@ -89,7 +89,6 @@ namespace _3.PL.Views
         }
         private void LoadNSX()
         {
-            cmb_nsx.Items.Clear();
             if (_iqlNsxServices.GetAll().Count == 0) return;
             foreach (var x in _iqlNsxServices.GetAll())
             {
@@ -129,8 +128,7 @@ namespace _3.PL.Views
         }
         private void LoadLoaiSP()
         {
-            cmb_loaisp.Items.Clear();
-            List<LoaiSp> _lstlsp = _iqLLoaiSpServices.GetAll().Where(c => c.MaLoaiSpcha != null).ToList();
+            List<LoaiSp> _lstlsp = _iqLLoaiSpServices.GetAll().Where(c=> c.MaLoaiSpcha != null).ToList();
             if (_lstlsp.Count == 0) return;
             foreach (var x in _lstlsp)
             {
@@ -215,6 +213,10 @@ namespace _3.PL.Views
             if (cmb_sp.Text == "" || cmb_nsx.Text == "" || cmb_mausac.Text == "" || cmb_loaisp.Text == "" || cmb_kichthuoc.Text == "" || cmb_chatlieu.Text == "" || tbx_giaban.Text == "" || tbx_gianhap.Text == "" || tbx_soluong.Text == "")
             {
                 MessageBox.Show("Thuộc tính sản phẩm, giá nhập, giá bán, số lượng tồn không được để trống");
+            }
+            if (Convert.ToDecimal(tbx_giaban.Text) < Convert.ToDecimal(tbx_gianhap.Text))
+            {
+                MessageBox.Show("Giá bán phải lớn hơn giá nhập");
             }
             if (tbx_masp.Text == _iqLChiTietSpServices.GetAllView().First(c => c.Ma == tbx_masp.Text).Ma)
             {

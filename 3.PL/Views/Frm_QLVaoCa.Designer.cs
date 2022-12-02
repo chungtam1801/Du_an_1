@@ -155,6 +155,7 @@
             this.tbx_tongtien.Size = new System.Drawing.Size(207, 36);
             this.tbx_tongtien.TabIndex = 32;
             this.tbx_tongtien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbx_tongtien.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbx_tongtien_KeyPress);
             // 
             // label17
             // 

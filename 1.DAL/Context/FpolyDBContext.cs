@@ -196,11 +196,14 @@ namespace _1.DAL.Context
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.IdKh).IsUnicode(false);
-
                 entity.Property(e => e.Ma).IsUnicode(false);
 
                 entity.Property(e => e.TrangThai).HasDefaultValueSql("((0))");
+
+                entity.HasOne(d => d.IdKhNavigation)
+                    .WithMany(p => p.HoaDons)
+                    .HasForeignKey(d => d.IdKh)
+                    .HasConstraintName("FK_KhachHang");
 
                 entity.HasOne(d => d.IdNvNavigation)
                     .WithMany(p => p.HoaDons)
@@ -211,8 +214,6 @@ namespace _1.DAL.Context
             modelBuilder.Entity<KhachHang>(entity =>
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.DiemTich).IsUnicode(false);
 
                 entity.Property(e => e.Ma).IsUnicode(false);
 
