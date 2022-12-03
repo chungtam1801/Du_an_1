@@ -38,7 +38,7 @@ namespace _3.PL.Views
             cmb_nvbangiao.Items.Clear();
             foreach(var x in _iQLNhanVienServices.GetAll())
             {
-                cmb_nvbangiao.Items.Add(x.Ho);
+                cmb_nvbangiao.Items.Add(x.Ten);
             }
             cmb_nvbangiao.SelectedIndex = -1;
         }
