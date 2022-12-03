@@ -47,7 +47,7 @@ namespace _2.BUS.Services
             {
                 hoaDon.Ma = "HD" + (_CRUDHoaDon.GetAll().Count + 1);
             }
-            hoaDon.IdNv = new Guid("506AE5B4-6D31-43E6-A5EB-BA535A67D692");
+            hoaDon.IdNv = new Guid("4B6E84E1-2918-4C39-9C2A-A6DC4BAB4332");
             hoaDon.Ma = ClassSP.AutoID("HD", _CRUDHoaDon.GetAll().Count);
             hoaDon.NgayTao = DateTime.Now;
             hoaDon.TrangThai = trangthai;

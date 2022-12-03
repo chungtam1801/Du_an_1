@@ -483,14 +483,12 @@
             // 
             // dtg_nhanvien
             // 
-            this.dtg_nhanvien.AllowUserToOrderColumns = true;
             this.dtg_nhanvien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dtg_nhanvien.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtg_nhanvien.BackgroundColor = System.Drawing.Color.White;
-            this.dtg_nhanvien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtg_nhanvien.ColumnHeadersHeight = 25;
             this.dtg_nhanvien.Location = new System.Drawing.Point(-2, 3);
             this.dtg_nhanvien.Name = "dtg_nhanvien";
-            this.dtg_nhanvien.RowHeadersWidth = 51;
+            this.dtg_nhanvien.RowHeadersWidth = 45;
             this.dtg_nhanvien.RowTemplate.Height = 29;
             this.dtg_nhanvien.Size = new System.Drawing.Size(1339, 555);
             this.dtg_nhanvien.TabIndex = 1;
