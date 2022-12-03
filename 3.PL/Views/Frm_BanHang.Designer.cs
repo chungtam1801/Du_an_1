@@ -205,7 +205,7 @@
             // 
             // btn_Huy
             // 
-            this.btn_Huy.Location = new System.Drawing.Point(319, 888);
+            this.btn_Huy.Location = new System.Drawing.Point(318, 646);
             this.btn_Huy.Name = "btn_Huy";
             this.btn_Huy.Size = new System.Drawing.Size(248, 52);
             this.btn_Huy.TabIndex = 102;
@@ -386,7 +386,7 @@
             // 
             // btn_Sua
             // 
-            this.btn_Sua.Location = new System.Drawing.Point(51, 888);
+            this.btn_Sua.Location = new System.Drawing.Point(50, 646);
             this.btn_Sua.Name = "btn_Sua";
             this.btn_Sua.Size = new System.Drawing.Size(248, 52);
             this.btn_Sua.TabIndex = 80;
@@ -404,7 +404,7 @@
             // 
             // btn_Chot
             // 
-            this.btn_Chot.Location = new System.Drawing.Point(51, 830);
+            this.btn_Chot.Location = new System.Drawing.Point(50, 588);
             this.btn_Chot.Name = "btn_Chot";
             this.btn_Chot.Size = new System.Drawing.Size(516, 52);
             this.btn_Chot.TabIndex = 78;

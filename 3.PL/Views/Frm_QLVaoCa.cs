@@ -263,7 +263,7 @@ namespace _3.PL.Views
             {
                 GiaoCa giaoca = new GiaoCa();
                 //giaoca.IdNguoiNhanCa = _iQLNhanVienServices.GetAll().First(c=> c.Ma == tbx_nhanvien.Text).Id;
-                giaoca.IdNguoiNhanCa = Guid.Parse("35341215-8D86-4220-93D2-719BA3EF0616");
+                giaoca.IdNguoiNhanCa = Guid.Parse("506AE5B4-6D31-43E6-A5EB-BA535A67D692");
                 giaoca.TienDauca = Convert.ToDecimal(tbx_tongtien.Text);
                 giaoca.ThoiGianVaoCa = Convert.ToDateTime(tbx_giovaoca.Text);
                 if (DialogResult.OK == MessageBox.Show("Bạn có chắc chắn muốn vào ca?", "", MessageBoxButtons.OKCancel))
