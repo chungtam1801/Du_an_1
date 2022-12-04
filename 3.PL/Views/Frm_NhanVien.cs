@@ -32,6 +32,7 @@ namespace _3.PL.Views
             tb_ma.Text = MaTuSinh();
             tb_ma.Enabled = false;
             LoadChucVu();
+            LoadNV();
         }
         private void LoadNV()
         {
@@ -71,7 +72,7 @@ namespace _3.PL.Views
                 foreach (var x in _iqLChucVuServices.GetAll())
                 {
                     cbb_cv.Items.Add(x.Ten);
-                } 
+                }
                 cbb_cv.SelectedIndex = -1;
             }
         }
@@ -267,7 +268,7 @@ namespace _3.PL.Views
 
         private void dtg_nhanvien_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-             var nv = _IqlNhanVienServices.GetAllView().FirstOrDefault(c => c.Id == Guid.Parse(dtg_nhanvien.CurrentRow.Cells[1].Value.ToString()));
+            var nv = _IqlNhanVienServices.GetAllView().FirstOrDefault(c => c.Id == Guid.Parse(dtg_nhanvien.CurrentRow.Cells[1].Value.ToString()));
             _id = nv.Id;
             tb_ma.Text = nv.Ma;
             tb_ten.Text = nv.Ten;
@@ -595,6 +596,144 @@ namespace _3.PL.Views
         private void tk_timkiem_Leave(object sender, EventArgs e)
         {
             LoadNV();
+        }
+
+        private void btn_them_Click_1(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+            {
+                if (tb_ma.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mã nhân viên không được bỏ trống!");
+                }
+                else if (_IqlNhanVienServices.GetAllView().Any(p => p.Ma == tb_ma.Text))
+                {
+                    MessageBox.Show("Mã nhân viên đã tồn tại!");
+                }
+                else if (tb_ho.Text.Trim() == "")
+                {
+                    MessageBox.Show("Họ nhân viên không được bỏ trống!");
+                }
+                else if (tb_ten.Text.Trim() == "")
+                {
+                    MessageBox.Show("Tên nhân viên không được bỏ trống!");
+                }
+                else if (nv_cbb_gioitinh.Text.Trim() == "")
+                {
+                    MessageBox.Show("Giới tính nhân viên không được bỏ trống!");
+                }
+                else if (dtp_ngaysinh.Value.ToString().Trim() == "")
+                {
+                    MessageBox.Show("Ngày sinh nhân viên không được bỏ trống!");
+                }
+                else if (nv_cbb_gioitinh.Text.Trim() == "")
+                {
+                    MessageBox.Show("Giới tính nhân viên không được bỏ trống!");
+                }
+                else if (DateTime.Now.Year - dtp_ngaysinh.Value.Year < 18)
+                {
+                    MessageBox.Show("Người này chưa đủ 18 tuổi!");
+                }
+                else if (tb_sdt.Text.Trim() == "")
+                {
+                    MessageBox.Show("SDT nhân viên không được bỏ trống!");
+                }
+                else if (IsValidVietNamPhoneNumber(tb_sdt.Text) == true && tb_sdt.Text.Trim().Count() != 10)
+                {
+                    MessageBox.Show("SDT nhân viên không hợp lệ 0xxxxxxxxx!");
+                }
+                else if (tb_ma.Text.Substring(0) == "0")
+                {
+                    MessageBox.Show("SDT nhân viên không hợp lệ 0xxxxxxxxx!");
+                }
+                else if (_IqlNhanVienServices.GetAllView().Any(p => p.Sdt == tb_sdt.Text))
+                {
+                    MessageBox.Show("SDT nhân viên đã tồn tại!");
+                }
+                else if (IsValidVietNamPhoneNumber(tb_sdt.Text) == false)
+                {
+                    MessageBox.Show("Số DT!");
+                }
+                else if (tb_matkhau.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mật khẩu nhân viên không được bỏ trống!");
+                }
+                else if (tb_diachi.Text.Trim() == "")
+                {
+                    MessageBox.Show("Địa chỉ nhân viên không được bỏ trống!");
+                }
+                else if (rbtn_conlam.Checked == false && rbtn_nghilam.Checked == false)
+                {
+                    MessageBox.Show("Trạng thái nhân viên không được bỏ trống!");
+                }
+                else
+                {
+                    _IqlNhanVienServices.Add(GetDataFormGui());
+                    LoadNV();
+                }
+            }
+        }
+
+        private void btn_sua_Click_1(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
+            {
+                _IqlNhanVienServices.Update(GetDataFormGui());
+                LoadNV();
+            }
+        }
+
+        private void btn_xoa_Click_1(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
+            {
+                _IqlNhanVienServices.Delete(GetDataFormGui());
+                LoadNV();
+            }
+        }
+
+        private void btn_clear_Click_1(object sender, EventArgs e)
+        {
+            tb_ma.Text = MaTuSinh();
+            tb_ten.Text = "";
+            tb_tendem.Text = "";
+            tb_ho.Text = "";
+            cbb_cv.SelectedIndex = -1;
+            nv_cbb_gioitinh.SelectedIndex = -1;
+            tb_sdt.Text = "";
+            tb_matkhau.Text = "";
+            tb_diachi.Text = "";
+            rbtn_conlam.Checked = false;
+            rbtn_nghilam.Checked = false;
+        }
+
+        private void dtg_nhanvien_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var nv = _IqlNhanVienServices.GetAllView().FirstOrDefault(c => c.Id == Guid.Parse(dtg_nhanvien.CurrentRow.Cells[1].Value.ToString()));
+            _id = nv.Id;
+            tb_ma.Text = nv.Ma;
+            tb_ten.Text = nv.Ten;
+            tb_tendem.Text = nv.TenDem;
+            tb_ho.Text = nv.Ho;
+            cbb_cv.Text = nv.TenCv;
+            nv_cbb_gioitinh.Text = nv.GioiTinh;
+            dtp_ngaysinh.Value = nv.NgaySinh;
+            tb_matkhau.Text = nv.MatKhau;
+            tb_diachi.Text = nv.DiaChi;
+            tb_sdt.Text = nv.Sdt;
+            if (nv.TrangThai == 1)
+            {
+                rbtn_conlam.Checked = true;
+            }
+            else if (nv.TrangThai == 0)
+            {
+                rbtn_nghilam.Checked = true;
+            }
+        }
+
+        private void tk_timkiem_TextChanged_1(object sender, EventArgs e)
+        {
+            cbbtimkiem();
         }
     }
 }

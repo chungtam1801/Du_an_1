@@ -167,7 +167,7 @@ namespace _3.PL.Views
             pnl_Nav.Left = btn_khuyenmai.Left;
             btn_khuyenmai.BackColor = Color.FromArgb(46, 51, 73);
             lbl_tilte.Text = "KHUYẾN MÃI";
-            OpenChildForm(new Frm_KhuyenMai(), sender);
+            OpenChildForm(new FrmKhuyenMai(), sender);
         }
 
         private void btn_sp_Leave(object sender, EventArgs e)
