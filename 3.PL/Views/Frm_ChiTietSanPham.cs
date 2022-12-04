@@ -218,10 +218,10 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Giá bán phải lớn hơn giá nhập");
             }
-            if (tbx_masp.Text == _iqLChiTietSpServices.GetAllView().First(c => c.Ma == tbx_masp.Text).Ma)
-            {
-                MessageBox.Show("Sản phẩm bạn nhập đã tồn tại trong ứng dụng", "Thông báo");
-            }
+            //if (tbx_masp.Text == _iqLChiTietSpServices.GetAllView().First(c => c.Ma == tbx_masp.Text).Ma)
+            //{
+            //    MessageBox.Show("Sản phẩm bạn nhập đã tồn tại trong ứng dụng", "Thông báo");
+            //}
             else
             {
                 if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))

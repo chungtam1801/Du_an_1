@@ -165,19 +165,26 @@ namespace _3.PL.Views
         private void ShowDataChatLieu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            var kt = qLChatLieuServices.GetAll().FirstOrDefault(c => c.Id == Guid.Parse(ShowDataChatLieu.Rows[rowIndex].Cells[0].Value.ToString()));
-            _id = kt.Id;
-            tbt_Ma.Text = kt.Ma;
-            tbt_Ten.Text = kt.Ten;
-
-
-            if (kt.TrangThai == 1)
+            if (rowIndex >= 0 && rowIndex < qLChatLieuServices.GetAll().Count)
             {
-                rd_hd.Checked = true;
+                var kt = qLChatLieuServices.GetAll().FirstOrDefault(c => c.Id == Guid.Parse(ShowDataChatLieu.Rows[rowIndex].Cells[0].Value.ToString()));
+                _id = kt.Id;
+                tbt_Ma.Text = kt.Ma;
+                tbt_Ten.Text = kt.Ten;
+
+
+                if (kt.TrangThai == 1)
+                {
+                    rd_hd.Checked = true;
+                }
+                else if (kt.TrangThai == 0)
+                {
+                    rd_khd.Checked = true;
+                }
             }
-            else if (kt.TrangThai == 0)
+            else
             {
-                rd_khd.Checked = true;
+                MessageBox.Show("Ngoài phạm vi dữ liệu");
             }
         }
 

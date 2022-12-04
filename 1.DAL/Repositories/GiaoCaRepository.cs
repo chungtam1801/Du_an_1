@@ -30,7 +30,6 @@ namespace _1.DAL.Repositories
         {
             if (obj == null) return false;
             var tempobj = _dbContext.GiaoCas.FirstOrDefault(c => c.Id == obj.Id);
-
             _dbContext.Remove(tempobj);
             _dbContext.SaveChanges();
             return true;
