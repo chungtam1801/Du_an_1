@@ -43,7 +43,6 @@
             this.btn_seachbyma = new System.Windows.Forms.PictureBox();
             this.btn_them = new System.Windows.Forms.Button();
             this.btn_sua = new System.Windows.Forms.Button();
-            this.btn_xoa = new System.Windows.Forms.Button();
             this.btn_clear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_loai)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_seachbyma)).BeginInit();
@@ -197,7 +196,7 @@
             this.btn_sua.ForeColor = System.Drawing.Color.White;
             this.btn_sua.Image = global::_3.PL.Properties.Resources.edit;
             this.btn_sua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_sua.Location = new System.Drawing.Point(302, 240);
+            this.btn_sua.Location = new System.Drawing.Point(295, 242);
             this.btn_sua.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_sua.Name = "btn_sua";
             this.btn_sua.Padding = new System.Windows.Forms.Padding(17, 9, 46, 9);
@@ -208,23 +207,6 @@
             this.btn_sua.UseVisualStyleBackColor = false;
             this.btn_sua.Click += new System.EventHandler(this.btn_sua_Click);
             // 
-            // btn_xoa
-            // 
-            this.btn_xoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
-            this.btn_xoa.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_xoa.ForeColor = System.Drawing.Color.White;
-            this.btn_xoa.Image = global::_3.PL.Properties.Resources.delete1;
-            this.btn_xoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_xoa.Location = new System.Drawing.Point(496, 240);
-            this.btn_xoa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btn_xoa.Name = "btn_xoa";
-            this.btn_xoa.Padding = new System.Windows.Forms.Padding(17, 9, 43, 9);
-            this.btn_xoa.Size = new System.Drawing.Size(145, 58);
-            this.btn_xoa.TabIndex = 57;
-            this.btn_xoa.Text = "Xóa";
-            this.btn_xoa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_xoa.UseVisualStyleBackColor = false;
-            // 
             // btn_clear
             // 
             this.btn_clear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
@@ -232,11 +214,11 @@
             this.btn_clear.ForeColor = System.Drawing.Color.White;
             this.btn_clear.Image = global::_3.PL.Properties.Resources.iconfinder_broom_clean_service_labor_website_4622511_122412;
             this.btn_clear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_clear.Location = new System.Drawing.Point(675, 244);
+            this.btn_clear.Location = new System.Drawing.Point(488, 242);
             this.btn_clear.Margin = new System.Windows.Forms.Padding(4);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Padding = new System.Windows.Forms.Padding(15, 7, 35, 7);
-            this.btn_clear.Size = new System.Drawing.Size(140, 54);
+            this.btn_clear.Size = new System.Drawing.Size(140, 56);
             this.btn_clear.TabIndex = 58;
             this.btn_clear.Text = "Clear";
             this.btn_clear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -250,7 +232,6 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(823, 610);
             this.Controls.Add(this.btn_clear);
-            this.Controls.Add(this.btn_xoa);
             this.Controls.Add(this.btn_sua);
             this.Controls.Add(this.btn_them);
             this.Controls.Add(this.btn_seachbyma);
@@ -291,7 +272,6 @@
         private System.Windows.Forms.PictureBox btn_seachbyma;
         private System.Windows.Forms.Button btn_them;
         private System.Windows.Forms.Button btn_sua;
-        private System.Windows.Forms.Button btn_xoa;
         private System.Windows.Forms.Button btn_clear;
     }
 }
