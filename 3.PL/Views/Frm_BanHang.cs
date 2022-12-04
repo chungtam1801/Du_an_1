@@ -26,21 +26,20 @@ namespace _3.PL.Views
         private BanHangServices _banHangServices = new BanHangServices();
         //private IQLHoaDonServices _iQLHoaDonServices;
         private IQLChiTietSpServices _iQLChiTietSpServices;
-        private IQLNhanVienServices _iQLNhanVienServices;
         //private IQLChiTietHoaDonServices _iQLChiTietHoaDonServices;
         //private IQLChiTietPtttServices _iQLChiTietPtttServices;
         //private IQLPhuongThucThanhToanServices _iQLPhuongThucThanhToanServices;
         private KhachHang _khachHang;
-        private HoaDon? _hoaDon;
+        //private HoaDon? _hoaDon;
         private int _trangThaiBH = 0;
-        private int _trangThaiHD = 0;
-        private int _trangThaiDH = 3;
+        private string _trangThaiHD = "Chờ thanh toán";
+        private string _trangThaiDH = "Chờ giao hàng";
         private List<Guid> _lstIDPTTT = new List<Guid>();
+        public HoaDon? _hoaDon { get; set; }
         public Frm_BanHang()
         {
             InitializeComponent();
             _iQLChiTietSpServices = new QLChiTietSpServices();
-            _iQLNhanVienServices = new QLNhanVienServices();
             LoadDTG_HoaDon(_trangThaiHD);
             LoadDTG_DatHang(_trangThaiDH);
             GetData(_iQLChiTietSpServices.GetAllView());
@@ -89,7 +88,7 @@ namespace _3.PL.Views
                 else if (hoaDon.TrangThai <3) btn_Chot.Text = "Thanh toán";
             }           
         }
-        private void LoadDTG_ChiTietHD(List<ViewQLChiTietHoaDon> lstView)
+        public void LoadDTG_ChiTietHD(List<ViewQLChiTietHoaDon> lstView)
         {
             dtg_ChiTietHD.Rows.Clear();
             dtg_ChiTietHD.ColumnCount = 11;
@@ -110,7 +109,7 @@ namespace _3.PL.Views
                 dtg_ChiTietHD.Rows.Add(x.Ma, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu, x.SoLuong, x.Id,x.DonGia,x.TongTien);
             }
         }
-        public void LoadDTG_DatHang(int trangthai)
+        public void LoadDTG_DatHang(string trangthai)
         {
             dtg_DatHang.Rows.Clear();
             dtg_DatHang.ColumnCount = 7;
@@ -121,13 +120,13 @@ namespace _3.PL.Views
             dtg_DatHang.Columns[4].Name = "Ngày nhận hàng";
             dtg_DatHang.Columns[5].Name = "Tổng tiền";
             dtg_DatHang.Columns[6].Name = "Trạng thái";
-            foreach (HoaDon hoaDon in _banHangServices.GetAllHD().Where(c => c.TrangThai == trangthai))
+            foreach (ViewQLHoaDon hoaDon in _banHangServices.GetAllHDV().Where(c => c.TrangThai == trangthai))
             {
-                dtg_DatHang.Rows.Add(hoaDon.Ma, _iQLNhanVienServices.GetAll().First(c => c.Id == hoaDon.IdNv).Ten, hoaDon.NgayTao, hoaDon.NgayShip,hoaDon.NgayNhan,_banHangServices.SumTienHang(hoaDon.Id), hoaDon.TrangThai);
+                dtg_DatHang.Rows.Add(hoaDon.Ma, hoaDon.TenNv, hoaDon.NgayTao, hoaDon.NgayGiaoHang,hoaDon.NgayNhanHang,hoaDon.TongTien, hoaDon.TrangThai);
             }
         }
         //Sửa
-        public void LoadDTG_HoaDon(int trangthai)
+        public void LoadDTG_HoaDon(string trangthai)
         {
             dtg_HoaDon.Rows.Clear();
             dtg_HoaDon.ColumnCount = 6;
@@ -137,9 +136,9 @@ namespace _3.PL.Views
             dtg_HoaDon.Columns[3].Name = "Ngay thanh toán";
             dtg_HoaDon.Columns[4].Name = "Tổng tiền";
             dtg_HoaDon.Columns[5].Name = "Trạng thái";
-            foreach (HoaDon hoaDon in _banHangServices.GetAllHD().Where(c=>c.TrangThai==trangthai))
+            foreach (ViewQLHoaDon hoaDon in _banHangServices.GetAllHDV().Where(c=>c.TrangThai==trangthai))
             {
-                dtg_HoaDon.Rows.Add(hoaDon.Ma, _iQLNhanVienServices.GetAll().First(c => c.Id == hoaDon.IdNv).Ten, hoaDon.NgayTao, hoaDon.NgayThanhToan,_banHangServices.SumTienHang(hoaDon.Id),hoaDon.TrangThai);
+                dtg_HoaDon.Rows.Add(hoaDon.Ma, hoaDon.TenNv, hoaDon.NgayTao, hoaDon.NgayThanhToan,hoaDon.TongTien,hoaDon.TrangThai);
             }
         }
         private void UserContrel_Click(object sender, EventArgs e)
@@ -169,77 +168,22 @@ namespace _3.PL.Views
         }  
         private void tsb_BanHang_Click(object sender, EventArgs e)
         {
-            _trangThaiBH = 0;
-            _hoaDon = null;
-            LoadThongTinHoaDon(_hoaDon);
-            btn_Chot.Text = "Thanh toán";
-            lbl_TienShip.Visible = false;
-            tbx_TienShip.Visible = false;
+            //_trangThaiBH = 0;
+            //_hoaDon = null;
+            //LoadThongTinHoaDon(_hoaDon);
+            //btn_Chot.Text = "Thanh toán";
+            //lbl_TienShip.Visible = false;
+            //tbx_TienShip.Visible = false;
         }
         private void tsb_DatHang_Click(object sender, EventArgs e)
         {
-            _trangThaiBH = 2;
-            _hoaDon = null;
-            LoadThongTinHoaDon(_hoaDon);
-            btn_Chot.Text = "Giao hàng";
-            lbl_TienShip.Visible = true;
-            tbx_TienShip.Visible = true;
+            //_trangThaiBH = 2;
+            //_hoaDon = null;
+            //LoadThongTinHoaDon(_hoaDon);
+            //btn_Chot.Text = "Giao hàng";
+            //lbl_TienShip.Visible = true;
+            //tbx_TienShip.Visible = true;
         }
-
-        private void dtg_ChiTietHD_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //if(dtg_ChiTietHD.CurrentRow.Cells[8].Value != null)
-            //{
-            //    ChiTietHoaDon chiTietHoaDon = _iQLChiTietHoaDonServices.GetByID(new Guid(dtg_ChiTietHD.CurrentRow.Cells[8].Value.ToString()));
-            //    ChiTietSp chiTietSp = _iQLChiTietSpServices.GetAll().First(p => p.Id == chiTietHoaDon.IdCtsp);
-            //    if (Convert.ToInt32(dtg_ChiTietHD.CurrentRow.Cells[7].Value) > 1)
-            //    {
-            //        chiTietHoaDon.SoLuong--;
-            //    }
-            //    else
-            //    {
-            //        _iQLChiTietHoaDonServices.Delete(chiTietHoaDon);
-            //    }
-            //    chiTietSp.SoLuongTon++;
-            //    LoadDTG_ChiTietHD(_iQLChiTietHoaDonServices.GetAllView(_hoaDon.Id));
-            //    GetData(_iQLChiTietSpServices.GetAllView());
-            //}          
-        }
-        //Sua
-        //private void dtg_ChiTietHD_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        //{
-        //    if(e.Button==MouseButtons.Left)
-        //    {
-        //        if (dtg_ChiTietHD.CurrentRow.Cells[8].Value != null)
-        //        {
-        //            ChiTietHoaDon chiTietHoaDon = _iQLChiTietHoaDonServices.GetByID(new Guid(dtg_ChiTietHD.CurrentRow.Cells[8].Value.ToString()));
-        //            ChiTietSp chiTietSp = _iQLChiTietSpServices.GetAll().First(p => p.Id == chiTietHoaDon.IdCtsp);
-        //            if (Convert.ToInt32(dtg_ChiTietHD.CurrentRow.Cells[7].Value) > 1)
-        //            {
-        //                chiTietHoaDon.SoLuong--;
-        //            }
-        //            else
-        //            {
-        //                _iQLChiTietHoaDonServices.Delete(chiTietHoaDon);
-        //            }
-        //            chiTietSp.SoLuongTon++;
-        //            LoadDTG_ChiTietHD(_iQLChiTietHoaDonServices.GetAllView(_hoaDon.Id));
-        //            GetData(_iQLChiTietSpServices.GetAllView());
-        //        }
-        //    }
-        //    else if(e.Button==MouseButtons.Right)
-        //    {
-        //        if (dtg_ChiTietHD.CurrentRow.Cells[8].Value != null)
-        //        {
-        //            ChiTietHoaDon chiTietHoaDon = _iQLChiTietHoaDonServices.GetByID(new Guid(dtg_ChiTietHD.CurrentRow.Cells[8].Value.ToString()));
-        //            ChiTietSp chiTietSp = _iQLChiTietSpServices.GetAll().First(p => p.Id == chiTietHoaDon.IdCtsp);
-        //            chiTietSp.SoLuongTon+=chiTietHoaDon.SoLuong;
-        //            _iQLChiTietHoaDonServices.Delete(chiTietHoaDon);                 
-        //            LoadDTG_ChiTietHD(_iQLChiTietHoaDonServices.GetAllView(_hoaDon.Id));
-        //            GetData(_iQLChiTietSpServices.GetAllView());
-        //        }
-        //    }
-        //}
         private void btn_Sua_Click(object sender, EventArgs e)
         {
 
@@ -286,14 +230,9 @@ namespace _3.PL.Views
             //    }
             //}              
         }
-        private void dtg_ChiTietHD_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void pic_TimKiem_Click(object sender, EventArgs e)
         {
-            if (!_banHangServices.CheckHDThanhToan(_hoaDon))
-            {
-                _banHangServices.UpdateChiTietHD(new Guid(dtg_ChiTietHD.CurrentRow.Cells[8].Value.ToString()), Convert.ToInt32(dtg_ChiTietHD.CurrentRow.Cells[7].Value));
-                LoadThongTinHoaDon(_hoaDon);
-            }
-            else MessageBox.Show("Hoá đơn đang được thanh toán");
+            GetData(_iQLChiTietSpServices.GetAllView().Where(c => c.Ten.Contains(tbx_TimKiem.Text)).ToList());
         }
         //pnl ThongTinHoaDon
         private void cbx_HTTT_SelectedIndexChanged(object sender, EventArgs e)
@@ -419,7 +358,7 @@ namespace _3.PL.Views
         }
         private void cbx_TrangThai_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _trangThaiHD = cbx_TrangThai.SelectedIndex;
+            _trangThaiHD = cbx_TrangThai.Text;
             LoadDTG_HoaDon(_trangThaiHD);
         }
         private void dtg_HoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -443,7 +382,7 @@ namespace _3.PL.Views
         }
         private void cbx_THDatHang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _trangThaiDH = cbx_THDatHang.SelectedIndex+3;
+            _trangThaiDH = cbx_THDatHang.Text;
             LoadDTG_DatHang(_trangThaiDH);
         }
         private void dtg_DatHang_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -456,10 +395,45 @@ namespace _3.PL.Views
                 LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
             }
         }
-
-        private void pic_TimKiem_Click(object sender, EventArgs e)
+        //pnl GioHang
+        private void btn_XoaAll_Click(object sender, EventArgs e)
         {
-            GetData(_iQLChiTietSpServices.GetAllView().Where(c => c.Ten.Contains(tbx_TimKiem.Text)).ToList());
+            if (_hoaDon != null)
+            {
+                _banHangServices.DeleteALLChiTietHD(_hoaDon.Id);
+                LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
+                GetData(_iQLChiTietSpServices.GetAllView());
+            }
+        }
+        private void dtg_ChiTietHD_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!_banHangServices.CheckHDThanhToan(_hoaDon))
+            {
+                _banHangServices.UpdateSoLuongChiTietHD(new Guid(dtg_ChiTietHD.CurrentRow.Cells[8].Value.ToString()), Convert.ToInt32(dtg_ChiTietHD.CurrentRow.Cells[7].Value));
+                LoadThongTinHoaDon(_hoaDon);
+                //Sua
+                _iQLChiTietSpServices = new QLChiTietSpServices();
+                //
+                GetData(_iQLChiTietSpServices.GetAllView());
+            }
+            else MessageBox.Show("Hoá đơn đang được thanh toán");
+        }
+
+        private void btn_Xoa_Click(object sender, EventArgs e)
+        {
+            if(dtg_ChiTietHD.CurrentRow.Cells[8].Value!=null)
+            {
+                _banHangServices.DeleteChiTietHD(new Guid(dtg_ChiTietHD.CurrentRow.Cells[8].Value.ToString()));
+                LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
+                GetData(_iQLChiTietSpServices.GetAllView());
+            }           
+        }
+
+        private void btn_QR_Click(object sender, EventArgs e)
+        {
+            Frm_QR frm_qr = new Frm_QR();
+            frm_qr.frmPatents = this;
+            frm_qr.ShowDialog();
         }
     }
 }

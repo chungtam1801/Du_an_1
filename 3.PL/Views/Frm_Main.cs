@@ -42,11 +42,11 @@ namespace _3.PL.Views
             btn_banHang.BackColor = Color.FromArgb(46, 51, 73);
             lbl_tilte.Text = "BÁN HÀNG";
             hideMenuCon();
-            if(DialogResult.Yes == MessageBox.Show("Bạn có chắc chắn vào ca?", "", MessageBoxButtons.YesNo)){
-                OpenChildForm(new Frm_BanHang(), sender);
-                Frm_QLVaoCa frm_QLVaoCa = new Frm_QLVaoCa();
-                frm_QLVaoCa.ShowDialog();
-            }
+            //if(DialogResult.Yes == MessageBox.Show("Bạn có chắc chắn vào ca?", "", MessageBoxButtons.YesNo)){
+            OpenChildForm(new Frm_BanHang(), sender);
+            //    Frm_QLVaoCa frm_QLVaoCa = new Frm_QLVaoCa();
+            //    frm_QLVaoCa.ShowDialog();
+            //}
         }
 
         private void btn_sanpham_Click(object sender, EventArgs e)
@@ -241,6 +241,16 @@ namespace _3.PL.Views
             pnl_Nav.Left = btn_nhanvien.Left;
             btn_nhanvien.BackColor = Color.FromArgb(46, 51, 73);
             OpenChildForm(new Frm_KetCa(), sender);
+        }
+
+        private void btn_QLTichDiem_Click(object sender, EventArgs e)
+        {
+            hideMenuCon();
+            pnl_Nav.Height = btn_QLTichDiem.Height;
+            pnl_Nav.Top = btn_QLTichDiem.Top;
+            pnl_Nav.Left = btn_QLTichDiem.Left;
+            btn_QLTichDiem.BackColor = Color.FromArgb(46, 51, 73);
+            OpenChildForm(new Frm_ThietLapDiem(), sender);
         }
 
         //private void btn_tichdiem_Click(object sender, EventArgs e)

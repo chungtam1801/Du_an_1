@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Main));
             this.pnl_menu = new System.Windows.Forms.Panel();
-            this.btn_ketca = new System.Windows.Forms.Button();
             this.btn_khuyenmai = new System.Windows.Forms.Button();
             this.btn_khachhang = new System.Windows.Forms.Button();
             this.btn_nhanvien = new System.Windows.Forms.Button();
@@ -53,6 +52,8 @@
             this.tbx_giohethong = new System.Windows.Forms.TextBox();
             this.lbl_tilte = new System.Windows.Forms.Label();
             this.pnl_desktop = new System.Windows.Forms.Panel();
+            this.btn_QLTichDiem = new System.Windows.Forms.Button();
+            this.btn_ketca = new System.Windows.Forms.Button();
             this.pnl_menu.SuspendLayout();
             this.pnl_menucon.SuspendLayout();
             this.pnl_user.SuspendLayout();
@@ -64,6 +65,7 @@
             // 
             this.pnl_menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
             this.pnl_menu.Controls.Add(this.btn_ketca);
+            this.pnl_menu.Controls.Add(this.btn_QLTichDiem);
             this.pnl_menu.Controls.Add(this.btn_khuyenmai);
             this.pnl_menu.Controls.Add(this.btn_khachhang);
             this.pnl_menu.Controls.Add(this.btn_nhanvien);
@@ -75,25 +77,8 @@
             this.pnl_menu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnl_menu.Location = new System.Drawing.Point(0, 0);
             this.pnl_menu.Name = "pnl_menu";
-            this.pnl_menu.Size = new System.Drawing.Size(190, 729);
+            this.pnl_menu.Size = new System.Drawing.Size(190, 788);
             this.pnl_menu.TabIndex = 0;
-            // 
-            // btn_ketca
-            // 
-            this.btn_ketca.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_ketca.FlatAppearance.BorderSize = 0;
-            this.btn_ketca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_ketca.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_ketca.ForeColor = System.Drawing.Color.White;
-            this.btn_ketca.Image = ((System.Drawing.Image)(resources.GetObject("btn_ketca.Image")));
-            this.btn_ketca.Location = new System.Drawing.Point(0, 686);
-            this.btn_ketca.Name = "btn_ketca";
-            this.btn_ketca.Size = new System.Drawing.Size(190, 45);
-            this.btn_ketca.TabIndex = 14;
-            this.btn_ketca.Text = "KẾT CA";
-            this.btn_ketca.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btn_ketca.UseVisualStyleBackColor = true;
-            this.btn_ketca.Click += new System.EventHandler(this.btn_ketca_Click);
             // 
             // btn_khuyenmai
             // 
@@ -431,15 +416,48 @@
             this.pnl_desktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnl_desktop.Location = new System.Drawing.Point(190, 75);
             this.pnl_desktop.Name = "pnl_desktop";
-            this.pnl_desktop.Size = new System.Drawing.Size(1160, 654);
+            this.pnl_desktop.Size = new System.Drawing.Size(1160, 713);
             this.pnl_desktop.TabIndex = 5;
+            // 
+            // btn_QLTichDiem
+            // 
+            this.btn_QLTichDiem.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_QLTichDiem.FlatAppearance.BorderSize = 0;
+            this.btn_QLTichDiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_QLTichDiem.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_QLTichDiem.ForeColor = System.Drawing.Color.White;
+            this.btn_QLTichDiem.Image = ((System.Drawing.Image)(resources.GetObject("btn_QLTichDiem.Image")));
+            this.btn_QLTichDiem.Location = new System.Drawing.Point(0, 686);
+            this.btn_QLTichDiem.Name = "btn_QLTichDiem";
+            this.btn_QLTichDiem.Size = new System.Drawing.Size(190, 45);
+            this.btn_QLTichDiem.TabIndex = 15;
+            this.btn_QLTichDiem.Text = "QL TÍCH ĐIỂM";
+            this.btn_QLTichDiem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btn_QLTichDiem.UseVisualStyleBackColor = true;
+            this.btn_QLTichDiem.Click += new System.EventHandler(this.btn_QLTichDiem_Click);
+            // 
+            // btn_ketca
+            // 
+            this.btn_ketca.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_ketca.FlatAppearance.BorderSize = 0;
+            this.btn_ketca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ketca.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_ketca.ForeColor = System.Drawing.Color.White;
+            this.btn_ketca.Image = ((System.Drawing.Image)(resources.GetObject("btn_ketca.Image")));
+            this.btn_ketca.Location = new System.Drawing.Point(0, 731);
+            this.btn_ketca.Name = "btn_ketca";
+            this.btn_ketca.Size = new System.Drawing.Size(190, 45);
+            this.btn_ketca.TabIndex = 16;
+            this.btn_ketca.Text = "KẾT CA";
+            this.btn_ketca.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btn_ketca.UseVisualStyleBackColor = true;
             // 
             // Frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1350, 788);
             this.Controls.Add(this.pnl_desktop);
             this.Controls.Add(this.pnl_title);
             this.Controls.Add(this.pnl_Nav);
@@ -489,5 +507,6 @@
         private System.Windows.Forms.Button btn_nhanvien;
         private System.Windows.Forms.TextBox tbx_giohethong;
         private System.Windows.Forms.Button btn_ketca;
+        private System.Windows.Forms.Button btn_QLTichDiem;
     }
 }
