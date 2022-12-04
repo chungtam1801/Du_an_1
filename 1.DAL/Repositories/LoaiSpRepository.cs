@@ -49,7 +49,7 @@ namespace _1.DAL.Repositories
         {
             if (obj == null) return false;
             var tempobj = _dbContext.LoaiSps.FirstOrDefault(c => c.Id == obj.Id);
-            tempobj.Ma = obj.Ma;
+            //tempobj.Ma = obj.Ma;
             tempobj.Ten = obj.Ten;
             tempobj.TrangThai=obj.TrangThai;
             //Còn bao nhiêu thuộc tính làm tương tự

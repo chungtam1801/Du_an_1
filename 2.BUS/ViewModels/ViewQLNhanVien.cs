@@ -17,6 +17,8 @@ namespace _2.BUS.ViewModels
         public string Ten { get; set; }
         public string TenDem { get; set; }
         public string Ho { get; set; }
+        public string HoVaTen { get; set; }
+        public string TenCv { get; set; }
         public string GioiTinh { get; set; }
         public DateTime NgaySinh { get; set; }
         public string DiaChi { get; set; }
