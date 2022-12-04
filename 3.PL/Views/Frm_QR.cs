@@ -10,18 +10,25 @@ using System.Windows.Forms;
 using AForge.Video.DirectShow;
 using AForge.Video;
 using ZXing;
-using System.Threading;
+using _2.BUS.Services;
+using _2.BUS.IServices;
+using _1.DAL.DomainClass;
 
 namespace _3.PL.Views
 {
     public partial class Frm_QR : Form
     {
+        public Frm_BanHang frmPatents { get; set; }
+        BanHangServices _banHangServices = new BanHangServices();
+        private IQLChiTietSpServices _iQLChiTietSpServices;
         public Frm_QR()
         {
             InitializeComponent();
+            _iQLChiTietSpServices = new QLChiTietSpServices();
         }
         FilterInfoCollection filterInfoCollection;
         VideoCaptureDevice videoCaptureDevice;
+        SaveFileDialog saveFile = new SaveFileDialog();
         private void Frm_QR_Load(object sender, EventArgs e)
         {
             filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
@@ -44,14 +51,13 @@ namespace _3.PL.Views
 
         private void Frm_QR_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(videoCaptureDevice != null)
+            if (videoCaptureDevice != null)
             {
                 if (videoCaptureDevice.IsRunning)
                 {
                     videoCaptureDevice.SignalToStop();
-                    Thread.Sleep(1000);
                 }
-            }                         
+            }
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -61,13 +67,18 @@ namespace _3.PL.Views
                 Result result = barcodeReader.Decode((Bitmap)ptb_QR.Image);
                 if(result != null)
                 {
-                    tbx_Chuoi.Text = result.ToString();
-                    timer1.Stop();
-                    if (videoCaptureDevice.IsRunning)
+                    ChiTietSp temp = _iQLChiTietSpServices.GetAll().FirstOrDefault(c => c.Id == new Guid(result.ToString()));
+                    if(temp != null)
                     {
-                        videoCaptureDevice.SignalToStop();
-                        Thread.Sleep(1000);
-                    }
+                        _banHangServices.AddChiTietHD(temp, frmPatents._hoaDon);
+                        frmPatents.LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(frmPatents._hoaDon.Id));
+                        timer1.Stop();
+                        if (videoCaptureDevice.IsRunning)
+                        {
+                            videoCaptureDevice.SignalToStop();
+                            this.Close();
+                        }
+                    }                 
                 }
 
             }

@@ -88,6 +88,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btn_CreateQR = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -122,7 +123,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1034, 729);
+            this.panel1.Size = new System.Drawing.Size(1202, 1005);
             this.panel1.TabIndex = 0;
             // 
             // splitContainer1
@@ -140,8 +141,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1034, 729);
-            this.splitContainer1.SplitterDistance = 183;
+            this.splitContainer1.Size = new System.Drawing.Size(1202, 1005);
+            this.splitContainer1.SplitterDistance = 212;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -162,6 +163,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer3.Panel2.Controls.Add(this.btn_CreateQR);
             this.splitContainer3.Panel2.Controls.Add(this.tbx_soluong);
             this.splitContainer3.Panel2.Controls.Add(this.label8);
             this.splitContainer3.Panel2.Controls.Add(this.tbx_masp);
@@ -200,8 +202,8 @@
             this.splitContainer3.Panel2.Controls.Add(this.label7);
             this.splitContainer3.Panel2.Controls.Add(this.cmb_kichthuoc);
             this.splitContainer3.Panel2.Font = new System.Drawing.Font("Noto Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.splitContainer3.Size = new System.Drawing.Size(183, 729);
-            this.splitContainer3.SplitterDistance = 257;
+            this.splitContainer3.Size = new System.Drawing.Size(212, 1005);
+            this.splitContainer3.SplitterDistance = 354;
             this.splitContainer3.SplitterWidth = 5;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -210,7 +212,7 @@
             this.pic_anhsp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pic_anhsp.Location = new System.Drawing.Point(0, 0);
             this.pic_anhsp.Name = "pic_anhsp";
-            this.pic_anhsp.Size = new System.Drawing.Size(183, 257);
+            this.pic_anhsp.Size = new System.Drawing.Size(212, 354);
             this.pic_anhsp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_anhsp.TabIndex = 0;
             this.pic_anhsp.TabStop = false;
@@ -640,8 +642,8 @@
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer2.Panel2.Controls.Add(this.dgrd_ctsp);
-            this.splitContainer2.Size = new System.Drawing.Size(846, 729);
-            this.splitContainer2.SplitterDistance = 59;
+            this.splitContainer2.Size = new System.Drawing.Size(985, 1005);
+            this.splitContainer2.SplitterDistance = 81;
             this.splitContainer2.SplitterWidth = 5;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -781,7 +783,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgrd_ctsp.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgrd_ctsp.RowTemplate.Height = 25;
-            this.dgrd_ctsp.Size = new System.Drawing.Size(846, 665);
+            this.dgrd_ctsp.Size = new System.Drawing.Size(985, 919);
             this.dgrd_ctsp.TabIndex = 0;
             this.dgrd_ctsp.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrd_ctsp_CellClick_1);
             // 
@@ -803,11 +805,29 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // btn_CreateQR
+            // 
+            this.btn_CreateQR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
+            this.btn_CreateQR.Font = new System.Drawing.Font("Open Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_CreateQR.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.btn_CreateQR.Image = global::_3.PL.Properties.Resources.add6;
+            this.btn_CreateQR.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_CreateQR.Location = new System.Drawing.Point(17, 571);
+            this.btn_CreateQR.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_CreateQR.Name = "btn_CreateQR";
+            this.btn_CreateQR.Padding = new System.Windows.Forms.Padding(20, 5, 45, 5);
+            this.btn_CreateQR.Size = new System.Drawing.Size(157, 53);
+            this.btn_CreateQR.TabIndex = 60;
+            this.btn_CreateQR.Text = "Tạo QR";
+            this.btn_CreateQR.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_CreateQR.UseVisualStyleBackColor = false;
+            this.btn_CreateQR.Click += new System.EventHandler(this.btn_CreateQR_Click);
+            // 
             // Frm_ChiTietSanPham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 729);
+            this.ClientSize = new System.Drawing.Size(1202, 1005);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Noto Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -905,5 +925,6 @@
         private System.Windows.Forms.RadioButton rbtn_lockohd;
         private System.Windows.Forms.RadioButton rbtn_lochd;
         private System.Windows.Forms.ComboBox cmb_khuyenmai;
+        private System.Windows.Forms.Button btn_CreateQR;
     }
 }

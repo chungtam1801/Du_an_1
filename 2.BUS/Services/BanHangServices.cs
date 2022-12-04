@@ -24,6 +24,7 @@ namespace _2.BUS.Services
         private IClassCRUDRepo<KhachHang> _CRUDKhachHang;
         private IClassCRUDRepo<LichSuTichDiem> _CRUDLSTD;
         private IClassCRUDRepo<QuyDoiDiem> _CRUDQDD;
+        private IClassCRUDRepo<NhanVien> _CRUDNhanVien;
         public BanHangServices()
         {
             _iQLChiTietSpServices = new QLChiTietSpServices();
@@ -35,6 +36,7 @@ namespace _2.BUS.Services
             _CRUDKhachHang = new KhachHangRepository();
             _CRUDLSTD = new LichSuTichDiemRepository();
             _CRUDQDD = new QuyDoiDiemRepository();
+            _CRUDNhanVien = new NhanVienRepository();
         }
         public HoaDon CreateHD(int trangthai)
         {
@@ -48,6 +50,7 @@ namespace _2.BUS.Services
                 hoaDon.Ma = "HD" + (_CRUDHoaDon.GetAll().Count + 1);
             }
             hoaDon.IdNv = new Guid("0492AD9B-B6FB-4E17-AAE6-8B07B0A900D7");
+            hoaDon.IdNv = new Guid("506AE5B4-6D31-43E6-A5EB-BA535A67D692");
             hoaDon.Ma = ClassSP.AutoID("HD", _CRUDHoaDon.GetAll().Count);
             hoaDon.NgayTao = DateTime.Now;
             hoaDon.TrangThai = trangthai;
@@ -135,6 +138,26 @@ namespace _2.BUS.Services
         {
             return _CRUDChiTietHD.GetAll().Where(c => c.IdHd == idHD).Sum(d => d.SoLuong * d.DonGia);
         }
+        public List<ViewQLHoaDon> GetAllHDV()
+        {
+            var lst = new List<ViewQLHoaDon>();
+            lst = (from a in _CRUDHoaDon.GetAll()
+                   join b in _CRUDNhanVien.GetAll() on a.IdNv equals b.Id
+                   select new ViewQLHoaDon()
+                   {
+                       Id = a.Id,
+                       TenNv = b.Ho+" "+b.TenDem+" "+b.Ten,
+                       Ma = a.Ma,
+                       NgayTao = a.NgayTao,
+                       NgayThanhToan = a.NgayThanhToan,
+                       NgayGiaoHang = a.NgayShip,
+                       NgayNhanHang = a.NgayNhan,
+                       GiamGia = a.GiamGia,
+                       TongTien = SumTienHang(a.Id),
+                       TrangThai = a.TrangThai == 0?"Chờ thanh toán":a.TrangThai == 1?"Đã thanh toán":a.TrangThai == 2?"Hủy thanh toán":a.TrangThai==3?"Chờ giao hàng":a.TrangThai==4?"Đang giao hàng":a.TrangThai==5?"Đã giao hàng":a.TrangThai==6?"Hủy giao hàng":""
+                   }).ToList();
+            return lst;
+        }
         public List<HoaDon> GetAllHD()
         {
             return _CRUDHoaDon.GetAll();
@@ -186,15 +209,6 @@ namespace _2.BUS.Services
                 _CRUDChiTietHD.Update(chiTietHoaDon);
             }
             chiTietSp.SoLuongTon--;
-            _CRUDChiTietSP.Update(chiTietSp);
-        }
-        public void UpdateChiTietHD(Guid idCTHD,int soLuong)
-        {
-            ChiTietHoaDon chiTietHoaDon = _CRUDChiTietHD.GetAll().First(c => c.Id == idCTHD);
-            ChiTietSp chiTietSp = _CRUDChiTietSP.GetAll().First(c => c.Id == chiTietHoaDon.IdCtsp);
-            chiTietHoaDon.SoLuong = soLuong;
-            chiTietSp.SoLuongTon-=soLuong;
-            _CRUDChiTietHD.Update(chiTietHoaDon);
             _CRUDChiTietSP.Update(chiTietSp);
         }
         public string UpdateTrangThaiHD(HoaDon hoaDon,int trangThai)
@@ -253,6 +267,36 @@ namespace _2.BUS.Services
                 return diem * qdd.TiLeTieuDiem;
             }
             else return 0;
+        }
+        //Quan ly chi tiet hoa don
+        public void UpdateSoLuongChiTietHD(Guid idCTHD, int soLuong)
+        {
+            ChiTietHoaDon chiTietHoaDon = _CRUDChiTietHD.GetAll().First(c => c.Id == idCTHD);
+            ChiTietSp chiTietSp = _CRUDChiTietSP.GetAll().First(c => c.Id == chiTietHoaDon.IdCtsp);
+            int? soluongdu = chiTietHoaDon.SoLuong - soLuong;
+            chiTietHoaDon.SoLuong = soLuong;
+            chiTietSp.SoLuongTon += soluongdu;
+            _CRUDChiTietSP.Update(chiTietSp);
+            _CRUDChiTietHD.Update(chiTietHoaDon);
+        }
+        public void DeleteChiTietHD(Guid idCTHD)
+        {
+            ChiTietHoaDon chiTietHoaDon = _CRUDChiTietHD.GetAll().First(c => c.Id == idCTHD);
+            ChiTietSp chiTietSp = _CRUDChiTietSP.GetAll().First(c => c.Id == chiTietHoaDon.IdCtsp);
+            chiTietSp.SoLuongTon += chiTietHoaDon.SoLuong;
+            _CRUDChiTietSP.Update(chiTietSp);
+            _CRUDChiTietHD.Delete(chiTietHoaDon);
+        }
+        public void DeleteALLChiTietHD(Guid idHD)
+        {
+            List<ChiTietHoaDon> lst = _CRUDChiTietHD.GetAll().Where(c => c.IdHd == idHD).ToList();
+            foreach(var x in lst)
+            {
+                ChiTietSp chiTietSp = _CRUDChiTietSP.GetAll().First(c => c.Id == x.IdCtsp);
+                chiTietSp.SoLuongTon += x.SoLuong;
+                _CRUDChiTietSP.Update(chiTietSp);
+                _CRUDChiTietHD.Delete(x);
+            }          
         }
     }
 }

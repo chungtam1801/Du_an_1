@@ -13,7 +13,10 @@ using _2.BUS.Services;
 using System.IO;
 using _3.PL.Views;
 using _2.BUS.ViewModels;
+using _2.BUS.Services;
 using _3.PL.Utilities;
+using System.Drawing.Imaging;
+using QRCoder;
 
 namespace _3.PL.Views
 {
@@ -26,6 +29,8 @@ namespace _3.PL.Views
         private IQLKichThuocServices _iqlLKichThuocServices;
         private IQLLoaiSpServices _iqLLoaiSpServices;
         private IQLChatLieuServices _iqLChatLieuServices;
+        private QRServices _QRServices = new QRServices();
+        SaveFileDialog _saveFile = new SaveFileDialog();
 
         private Guid _id;
         public Frm_ChiTietSanPham()
@@ -749,6 +754,19 @@ namespace _3.PL.Views
             foreach (var x in list)
             {
                 dgrd_ctsp.Rows.Add(x.Id, x.Ma, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu, x.Anh, x.MoTa, x.SoLuongTon, x.GiaNhap, x.GiaBan, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+            }
+        }
+        private void btn_CreateQR_Click(object sender, EventArgs e)
+        {
+            Bitmap bitmap = _QRServices.CreateQR(dgrd_ctsp.CurrentRow.Cells[0].Value.ToString());
+            _saveFile.Filter = "PNG|*.png";
+            _saveFile.FileName = dgrd_ctsp.CurrentRow.Cells[1].Value.ToString();
+            if (_saveFile.ShowDialog() == DialogResult.OK)
+            {
+                if (bitmap != null)
+                {
+                    bitmap.Save(string.Concat(_saveFile.FileName, ".png"), ImageFormat.Png);
+                }
             }
         }
     }

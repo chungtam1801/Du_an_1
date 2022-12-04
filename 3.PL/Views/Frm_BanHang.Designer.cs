@@ -75,6 +75,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btn_QR = new System.Windows.Forms.Button();
+            this.btn_Xoa = new System.Windows.Forms.Button();
             this.btn_XoaAll = new System.Windows.Forms.Button();
             this.dtg_ChiTietHD = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -548,12 +550,36 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btn_QR);
+            this.panel3.Controls.Add(this.btn_Xoa);
             this.panel3.Controls.Add(this.btn_XoaAll);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 203);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1302, 59);
             this.panel3.TabIndex = 12;
+            // 
+            // btn_QR
+            // 
+            this.btn_QR.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btn_QR.Location = new System.Drawing.Point(786, 0);
+            this.btn_QR.Name = "btn_QR";
+            this.btn_QR.Size = new System.Drawing.Size(172, 59);
+            this.btn_QR.TabIndex = 13;
+            this.btn_QR.Text = "Quét mã";
+            this.btn_QR.UseVisualStyleBackColor = true;
+            this.btn_QR.Click += new System.EventHandler(this.btn_QR_Click);
+            // 
+            // btn_Xoa
+            // 
+            this.btn_Xoa.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btn_Xoa.Location = new System.Drawing.Point(958, 0);
+            this.btn_Xoa.Name = "btn_Xoa";
+            this.btn_Xoa.Size = new System.Drawing.Size(172, 59);
+            this.btn_Xoa.TabIndex = 12;
+            this.btn_Xoa.Text = "Xóa";
+            this.btn_Xoa.UseVisualStyleBackColor = true;
+            this.btn_Xoa.Click += new System.EventHandler(this.btn_Xoa_Click);
             // 
             // btn_XoaAll
             // 
@@ -564,6 +590,7 @@
             this.btn_XoaAll.TabIndex = 11;
             this.btn_XoaAll.Text = "Xoá toàn bộ";
             this.btn_XoaAll.UseVisualStyleBackColor = true;
+            this.btn_XoaAll.Click += new System.EventHandler(this.btn_XoaAll_Click);
             // 
             // dtg_ChiTietHD
             // 
@@ -578,6 +605,7 @@
             this.dtg_ChiTietHD.RowTemplate.Height = 25;
             this.dtg_ChiTietHD.Size = new System.Drawing.Size(1302, 182);
             this.dtg_ChiTietHD.TabIndex = 10;
+            this.dtg_ChiTietHD.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_ChiTietHD_CellEndEdit);
             // 
             // panel2
             // 
@@ -611,8 +639,8 @@
             "Chờ giao hàng",
             "Đang giao hàng",
             "Đã giao hàng",
-            "Hủy"});
-            this.cbx_THDatHang.Location = new System.Drawing.Point(414, 22);
+            "Hủy giao hàng"});
+            this.cbx_THDatHang.Location = new System.Drawing.Point(384, 22);
             this.cbx_THDatHang.Name = "cbx_THDatHang";
             this.cbx_THDatHang.Size = new System.Drawing.Size(151, 26);
             this.cbx_THDatHang.TabIndex = 46;
@@ -621,7 +649,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(340, 25);
+            this.label14.Location = new System.Drawing.Point(310, 25);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(68, 18);
             this.label14.TabIndex = 45;
@@ -673,7 +701,7 @@
             this.cbx_TrangThai.Items.AddRange(new object[] {
             "Chờ thanh toán",
             "Đã thanh toán",
-            "Hủy"});
+            "Hủy thanh toán"});
             this.cbx_TrangThai.Location = new System.Drawing.Point(380, 22);
             this.cbx_TrangThai.Name = "cbx_TrangThai";
             this.cbx_TrangThai.Size = new System.Drawing.Size(151, 26);
@@ -817,5 +845,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.PictureBox pic_TaoDatHang;
         private System.Windows.Forms.DataGridView dtg_DatHang;
+        private System.Windows.Forms.Button btn_QR;
+        private System.Windows.Forms.Button btn_Xoa;
     }
 }
