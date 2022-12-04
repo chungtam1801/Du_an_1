@@ -12,109 +12,219 @@ using _1.DAL.IRepositories;
 using _2.BUS.Services;
 using _2.BUS.IServices;
 using _1.DAL.DomainClass;
+using System.Security.Cryptography;
 
 namespace _3.PL.Views
 {
     public partial class Frm_ChatLieu : Form
     {
-        private IQLChatLieuServices _iqLclServices;
+        private IQLChatLieuServices qLChatLieuServices;
         private Guid _id;
         public Frm_ChatLieu()
         {
             InitializeComponent();
-            _iqLclServices = new QLChatLieuServices();
+            qLChatLieuServices = new QLChatLieuServices();
             LoadData();
         }
 
         private void LoadData()
         {
-            dgvChatLieu.ColumnCount = 4;
-            dgvChatLieu.Columns[0].Name = "ID";
-            dgvChatLieu.Columns[1].Name = "Mã";
-            dgvChatLieu.Columns[2].Name = "Tên";
-            dgvChatLieu.Columns[3].Name = "Trạng thái";
-            dgvChatLieu.Rows.Clear();
-            foreach (var x in _iqLclServices.GetAll())
+            ShowDataChatLieu.Rows.Clear();
+            ShowDataChatLieu.ColumnCount = 4;
+            ShowDataChatLieu.Columns[0].Name = "ID";
+            ShowDataChatLieu.Columns[0].Visible = false;
+            ShowDataChatLieu.Columns[1].Name = "Mã";
+            ShowDataChatLieu.Columns[2].Name = "Ten";
+            ShowDataChatLieu.Columns[3].Name = "Trạng thái";
+
+            foreach (var x in qLChatLieuServices.GetAll())
             {
-                dgvChatLieu.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                ShowDataChatLieu.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng");
             }
         }
-        private ChatLieu GetDataFromGUI()
+    
+    private ChatLieu GetDataFromGUI()
+    {
+        ChatLieu kt = new ChatLieu();
+        kt.Id = _id;
+        kt.Ma = tbt_Ma.Text;
+        kt.Ten = tbt_Ten.Text;
+        if (rd_hd.Checked == true)
         {
-            ChatLieu cl = new ChatLieu();
-            cl.Id = _id;
-            cl.Ma = txtMa.Text;
-            cl.Ten = txtTen.Text;
-            if (rbtn_hd.Checked == true)
-            {
-                cl.TrangThai = 1;
-            }
-            else if (rbtn_kohd.Checked == true)
-            {
-                cl.TrangThai = 0;
-            }
-            return cl;
+            kt.TrangThai = 1;
         }
+        else if (rd_khd.Checked == true)
+        {
+            kt.TrangThai = 0;
+        }
+        return kt;
+    }
+
+
+
+
+
+
         private void btn_them_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLclServices.Add(GetDataFromGUI());
-                LoadData();
+                if (qLChatLieuServices.GetAll().Any(p => p.Ma == tbt_Ma.Text))
+                {
+                    MessageBox.Show("Mã chất liệu đã tồn tại!");
+                }
+                else if (tbt_Ma.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mã chất liệu không được để trống!");
+                }
+                else if (tbt_Ten.Text.Trim() == "")
+                {
+                    MessageBox.Show("Ten chất liệu không được để trống!");
+                }
+                else if (qLChatLieuServices.GetAll().Any(p => p.Ten == tbt_Ten.Text))
+                {
+                    MessageBox.Show("Ten chất liệu đã tồn tại!");
+                }
+                else if (rd_hd.Checked == false && rd_khd.Checked == false)
+                {
+                    MessageBox.Show("Trạng thái chất liệu không được bỏ trống!");
+                }
+                else
+                {
+                    qLChatLieuServices.Add(GetDataFromGUI());
+                    LoadData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Them that bai");
             }
         }
 
-        private void btn_sua_Click(object sender, EventArgs e)
+        private void btn_Sua_Click(object sender, EventArgs e)
         {
+
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLclServices.Update(GetDataFromGUI());
-                LoadData();
+
+                if (tbt_Ma.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mã chất liệu không được để trống!");
+                }
+                else if (tbt_Ten.Text.Trim() == "")
+                {
+                    MessageBox.Show("Ten chất liệu không được để trống!");
+                }
+                else
+                {
+                    qLChatLieuServices.Update(GetDataFromGUI());
+                    LoadData();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Sửa  that bai");
             }
         }
 
-        private void btn_xoa_Click(object sender, EventArgs e)
+        private void btn_Xoa_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLclServices.Delete(GetDataFromGUI());
-                LoadData();
+                if (tbt_Ma.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mã chất liệu không được để trống!");
+                }
+                else if (tbt_Ten.Text.Trim() == "")
+                {
+                    MessageBox.Show("Ten chất liệu không được để trống!");
+                }
+                else
+                {
+                    qLChatLieuServices.Delete(GetDataFromGUI());
+                    LoadData();
+                }
             }
+            else
+            {
+                MessageBox.Show("Xoa that bai");
+            }
+
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
-            txtMa.Text = "";
-           txtTen.Text = "";
-            rbtn_hd.Checked = true;
+            tbt_Ma.Text = MaTuSinh();
+            tbt_Ten.Text = "";
+            rd_hd.Checked = false;
+            rd_khd.Checked = false;
             LoadData();
         }
 
-        private void dgrd_nsx_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void ShowDataChatLieu_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            var cl = _iqLclServices.GetAll().FirstOrDefault(c => c.Id == Guid.Parse(dgvChatLieu.Rows[rowIndex].Cells[0].Value.ToString()));
-            _id = cl.Id;
-            txtMa.Text = cl.Ma;
-            txtTen.Text = cl.Ten;
-            
-            if (cl.TrangThai == 1)
+            if (rowIndex >= 0 && rowIndex < qLChatLieuServices.GetAll().Count)
             {
-                rbtn_hd.Checked = true;
+                var kt = qLChatLieuServices.GetAll().FirstOrDefault(c => c.Id == Guid.Parse(ShowDataChatLieu.Rows[rowIndex].Cells[0].Value.ToString()));
+                _id = kt.Id;
+                tbt_Ma.Text = kt.Ma;
+                tbt_Ten.Text = kt.Ten;
+
+
+                if (kt.TrangThai == 1)
+                {
+                    rd_hd.Checked = true;
+                }
+                else if (kt.TrangThai == 0)
+                {
+                    rd_khd.Checked = true;
+                }
             }
-            else if (cl.TrangThai == 0)
+            else
             {
-                rbtn_kohd.Checked = true;
+                MessageBox.Show("Ngoài phạm vi dữ liệu");
             }
         }
 
-        private void btn_them_Click_1(object sender, EventArgs e)
+        private void tbt_timkiem_TextChanged(object sender, EventArgs e)
         {
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+            ShowDataChatLieu.Rows.Clear();
+            ShowDataChatLieu.ColumnCount = 4;
+            ShowDataChatLieu.Columns[0].Name = "ID";
+            ShowDataChatLieu.Columns[0].Visible = false;
+            ShowDataChatLieu.Columns[1].Name = "Mã";
+            ShowDataChatLieu.Columns[2].Name = "Ten";
+            ShowDataChatLieu.Columns[3].Name = "Trạng thái";
+
+            foreach (var item in qLChatLieuServices.GetAll().Where(x => x.Ten.ToLower().Contains(tbt_timkiem.Text.ToLower()) || x.Ma.Contains(tbt_timkiem.Text)))
             {
-                _iqLclServices.Add(GetDataFromGUI());
-                LoadData();
+                ShowDataChatLieu.Rows.Add(item.Id, item.Ma, item.Ten, item.TrangThai == 1 ? "Còn hàng" : "Hết hàng");
             }
+        }
+        private string MaTuSinh()
+        {
+            string s;
+            int max = 0;
+            for (int i = 0; i < qLChatLieuServices.GetAll().Count; i++)
+            {
+                string ma = qLChatLieuServices.GetAll()[i].Ma;
+                string so = ma.Substring(2);
+                int x = Convert.ToInt32(so);
+                if (x > max)
+                {
+                    max = x;
+                }
+            }
+            s = "CL00" + (max + 1);
+            return s;
+        }
+
+        private void Frm_ChatLieu_Load(object sender, EventArgs e)
+        {
+            tbt_Ma.Text = MaTuSinh();
         }
     }
 }
+

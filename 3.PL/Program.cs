@@ -16,8 +16,9 @@ namespace _3.PL
         [STAThread]
         static void Main()
         {
+            
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
-            Application.EnableVisualStyles();
+            Application.EnableVisualStyles();    
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Frm_Main());
         }

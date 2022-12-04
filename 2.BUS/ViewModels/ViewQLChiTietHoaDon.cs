@@ -19,5 +19,7 @@ namespace _2.BUS.ViewModels
         public string ChatLieu { get; set; }
         public int? SoLuong { get; set; }
         public Guid Id { get; set; }
+        public decimal? DonGia { get; set; }
+        public decimal? TongTien { get; set; }
     }
 }

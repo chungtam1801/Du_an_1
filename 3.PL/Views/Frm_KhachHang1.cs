@@ -25,6 +25,13 @@ namespace _3.PL.Views
         {
             InitializeComponent();
             _IqlKhachHangServices = new QLKhachHangServices();
+            int widthScreen = Screen.PrimaryScreen.WorkingArea.Width;
+            int heightScreen = Screen.PrimaryScreen.WorkingArea.Height;
+
+            //cho form hiển thị theo kích thước của màn hình
+            this.Width = widthScreen;
+            this.Height = heightScreen;
+
             kh_ma.Enabled = false;
             kh_ma.Text = MaTuSinh();
             kh_diemtich.Enabled = false;
@@ -80,7 +87,9 @@ namespace _3.PL.Views
             kh_ngaysinh.Value = kh.NgaySinh;
             kh_diachi.Text = kh.DiaChi;
             kh_sdt.Text = kh.Sdt;
-            kh_diemtich.Text = kh.DiemTich;
+            //Tam Sua
+            kh_diemtich.Text = kh.DiemTich.ToString();
+            //
             if (kh.TrangThai == 1)
             {
                 radioButton1.Checked = true;
@@ -101,7 +110,9 @@ namespace _3.PL.Views
             kh.NgaySinh = kh_ngaysinh.Value;
             kh.DiaChi = kh_diachi.Text;
             kh.Sdt = kh_sdt.Text;
-            kh.DiemTich = kh_diemtich.Text;
+            //Tam sua
+            kh.DiemTich = Convert.ToInt32(kh_diemtich.Text);
+            //
             if (radioButton1.Checked == true)
             {
                 kh.TrangThai = 1;

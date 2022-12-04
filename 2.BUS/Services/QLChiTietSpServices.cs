@@ -20,6 +20,7 @@ namespace _2.BUS.Services
         private IClassCRUDRepo<KichThuoc> _iKichThuocRepository;
         private IClassCRUDRepo<Nsx> _iNsxRepository;
         private IClassCRUDRepo<LoaiSp> _iLoaiSpRepository;
+        private IClassCRUDRepo<ChiTietKhuyenMai> _iChiTietKhuyenMaiRepository;
         public QLChiTietSpServices()
         {
             _iChiTietSpRepository = new ChiTietSpRepository();
@@ -29,6 +30,7 @@ namespace _2.BUS.Services
             _iNsxRepository = new NsxRepository();
             _iSanPhamRepository = new SanPhamRepository();
             _iLoaiSpRepository = new LoaiSpRepository();
+            _iChiTietKhuyenMaiRepository = new ChiTietKhuyenMaiRepository();
         }
         public string Add(ChiTietSp obj)
         {
@@ -61,6 +63,7 @@ namespace _2.BUS.Services
                          join e in _iMauSacRepository.GetAll() on a.IdMauSac equals e.Id
                          join g in _iNsxRepository.GetAll() on a.IdNsx equals g.Id
                          join h in _iLoaiSpRepository.GetAll() on a.IdLoaiSp equals h.Id
+                         //join i in _iChiTietKhuyenMaiRepository.GetAll() on a.ChiTietKhuyenMais equals i.Id
                          select new ViewQLChiTietSp()
                          { 
                              Id = a.Id,

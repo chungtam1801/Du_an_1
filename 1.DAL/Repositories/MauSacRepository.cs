@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.MauSacs.ToList();
         }
 
-        public MauSac GetbyId(Guid id)
+        public MauSac GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

@@ -41,8 +41,9 @@ namespace _1.DAL.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                {
-                optionsBuilder.UseSqlServer("Data Source=oh\\sqlexpress;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;Persist Security Info=True;User ID=sa;Password=111111");
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Data Source=THUYNHU\\SQLEXPRESS;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;User ID=chiuchiu;Password=30062003");
             }
         }
 
@@ -195,11 +196,14 @@ namespace _1.DAL.Context
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.IdKh).IsUnicode(false);
-
                 entity.Property(e => e.Ma).IsUnicode(false);
 
                 entity.Property(e => e.TrangThai).HasDefaultValueSql("((0))");
+
+                entity.HasOne(d => d.IdKhNavigation)
+                    .WithMany(p => p.HoaDons)
+                    .HasForeignKey(d => d.IdKh)
+                    .HasConstraintName("FK_KhachHang");
 
                 entity.HasOne(d => d.IdNvNavigation)
                     .WithMany(p => p.HoaDons)
@@ -210,8 +214,6 @@ namespace _1.DAL.Context
             modelBuilder.Entity<KhachHang>(entity =>
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.DiemTich).IsUnicode(false);
 
                 entity.Property(e => e.Ma).IsUnicode(false);
 

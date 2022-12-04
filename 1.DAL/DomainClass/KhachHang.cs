@@ -14,6 +14,7 @@ namespace _1.DAL.DomainClass
     {
         public KhachHang()
         {
+            HoaDons = new HashSet<HoaDon>();
             LichSuTichDiems = new HashSet<LichSuTichDiem>();
         }
 
@@ -37,11 +38,11 @@ namespace _1.DAL.DomainClass
         [Required]
         [StringLength(100)]
         public string DiaChi { get; set; }
-        [Required]
-        [StringLength(30)]
-        public string DiemTich { get; set; }
+        public int? DiemTich { get; set; }
         public int? TrangThai { get; set; }
 
+        [InverseProperty(nameof(HoaDon.IdKhNavigation))]
+        public virtual ICollection<HoaDon> HoaDons { get; set; }
         [InverseProperty(nameof(LichSuTichDiem.IdKhNavigation))]
         public virtual ICollection<LichSuTichDiem> LichSuTichDiems { get; set; }
     }

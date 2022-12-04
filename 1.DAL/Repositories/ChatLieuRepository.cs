@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.ChatLieus.ToList();
         }
 
-        public ChatLieu GetbyId(Guid id)
+        public ChatLieu GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

@@ -32,6 +32,7 @@ namespace _3.PL.Views
         {
             dgrd_mausac.ColumnCount = 4;
             dgrd_mausac.Columns[0].Name = "ID";
+            dgrd_mausac.Columns[0].Width = 385;
             dgrd_mausac.Columns[1].Name = "Mã";
             dgrd_mausac.Columns[2].Name = "Tên";
             dgrd_mausac.Columns[3].Name = "Trạng thái";
@@ -41,8 +42,7 @@ namespace _3.PL.Views
                 dgrd_mausac.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
         }
-        
-        private MauSac GetDataFromGUI()
+private MauSac GetDataFromGUI()
         {
             MauSac ms = new MauSac();
             ms.Id = _id;
@@ -58,27 +58,29 @@ namespace _3.PL.Views
             }
             return ms;
         }
+        
+
         private void btn_them_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
                 if (tbx_ma.Text.Trim() == "")
                 {
-                    MessageBox.Show("Mã nhân viên không được bỏ trống!");
+                    MessageBox.Show("Mã màu sắc không được bỏ trống!");
                 }
                 else if (_iqLmsServices.GetAll().Any(p => p.Ma == tbx_ma.Text))
                 {
-                    MessageBox.Show("Mã nhân viên đã tồn tại!");
+                    MessageBox.Show("Mã màu sắc đã tồn tại!");
                 }
 
                 else if (tbx_ten.Text.Trim() == "")
                 {
-                    MessageBox.Show("Tên nhân viên không được bỏ trống!");
+                    MessageBox.Show("Tên màu sắc không được bỏ trống!");
                 }
 
                 else if (rbtn_hd.Checked == false && rbtn_kohd.Checked == false)
                 {
-                    MessageBox.Show("Trạng thái nhân viên không được bỏ trống!");
+                    MessageBox.Show("Trạng thái màu sắc không được bỏ trống!");
                 }
                 else
                 {
@@ -139,24 +141,41 @@ namespace _3.PL.Views
                 LoadData();
             }
         }
-        
-        
+
+
 
         private void txt_timKiem_TextChanged(object sender, EventArgs e)
         {
-            var ms = _iqLmsServices.GetAll().Where(p => p.Ma == tk_timkiem.Text);
-            dgrd_mausac.Rows.Clear();
-            dgrd_mausac.ColumnCount = 4;
-
-            dgrd_mausac.Columns[0].Name = "ID";
-            dgrd_mausac.Columns[0].Visible = false;
-            dgrd_mausac.Columns[1].Name = "Mã";
-            dgrd_mausac.Columns[2].Name = "Tên";
-            dgrd_mausac.Columns[3].Name = "Trạng thái";
-            
-            foreach (var x in ms)
+            if (cbb_timkiem.Text == "Tìm kiếm theo mã")
             {
-                dgrd_mausac.Rows.Add(x.Ma, x.Id, x.Ten, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                var tk = _iqLmsServices.GetAll().Where(p => p.Ma == cbb_timkiem.Text);
+                dgrd_mausac.Rows.Clear();
+                dgrd_mausac.ColumnCount = 4;
+                dgrd_mausac.Columns[0].Name = "ID";
+                dgrd_mausac.Columns[0].Width = 385;
+                dgrd_mausac.Columns[1].Name = "Mã";
+                dgrd_mausac.Columns[2].Name = "Tên";
+                dgrd_mausac.Columns[3].Name = "Trạng thái";
+                foreach (var x in tk)
+                {
+                    dgrd_mausac.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng");
+                }
+            }
+            else if (cbb_timkiem.Text == "Tìm kiếm theo tên")
+            {
+                var tk = _iqLmsServices.GetAll().Where(p => p.Ten == cbb_timkiem.Text);
+                dgrd_mausac.Rows.Clear();
+                dgrd_mausac.ColumnCount = 4;
+                dgrd_mausac.Columns[0].Name = "ID";
+                dgrd_mausac.Columns[0].Width = 385;
+                dgrd_mausac.Columns[1].Name = "Mã";
+                dgrd_mausac.Columns[2].Name = "Tên";
+                dgrd_mausac.Columns[3].Name = "Trạng thái";
+                foreach (var x in tk)
+                {
+                    dgrd_mausac.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
+                }
+
             }
         }
     }
