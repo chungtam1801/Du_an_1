@@ -44,7 +44,7 @@ namespace _1.DAL.Context
                 {
                 optionsBuilder.UseSqlServer("Data Source=LAPTOP-B9NKF2E2\\SQLEXPRESS02;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;Persist Security Info=True;User ID=qlbqa;Password=123456");
             }
-        }
+        }//FINALASS_BanQuanAo_Nhom666_FA22_PRO131
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

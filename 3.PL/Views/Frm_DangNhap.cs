@@ -61,9 +61,14 @@ namespace _3.PL.Views
 
         private void bt_dangnhap_Click_1(object sender, EventArgs e)
         {
-            if (this.tb_taikhoan.Text == "" || this.tb_matkhau.Text == "")
+            string username =tb_taikhoan.Text;
+            string password = tb_matkhau.Text;
+            if (username.Equals("") || password.Equals(""))
             {
-                MessageBox.Show(" Vui lòng nhập tài khoản ! ");
+                MessageBox.Show("Các trường không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (username.Equals(""))
+                    tb_taikhoan.Focus();
+                else tb_matkhau.Focus();
             }
             else
             {
@@ -71,19 +76,45 @@ namespace _3.PL.Views
                 if (this.tb_taikhoan.Text == nv.Ma)
                     if (this.tb_matkhau.Text == nv.MatKhau)
                     {
-                        this.Hide();
-                        Frm_Main main = new Frm_Main();
-                        main.ShowDialog();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
-                    }
+                    this.Hide();
+                    Frm_Main main = new Frm_Main();
+                    main.ShowDialog();
+                }
                 else
                 {
-                    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+                    DialogResult dialog = MessageBox.Show("Đăng nhập không thành công! Bạn có muốn tiếp tục đăng nhập?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                    if (dialog == DialogResult.Cancel)
+                    {
+                        Application.Exit();
+                    }
                 }
             }
+            //if (this.tb_taikhoan.Text == "" || this.tb_matkhau.Text == "")
+            //{
+            //    MessageBox.Show(" Vui lòng nhập tài khoản ! ");
+            //}
+            //else
+            //{
+            //    NhanVien nv = new NhanVien();
+
+            //    if (this.tb_taikhoan.Text == nv.Ma)
+            //        if (this.tb_matkhau.Text == nv.MatKhau)
+            //        {
+            //            this.Hide();
+            //            Frm_Main main = new Frm_Main();
+            //            main.ShowDialog();
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+
+
+            //        }
+            //    else
+            //    {
+            //        MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+            //    }
+            //}
 
             this.tb_taikhoan.Focus();
 

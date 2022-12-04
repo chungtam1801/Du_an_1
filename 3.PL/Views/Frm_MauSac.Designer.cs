@@ -45,7 +45,6 @@
             this.btn_seachbyma = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cbb_timkiem = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgrd_mausac)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_seachbyma)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -109,6 +108,7 @@
             this.dgrd_mausac.RowTemplate.Height = 25;
             this.dgrd_mausac.Size = new System.Drawing.Size(708, 347);
             this.dgrd_mausac.TabIndex = 37;
+           // this.dgrd_mausac.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrd_mausac_CellContentClick);
             // 
             // label4
             // 
@@ -221,7 +221,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.cbb_timkiem);
             this.groupBox2.Controls.Add(this.dgrd_mausac);
             this.groupBox2.Controls.Add(this.tk_timkiem);
             this.groupBox2.Controls.Add(this.btn_seachbyma);
@@ -232,21 +231,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin";
             // 
-            // cbb_timkiem
-            // 
-            this.cbb_timkiem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
-            this.cbb_timkiem.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.cbb_timkiem.FormattingEnabled = true;
-            this.cbb_timkiem.Items.AddRange(new object[] {
-            "Tìm kiếm theo mã",
-            "Tìm kiếm theo size"});
-            this.cbb_timkiem.Location = new System.Drawing.Point(54, 26);
-            this.cbb_timkiem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbb_timkiem.Name = "cbb_timkiem";
-            this.cbb_timkiem.Size = new System.Drawing.Size(177, 28);
-            this.cbb_timkiem.TabIndex = 56;
-            this.cbb_timkiem.Text = "  Tìm kiếm theo...";
-            // 
             // Frm_MauSac
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -256,6 +240,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Frm_MauSac";
             this.Text = "Frm_MauSac";
+            this.Load += new System.EventHandler(this.Frm_MauSac_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgrd_mausac)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_seachbyma)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -284,6 +269,5 @@
         private System.Windows.Forms.PictureBox btn_seachbyma;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox cbb_timkiem;
     }
 }
