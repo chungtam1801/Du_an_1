@@ -25,8 +25,8 @@ namespace _1.DAL.DomainClass
         public Guid? IdNv { get; set; }
         [StringLength(20)]
         public string Ma { get; set; }
-        [Column(TypeName = "date")]
-        public DateTime NgayTao { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? NgayTao { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? NgayThanhToan { get; set; }
         public double? GiamGia { get; set; }
@@ -39,9 +39,11 @@ namespace _1.DAL.DomainClass
         public DateTime? NgayNhan { get; set; }
         public string GhiChu { get; set; }
         [Column("IdKH")]
-        [StringLength(20)]
-        public string IdKh { get; set; }
+        public Guid? IdKh { get; set; }
 
+        [ForeignKey(nameof(IdKh))]
+        [InverseProperty(nameof(KhachHang.HoaDons))]
+        public virtual KhachHang IdKhNavigation { get; set; }
         [ForeignKey(nameof(IdNv))]
         [InverseProperty(nameof(NhanVien.HoaDons))]
         public virtual NhanVien IdNvNavigation { get; set; }

@@ -11,7 +11,7 @@ namespace _1.DAL.IRepositories
         bool Add(T obj);
         bool Update(T obj);
         bool Delete(T obj);
-        T GetbyId(Guid id);
+        T GetbyId(Guid? id);
         List<T> GetAll();
     }
 }

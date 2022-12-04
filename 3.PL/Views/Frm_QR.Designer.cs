@@ -90,7 +90,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(922, 518);
+            this.ClientSize = new System.Drawing.Size(922, 540);
             this.Controls.Add(this.tbx_Chuoi);
             this.Controls.Add(this.btn_Start);
             this.Controls.Add(this.ptb_QR);

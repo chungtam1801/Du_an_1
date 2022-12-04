@@ -23,6 +23,8 @@ namespace _3.PL.Views
         {
             _iqlkichThuocServices = new QLKichThuocServices();
             InitializeComponent();
+            tb_ma.Text = MaTuSinh();
+            tb_ma.Enabled= false;
         }
         private void LoadData()
         {
@@ -54,7 +56,23 @@ namespace _3.PL.Views
             }
             return kt;
         }
-
+        private string MaTuSinh()
+        {
+            string s;
+            int max = 0;
+            for (int i = 0; i < _iqlkichThuocServices.GetAll().Count; i++)
+            {
+                string ma = _iqlkichThuocServices.GetAll()[i].Ma;
+                string so = ma.Substring(2);
+                int x = Convert.ToInt32(so);
+                if (x > max)
+                {
+                    max = x;
+                }
+            }
+            s = "KT00" + (max + 1);
+            return s;
+        }
         private void btn_them_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
@@ -74,7 +92,7 @@ namespace _3.PL.Views
                 {
                     MessageBox.Show("kích thước đã tồn tại!");
                 }
-                else if (rbtn_conhang.Checked == false && rbtn_hethang.Checked)
+                else if (rbtn_conhang.Checked == false && rbtn_hethang.Checked == false)
                 {
                     MessageBox.Show("Trạng thái kích thước không được bỏ trống!");
                 }
@@ -111,12 +129,12 @@ namespace _3.PL.Views
             rbtn_conhang.Checked = false;
             rbtn_hethang.Checked = false;
             LoadData();
+            tb_ma.Text = MaTuSinh();
         }
 
         private void dtg_KichThuoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
-            var kt = _iqlkichThuocServices.GetAll().FirstOrDefault(c => c.Id == Guid.Parse(dtg_KichThuoc.Rows[rowIndex].Cells[0].Value.ToString()));
+            var kt = _iqlkichThuocServices.GetAll().FirstOrDefault(c => c.Id == Guid.Parse(dtg_KichThuoc.CurrentRow.Cells[0].Value.ToString()));
             _id = kt.Id;
             tb_ma.Text = kt.Ma;
             tb_size.Text = kt.Size;

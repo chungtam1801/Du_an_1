@@ -38,7 +38,7 @@ namespace _1.DAL.Repositories
            return _dbContext.SanPhams.ToList();
         }
 
-        public SanPham GetbyId(Guid  id)
+        public SanPham GetbyId(Guid?  id)
         {
             throw new NotImplementedException();
         }

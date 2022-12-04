@@ -40,9 +40,9 @@ namespace _1.DAL.Repositories
             return _dbContext.PhuongThucThanhToans.ToList();
         }
 
-        public PhuongThucThanhToan GetbyId(Guid id)
+        public PhuongThucThanhToan GetbyId(Guid? id)
         {
-            throw new NotImplementedException();
+            return _dbContext.PhuongThucThanhToans.FirstOrDefault(c =>c.Id==id);
         }
 
         public bool Update(PhuongThucThanhToan obj)

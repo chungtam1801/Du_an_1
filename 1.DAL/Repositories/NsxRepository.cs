@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
            return _dbContext.Nsxes.ToList();
         }
 
-        public Nsx GetbyId(Guid id)
+        public Nsx GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

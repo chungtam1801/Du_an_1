@@ -22,6 +22,9 @@ namespace _2.BUS.Services
         private IClassCRUDRepo<ChiTietSp> _CRUDChiTietSP;
         private IClassCRUDRepo<PhuongThucThanhToan> _CRUDPTTT;
         private IClassCRUDRepo<KhachHang> _CRUDKhachHang;
+        private IClassCRUDRepo<LichSuTichDiem> _CRUDLSTD;
+        private IClassCRUDRepo<QuyDoiDiem> _CRUDQDD;
+        private IClassCRUDRepo<NhanVien> _CRUDNhanVien;
         public BanHangServices()
         {
             _iQLChiTietSpServices = new QLChiTietSpServices();
@@ -31,6 +34,9 @@ namespace _2.BUS.Services
             _CRUDChiTietSP = new ChiTietSpRepository();
             _CRUDPTTT = new PhuongThucThanhToanRepository();
             _CRUDKhachHang = new KhachHangRepository();
+            _CRUDLSTD = new LichSuTichDiemRepository();
+            _CRUDQDD = new QuyDoiDiemRepository();
+            _CRUDNhanVien = new NhanVienRepository();
         }
         public HoaDon CreateHD(int trangthai)
         {
@@ -43,6 +49,7 @@ namespace _2.BUS.Services
             {
                 hoaDon.Ma = "HD" + (_CRUDHoaDon.GetAll().Count + 1);
             }
+            hoaDon.IdNv = new Guid("0492AD9B-B6FB-4E17-AAE6-8B07B0A900D7");
             hoaDon.IdNv = new Guid("506AE5B4-6D31-43E6-A5EB-BA535A67D692");
             hoaDon.Ma = ClassSP.AutoID("HD", _CRUDHoaDon.GetAll().Count);
             hoaDon.NgayTao = DateTime.Now;
@@ -54,31 +61,74 @@ namespace _2.BUS.Services
         {
             return _CRUDKhachHang.GetAll().FirstOrDefault(c => c.Sdt == sdt);
         }
-        public string Chot(Guid idPTTT,HoaDon hoaDon,decimal tienKhachDua,decimal tienkhachcandua,int trangThai,decimal? tienShip)
+        public string Chot(Guid idPTTT,HoaDon hoaDon,KhachHang khachHang,decimal tienKhachDua,decimal tienkhachcandua,int trangThai,decimal? tienShip,int diemSD)
         {
-            ChiTietPttt chiTietPttt = new ChiTietPttt();
-            chiTietPttt.IdPttt = idPTTT;
-            chiTietPttt.IdHd = hoaDon.Id;
-            chiTietPttt.Ma = ClassSP.AutoID("PTTT", _CRUDChiTietPTTT.GetAll().Count);
-            chiTietPttt.TienKhachDua = tienKhachDua;
-            _CRUDChiTietPTTT.Add(chiTietPttt);
-            if (tienKhachDua >= tienkhachcandua)
+            ChiTietPttt chiTietPttt1 = _CRUDChiTietPTTT.GetAll().FirstOrDefault(c => c.IdPttt == idPTTT && c.IdHd == hoaDon.Id);
+            if (chiTietPttt1 == null)
             {
-                if(trangThai == 0)
+                ChiTietPttt chiTietPttt = new ChiTietPttt();
+                chiTietPttt.IdPttt = idPTTT;
+                chiTietPttt.IdHd = hoaDon.Id;
+                chiTietPttt.Ma = ClassSP.AutoID("PTTT", _CRUDChiTietPTTT.GetAll().Count);
+                if(diemSD>0)
                 {
-                    hoaDon.NgayThanhToan = DateTime.Now;
-                    hoaDon.TrangThai = 1;
+                    TruDiem(hoaDon, khachHang, diemSD);
                 }
-                else if(trangThai == 2)
+                chiTietPttt.TienKhachDua = tienKhachDua;
+                _CRUDChiTietPTTT.Add(chiTietPttt);
+                //Sua
+                if (tienKhachDua >= tienkhachcandua)
                 {
-                    hoaDon.NgayShip = DateTime.Now;
-                    hoaDon.TrangThai = 3;
-                    hoaDon.TienShip = tienShip;
+                    if (CheckPTTTDiem(hoaDon))
+                    {
+                        CongDiem(hoaDon, khachHang);
+                    }
+                    if (trangThai == 0)
+                    {
+                        hoaDon.NgayThanhToan = DateTime.Now;
+                        hoaDon.TrangThai = 1;
+                    }
+                    else if (trangThai == 3)
+                    {
+                        hoaDon.NgayShip = DateTime.Now;
+                        hoaDon.TrangThai = 4;
+                        hoaDon.TienShip = tienShip;
+                    }
+                    if (_CRUDHoaDon.Update(hoaDon)) return "Thanh toán hoàn tất";
+                    else return "Thanh toán thất bại";
                 }
-                if (_CRUDHoaDon.Update(hoaDon)) return "Thanh toán hoàn tất";
-                else return "Thanh toán thất bại";
+                else return "Hóa đơn vẫn chưa được trả hết";
             }
-            else return "Hóa đơn vẫn chưa được trả hết";
+            else
+            {
+                if (diemSD > 0)
+                {
+                    TruDiem(hoaDon, khachHang, diemSD);
+                }
+                chiTietPttt1.TienKhachDua += tienKhachDua;
+                _CRUDChiTietPTTT.Update(chiTietPttt1);
+                if (tienKhachDua >= tienkhachcandua)
+                {
+                    if(CheckPTTTDiem(hoaDon))
+                    {
+                        CongDiem(hoaDon, khachHang);
+                    }    
+                    if (trangThai == 0)
+                    {
+                        hoaDon.NgayThanhToan = DateTime.Now;
+                        hoaDon.TrangThai = 1;
+                    }
+                    else if (trangThai == 3)
+                    {
+                        hoaDon.NgayShip = DateTime.Now;
+                        hoaDon.TrangThai = 4;
+                        hoaDon.TienShip = tienShip;
+                    }
+                    if (_CRUDHoaDon.Update(hoaDon)) return "Thanh toán hoàn tất";
+                    else return "Thanh toán thất bại";
+                }
+                else return "Hóa đơn vẫn chưa được trả hết";
+            }    
         }
         public decimal? SumTienKhachDua(Guid idHD)
         {
@@ -87,6 +137,26 @@ namespace _2.BUS.Services
         public decimal? SumTienHang(Guid idHD)
         {
             return _CRUDChiTietHD.GetAll().Where(c => c.IdHd == idHD).Sum(d => d.SoLuong * d.DonGia);
+        }
+        public List<ViewQLHoaDon> GetAllHDV()
+        {
+            var lst = new List<ViewQLHoaDon>();
+            lst = (from a in _CRUDHoaDon.GetAll()
+                   join b in _CRUDNhanVien.GetAll() on a.IdNv equals b.Id
+                   select new ViewQLHoaDon()
+                   {
+                       Id = a.Id,
+                       TenNv = b.Ho+" "+b.TenDem+" "+b.Ten,
+                       Ma = a.Ma,
+                       NgayTao = a.NgayTao,
+                       NgayThanhToan = a.NgayThanhToan,
+                       NgayGiaoHang = a.NgayShip,
+                       NgayNhanHang = a.NgayNhan,
+                       GiamGia = a.GiamGia,
+                       TongTien = SumTienHang(a.Id),
+                       TrangThai = a.TrangThai == 0?"Chờ thanh toán":a.TrangThai == 1?"Đã thanh toán":a.TrangThai == 2?"Hủy thanh toán":a.TrangThai==3?"Chờ giao hàng":a.TrangThai==4?"Đang giao hàng":a.TrangThai==5?"Đã giao hàng":a.TrangThai==6?"Hủy giao hàng":""
+                   }).ToList();
+            return lst;
         }
         public List<HoaDon> GetAllHD()
         {
@@ -115,7 +185,9 @@ namespace _2.BUS.Services
                            KichThuoc = a.KichThuoc,
                            ChatLieu = a.ChatLieu,
                            SoLuong = b.SoLuong,
-                           Id = b.Id
+                           Id = b.Id,
+                           DonGia = b.DonGia,
+                           TongTien = b.DonGia*b.SoLuong
                        }).ToList();
             return lstView;
         }
@@ -139,19 +211,92 @@ namespace _2.BUS.Services
             chiTietSp.SoLuongTon--;
             _CRUDChiTietSP.Update(chiTietSp);
         }
-        public void UpdateChiTietHD(Guid idCTHD,int soLuong)
+        public string UpdateTrangThaiHD(HoaDon hoaDon,int trangThai)
+        {
+            hoaDon.TrangThai = trangThai;
+            if (_CRUDHoaDon.Update(hoaDon)) return "Cập nhật trạng thái thành công";
+            else return "Cập nhật trạng thái thất bại";
+        }
+        public bool CheckHDThanhToan(HoaDon hoaDon)
+        {
+            if (_CRUDChiTietPTTT.GetAll().FirstOrDefault(c => c.IdHd == hoaDon.Id) == null)
+            {
+                return false;
+            }
+            else return true;
+        }
+        //Quy doi diem
+        public void CongDiem(HoaDon hoaDon,KhachHang khachHang)
+        {
+                QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai == 1);
+                if (qdd != null && khachHang != null && hoaDon != null)
+                {
+                    LichSuTichDiem lichSuTichDiem = new LichSuTichDiem();
+                    lichSuTichDiem.IdQuyDoiDiem = qdd.Id;
+                    lichSuTichDiem.IdHd = hoaDon.Id;
+                    lichSuTichDiem.Diem = Convert.ToInt32(SumTienHang(hoaDon.Id) / qdd.TiLeTichDiem);
+                    khachHang.DiemTich += lichSuTichDiem.Diem;
+                    _CRUDKhachHang.Update(khachHang);
+                    _CRUDLSTD.Add(lichSuTichDiem);
+                }       
+        }
+        public void TruDiem(HoaDon hoaDon,KhachHang khachHang,int diemSD)
+        {
+            QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai == 1);
+            if (qdd != null && khachHang != null && hoaDon != null)
+            {
+                LichSuTichDiem lichSuTichDiem = new LichSuTichDiem();
+                lichSuTichDiem.IdQuyDoiDiem = qdd.Id;
+                lichSuTichDiem.IdHd = hoaDon.Id;
+                lichSuTichDiem.Diem = -diemSD;
+                khachHang.DiemTich -= diemSD;
+                ChiTietPttt chiTietPttt = new ChiTietPttt();
+                _CRUDKhachHang.Update(khachHang);
+                _CRUDLSTD.Add(lichSuTichDiem);
+            }
+        }
+        public bool CheckPTTTDiem(HoaDon hoaDon)
+        {
+            return _CRUDChiTietPTTT.GetAll().FirstOrDefault(c => c.IdHd == hoaDon.Id && _CRUDPTTT.GetbyId(c.IdPttt).Ten == "Điểm") == null;
+        }
+        public decimal QuyDoiDiem(int diem)
+        {
+            QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai == 1);
+            if (qdd != null)
+            {
+                return diem * qdd.TiLeTieuDiem;
+            }
+            else return 0;
+        }
+        //Quan ly chi tiet hoa don
+        public void UpdateSoLuongChiTietHD(Guid idCTHD, int soLuong)
         {
             ChiTietHoaDon chiTietHoaDon = _CRUDChiTietHD.GetAll().First(c => c.Id == idCTHD);
             ChiTietSp chiTietSp = _CRUDChiTietSP.GetAll().First(c => c.Id == chiTietHoaDon.IdCtsp);
+            int? soluongdu = chiTietHoaDon.SoLuong - soLuong;
             chiTietHoaDon.SoLuong = soLuong;
-            chiTietSp.SoLuongTon-=soLuong;
-            _CRUDChiTietHD.Update(chiTietHoaDon);
+            chiTietSp.SoLuongTon += soluongdu;
             _CRUDChiTietSP.Update(chiTietSp);
+            _CRUDChiTietHD.Update(chiTietHoaDon);
         }
-        public void UpdateTrangThaiHD(HoaDon hoaDon)
+        public void DeleteChiTietHD(Guid idCTHD)
         {
-            hoaDon.TrangThai = 4;
-            _CRUDHoaDon.Update(hoaDon);
+            ChiTietHoaDon chiTietHoaDon = _CRUDChiTietHD.GetAll().First(c => c.Id == idCTHD);
+            ChiTietSp chiTietSp = _CRUDChiTietSP.GetAll().First(c => c.Id == chiTietHoaDon.IdCtsp);
+            chiTietSp.SoLuongTon += chiTietHoaDon.SoLuong;
+            _CRUDChiTietSP.Update(chiTietSp);
+            _CRUDChiTietHD.Delete(chiTietHoaDon);
+        }
+        public void DeleteALLChiTietHD(Guid idHD)
+        {
+            List<ChiTietHoaDon> lst = _CRUDChiTietHD.GetAll().Where(c => c.IdHd == idHD).ToList();
+            foreach(var x in lst)
+            {
+                ChiTietSp chiTietSp = _CRUDChiTietSP.GetAll().First(c => c.Id == x.IdCtsp);
+                chiTietSp.SoLuongTon += x.SoLuong;
+                _CRUDChiTietSP.Update(chiTietSp);
+                _CRUDChiTietHD.Delete(x);
+            }          
         }
     }
 }

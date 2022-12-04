@@ -132,6 +132,9 @@
             // 
             // dtg_KichThuoc
             // 
+            this.dtg_KichThuoc.AllowUserToAddRows = false;
+            this.dtg_KichThuoc.AllowUserToDeleteRows = false;
+            this.dtg_KichThuoc.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dtg_KichThuoc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtg_KichThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtg_KichThuoc.Location = new System.Drawing.Point(0, 0);

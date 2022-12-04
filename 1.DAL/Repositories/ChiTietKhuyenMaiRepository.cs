@@ -41,7 +41,7 @@ namespace _1.DAL.Repositories
             return _dbContext.ChiTietKhuyenMais.ToList();
         }
 
-        public ChiTietKhuyenMai GetbyId(Guid id)
+        public ChiTietKhuyenMai GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

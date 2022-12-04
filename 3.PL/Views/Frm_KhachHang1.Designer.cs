@@ -103,7 +103,7 @@
             this.btn_them.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
             this.btn_them.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_them.ForeColor = System.Drawing.Color.Snow;
-            this.btn_them.Location = new System.Drawing.Point(94, 358);
+            this.btn_them.Location = new System.Drawing.Point(94, 357);
             this.btn_them.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btn_them.Name = "btn_them";
             this.btn_them.Size = new System.Drawing.Size(141, 59);
@@ -142,7 +142,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 124);
+            this.label4.Location = new System.Drawing.Point(27, 124);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 20);
             this.label4.TabIndex = 21;
@@ -178,7 +178,7 @@
             // 
             // kh_sdt
             // 
-            this.kh_sdt.Location = new System.Drawing.Point(98, 194);
+            this.kh_sdt.Location = new System.Drawing.Point(98, 195);
             this.kh_sdt.Name = "kh_sdt";
             this.kh_sdt.Size = new System.Drawing.Size(222, 27);
             this.kh_sdt.TabIndex = 44;
@@ -220,13 +220,15 @@
             // dtg_kh
             // 
             this.dtg_kh.AllowUserToOrderColumns = true;
+            this.dtg_kh.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtg_kh.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtg_kh.BackgroundColor = System.Drawing.Color.White;
             this.dtg_kh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtg_kh.Location = new System.Drawing.Point(14, 119);
             this.dtg_kh.Name = "dtg_kh";
             this.dtg_kh.RowHeadersWidth = 51;
             this.dtg_kh.RowTemplate.Height = 29;
-            this.dtg_kh.Size = new System.Drawing.Size(1339, 554);
+            this.dtg_kh.Size = new System.Drawing.Size(1339, 555);
             this.dtg_kh.TabIndex = 0;
             this.dtg_kh.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_kh_CellClick);
             // 
@@ -369,7 +371,7 @@
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1942, 49);
+            this.panel3.Size = new System.Drawing.Size(1386, 49);
             this.panel3.TabIndex = 55;
             // 
             // panel4
@@ -387,7 +389,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(711, 12);
+            this.label13.Location = new System.Drawing.Point(337, 12);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(265, 24);
             this.label13.TabIndex = 1;
@@ -398,7 +400,7 @@
             this.panel5.Controls.Add(this.panel2);
             this.panel5.Controls.Add(this.panel1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(1579, 49);
+            this.panel5.Location = new System.Drawing.Point(1023, 49);
             this.panel5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(363, 624);
@@ -409,7 +411,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1942, 673);
+            this.ClientSize = new System.Drawing.Size(1386, 673);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.dtg_kh);

@@ -29,7 +29,6 @@ namespace _1.DAL.Repositories
         {
             if (obj == null) return false;
             var tempobj = _dbContext.ChiTietSps.FirstOrDefault(c => c.Id == obj.Id);
-
             _dbContext.Remove(tempobj);
             _dbContext.SaveChanges();
             return true;
@@ -40,7 +39,7 @@ namespace _1.DAL.Repositories
             return _dbContext.ChiTietSps.ToList();
         }
 
-        public ChiTietSp GetbyId(Guid id)
+        public ChiTietSp GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }

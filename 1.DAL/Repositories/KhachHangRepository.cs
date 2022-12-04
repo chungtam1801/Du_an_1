@@ -40,7 +40,7 @@ namespace _1.DAL.Repositories
             return _dbContext.KhachHangs.ToList();
         }
 
-        public KhachHang GetbyId(Guid id)
+        public KhachHang GetbyId(Guid? id)
         {
             throw new NotImplementedException();
         }
@@ -49,7 +49,7 @@ namespace _1.DAL.Repositories
         {
             if (obj == null) return false;
             var tempobj = _dbContext.KhachHangs.FirstOrDefault(c => c.Id == obj.Id);
-            tempobj.Ma = obj.Ma;
+            //tempobj.Ma = obj.Ma;
             tempobj.Ten = obj.Ten;
             tempobj.TenDem=obj.TenDem;
             tempobj.Ho=obj.Ho;

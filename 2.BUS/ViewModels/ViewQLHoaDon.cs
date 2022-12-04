@@ -12,17 +12,21 @@ namespace _2.BUS.ViewModels
     public class ViewQLHoaDon
     {
         public Guid Id { get; set; }
-        public Guid? IdNv { get; set; }
+        public string TenNv { get; set; }
         public string Ma { get; set; }
-        public DateTime NgayTao { get; set; }
-        public DateTime NgayThanhToan { get; set; }
-        public string GiamGia { get; set; }
-        public int? TrangThai { get; set; }
+        public DateTime? NgayTao { get; set; }
+        public DateTime? NgayThanhToan { get; set; }
+        public DateTime? NgayGiaoHang { get; set; }
+        public DateTime? NgayNhanHang { get; set; }
+        public double? GiamGia { get; set; }
+        public decimal? TongTien { get; set; }
+        public string TrangThai { get; set; }
         //0-Cho-BanHang
         //1-Da thanh toan
-        //2-Cho-DatHang
-        //3-DangGiao
-        //4-DaGiao
-        //5-Huy
+        //2-Huy thanh toan
+        //3-Cho-DatHang
+        //4-DangGiao
+        //5-DaGiao
+        //6-Huy
     }
 }
