@@ -51,7 +51,7 @@ namespace _3.PL.Views
                 _lstIDPTTT.Add(x.Id);
                 cbx_HTTT.Items.Add(x.Ten);
             }
-            cbx_HTTT.SelectedIndex = 2;
+            //cbx_HTTT.SelectedIndex = 2;
         }
         private void GetData(List<ViewQLChiTietSp> lstview)
         {
