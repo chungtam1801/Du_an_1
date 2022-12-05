@@ -15,8 +15,8 @@ namespace _3.PL.Views
 {
     public partial class Frm_QuanLyThongTinCaNhan : Form
     {
-        private NhanVien loginAccount;
-        public Frm_QuanLyThongTinCaNhan(NhanVien nv)
+        //private NhanVien loginAccount;
+        public Frm_QuanLyThongTinCaNhan() //NhanVien nv
         {
             InitializeComponent();
         }
@@ -104,47 +104,48 @@ namespace _3.PL.Views
         private void btn_CapNhat_Click(object sender, EventArgs e)
         {
 
-            //if (KiemTra())
-            //{
-            //    try
-            //    {
-            //        SqlConnection conn = new SqlConnection();
-            //        conn.ConnectionString = ConfigurationManager.ConnectionStrings["connStr"].ConnectionString;
-            //        SqlCommand cmd = new SqlCommand();
-            //        cmd.CommandType = CommandType.StoredProcedure;
-            //        cmd.CommandText = "SP_Update_Pass";
-            //        cmd.Parameters.Add("@User", SqlDbType.NVarChar).Value = txt_TenDangNhap.Text;
-            //        cmd.Parameters.Add("@OldPass", SqlDbType.NVarChar).Value = txt_MatKhau.Text;
-            //        cmd.Parameters.Add("@NewPass", SqlDbType.NVarChar).Value = txt_MatKhauMoi.Text;
-            //        cmd.Connection = conn;
-            //        conn.Open();
-            //        SqlDataReader dr;
-            //        dr = cmd.ExecuteReader();
-            //        dr.Read();
-            //        if (dr.GetInt32(0) == 1)
-            //        {
-            //            lblShowInfor.ForeColor = System.Drawing.Color.Blue;
-            //            lblShowInfor.Text = dr.GetString(1);
-            //            txt_NhapLai.Text = "";
-            //            txt_MatKhau.Text = "";
-            //            txt_MatKhauMoi.Text = "";
-            //            txt_MatKhau.Focus();
-            //        }
-            //        else
-            //        {
-            //            lblShowInfor.ForeColor = System.Drawing.Color.Red;
-            //            lblShowInfor.Text = dr.GetString(1);
-            //            txt_MatKhau.Focus();
-            //            txt_MatKhau.SelectAll();
-            //        }
-            //        dr.Close();
-            //        conn.Close();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message);
-            //    }
-            //}
+            if (KiemTra())
+            {
+                try
+                {
+                    NhanVien nv = new NhanVien();
+                    //SqlConnection conn = new SqlConnection();
+                    //conn.ConnectionString = ConfigurationManager.ConnectionStrings["connStr"].ConnectionString;
+                    //SqlCommand cmd = new SqlCommand();
+                    //cmd.CommandType = CommandType.StoredProcedure;
+                    //cmd.CommandText = "SP_Update_Pass";
+                    //cmd.Parameters.Add("@User", SqlDbType.NVarChar).Value = txt_TenDangNhap.Text;
+                    //cmd.Parameters.Add("@OldPass", SqlDbType.NVarChar).Value = txt_MatKhau.Text;
+                    //cmd.Parameters.Add("@NewPass", SqlDbType.NVarChar).Value = txt_MatKhauMoi.Text;
+                    //cmd.Connection = conn;
+                    //conn.Open();
+                    //SqlDataReader dr;
+                    //dr = cmd.ExecuteReader();
+                    //dr.Read();
+                    if (nv.MatKhau == "") //dr.GetInt32(0)== 1
+                    {
+                        lblShowInfor.ForeColor = System.Drawing.Color.Blue;
+                        lblShowInfor.Text = nv.MatKhau;    // dr.GetString(1);
+                        txt_NhapLai.Text = "";
+                        txt_MatKhau.Text = "";
+                        txt_MatKhauMoi.Text = "";
+                        txt_MatKhau.Focus();
+                    }
+                    else
+                    {
+                        lblShowInfor.ForeColor = System.Drawing.Color.Red;
+                        lblShowInfor.Text = nv.MatKhau;         //dr.GetString(1);
+                        txt_MatKhau.Focus();
+                        txt_MatKhau.SelectAll();
+                    }
+                    //dr.Close();
+                    //conn.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

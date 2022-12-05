@@ -28,85 +28,85 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txt_SDT = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btn_CNMK = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_NPass = new System.Windows.Forms.TextBox();
-            this.btn_CNMK = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txt_SDT = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // button1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(146, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(240, 41);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Quên Mật Khẩu";
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.Location = new System.Drawing.Point(410, 278);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 29);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Thoát";
+            this.button1.UseVisualStyleBackColor = false;
             // 
-            // label3
+            // txt_SDT
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(74, 192);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 20);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "New password:";
-            // 
-            // txt_NPass
-            // 
-            this.txt_NPass.Location = new System.Drawing.Point(255, 192);
-            this.txt_NPass.Name = "txt_NPass";
-            this.txt_NPass.Size = new System.Drawing.Size(232, 27);
-            this.txt_NPass.TabIndex = 8;
-            // 
-            // btn_CNMK
-            // 
-            this.btn_CNMK.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btn_CNMK.Location = new System.Drawing.Point(84, 263);
-            this.btn_CNMK.Name = "btn_CNMK";
-            this.btn_CNMK.Size = new System.Drawing.Size(120, 29);
-            this.btn_CNMK.TabIndex = 9;
-            this.btn_CNMK.Text = "Cập nhập ";
-            this.btn_CNMK.UseVisualStyleBackColor = false;
-            this.btn_CNMK.Click += new System.EventHandler(this.btn_CNMK_Click);
+            this.txt_SDT.Location = new System.Drawing.Point(246, 128);
+            this.txt_SDT.Name = "txt_SDT";
+            this.txt_SDT.Size = new System.Drawing.Size(232, 27);
+            this.txt_SDT.TabIndex = 24;
+            this.txt_SDT.Text = "NV1";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(146, 122);
+            this.label4.Location = new System.Drawing.Point(148, 128);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 20);
-            this.label4.TabIndex = 10;
+            this.label4.TabIndex = 23;
             this.label4.Text = "SĐT:";
             // 
-            // txt_SDT
+            // btn_CNMK
             // 
-            this.txt_SDT.Location = new System.Drawing.Point(255, 122);
-            this.txt_SDT.Name = "txt_SDT";
-            this.txt_SDT.Size = new System.Drawing.Size(232, 27);
-            this.txt_SDT.TabIndex = 11;
+            this.btn_CNMK.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btn_CNMK.Location = new System.Drawing.Point(68, 278);
+            this.btn_CNMK.Name = "btn_CNMK";
+            this.btn_CNMK.Size = new System.Drawing.Size(120, 29);
+            this.btn_CNMK.TabIndex = 22;
+            this.btn_CNMK.Text = "Cập nhập ";
+            this.btn_CNMK.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // label3
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(393, 274);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Thoát";
-            this.button1.UseVisualStyleBackColor = false;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(86, 200);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(112, 20);
+            this.label3.TabIndex = 20;
+            this.label3.Text = "New password:";
+            // 
+            // txt_NPass
+            // 
+            this.txt_NPass.Location = new System.Drawing.Point(246, 197);
+            this.txt_NPass.Name = "txt_NPass";
+            this.txt_NPass.Size = new System.Drawing.Size(232, 27);
+            this.txt_NPass.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Historic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(148, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(240, 41);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Quên Mật Khẩu";
             // 
             // Frm_QuenMatKhau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 346);
+            this.ClientSize = new System.Drawing.Size(572, 390);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_SDT);
             this.Controls.Add(this.label4);
@@ -116,6 +116,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Frm_QuenMatKhau";
             this.Text = "Frm_QuenMatKhau";
+            //this.Load += new System.EventHandler(this.Frm_QuenMatKhau_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,12 +124,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txt_SDT;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btn_CNMK;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_NPass;
-        private System.Windows.Forms.Button btn_CNMK;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_SDT;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
     }
 }

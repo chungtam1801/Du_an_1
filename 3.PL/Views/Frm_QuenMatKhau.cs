@@ -21,32 +21,36 @@ namespace _3.PL.Views
 {
     public partial class Frm_QuenMatKhau : Form
     {
-            QLNhanVienServices nv = new QLNhanVienServices();
-            private void btn_Thoat_Click(object sender, EventArgs e)
+        QLNhanVienServices nv = new QLNhanVienServices();
+        public Frm_QuenMatKhau()
+        {
+            InitializeComponent();
+        }
+        private void btn_Thoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+        bool validateForm()
+        {
+
+            if (txt_SDT.Text.Trim() == "")
             {
-                this.Close();
-                //Application.Exit();
+                MessageBox.Show("Không được bỏ trống sđt. Vui lòng nhập đầy đủ!");
+                return false;
             }
-            bool validateForm()
+            if (txt_NPass.Text.Trim() == "")
             {
-                
-                if (txt_SDT.Text.Trim() == "")
-                {
-                    MessageBox.Show("Không được bỏ trống sđt. Vui lòng nhập đầy đủ!");
-                    return false;
-                }
-                if (txt_NPass.Text.Trim() == "")
-                {
-                    MessageBox.Show("Không được bỏ trống mật khẩu mới. Vui lòng nhập đầy đủ!");
-                    return false;
-                }
-                return true;
+                MessageBox.Show("Không được bỏ trống mật khẩu mới. Vui lòng nhập đầy đủ!");
+                return false;
             }
+            return true;
+        }
 
         private void btn_CNMK_Click(object sender, EventArgs e)
         {
             if (!validateForm()) return;
-            if (nv.checkTT( txt_SDT.Text.Trim(), txt_NPass.Text.Trim()))
+            if (nv.checkTT(txt_SDT.Text.Trim(), txt_NPass.Text.Trim()))
             {
                 MessageBox.Show("Mật khẩu đã được cập nhật.");
             }

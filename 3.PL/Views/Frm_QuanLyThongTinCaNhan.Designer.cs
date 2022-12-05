@@ -88,7 +88,7 @@
             // 
             // btn_CapNhat
             // 
-            this.btn_CapNhat.Location = new System.Drawing.Point(70, 350);
+            this.btn_CapNhat.Location = new System.Drawing.Point(69, 419);
             this.btn_CapNhat.Name = "btn_CapNhat";
             this.btn_CapNhat.Size = new System.Drawing.Size(94, 29);
             this.btn_CapNhat.TabIndex = 5;
@@ -98,7 +98,7 @@
             // 
             // btn_Thoat
             // 
-            this.btn_Thoat.Location = new System.Drawing.Point(319, 350);
+            this.btn_Thoat.Location = new System.Drawing.Point(319, 419);
             this.btn_Thoat.Name = "btn_Thoat";
             this.btn_Thoat.Size = new System.Drawing.Size(94, 29);
             this.btn_Thoat.TabIndex = 6;
@@ -148,7 +148,7 @@
             // lblShowInfor
             // 
             this.lblShowInfor.AutoSize = true;
-            this.lblShowInfor.Location = new System.Drawing.Point(52, 301);
+            this.lblShowInfor.Location = new System.Drawing.Point(69, 379);
             this.lblShowInfor.Name = "lblShowInfor";
             this.lblShowInfor.Size = new System.Drawing.Size(12, 20);
             this.lblShowInfor.TabIndex = 13;
@@ -192,7 +192,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 409);
+            this.ClientSize = new System.Drawing.Size(515, 491);
             this.Controls.Add(this.txt_SDT);
             this.Controls.Add(this.txt_Ten);
             this.Controls.Add(this.label6);

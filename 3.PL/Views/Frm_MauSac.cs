@@ -78,8 +78,8 @@ namespace _3.PL.Views
             return ms;
         }
         
-
-        private void btn_them_Click(object sender, EventArgs e)
+        
+        private void btn_them_Click_1(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
@@ -106,78 +106,11 @@ namespace _3.PL.Views
                     _iqLmsServices.Add(GetDataFromGUI());
                     LoadData();
                 }
-                
+
             }
             else
             {
                 MessageBox.Show("Them that bai");
-            }
-        }
-        private void btn_sua_Click(object sender, EventArgs e)
-        {
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
-            {
-                if (tbx_ma.Text.Trim() == "")
-                {
-                    MessageBox.Show("Mã màu sắc không được để trống!");
-                }
-                else if (tbx_ten.Text.Trim() == "")
-                {
-                    MessageBox.Show("Tên  màu sắc không được để trống!");
-                }
-                else
-                {
-                    _iqLmsServices.Update(GetDataFromGUI());
-                    LoadData();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Sửa  that bai");
-            }
-        }
-
-        private void btn_xoa_Click(object sender, EventArgs e)
-        {
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
-            {
-                if (tbx_ma.Text.Trim() == "")
-                {
-                    MessageBox.Show("Mã màu sắc không được để trống!");
-                }
-                else if (tbx_ten.Text.Trim() == "")
-                {
-                    MessageBox.Show("Tên màu sắc không được để trống!");
-                }
-                else
-                {
-                    _iqLmsServices.Delete(GetDataFromGUI());
-                    LoadData();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Xoa that bai");
-            }
-            
-            
-        }
-
-        private void btn_clear_Click(object sender, EventArgs e)
-        {
-
-            tbx_ma.Text = MaTuSinh();
-            tbx_ten.Text = "";
-            rbtn_hd.Checked = true;
-            rbtn_kohd.Checked = false;
-            LoadData();
-        }
-        private void btn_them_Click_1(object sender, EventArgs e)
-        {
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
-            {
-                _iqLmsServices.Add(GetDataFromGUI());
-                LoadData();
             }
         }
 
@@ -241,6 +174,63 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Ngoài phạm vi dữ liệu");
             }
+        }
+
+        private void btn_sua_Click_1(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
+            {
+                if (tbx_ma.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mã màu sắc không được để trống!");
+                }
+                else if (tbx_ten.Text.Trim() == "")
+                {
+                    MessageBox.Show("Tên  màu sắc không được để trống!");
+                }
+                else
+                {
+                    _iqLmsServices.Update(GetDataFromGUI());
+                    LoadData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Sửa  that bai");
+            }
+        }
+
+        private void btn_xoa_Click_1(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
+            {
+                if (tbx_ma.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mã màu sắc không được để trống!");
+                }
+                else if (tbx_ten.Text.Trim() == "")
+                {
+                    MessageBox.Show("Tên màu sắc không được để trống!");
+                }
+                else
+                {
+                    _iqLmsServices.Delete(GetDataFromGUI());
+                    LoadData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Xoa that bai");
+            }
+        }
+
+        private void btn_clear_Click_1(object sender, EventArgs e)
+        {
+            tbx_ma.Text = MaTuSinh();
+            tbx_ten.Text = "";
+            rbtn_hd.Checked = true;
+            rbtn_kohd.Checked = false;
+            LoadData();
         }
     }
 }

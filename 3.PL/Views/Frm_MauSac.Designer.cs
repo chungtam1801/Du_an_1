@@ -61,6 +61,7 @@
             this.btn_clear.TabIndex = 41;
             this.btn_clear.Text = "Clear";
             this.btn_clear.UseVisualStyleBackColor = false;
+            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click_1);
             // 
             // btn_xoa
             // 
@@ -72,6 +73,7 @@
             this.btn_xoa.TabIndex = 40;
             this.btn_xoa.Text = "Xóa";
             this.btn_xoa.UseVisualStyleBackColor = false;
+            this.btn_xoa.Click += new System.EventHandler(this.btn_xoa_Click_1);
             // 
             // btn_sua
             // 
@@ -83,6 +85,7 @@
             this.btn_sua.TabIndex = 39;
             this.btn_sua.Text = "Sửa";
             this.btn_sua.UseVisualStyleBackColor = false;
+            this.btn_sua.Click += new System.EventHandler(this.btn_sua_Click_1);
             // 
             // btn_them
             // 
@@ -108,7 +111,6 @@
             this.dgrd_mausac.RowTemplate.Height = 25;
             this.dgrd_mausac.Size = new System.Drawing.Size(708, 347);
             this.dgrd_mausac.TabIndex = 37;
-           // this.dgrd_mausac.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrd_mausac_CellContentClick);
             // 
             // label4
             // 

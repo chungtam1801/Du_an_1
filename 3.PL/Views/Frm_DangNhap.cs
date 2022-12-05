@@ -89,32 +89,7 @@ namespace _3.PL.Views
                     }
                 }
             }
-            //if (this.tb_taikhoan.Text == "" || this.tb_matkhau.Text == "")
-            //{
-            //    MessageBox.Show(" Vui lòng nhập tài khoản ! ");
-            //}
-            //else
-            //{
-            //    NhanVien nv = new NhanVien();
-
-            //    if (this.tb_taikhoan.Text == nv.Ma)
-            //        if (this.tb_matkhau.Text == nv.MatKhau)
-            //        {
-            //            this.Hide();
-            //            Frm_Main main = new Frm_Main();
-            //            main.ShowDialog();
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
-
-
-            //        }
-            //    else
-            //    {
-            //        MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
-            //    }
-            //}
+            
 
             this.tb_taikhoan.Focus();
 
@@ -124,6 +99,11 @@ namespace _3.PL.Views
         {
             Frm_QuenMatKhau qmk = new Frm_QuenMatKhau();
             qmk.ShowDialog();
+        }
+
+        private void Frm_DangNhap_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
