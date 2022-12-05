@@ -18,13 +18,15 @@ namespace _3.PL.Views
     {
         private IQLGiaoCaServices _iQLGiaoCaServices;
         private IQLNhanVienServices _iQLNhanVienServices;
-        public Frm_QLVaoCa()
+        public NhanVien _nhanVien { get; set; }
+        public Frm_QLVaoCa(NhanVien nv)
         {
             InitializeComponent();
             _iQLGiaoCaServices = new QLGiaoCaServices();
             _iQLNhanVienServices = new QLNhanVienServices();
             this.TopMost = true;
             this.BringToFront();
+            tbx_nhanvien.Text = nv.Ma;
             tbx_nhanvien.Enabled = false;
             tbx_giovaoca.Enabled = false;
             tbx_giovaoca.Text = Convert.ToString(DateTime.Now);

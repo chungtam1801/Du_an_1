@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using _1.DAL.DomainClass;
 namespace _3.PL.Views
 {
     public partial class Frm_Main : Form
     {
         private Form activeForm;
+        public NhanVien nv { get; set; }
         public Frm_Main()
         {
             InitializeComponent();
@@ -30,8 +32,11 @@ namespace _3.PL.Views
         }
         private void Frm_Main_Load(object sender, EventArgs e)
         {
+            lbl_Ten.Text = nv.Ho + " " + nv.TenDem + " " + nv.Ten;
             pnl_menucon.Visible = false;
             tbx_giohethong.Text = Convert.ToString(DateTime.Now);
+            Frm_QLVaoCa frm_QLVaoCa = new Frm_QLVaoCa(nv);
+            frm_QLVaoCa.ShowDialog();
         }
 
         private void btn_banHang_Click(object sender, EventArgs e)
@@ -43,7 +48,9 @@ namespace _3.PL.Views
             lbl_tilte.Text = "BÁN HÀNG";
             hideMenuCon();
             //if(DialogResult.Yes == MessageBox.Show("Bạn có chắc chắn vào ca?", "", MessageBoxButtons.YesNo)){
-            OpenChildForm(new Frm_BanHang(), sender);
+            Frm_BanHang frm_BanHang = new Frm_BanHang();
+            frm_BanHang._nhanVien = nv;
+            OpenChildForm(frm_BanHang, sender);
             //    Frm_QLVaoCa frm_QLVaoCa = new Frm_QLVaoCa();
             //    frm_QLVaoCa.ShowDialog();
             //}
@@ -232,17 +239,6 @@ namespace _3.PL.Views
             lbl_tilte.Text = "NHÂN VIÊN";
             OpenChildForm(new Frm_NhanVien(), sender);
         }
-
-        private void btn_ketca_Click(object sender, EventArgs e)
-        {
-            hideMenuCon();
-            pnl_Nav.Height = btn_nhanvien.Height;
-            pnl_Nav.Top = btn_nhanvien.Top;
-            pnl_Nav.Left = btn_nhanvien.Left;
-            btn_nhanvien.BackColor = Color.FromArgb(46, 51, 73);
-            OpenChildForm(new Frm_KetCa(), sender);
-        }
-
         private void btn_QLTichDiem_Click(object sender, EventArgs e)
         {
             hideMenuCon();
@@ -251,6 +247,16 @@ namespace _3.PL.Views
             pnl_Nav.Left = btn_QLTichDiem.Left;
             btn_QLTichDiem.BackColor = Color.FromArgb(46, 51, 73);
             OpenChildForm(new Frm_ThietLapDiem(), sender);
+        }
+
+        private void btn_ketca_Click_1(object sender, EventArgs e)
+        {
+            hideMenuCon();
+            pnl_Nav.Height = btn_nhanvien.Height;
+            pnl_Nav.Top = btn_nhanvien.Top;
+            pnl_Nav.Left = btn_nhanvien.Left;
+            btn_nhanvien.BackColor = Color.FromArgb(46, 51, 73);
+            OpenChildForm(new Frm_KetCa(), sender);
         }
 
         //private void btn_tichdiem_Click(object sender, EventArgs e)
