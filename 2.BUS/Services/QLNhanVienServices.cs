@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using _1.DAL.DomainClass;
 using _1.DAL.IRepositories;
 using _1.DAL.Repositories;
+using _1.DAL.Context;
 using _2.BUS.IServices;
 using _2.BUS.ViewModels;
 
@@ -14,6 +15,8 @@ namespace _2.BUS.Services
     public class QLNhanVienServices : IQLNhanVienServices
     {
         private IClassCRUDRepo<NhanVien> _iNhanVienRepository;
+        private FpolyDBContext _FpolyDB;
+        private List<NhanVien> _NhanVienList;
         private IClassCRUDRepo<ChucVu> _iChucVuRepository;
         public QLNhanVienServices()
         {
@@ -38,6 +41,7 @@ namespace _2.BUS.Services
 
         public List<NhanVien> GetAll()
         {
+            _NhanVienList = _FpolyDB.NhanViens.ToList();
             return _iNhanVienRepository.GetAll();
         }
         public NhanVien GetByID(Guid id)
@@ -78,7 +82,23 @@ namespace _2.BUS.Services
         public List<NhanVien> GetAll(int hd)
         {
             return _iNhanVienRepository.GetAll().Where(c => c.TrangThai == hd).ToList();
-            
+
+        }
+        
+        public bool checkTT( string sdt, string mk)
+        {
+            _NhanVienList = GetAll();
+            var result = _NhanVienList.FirstOrDefault(p =>   p.Sdt == sdt ); 
+            if (result == null)
+            {
+                return false;
+            }
+            else
+            {
+                result.MatKhau = mk;
+                Update(result);
+                return true;
+            }
         }
     }
 }

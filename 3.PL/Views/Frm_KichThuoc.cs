@@ -129,6 +129,7 @@ namespace _3.PL.Views
             rbtn_conhang.Checked = false;
             rbtn_hethang.Checked = false;
             LoadData();
+            tb_ma.Text = MaTuSinh();
         }
 
         private void dtg_KichThuoc_CellClick(object sender, DataGridViewCellEventArgs e)

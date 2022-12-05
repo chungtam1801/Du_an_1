@@ -12,6 +12,7 @@ using _1.DAL.IRepositories;
 using _2.BUS.Services;
 using _2.BUS.IServices;
 using _1.DAL.DomainClass;
+using System.Security.Cryptography;
 
 namespace _3.PL.Views
 {
@@ -23,7 +24,7 @@ namespace _3.PL.Views
         public Frm_MauSac()
         {
             InitializeComponent();
-            _imsRepository = new MauSacRepository();
+            
             _iqLmsServices = new QLMauSacServices();
             LoadData();
         }
@@ -32,21 +33,39 @@ namespace _3.PL.Views
         {
             dgrd_mausac.ColumnCount = 4;
             dgrd_mausac.Columns[0].Name = "ID";
-            dgrd_mausac.Columns[0].Width = 385;
+            dgrd_mausac.Columns[0].Visible = false;
             dgrd_mausac.Columns[1].Name = "Mã";
             dgrd_mausac.Columns[2].Name = "Tên";
             dgrd_mausac.Columns[3].Name = "Trạng thái";
             dgrd_mausac.Rows.Clear();
+            
             foreach (var x in _iqLmsServices.GetAll())
             {
                 dgrd_mausac.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
         }
-private MauSac GetDataFromGUI()
+        private string MaTuSinh()
+        {
+            string s;
+            int max = 0;
+            for (int i = 0; i < _iqLmsServices.GetAll().Count; i++)
+            {
+                string ma = _iqLmsServices.GetAll()[i].Ma;
+                string so = ma.Substring(2);
+                int x = Convert.ToInt32(so);
+                if (x > max)
+                {
+                    max = x;
+                }
+            }
+            s = "CL00" + (max + 1);
+            return s;
+        }
+        private MauSac GetDataFromGUI()
         {
             MauSac ms = new MauSac();
             ms.Id = _id;
-            ms.Ma = tbx_ma.Text;
+            ms.Ma = MaTuSinh();
             ms.Ten = tbx_ten.Text;
             if (rbtn_hd.Checked == true)
             {
@@ -87,14 +106,34 @@ private MauSac GetDataFromGUI()
                     _iqLmsServices.Add(GetDataFromGUI());
                     LoadData();
                 }
+                
+            }
+            else
+            {
+                MessageBox.Show("Them that bai");
             }
         }
         private void btn_sua_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLmsServices.Update(GetDataFromGUI());
-                LoadData();
+                if (tbx_ma.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mã màu sắc không được để trống!");
+                }
+                else if (tbx_ten.Text.Trim() == "")
+                {
+                    MessageBox.Show("Tên  màu sắc không được để trống!");
+                }
+                else
+                {
+                    _iqLmsServices.Update(GetDataFromGUI());
+                    LoadData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Sửa  that bai");
             }
         }
 
@@ -102,37 +141,37 @@ private MauSac GetDataFromGUI()
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLmsServices.Delete(GetDataFromGUI());
-                LoadData();
+                if (tbx_ma.Text.Trim() == "")
+                {
+                    MessageBox.Show("Mã màu sắc không được để trống!");
+                }
+                else if (tbx_ten.Text.Trim() == "")
+                {
+                    MessageBox.Show("Tên màu sắc không được để trống!");
+                }
+                else
+                {
+                    _iqLmsServices.Delete(GetDataFromGUI());
+                    LoadData();
+                }
             }
+            else
+            {
+                MessageBox.Show("Xoa that bai");
+            }
+            
+            
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
         {
-            tbx_ma.Text = "";
+
+            tbx_ma.Text = MaTuSinh();
             tbx_ten.Text = "";
             rbtn_hd.Checked = true;
+            rbtn_kohd.Checked = false;
             LoadData();
         }
-
-        private void dgrd_nsx_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int rowIndex = e.RowIndex;
-            var ms = _iqLmsServices.GetAll().FirstOrDefault(c => c.Id == Guid.Parse(dgrd_mausac.Rows[rowIndex].Cells[0].Value.ToString()));
-            _id = ms.Id;
-            tbx_ma.Text = ms.Ma;
-            tbx_ten.Text = ms.Ten;
-
-            if (ms.TrangThai == 1)
-            {
-                rbtn_hd.Checked = true;
-            }
-            else if (ms.TrangThai == 0)
-            {
-                rbtn_kohd.Checked = true;
-            }
-        }
-
         private void btn_them_Click_1(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
@@ -146,36 +185,61 @@ private MauSac GetDataFromGUI()
 
         private void txt_timKiem_TextChanged(object sender, EventArgs e)
         {
-            if (cbb_timkiem.Text == "Tìm kiếm theo mã")
-            {
-                var tk = _iqLmsServices.GetAll().Where(p => p.Ma == cbb_timkiem.Text);
+           
+                
                 dgrd_mausac.Rows.Clear();
                 dgrd_mausac.ColumnCount = 4;
                 dgrd_mausac.Columns[0].Name = "ID";
-                dgrd_mausac.Columns[0].Width = 385;
+                dgrd_mausac.Columns[0].Visible = false;
                 dgrd_mausac.Columns[1].Name = "Mã";
                 dgrd_mausac.Columns[2].Name = "Tên";
                 dgrd_mausac.Columns[3].Name = "Trạng thái";
-                foreach (var x in tk)
+                foreach (var x in _iqLmsServices.GetAll().Where(x => x.Ten.ToLower().Contains(tk_timkiem.Text.ToLower()) || x.Ma.Contains(tk_timkiem.Text)))
                 {
                     dgrd_mausac.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng");
                 }
             }
-            else if (cbb_timkiem.Text == "Tìm kiếm theo tên")
-            {
-                var tk = _iqLmsServices.GetAll().Where(p => p.Ten == cbb_timkiem.Text);
-                dgrd_mausac.Rows.Clear();
-                dgrd_mausac.ColumnCount = 4;
-                dgrd_mausac.Columns[0].Name = "ID";
-                dgrd_mausac.Columns[0].Width = 385;
-                dgrd_mausac.Columns[1].Name = "Mã";
-                dgrd_mausac.Columns[2].Name = "Tên";
-                dgrd_mausac.Columns[3].Name = "Trạng thái";
-                foreach (var x in tk)
-                {
-                    dgrd_mausac.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
-                }
+            
 
+            
+        
+
+        private void Frm_MauSac_Load(object sender, EventArgs e)
+        {
+            tbx_ma.Text = MaTuSinh();
+        }
+        private void tb_timkiem_Leave(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+        private void cbb_timkiem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgrd_mausac_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            if (rowIndex >= 0 && rowIndex < _iqLmsServices.GetAll().Count)
+            {
+                var kt = _iqLmsServices.GetAll().FirstOrDefault(c => c.Id == Guid.Parse(dgrd_mausac.Rows[rowIndex].Cells[0].Value.ToString()));
+                _id = kt.Id;
+                tbx_ma.Text = kt.Ma;
+                tbx_ten.Text = kt.Ten;
+
+
+                if (kt.TrangThai == 1)
+                {
+                    rbtn_hd.Checked = true;
+                }
+                else if (kt.TrangThai == 0)
+                {
+                    rbtn_kohd.Checked = true;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ngoài phạm vi dữ liệu");
             }
         }
     }

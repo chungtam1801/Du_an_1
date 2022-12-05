@@ -23,7 +23,7 @@ namespace _3.PL.Views
             InitializeComponent();
             _iQLMauSacServices = new QLMauSacServices();
         }
-        private string MaMauSac()
+        private string MaTuSinh()
         {
             string s;
             int max = 0;
@@ -37,7 +37,7 @@ namespace _3.PL.Views
                     max = x;
                 }
             }
-            s = "MS00" + (max + 1);
+            s = "CL00" + (max + 1);
             return s;
         }
         private void btn_luu_Click(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace _3.PL.Views
             {
                 MauSac mausac = new MauSac();
                 mausac.Ten = tbx_ten.Text;
-                mausac.Ma = MaMauSac();
+                mausac.Ma = MaTuSinh();
                 if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
                 {
                     MessageBox.Show(_iQLMauSacServices.Add(mausac));
@@ -63,7 +63,7 @@ namespace _3.PL.Views
 
         private void Frm_ThemNhanhMauSac_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Themms(tbx_ten.Text);
+            //Themms(tbx_ten.Text);
         }
     }
 }

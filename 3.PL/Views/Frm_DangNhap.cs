@@ -63,9 +63,14 @@ namespace _3.PL.Views
 
         private void bt_dangnhap_Click_1(object sender, EventArgs e)
         {
-            if (this.tb_taikhoan.Text == "" || this.tb_matkhau.Text == "")
+            string username =tb_taikhoan.Text;
+            string password = tb_matkhau.Text;
+            if (username.Equals("") || password.Equals(""))
             {
-                MessageBox.Show(" Vui lòng nhập tài khoản ! ");
+                MessageBox.Show("Các trường không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (username.Equals(""))
+                    tb_taikhoan.Focus();
+                else tb_matkhau.Focus();
             }
             else
             {
