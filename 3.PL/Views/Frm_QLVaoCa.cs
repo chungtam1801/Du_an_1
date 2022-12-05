@@ -18,13 +18,15 @@ namespace _3.PL.Views
     {
         private IQLGiaoCaServices _iQLGiaoCaServices;
         private IQLNhanVienServices _iQLNhanVienServices;
-        public Frm_QLVaoCa()
+        public NhanVien _nhanVien { get; set; }
+        public Frm_QLVaoCa(NhanVien nv)
         {
             InitializeComponent();
             _iQLGiaoCaServices = new QLGiaoCaServices();
             _iQLNhanVienServices = new QLNhanVienServices();
             this.TopMost = true;
             this.BringToFront();
+            tbx_nhanvien.Text = nv.Ma;
             tbx_nhanvien.Enabled = false;
             tbx_giovaoca.Enabled = false;
             tbx_giovaoca.Text = Convert.ToString(DateTime.Now);
@@ -262,8 +264,7 @@ namespace _3.PL.Views
             else
             {
                 GiaoCa giaoca = new GiaoCa();
-                //giaoca.IdNguoiNhanCa = _iQLNhanVienServices.GetAll().First(c=> c.Ma == tbx_nhanvien.Text).Id;
-                giaoca.IdNguoiNhanCa = Guid.Parse("4B6E84E1-2918-4C39-9C2A-A6DC4BAB4332");
+                giaoca.IdNguoiNhanCa = _iQLNhanVienServices.GetAll().First(c => c.Ma == tbx_nhanvien.Text).Id;
                 giaoca.TienDauca = Convert.ToDecimal(tbx_tongtien.Text);
                 giaoca.ThoiGianVaoCa = Convert.ToDateTime(tbx_giovaoca.Text);
                 if (DialogResult.OK == MessageBox.Show("Bạn có chắc chắn muốn vào ca?", "", MessageBoxButtons.OKCancel))

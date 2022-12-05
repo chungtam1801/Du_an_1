@@ -36,6 +36,7 @@ namespace _3.PL.Views
         private string _trangThaiDH = "Chờ giao hàng";
         private List<Guid> _lstIDPTTT = new List<Guid>();
         public HoaDon? _hoaDon { get; set; }
+        public NhanVien _nhanVien { get; set; }
         public Frm_BanHang()
         {
             InitializeComponent();
@@ -146,7 +147,7 @@ namespace _3.PL.Views
             ThongTinSanPham obj = (ThongTinSanPham)sender;
             if(_hoaDon==null)
             {
-                _hoaDon = _banHangServices.CreateHD(_trangThaiBH);
+                _hoaDon = _banHangServices.CreateHD(_trangThaiBH,_nhanVien);
                 LoadDTG_HoaDon(_trangThaiHD);
             }
             if (!_banHangServices.CheckHDThanhToan(_hoaDon))
@@ -350,7 +351,7 @@ namespace _3.PL.Views
         //pnl HoaDon
         private void pic_TaoHoaDon_Click(object sender, EventArgs e)
         {
-            _hoaDon = _banHangServices.CreateHD(0);
+            _hoaDon = _banHangServices.CreateHD(0,_nhanVien);
             _trangThaiBH = 0;
             LoadThongTinHoaDon(_hoaDon);
             LoadDTG_HoaDon(_trangThaiHD);
@@ -374,7 +375,7 @@ namespace _3.PL.Views
         //pnl DatHang
         private void pic_TaoDatHang_Click(object sender, EventArgs e)
         {
-            _hoaDon = _banHangServices.CreateHD(3);
+            _hoaDon = _banHangServices.CreateHD(3, _nhanVien);
             _trangThaiBH = 3;
             LoadThongTinHoaDon(_hoaDon);
             LoadDTG_DatHang(_trangThaiDH);

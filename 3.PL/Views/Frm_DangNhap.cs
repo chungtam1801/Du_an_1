@@ -38,22 +38,24 @@ namespace _3.PL.Views
             }
             else
             {
-                NhanVien nv = new NhanVien();
-                if (this.tb_taikhoan.Text == nv.Ma)
-                    if (this.tb_matkhau.Text == nv.MatKhau)
+                //NhanVien nv = new NhanVien();
+                //if (this.tb_taikhoan.Text == nv.Ma)
+                NhanVien nv = _inhanVienServices.GetAll().FirstOrDefault(c=>c.Ma==tb_taikhoan.Text && c.MatKhau==tb_matkhau.Text);
+                    if (nv != null)
                     {
                         this.Hide();
                         Frm_Main main = new Frm_Main();
-                        main.ShowDialog();
+                        main.nv = nv;
+                    main.ShowDialog();      
                     }
                     else
                     {
                         MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
                     }
-                else
-                {
-                    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
-                }
+                //else
+                //{
+                //    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+                //}
             }
 
             this.tb_taikhoan.Focus();
@@ -67,22 +69,22 @@ namespace _3.PL.Views
             }
             else
             {
-                NhanVien nv = new NhanVien();
-                if (this.tb_taikhoan.Text == nv.Ma)
-                    if (this.tb_matkhau.Text == nv.MatKhau)
-                    {
-                        this.Hide();
-                        Frm_Main main = new Frm_Main();
-                        main.ShowDialog();
-                    }
-                    else
+                NhanVien nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.Ma == tb_taikhoan.Text && c.MatKhau == tb_matkhau.Text);
+                if (nv != null)
+                {
+                    this.Hide();
+                    Frm_Main main = new Frm_Main();
+                    main.nv = nv;
+                    main.ShowDialog();
+                }
+                else
                     {
                         MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
                     }
-                else
-                {
-                    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
-                }
+                //else
+                //{
+                //    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+                //}
             }
 
             this.tb_taikhoan.Focus();
