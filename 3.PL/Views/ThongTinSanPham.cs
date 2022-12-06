@@ -31,7 +31,6 @@ namespace _3.PL.Views
             lbl_GiaTien.Text = sp.GiaBan.ToString();
             ChiTietSanPham("Màu sắc: " + sp.MauSac + "\nKích thước: " + sp.KichThuoc);
             chiTietSP = sp;
-
         }
         private void ChiTietSanPham(string x)
         {
@@ -66,15 +65,15 @@ namespace _3.PL.Views
         {
             this.BackColor = Color.WhiteSmoke;
         }
-
+        //Sua
         private void ptb_Anh_MouseEnter(object sender, EventArgs e)
         {
             this.BackColor = Color.FromArgb(217, 229, 242);
         }
-
         private void ptb_Anh_MouseLeave(object sender, EventArgs e)
         {
             this.BackColor = Color.WhiteSmoke;
         }
+        //
     }
 }

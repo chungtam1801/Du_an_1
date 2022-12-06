@@ -51,6 +51,12 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnl_Nav = new System.Windows.Forms.Panel();
             this.pnl_title = new System.Windows.Forms.Panel();
+            this.lbl_tientaiquay = new System.Windows.Forms.Label();
+            this.lbl_doanhthuca = new System.Windows.Forms.Label();
+            this.lbl_doanhthungay = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tbx_giohethong = new System.Windows.Forms.TextBox();
             this.lbl_tilte = new System.Windows.Forms.Label();
             this.pnl_desktop = new System.Windows.Forms.Panel();
@@ -77,7 +83,7 @@
             this.pnl_menu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnl_menu.Location = new System.Drawing.Point(0, 0);
             this.pnl_menu.Name = "pnl_menu";
-            this.pnl_menu.Size = new System.Drawing.Size(190, 788);
+            this.pnl_menu.Size = new System.Drawing.Size(190, 745);
             this.pnl_menu.TabIndex = 0;
             // 
             // btn_ketca
@@ -411,13 +417,82 @@
             // pnl_title
             // 
             this.pnl_title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(59)))), ((int)(((byte)(108)))));
+            this.pnl_title.Controls.Add(this.lbl_tientaiquay);
+            this.pnl_title.Controls.Add(this.lbl_doanhthuca);
+            this.pnl_title.Controls.Add(this.lbl_doanhthungay);
+            this.pnl_title.Controls.Add(this.label4);
+            this.pnl_title.Controls.Add(this.label3);
+            this.pnl_title.Controls.Add(this.label1);
             this.pnl_title.Controls.Add(this.tbx_giohethong);
             this.pnl_title.Controls.Add(this.lbl_tilte);
             this.pnl_title.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_title.Location = new System.Drawing.Point(190, 0);
             this.pnl_title.Name = "pnl_title";
-            this.pnl_title.Size = new System.Drawing.Size(1160, 75);
+            this.pnl_title.Size = new System.Drawing.Size(1160, 95);
             this.pnl_title.TabIndex = 4;
+            // 
+            // lbl_tientaiquay
+            // 
+            this.lbl_tientaiquay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_tientaiquay.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_tientaiquay.Location = new System.Drawing.Point(157, 71);
+            this.lbl_tientaiquay.Name = "lbl_tientaiquay";
+            this.lbl_tientaiquay.Size = new System.Drawing.Size(174, 21);
+            this.lbl_tientaiquay.TabIndex = 7;
+            this.lbl_tientaiquay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl_doanhthuca
+            // 
+            this.lbl_doanhthuca.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_doanhthuca.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_doanhthuca.Location = new System.Drawing.Point(157, 39);
+            this.lbl_doanhthuca.Name = "lbl_doanhthuca";
+            this.lbl_doanhthuca.Size = new System.Drawing.Size(174, 21);
+            this.lbl_doanhthuca.TabIndex = 6;
+            this.lbl_doanhthuca.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lbl_doanhthungay
+            // 
+            this.lbl_doanhthungay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_doanhthungay.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_doanhthungay.Location = new System.Drawing.Point(157, 9);
+            this.lbl_doanhthungay.Name = "lbl_doanhthungay";
+            this.lbl_doanhthungay.Size = new System.Drawing.Size(174, 21);
+            this.lbl_doanhthungay.TabIndex = 5;
+            this.lbl_doanhthungay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Location = new System.Drawing.Point(6, 71);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(101, 21);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Tiền tại quầy:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Location = new System.Drawing.Point(6, 39);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(105, 21);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Doanh thu ca:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(6, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(124, 21);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Doanh thu ngày:";
             // 
             // tbx_giohethong
             // 
@@ -426,7 +501,7 @@
             this.tbx_giohethong.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbx_giohethong.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbx_giohethong.ForeColor = System.Drawing.Color.White;
-            this.tbx_giohethong.Location = new System.Drawing.Point(937, 49);
+            this.tbx_giohethong.Location = new System.Drawing.Point(937, 69);
             this.tbx_giohethong.Name = "tbx_giohethong";
             this.tbx_giohethong.Size = new System.Drawing.Size(220, 20);
             this.tbx_giohethong.TabIndex = 1;
@@ -437,7 +512,7 @@
             this.lbl_tilte.AutoSize = true;
             this.lbl_tilte.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_tilte.ForeColor = System.Drawing.Color.White;
-            this.lbl_tilte.Location = new System.Drawing.Point(540, 21);
+            this.lbl_tilte.Location = new System.Drawing.Point(540, 31);
             this.lbl_tilte.Name = "lbl_tilte";
             this.lbl_tilte.Size = new System.Drawing.Size(99, 31);
             this.lbl_tilte.TabIndex = 0;
@@ -448,9 +523,9 @@
             this.pnl_desktop.AutoSize = true;
             this.pnl_desktop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnl_desktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_desktop.Location = new System.Drawing.Point(190, 75);
+            this.pnl_desktop.Location = new System.Drawing.Point(190, 95);
             this.pnl_desktop.Name = "pnl_desktop";
-            this.pnl_desktop.Size = new System.Drawing.Size(1160, 713);
+            this.pnl_desktop.Size = new System.Drawing.Size(1160, 650);
             this.pnl_desktop.TabIndex = 5;
             // 
             // Frm_Main
@@ -458,7 +533,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(1350, 788);
+            this.ClientSize = new System.Drawing.Size(1350, 745);
             this.Controls.Add(this.pnl_desktop);
             this.Controls.Add(this.pnl_title);
             this.Controls.Add(this.pnl_Nav);
@@ -509,5 +584,11 @@
         private System.Windows.Forms.TextBox tbx_giohethong;
         private System.Windows.Forms.Button btn_ketca;
         private System.Windows.Forms.Button btn_QLTichDiem;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label lbl_doanhthuca;
+        public System.Windows.Forms.Label lbl_doanhthungay;
+        public System.Windows.Forms.Label lbl_tientaiquay;
     }
 }

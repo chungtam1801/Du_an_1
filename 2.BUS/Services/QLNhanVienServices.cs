@@ -41,7 +41,7 @@ namespace _2.BUS.Services
 
         public List<NhanVien> GetAll()
         {
-            _NhanVienList = _FpolyDB.NhanViens.ToList();
+            //_NhanVienList = _FpolyDB.NhanViens.ToList();
             return _iNhanVienRepository.GetAll();
         }
         public NhanVien GetByID(Guid id)

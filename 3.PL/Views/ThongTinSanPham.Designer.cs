@@ -43,6 +43,7 @@
             // 
             this.ptb_Anh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ptb_Anh.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ptb_Anh.Enabled = false;
             this.ptb_Anh.Location = new System.Drawing.Point(0, 0);
             this.ptb_Anh.Name = "ptb_Anh";
             this.ptb_Anh.Size = new System.Drawing.Size(287, 231);

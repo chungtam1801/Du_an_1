@@ -40,20 +40,18 @@ namespace _3.PL.Views
             }
             else
             {
-                //NhanVien nv = new NhanVien();
-                //if (this.tb_taikhoan.Text == nv.Ma)
-                NhanVien nv = _inhanVienServices.GetAll().FirstOrDefault(c=>c.Ma==tb_taikhoan.Text && c.MatKhau==tb_matkhau.Text);
-                    if (nv != null)
-                    {
-                        this.Hide();
-                        Frm_Main main = new Frm_Main();
-                        main.nv = nv;
-                    main.ShowDialog();      
-                    }
-                    else
-                    {
-                        MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
-                    }
+                NhanVien nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.Ma == tb_taikhoan.Text && c.MatKhau == tb_matkhau.Text);
+                if (nv != null)
+                {
+                    this.Hide();
+                    Frm_Main main = new Frm_Main();
+                    main.nv = nv;
+                    main.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+                }
                 //else
                 //{
                 //    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
@@ -65,43 +63,39 @@ namespace _3.PL.Views
 
         private void bt_dangnhap_Click_1(object sender, EventArgs e)
         {
-            string username =tb_taikhoan.Text;
-            string password = tb_matkhau.Text;
-            if (username.Equals("") || password.Equals(""))
+            if (tb_taikhoan.Text == "" || tb_matkhau.Text == "")
             {
-                MessageBox.Show("Các trường không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                if (username.Equals(""))
-                    tb_taikhoan.Focus();
-                else tb_matkhau.Focus();
+                MessageBox.Show("Các trường không được để trống");
             }
             else
             {
-                NhanVien nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.Ma == tb_taikhoan.Text && c.MatKhau == tb_matkhau.Text);
-                if (nv != null)
-                {
-                    this.Hide();
-                    Frm_Main main = new Frm_Main();
-                    main.nv = nv;
-                    main.ShowDialog();
-                }
-                else
+                    NhanVien nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.Ma == tb_taikhoan.Text && c.MatKhau == tb_matkhau.Text);
+                    if (nv != null)
                     {
-                        MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+                        this.Hide();
+                        Frm_Main main = new Frm_Main();
+                        main.nv = nv;
+                        main.ShowDialog();
                     }
-                //else
-                //{
-                //    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
-                //}
+                    else
+                    {
+                        MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
+                    }
+                }
+
+                this.tb_taikhoan.Focus();
+
             }
 
-            this.tb_taikhoan.Focus();
+            private void lb_QuenMatKhau_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+            {
+                Frm_QuenMatKhau qmk = new Frm_QuenMatKhau();
+                qmk.ShowDialog();
+            }
 
-        }
+            private void Frm_DangNhap_Load(object sender, EventArgs e)
+            {
 
-        private void lb_QuenMatKhau_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Frm_QuenMatKhau qmk = new Frm_QuenMatKhau();
-            qmk.ShowDialog();
+            }
         }
     }
-}

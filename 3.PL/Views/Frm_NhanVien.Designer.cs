@@ -529,6 +529,7 @@
             this.Name = "Frm_NhanVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_NhanVien";
+            this.Load += new System.EventHandler(this.Frm_NhanVien_Load_1);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_seachbyma)).EndInit();

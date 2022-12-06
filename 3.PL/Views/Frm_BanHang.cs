@@ -22,8 +22,11 @@ namespace _3.PL.Views
     public partial class Frm_BanHang : Form
     {
         private BanHangServices _banHangServices = new BanHangServices();
+        private IQLChiTietHoaDonServices _iQLChiTietHoaDonServices;
         //private IQLHoaDonServices _iQLHoaDonServices;
         private IQLChiTietSpServices _iQLChiTietSpServices;
+        private IQLGiaoCaServices _iQLGiaoCaServices;
+        private IQLHoaDonServices _iQLHoaDonServices;
         //private IQLChiTietHoaDonServices _iQLChiTietHoaDonServices;
         //private IQLChiTietPtttServices _iQLChiTietPtttServices;
         //private IQLPhuongThucThanhToanServices _iQLPhuongThucThanhToanServices;
@@ -35,11 +38,15 @@ namespace _3.PL.Views
         private List<Guid> _lstIDPTTT = new List<Guid>();
         public HoaDon? _hoaDon { get; set; }
         public NhanVien _nhanVien { get; set; }
+        public Frm_Main frmmain { get; set; }
         public Frm_BanHang()
         {
             
             InitializeComponent();
             _iQLChiTietSpServices = new QLChiTietSpServices();
+            _iQLGiaoCaServices = new QLGiaoCaServices();
+            _iQLHoaDonServices = new QLHoaDonServices();
+            _iQLChiTietHoaDonServices = new QLChiTietHoaDonServices();
             LoadDTG_HoaDon(_trangThaiHD);
             LoadDTG_DatHang(_trangThaiDH);
             GetData(_iQLChiTietSpServices.GetAllView());
@@ -58,6 +65,43 @@ namespace _3.PL.Views
                 flp_SanPham.Controls.Add(thongTinSanPham);           
             }
         }
+        private string LaydoanhthuNgay(decimal? x)
+        {
+            // Tổng doanh thu ngày
+            // List ca được tạo trong ngày hôm nay với thời gian tăng dần
+            List<GiaoCa> catrongngay = _iQLGiaoCaServices.GetAll().Where(c => Convert.ToDateTime(c.ThoiGianVaoCa).Day == DateTime.Now.Day).OrderBy(c => c.ThoiGianVaoCa).ToList();
+            //Lấy thời gian vào của ca sớm nhất trong ngày
+            DateTime thoigianvao = Convert.ToDateTime(catrongngay[0].ThoiGianVaoCa);
+            // Lấy danh sách hóa đơn được tạo cho đến bây giờ
+            _iQLHoaDonServices = new QLHoaDonServices();
+            List<HoaDon> hoaDons = _iQLHoaDonServices.GetAll().Where(c => c.NgayTao > Convert.ToDateTime(thoigianvao) && c.NgayTao < DateTime.Now).ToList();
+            // Hóa đơn đã thanh toán
+            List<HoaDon> hoadontt = hoaDons.Where(c => c.TrangThai == 1 || c.TrangThai == 4).ToList();
+            // Tính doanh thu theo ngày
+            // Hóa đơn hủy
+            List<HoaDon> hoadonhuy = hoaDons.Where(c => c.TrangThai == 2 || c.TrangThai == 6).ToList();
+            if (hoadontt.Count > 0) x += hoadontt.Sum(c => _banHangServices.SumTienHang(c.Id));
+            if (hoadonhuy.Count > 0) x -= hoadonhuy.Sum(c => _banHangServices.SumTienHang(c.Id));
+            return x.ToString();
+        }
+        private string LaydoanhThuCa(decimal? x)
+        {
+            // Tổng doanh thu ca
+            // Tìm ca được lưu gần nhất lưu 
+            List<GiaoCa> ca = _iQLGiaoCaServices.GetAll().OrderByDescending(c => c.ThoiGianVaoCa).ToList();
+            //Lấy thời gian vào ca gần nhất trong csdl
+            DateTime thoigianvao = Convert.ToDateTime(ca[0].ThoiGianVaoCa);
+            // Lấy danh sách hóa đơn được tạo trong ca
+            _iQLHoaDonServices = new QLHoaDonServices();
+            List<HoaDon> hoaDons = _iQLHoaDonServices.GetAll().Where(c => c.NgayTao > Convert.ToDateTime(thoigianvao) && c.NgayTao < DateTime.Now).ToList();
+            // Hóa đơn đã thanh toán
+            List<HoaDon> hoadontt = hoaDons.Where(c => c.TrangThai == 1 || c.TrangThai == 4).ToList();
+            // Hóa đơn hủy
+            List<HoaDon> hoadonhuy = hoaDons.Where(c => c.TrangThai == 2 || c.TrangThai == 6).ToList();
+            if (hoadontt.Count > 0) x += hoadontt.Sum(c => _banHangServices.SumTienHang(c.Id));
+            if (hoadonhuy.Count > 0) x -= hoadonhuy.Sum(c => _banHangServices.SumTienHang(c.Id));
+            return x.ToString();
+        }
         private void LoadThongTinHoaDon(HoaDon? hoaDon)
         {
             if (hoaDon == null)
@@ -75,8 +119,8 @@ namespace _3.PL.Views
                 tbx_DiemHD.Text = _banHangServices.QuyDoiTienThanhDiem(Convert.ToDecimal(tbx_TongTien.Text)).ToString();
                 if (hoaDon.TrangThai == 4) btn_Chot.Text = "Đã giao hàng";
                 else if (hoaDon.TrangThai == 3) btn_Chot.Text = "Giao hàng";
-                else if (hoaDon.TrangThai <3) btn_Chot.Text = "Thanh toán";
-            }           
+                else if (hoaDon.TrangThai < 3) btn_Chot.Text = "Thanh toán";
+            }
         }
         private void LoadTBX_TienThua()
         {
@@ -121,7 +165,7 @@ namespace _3.PL.Views
             dtg_ChiTietHD.Columns[10].Name = "Tổng tiền";
             foreach (ViewQLChiTietHoaDon x in lstView)
             {
-                dtg_ChiTietHD.Rows.Add(x.Ma, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu, x.SoLuong, x.Id,x.DonGia,x.TongTien);
+                dtg_ChiTietHD.Rows.Add(x.Ma, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu, x.SoLuong, x.Id, x.DonGia, x.TongTien);
             }
         }
         public void Clear_Form()
@@ -172,7 +216,7 @@ namespace _3.PL.Views
             dtg_HoaDon.Columns[3].Name = "Ngay thanh toán";
             dtg_HoaDon.Columns[4].Name = "Tổng tiền";
             dtg_HoaDon.Columns[5].Name = "Trạng thái";
-            foreach (ViewQLHoaDon hoaDon in _banHangServices.GetAllHDV().Where(c=>c.TrangThai==trangthai))
+            foreach (ViewQLHoaDon hoaDon in _banHangServices.GetAllHDV().Where(c => c.TrangThai == trangthai))
             {
                 dtg_HoaDon.Rows.Add(hoaDon.Ma, hoaDon.MaNV, hoaDon.NgayTao, hoaDon.NgayThanhToan,hoaDon.TongTien,hoaDon.TrangThai);
             }
@@ -181,9 +225,9 @@ namespace _3.PL.Views
         private void UserContrel_Click(object sender, EventArgs e)
         {
             ThongTinSanPham obj = (ThongTinSanPham)sender;
-            if(_hoaDon==null)
+            if (_hoaDon == null)
             {
-                _hoaDon = _banHangServices.CreateHD(_trangThaiBH,_nhanVien);
+                _hoaDon = _banHangServices.CreateHD(_trangThaiBH, _nhanVien);
                 LoadDTG_HoaDon(_trangThaiHD);
             }
             if (!(_hoaDon.TrangThai == 1 || _hoaDon.TrangThai == 4 || _hoaDon.TrangThai == 5))
@@ -321,6 +365,9 @@ namespace _3.PL.Views
                 else
                 {
                     MessageBox.Show(_banHangServices.UpdateTrangThaiHD(_hoaDon, 6));
+                    frmmain.lbl_doanhthuca.Text = LaydoanhThuCa(Convert.ToDecimal(frmmain.lbl_doanhthuca.Text));
+                    frmmain.lbl_doanhthungay.Text = LaydoanhthuNgay(Convert.ToDecimal(frmmain.lbl_doanhthungay.Text));
+                    Clear_Form();
                     LoadDTG_DatHang(_trangThaiDH);
                 }
                 _iQLChiTietSpServices = new QLChiTietSpServices();
@@ -354,6 +401,8 @@ namespace _3.PL.Views
             else
             {
                 MessageBox.Show(_banHangServices.Chot(_hoaDon, _khachHang, tbx_TienKhachDua.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienKhachDua.Text), tbx_TienCK.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienCK.Text), _trangThaiBH, tbx_TienShip.Text == String.Empty ? null : Convert.ToDecimal(tbx_TienShip.Text), Convert.ToInt32(tbx_DiemHD.Text), tbx_DiemSD.Text == String.Empty ? 0 : Convert.ToInt32(tbx_DiemSD.Text)));
+                frmmain.lbl_doanhthuca.Text = LaydoanhThuCa(Convert.ToDecimal(frmmain.lbl_doanhthuca.Text));
+                frmmain.lbl_doanhthungay.Text = LaydoanhthuNgay(Convert.ToDecimal(frmmain.lbl_doanhthungay.Text));
                 Clear_Form();
                 if (_trangThaiBH < 3)
                 {

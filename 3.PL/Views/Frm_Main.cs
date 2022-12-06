@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using _1.DAL.DomainClass;
+using _2.BUS.IServices;
+using _2.BUS.Services;
+
 namespace _3.PL.Views
 {
     public partial class Frm_Main : Form
     {
         private Form activeForm;
+        private IQLGiaoCaServices _iQLGiaoCaServices;
         public NhanVien nv { get; set; }
         public Frm_Main()
         {
@@ -25,20 +29,29 @@ namespace _3.PL.Views
             //cho form hiển thị theo kích thước của màn hình
             this.Width = widthScreen;
             this.Height = heightScreen;
+            _iQLGiaoCaServices = new QLGiaoCaServices();
             pnl_Nav.Height = btn_banHang.Height;
             pnl_Nav.Top = btn_banHang.Top;
             pnl_Nav.Left = btn_banHang.Left;
             btn_banHang.BackColor = Color.FromArgb(46, 51, 73);
+            lbl_doanhthuca.Text = "0";
+            // List ca được tạo trong ngày hôm nay với thời gian tăng dần
+            List<GiaoCa> catrongngay = _iQLGiaoCaServices.GetAll().Where(c => Convert.ToDateTime(c.ThoiGianVaoCa).Day == DateTime.Now.Day).ToList();
+
+            lbl_doanhthungay.Text = String.Format("{0:0,00}", catrongngay.Sum(c => c.Tongtienhang).ToString());
+            lbl_tientaiquay.Text = "0";
+
         }
         private void Frm_Main_Load(object sender, EventArgs e)
         {
-            lbl_Ten.Text = nv.Ho + " " + nv.TenDem + " " + nv.Ten;
+            //lbl_Ten.Text = nv.Ho + " " + nv.TenDem + " " + nv.Ten;
             pnl_menucon.Visible = false;
             tbx_giohethong.Text = Convert.ToString(DateTime.Now);
             Frm_QLVaoCa frm_QLVaoCa = new Frm_QLVaoCa(nv);
+            frm_QLVaoCa.frm_Main = this;
             frm_QLVaoCa.ShowDialog();
-        }
 
+        }
         private void btn_banHang_Click(object sender, EventArgs e)
         {
             pnl_Nav.Height = btn_banHang.Height;
@@ -49,11 +62,11 @@ namespace _3.PL.Views
             hideMenuCon();
             //if(DialogResult.Yes == MessageBox.Show("Bạn có chắc chắn vào ca?", "", MessageBoxButtons.YesNo)){
             Frm_BanHang frm_BanHang = new Frm_BanHang();
+            //frm_BanHang.Doanhthuca = new Frm_BanHang.SendDoanhthuca (DoanhThuCa);
             frm_BanHang._nhanVien = nv;
+            frm_BanHang.frmmain = this;
             OpenChildForm(frm_BanHang, sender);
-            //    Frm_QLVaoCa frm_QLVaoCa = new Frm_QLVaoCa();
-            //    frm_QLVaoCa.ShowDialog();
-            //}
+
         }
 
         private void btn_sanpham_Click(object sender, EventArgs e)
@@ -107,16 +120,17 @@ namespace _3.PL.Views
         }
         private void hideMenuCon()
         {
-            if(pnl_menucon.Visible == true)
+            if (pnl_menucon.Visible == true)
                 pnl_menucon.Visible = false;
         }
         private void ShowMenucon(Panel submenu)
         {
-            if(submenu.Visible == false)
+            if (submenu.Visible == false)
             {
                 hideMenuCon();
                 submenu.Visible = true;
-            }else
+            }
+            else
             {
                 submenu.Visible = false;
             }
@@ -258,6 +272,9 @@ namespace _3.PL.Views
             btn_nhanvien.BackColor = Color.FromArgb(46, 51, 73);
             OpenChildForm(new Frm_KetCa(), sender);
         }
+
+
+
 
         //private void btn_tichdiem_Click(object sender, EventArgs e)
         //{
