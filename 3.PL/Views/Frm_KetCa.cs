@@ -392,7 +392,6 @@ namespace _3.PL.Views
                 this.Close();
             }
         }
-
         private void tbx_tongtien_TextChanged(object sender, EventArgs e)
         {
             decimal chenhlech = tbx_tongtien.Text == "" ? 0 : (Convert.ToDecimal(tbx_tongtien.Text) - Convert.ToDecimal(tbx_ttienmatcuoica.Text));

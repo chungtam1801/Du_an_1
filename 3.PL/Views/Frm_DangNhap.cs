@@ -38,22 +38,22 @@ namespace _3.PL.Views
             }
             else
             {
-                NhanVien nv = new NhanVien();
-                if (this.tb_taikhoan.Text == nv.Ma)
-                    if (this.tb_matkhau.Text == nv.MatKhau)
-                    {
-                        this.Hide();
-                        Frm_Main main = new Frm_Main();
-                        main.ShowDialog();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
-                    }
+                NhanVien nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.Ma == tb_taikhoan.Text && c.MatKhau == tb_matkhau.Text);
+                if (nv != null)
+                {
+                    this.Hide();
+                    Frm_Main main = new Frm_Main();
+                    main.nv = nv;
+                    main.ShowDialog();
+                }
                 else
                 {
-                    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+                    MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
                 }
+                //else
+                //{
+                //    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+                //}
             }
 
             this.tb_taikhoan.Focus();
@@ -67,53 +67,33 @@ namespace _3.PL.Views
             }
             else
             {
-                NhanVien nv = _inhanVienServices.GetAll().FirstOrDefault(p => p.Ma == tb_taikhoan.Text && p.MatKhau == tb_matkhau.Text);
-                if (nv != null)
-                {
-                    this.Hide();
-                    Frm_Main main = new Frm_Main();
-                    main.ShowDialog();
+                    NhanVien nv = _inhanVienServices.GetAll().FirstOrDefault(c => c.Ma == tb_taikhoan.Text && c.MatKhau == tb_matkhau.Text);
+                    if (nv != null)
+                    {
+                        this.Hide();
+                        Frm_Main main = new Frm_Main();
+                        main.nv = nv;
+                        main.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
-                }
+
+                this.tb_taikhoan.Focus();
+
             }
-            //if (this.tb_taikhoan.Text == "" || this.tb_matkhau.Text == "")
-            //{
-            //    MessageBox.Show(" Vui lòng nhập tài khoản ! ");
-            //}
-            //else
-            //{
-            //    NhanVien nv = new NhanVien();
 
-            //    if (this.tb_taikhoan.Text == nv.Ma)
-            //        if (this.tb_matkhau.Text == nv.MatKhau)
-            //        {
-            //            this.Hide();
-            //            Frm_Main main = new Frm_Main();
-            //            main.ShowDialog();
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show("Mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
+            private void lb_QuenMatKhau_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+            {
+                Frm_QuenMatKhau qmk = new Frm_QuenMatKhau();
+                qmk.ShowDialog();
+            }
 
+            private void Frm_DangNhap_Load(object sender, EventArgs e)
+            {
 
-            //        }
-            //    else
-            //    {
-            //        MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
-            //    }
-            //}
-
-            this.tb_taikhoan.Focus();
-
-        }
-
-        private void lb_QuenMatKhau_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Frm_QuenMatKhau qmk = new Frm_QuenMatKhau();
-            qmk.ShowDialog();
+            }
         }
     }
-}

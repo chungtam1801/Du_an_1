@@ -78,8 +78,8 @@ namespace _3.PL.Views
             return ms;
         }
         
-
-        private void btn_them_Click(object sender, EventArgs e)
+        
+        private void btn_them_Click_1(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
@@ -106,30 +106,54 @@ namespace _3.PL.Views
                     _iqLmsServices.Add(GetDataFromGUI());
                     LoadData();
                 }
-                
+
             }
             else
             {
                 MessageBox.Show("Them that bai");
             }
         }
-        private void btn_sua_Click(object sender, EventArgs e)
+
+
+
+        
+            
+
+            
+        
+
+        private void Frm_MauSac_Load(object sender, EventArgs e)
         {
+            tbx_ma.Text = MaTuSinh();
+        }
+        private void tb_timkiem_Leave(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+        private void cbb_timkiem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
+
+        private void btn_sua_Click_1(object sender, EventArgs e)
+        {
+            if (tbx_ma.Text.Trim() == "")
+            {
+                MessageBox.Show("Mã màu sắc không được để trống!");
+            }
+            else if (tbx_ten.Text.Trim() == "")
+            {
+                MessageBox.Show("Tên  màu sắc không được để trống!");
+            }
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
-                if (tbx_ma.Text.Trim() == "")
-                {
-                    MessageBox.Show("Mã màu sắc không được để trống!");
-                }
-                else if (tbx_ten.Text.Trim() == "")
-                {
-                    MessageBox.Show("Tên  màu sắc không được để trống!");
-                }
-                else
-                {
+                
+                
                     _iqLmsServices.Update(GetDataFromGUI());
                     LoadData();
-                }
+                
             }
             else
             {
@@ -137,7 +161,7 @@ namespace _3.PL.Views
             }
         }
 
-        private void btn_xoa_Click(object sender, EventArgs e)
+        private void btn_xoa_Click_1(object sender, EventArgs e)
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
@@ -159,65 +183,39 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Xoa that bai");
             }
-            
-            
         }
 
-        private void btn_clear_Click(object sender, EventArgs e)
+        private void btn_clear_Click_1(object sender, EventArgs e)
         {
-
             tbx_ma.Text = MaTuSinh();
             tbx_ten.Text = "";
             rbtn_hd.Checked = true;
             rbtn_kohd.Checked = false;
             LoadData();
         }
-        private void btn_them_Click_1(object sender, EventArgs e)
+
+        private void tk_timkiem_TextChanged(object sender, EventArgs e)
         {
-            if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+
+            dgrd_mausac.Rows.Clear();
+            dgrd_mausac.ColumnCount = 4;
+            dgrd_mausac.Columns[0].Name = "ID";
+            dgrd_mausac.Columns[0].Visible = false;
+            dgrd_mausac.Columns[1].Name = "Mã";
+            dgrd_mausac.Columns[2].Name = "Tên";
+            dgrd_mausac.Columns[3].Name = "Trạng thái";
+            foreach (var x in _iqLmsServices.GetAll().Where(x => x.Ten.ToLower().Contains(tk_timkiem.Text.ToLower()) || x.Ma.Contains(tk_timkiem.Text)))
             {
-                _iqLmsServices.Add(GetDataFromGUI());
-                LoadData();
+                dgrd_mausac.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng");
             }
         }
 
-
-
-        private void txt_timKiem_TextChanged(object sender, EventArgs e)
-        {
-           
-                
-                dgrd_mausac.Rows.Clear();
-                dgrd_mausac.ColumnCount = 4;
-                dgrd_mausac.Columns[0].Name = "ID";
-                dgrd_mausac.Columns[0].Visible = false;
-                dgrd_mausac.Columns[1].Name = "Mã";
-                dgrd_mausac.Columns[2].Name = "Tên";
-                dgrd_mausac.Columns[3].Name = "Trạng thái";
-                foreach (var x in _iqLmsServices.GetAll().Where(x => x.Ten.ToLower().Contains(tk_timkiem.Text.ToLower()) || x.Ma.Contains(tk_timkiem.Text)))
-                {
-                    dgrd_mausac.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng");
-                }
-            }
-            
-
-            
-        
-
-        private void Frm_MauSac_Load(object sender, EventArgs e)
-        {
-            tbx_ma.Text = MaTuSinh();
-        }
-        private void tb_timkiem_Leave(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-        private void cbb_timkiem_SelectedIndexChanged(object sender, EventArgs e)
+        private void rbtn_hd_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void dgrd_mausac_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgrd_mausac_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
             if (rowIndex >= 0 && rowIndex < _iqLmsServices.GetAll().Count)
