@@ -42,10 +42,9 @@ namespace _1.DAL.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=oh\\sqlexpress;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;Persist Security Info=True;User ID=sa;Password=111111");
+                optionsBuilder.UseSqlServer("Data Source=TAM-LAPTOP\\SQLEXPRESS;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;Persist Security Info=True;User ID=tam;Password=123456789");
             }
         }//FINALASS_BanQuanAo_Nhom666_FA22_PRO131
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");

@@ -15,7 +15,7 @@ namespace _2.BUS.Services
     public class QLNhanVienServices : IQLNhanVienServices
     {
         private IClassCRUDRepo<NhanVien> _iNhanVienRepository;
-        private FpolyDBContext _FpolyDB;
+        private FpolyDBContext _FpolyDB = new FpolyDBContext();
         private List<NhanVien> _NhanVienList;
         private IClassCRUDRepo<ChucVu> _iChucVuRepository;
         public QLNhanVienServices()

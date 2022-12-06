@@ -21,15 +21,13 @@ namespace _3.PL.Views
 {
     public partial class Frm_BanHang : Form
     {
-        private FilterInfoCollection filterInfoCollection;
-        private VideoCaptureDevice videoCaptureDevice;
         private BanHangServices _banHangServices = new BanHangServices();
         //private IQLHoaDonServices _iQLHoaDonServices;
         private IQLChiTietSpServices _iQLChiTietSpServices;
         //private IQLChiTietHoaDonServices _iQLChiTietHoaDonServices;
         //private IQLChiTietPtttServices _iQLChiTietPtttServices;
         //private IQLPhuongThucThanhToanServices _iQLPhuongThucThanhToanServices;
-        private KhachHang _khachHang;
+        private KhachHang? _khachHang;
         //private HoaDon? _hoaDon;
         private int _trangThaiBH = 0;
         private string _trangThaiHD = "Chờ thanh toán";
@@ -39,6 +37,7 @@ namespace _3.PL.Views
         public NhanVien _nhanVien { get; set; }
         public Frm_BanHang()
         {
+            
             InitializeComponent();
             _iQLChiTietSpServices = new QLChiTietSpServices();
             LoadDTG_HoaDon(_trangThaiHD);
@@ -46,28 +45,16 @@ namespace _3.PL.Views
             GetData(_iQLChiTietSpServices.GetAllView());
             cbx_TrangThai.SelectedIndex = 0;
             cbx_THDatHang.SelectedIndex = 0;
-            foreach (var x in _banHangServices.GetAllPTTT())
-            {
-                _lstIDPTTT.Add(x.Id);
-                cbx_HTTT.Items.Add(x.Ten);
-            }
-            //cbx_HTTT.SelectedIndex = 2;
+            cbx_HTTT.SelectedIndex = 0;
         }
         private void GetData(List<ViewQLChiTietSp> lstview)
         {
-            flp_SanPham.Controls.Clear();
             ThongTinSanPham thongTinSanPham;
             foreach (var x in lstview)
             {
-                thongTinSanPham = new ThongTinSanPham();
-                MemoryStream ms = new MemoryStream(x.Anh);
-                Bitmap bitmap = new Bitmap(ms);
-                thongTinSanPham.Anh = bitmap;
-                thongTinSanPham.Ten = x.Ten;
-                thongTinSanPham.SoLuong = x.SoLuongTon.ToString();
-                thongTinSanPham.GiaTien = x.GiaBan.ToString();
-                thongTinSanPham.Id = x.Id.ToString();
+                thongTinSanPham = new ThongTinSanPham(x);
                 thongTinSanPham.Click += new System.EventHandler(UserContrel_Click);
+                thongTinSanPham.ptb_Anh.Click += new System.EventHandler(UserContrel_Click);
                 flp_SanPham.Controls.Add(thongTinSanPham);           
             }
         }
@@ -76,18 +63,45 @@ namespace _3.PL.Views
             if (hoaDon == null)
             {
                 tbx_MaHD.Text = "";
-                tbx_TongTien.Text = "";
-                tbx_TienKhachCD.Text = "";
+                tbx_TongTien.Text = "0";
+                tbx_TienKhachCD.Text = "0";
+                btn_Chot.Text = "Thanh toán";
             }
             else
             {
                 tbx_MaHD.Text = hoaDon.Ma;
                 tbx_TongTien.Text = _banHangServices.SumTienHang(hoaDon.Id).ToString();
                 tbx_TienKhachCD.Text = (_banHangServices.SumTienHang(hoaDon.Id) - _banHangServices.SumTienKhachDua(hoaDon.Id)).ToString();
+                tbx_DiemHD.Text = _banHangServices.QuyDoiTienThanhDiem(Convert.ToDecimal(tbx_TongTien.Text)).ToString();
                 if (hoaDon.TrangThai == 4) btn_Chot.Text = "Đã giao hàng";
                 else if (hoaDon.TrangThai == 3) btn_Chot.Text = "Giao hàng";
                 else if (hoaDon.TrangThai <3) btn_Chot.Text = "Thanh toán";
             }           
+        }
+        private void LoadTBX_TienThua()
+        {
+            if(!Utility.CheckNumber(tbx_TienKhachDua.Text))
+            {
+                MessageBox.Show("Tiền khách đưa ko hợp lệ");
+                tbx_TienKhachDua.Text = "0";
+            }
+            else if(!Utility.CheckNumber(tbx_TienCK.Text))
+            {
+                MessageBox.Show("Tiền chuyển khoản ko hợp lệ");
+                tbx_TienCK.Text = "0";
+            }
+            else if(Utility.CheckNumber(tbx_TienKhachCD.Text))
+            {
+                decimal tienThua = Convert.ToDecimal(tbx_TienKhachDua.Text) + Convert.ToDecimal(tbx_TienCK.Text) - Convert.ToDecimal(tbx_TienKhachCD.Text);
+                if (tienThua > 0)
+                {
+                    tbx_TienThua.Text = tienThua.ToString();
+                }
+                else
+                {
+                    tbx_TienThua.Text = "0";
+                }
+            }
         }
         public void LoadDTG_ChiTietHD(List<ViewQLChiTietHoaDon> lstView)
         {
@@ -110,6 +124,28 @@ namespace _3.PL.Views
                 dtg_ChiTietHD.Rows.Add(x.Ma, x.Ten, x.Nsx, x.MauSac, x.LoaiSp, x.KichThuoc, x.ChatLieu, x.SoLuong, x.Id,x.DonGia,x.TongTien);
             }
         }
+        public void Clear_Form()
+        {
+            _hoaDon = null;
+            _khachHang = null;
+            dtg_ChiTietHD.Rows.Clear();
+            tbx_SDT.Text = "";
+            tbx_TenKH.Text = "";
+            tbx_Diem.Text = "";
+            tbx_MaHD.Text = "";
+            tbx_TongTien.Text = "0";
+            tbx_TienKhachCD.Text = "0";
+            tbx_DiemHD.Text = "";
+            tbx_DiemSD.Text = "";
+            tbx_TienKhachDua.Text = "0";
+            tbx_TienCK.Text = "0";
+            tbx_TienThua.Text = "0";
+            tbx_DiaChi.Text = "";
+            tbx_TienShip.Text = "";
+            tbx_GhiChu.Text = "";
+            cbx_HTTT.SelectedIndex = 0;
+
+        }
         public void LoadDTG_DatHang(string trangthai)
         {
             dtg_DatHang.Rows.Clear();
@@ -123,10 +159,9 @@ namespace _3.PL.Views
             dtg_DatHang.Columns[6].Name = "Trạng thái";
             foreach (ViewQLHoaDon hoaDon in _banHangServices.GetAllHDV().Where(c => c.TrangThai == trangthai))
             {
-                dtg_DatHang.Rows.Add(hoaDon.Ma, hoaDon.TenNv, hoaDon.NgayTao, hoaDon.NgayGiaoHang,hoaDon.NgayNhanHang,hoaDon.TongTien, hoaDon.TrangThai);
+                dtg_DatHang.Rows.Add(hoaDon.Ma, hoaDon.MaNV, hoaDon.NgayTao, hoaDon.NgayGiaoHang,hoaDon.NgayNhanHang,hoaDon.TongTien, hoaDon.TrangThai);
             }
         }
-        //Sửa
         public void LoadDTG_HoaDon(string trangthai)
         {
             dtg_HoaDon.Rows.Clear();
@@ -139,9 +174,10 @@ namespace _3.PL.Views
             dtg_HoaDon.Columns[5].Name = "Trạng thái";
             foreach (ViewQLHoaDon hoaDon in _banHangServices.GetAllHDV().Where(c=>c.TrangThai==trangthai))
             {
-                dtg_HoaDon.Rows.Add(hoaDon.Ma, hoaDon.TenNv, hoaDon.NgayTao, hoaDon.NgayThanhToan,hoaDon.TongTien,hoaDon.TrangThai);
+                dtg_HoaDon.Rows.Add(hoaDon.Ma, hoaDon.MaNV, hoaDon.NgayTao, hoaDon.NgayThanhToan,hoaDon.TongTien,hoaDon.TrangThai);
             }
         }
+        #region pnl_SanPham
         private void UserContrel_Click(object sender, EventArgs e)
         {
             ThongTinSanPham obj = (ThongTinSanPham)sender;
@@ -150,9 +186,9 @@ namespace _3.PL.Views
                 _hoaDon = _banHangServices.CreateHD(_trangThaiBH,_nhanVien);
                 LoadDTG_HoaDon(_trangThaiHD);
             }
-            if (!_banHangServices.CheckHDThanhToan(_hoaDon))
+            if (!(_hoaDon.TrangThai == 1 || _hoaDon.TrangThai == 4 || _hoaDon.TrangThai == 5))
             {
-                ChiTietSp temp = _iQLChiTietSpServices.GetAll().First(c => c.Id == new Guid(obj.Id));
+                ChiTietSp temp = _iQLChiTietSpServices.GetAll().First(c => c.Id == obj.chiTietSP.Id);
                 if (temp.SoLuongTon > 0)
                 {
                     _banHangServices.AddChiTietHD(temp, _hoaDon);
@@ -165,125 +201,109 @@ namespace _3.PL.Views
                 LoadThongTinHoaDon(_hoaDon);
                 LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
             }
-            else MessageBox.Show("Hóa đơn đang được thanh toán");               
-        }  
-        private void tsb_BanHang_Click(object sender, EventArgs e)
-        {
-            //_trangThaiBH = 0;
-            //_hoaDon = null;
-            //LoadThongTinHoaDon(_hoaDon);
-            //btn_Chot.Text = "Thanh toán";
-            //lbl_TienShip.Visible = false;
-            //tbx_TienShip.Visible = false;
+            else MessageBox.Show("Hóa đơn đã thanh toán");               
         }
-        private void tsb_DatHang_Click(object sender, EventArgs e)
-        {
-            //_trangThaiBH = 2;
-            //_hoaDon = null;
-            //LoadThongTinHoaDon(_hoaDon);
-            //btn_Chot.Text = "Giao hàng";
-            //lbl_TienShip.Visible = true;
-            //tbx_TienShip.Visible = true;
-        }
-        private void btn_Sua_Click(object sender, EventArgs e)
-        {
 
-        }
-        private void Frm_BanHang_Load(object sender, EventArgs e)
-        {
-            //filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            //videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[0].MonikerString);
-            //videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
-            //videoCaptureDevice.Start();
-            //timer1.Start();
-        }
-        //private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
-        //{
-        //    ptb_QR.Image = (Bitmap)eventArgs.Frame.Clone();
-        //}
-
-        //private void Frm_BanHang_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    if (videoCaptureDevice != null)
-        //    {
-        //        if (videoCaptureDevice.IsRunning)
-        //        {
-        //            videoCaptureDevice.Stop();
-        //        }
-        //    }
-        //    this.Close();
-        //}
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            //BarcodeReader barcodeReader = new BarcodeReader();
-            //if(ptb_QR.Image != null)
-            //{
-            //    Result result = barcodeReader.Decode((Bitmap)ptb_QR.Image);
-            //    if (result != null)
-            //    {
-            //        //tbx_Chuoi.Text = result.ToString();
-            //        timer1.Stop();
-            //        if (videoCaptureDevice.IsRunning)
-            //        {
-            //            videoCaptureDevice.Stop();
-            //        }
-            //    }
-            //}              
-        }
         private void pic_TimKiem_Click(object sender, EventArgs e)
         {
             GetData(_iQLChiTietSpServices.GetAllView().Where(c => c.Ten.Contains(tbx_TimKiem.Text)).ToList());
         }
-        //pnl ThongTinHoaDon
+        #endregion
+        #region pnl_ThongTinHD
         private void cbx_HTTT_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbx_HTTT.Text == "Điểm")
+            if (cbx_HTTT.Text == "Tiền mặt")
             {
-                tbx_DiemSD.Enabled = true;
-                tbx_TienKhachDua.Text = "";
-                tbx_TienKhachDua.Enabled = false;
+                tbx_TienCK.Location = tbx_TienKhachDua.Location;
+                tbx_TienThua.Location = new Point(tbx_TienCK.Location.X,tbx_TienCK.Location.Y + 10 * 4);
+                tbx_DiaChi.Location = new Point(tbx_TienCK.Location.X, tbx_TienCK.Location.Y + 20 * 4);
+                tbx_TienShip.Location = new Point(tbx_TienCK.Location.X, tbx_TienCK.Location.Y + 30 * 4);
+                tbx_GhiChu.Location = new Point(tbx_TienCK.Location.X, tbx_TienCK.Location.Y + 40 * 4);
+                lbl_ChuyenKhoan.Location = lbl_Tien.Location;
+                lbl_TienThua.Location = new Point(lbl_ChuyenKhoan.Location.X, lbl_ChuyenKhoan.Location.Y + 10 * 4);
+                lbl_DiaChi.Location = new Point(lbl_ChuyenKhoan.Location.X, lbl_ChuyenKhoan.Location.Y + 20 * 4);
+                lbl_TienShip.Location = new Point(lbl_ChuyenKhoan.Location.X, lbl_ChuyenKhoan.Location.Y + 30 * 4);
+                lbl_GhiChu.Location = new Point(lbl_ChuyenKhoan.Location.X, lbl_ChuyenKhoan.Location.Y + 40 * 4);
+                tbx_TienKhachDua.Visible = true;
+                lbl_Tien.Visible = true;
+                tbx_TienCK.Visible = false;
+                tbx_TienCK.Text = "0";
+                lbl_ChuyenKhoan.Visible = false;
             }
-            else
+            else if(cbx_HTTT.Text == "Chuyển khoản")
             {
-                tbx_DiemSD.Text = "";
-                tbx_DiemSD.Enabled = false;
-                tbx_TienKhachDua.Enabled = true;
-            } 
+                tbx_TienCK.Location = tbx_TienKhachDua.Location;
+                tbx_TienThua.Location = new Point(tbx_TienCK.Location.X, tbx_TienCK.Location.Y + 10 * 4);
+                tbx_DiaChi.Location = new Point(tbx_TienCK.Location.X, tbx_TienCK.Location.Y + 20 * 4);
+                tbx_TienShip.Location = new Point(tbx_TienCK.Location.X, tbx_TienCK.Location.Y + 30 * 4);
+                tbx_GhiChu.Location = new Point(tbx_TienCK.Location.X, tbx_TienCK.Location.Y + 40 * 4);
+                lbl_ChuyenKhoan.Location = lbl_Tien.Location;
+                lbl_TienThua.Location = new Point(lbl_ChuyenKhoan.Location.X, lbl_ChuyenKhoan.Location.Y + 10 * 4);
+                lbl_DiaChi.Location = new Point(lbl_ChuyenKhoan.Location.X, lbl_ChuyenKhoan.Location.Y + 20 * 4);
+                lbl_TienShip.Location = new Point(lbl_ChuyenKhoan.Location.X, lbl_ChuyenKhoan.Location.Y + 30 * 4);
+                lbl_GhiChu.Location = new Point(lbl_ChuyenKhoan.Location.X, lbl_ChuyenKhoan.Location.Y + 40 * 4);
+                tbx_TienKhachDua.Visible = false;
+                lbl_Tien.Visible = false;
+                tbx_TienKhachDua.Text = "0";
+                tbx_TienCK.Visible = true;
+                lbl_ChuyenKhoan.Visible = true;
+            }
+            else if(cbx_HTTT.Text == "Tiền mặt và chuyển khoản")
+            {
+                tbx_TienKhachDua.Visible = true;
+                lbl_Tien.Visible = true;
+                tbx_TienCK.Visible = true;
+                lbl_ChuyenKhoan.Visible = true;
+                tbx_TienCK.Location = new Point(281, 300);
+                tbx_TienThua.Location = new Point(281, 300+10*4);
+                tbx_DiaChi.Location = new Point(281, 300+20*4);
+                tbx_TienShip.Location = new Point(281, 300+30*4);
+                tbx_GhiChu.Location = new Point(281, 300+40*4);
+                lbl_ChuyenKhoan.Location = new Point(145, 307);
+                lbl_TienThua.Location = new Point(145, 307+10*4);
+                lbl_DiaChi.Location = new Point(145, 307+20*4);
+                lbl_TienShip.Location = new Point(145, 307+30*4);
+                lbl_GhiChu.Location = new Point(145, 307+40*4);
+            }    
         }
+
         private void tbx_SDT_Leave(object sender, EventArgs e)
         {
-            tbx_TenKH.Text = "";
-            tbx_DiaChi.Text = "";
             _khachHang = _banHangServices.GetKhachHang(tbx_SDT.Text);
             if (_khachHang != null)
             {
                 tbx_TenKH.Text = _khachHang.Ho + " " + _khachHang.TenDem + " " + _khachHang.Ten;
                 tbx_DiaChi.Text = _khachHang.DiaChi;
-                tbx_DiemHT.Text = _khachHang.DiemTich.ToString();
+                tbx_Diem.Text = _khachHang.DiemTich.ToString();
+                tbx_DiemSD.Enabled = true;
+                tbx_DiemSD.Text = "0";
+                tbx_DiemHD.Text = "0";
             }
             else
             {
                 tbx_TenKH.Text = "";
                 tbx_DiaChi.Text = "";
-                tbx_DiemHT.Text = "";
+                tbx_Diem.Text = "";
+                tbx_DiemSD.Enabled = false;
+                tbx_DiemSD.Text = "";
+                tbx_DiemHD.Text = "";
             }
         }
-        private void tbx_TienKhachDua_TextChanged(object sender, EventArgs e)
+        private void tbx_TienCK_KeyPress(object sender, KeyPressEventArgs e)
         {
-            decimal tienKhach;
-            if (decimal.TryParse(tbx_TienKhachDua.Text, out tienKhach))
-            {
-                decimal tienThua = tienKhach - Convert.ToDecimal(tbx_TienKhachCD.Text);
-                if (tienThua > 0)
-                {
-                    tbx_TienThua.Text = tienThua.ToString();
-                }
-                else
-                {
-                    tbx_TienThua.Text = "0";
-                }
-            }
+            if (e.KeyChar == (char)Keys.Enter) LoadTBX_TienThua();
+        }
+        private void tbx_TienKhachDua_Leave(object sender, EventArgs e)
+        {
+            LoadTBX_TienThua();
+        }
+        private void tbx_TienKhachDua_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter) LoadTBX_TienThua();
+        }
+        private void tbx_TienCK_Leave(object sender, EventArgs e)
+        {
+            LoadTBX_TienThua();
         }
         private void btn_Huy_Click(object sender, EventArgs e)
         {
@@ -293,10 +313,21 @@ namespace _3.PL.Views
             }
             else
             {
-                MessageBox.Show(_banHangServices.UpdateTrangThaiHD(_hoaDon, 6));
-                LoadDTG_HoaDon(_trangThaiHD);
+                if(_trangThaiBH<3)
+                {
+                    MessageBox.Show(_banHangServices.UpdateTrangThaiHD(_hoaDon, 2));
+                    LoadDTG_HoaDon(_trangThaiHD);
+                }     
+                else
+                {
+                    MessageBox.Show(_banHangServices.UpdateTrangThaiHD(_hoaDon, 6));
+                    LoadDTG_DatHang(_trangThaiDH);
+                }
+                _iQLChiTietSpServices = new QLChiTietSpServices();
+                GetData(_iQLChiTietSpServices.GetAllView());
             }
         }
+
         private void btn_Chot_Click(object sender, EventArgs e)
         {
             if (_hoaDon == null)
@@ -311,26 +342,19 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Vui lòng chọn sản phẩm");
             }
-            else if(cbx_HTTT.Text == "Điểm" && _khachHang==null)
+            else if (Convert.ToInt32(tbx_TienKhachDua.Text)+Convert.ToInt32(tbx_TienCK.Text)<Convert.ToInt32(tbx_TienKhachCD.Text))
             {
-                MessageBox.Show("Vui lòng chọn khách hàng khi sử dụng điểm");
+                MessageBox.Show("Tiền khách trả chưa đủ");
             }
             else if (btn_Chot.Text == "Đã giao hàng")
             {
                 MessageBox.Show(_banHangServices.UpdateTrangThaiHD(_hoaDon, 5));
-                if (_trangThaiBH < 3)
-                {
-                    LoadDTG_HoaDon(_trangThaiHD);
-                }
-                else
-                {
-                    LoadDTG_DatHang(_trangThaiDH);
-                }
+                LoadDTG_DatHang(_trangThaiDH);
             }
             else
             {
-                MessageBox.Show(_banHangServices.Chot(_lstIDPTTT[cbx_HTTT.SelectedIndex], _hoaDon, _khachHang, tbx_TienKhachDua.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienKhachDua.Text), Convert.ToDecimal(tbx_TienKhachCD.Text), _trangThaiBH, tbx_TienShip.Text == String.Empty ? null : Convert.ToDecimal(tbx_TienShip.Text), tbx_DiemSD.Text == String.Empty ? 0 : Convert.ToInt32(tbx_DiemSD.Text)));
-                LoadThongTinHoaDon(_hoaDon);
+                MessageBox.Show(_banHangServices.Chot(_hoaDon, _khachHang, tbx_TienKhachDua.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienKhachDua.Text), tbx_TienCK.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienCK.Text), _trangThaiBH, tbx_TienShip.Text == String.Empty ? null : Convert.ToDecimal(tbx_TienShip.Text), Convert.ToInt32(tbx_DiemHD.Text), tbx_DiemSD.Text == String.Empty ? 0 : Convert.ToInt32(tbx_DiemSD.Text)));
+                Clear_Form();
                 if (_trangThaiBH < 3)
                 {
                     LoadDTG_HoaDon(_trangThaiHD);
@@ -341,27 +365,54 @@ namespace _3.PL.Views
                 }
             }
         }
-        private void tbx_DiemSD_TextChanged(object sender, EventArgs e)
+        private void tbx_DiemSD_Leave(object sender, EventArgs e)
         {
-            if(Utility.CheckNumber(tbx_DiemSD.Text))
+            if (_khachHang != null)
             {
-                tbx_TienKhachDua.Text = _banHangServices.QuyDoiDiem(Convert.ToInt32(tbx_DiemSD.Text)).ToString();
-            }             
+                if (!Utility.CheckNumber(tbx_DiemSD.Text))
+                {
+                    MessageBox.Show("Điểm sử dụng ko hợp lệ");
+                    tbx_DiemSD.Text = "0";
+                }
+                else if (Convert.ToInt32(tbx_DiemSD.Text) >  Convert.ToInt32(tbx_Diem.Text) + Convert.ToInt32(tbx_DiemHD.Text))
+                {
+                    MessageBox.Show("Điểm khách hàng ko đủ");
+                    tbx_DiemSD.Text = "0";
+                }
+                else
+                {
+                    tbx_TienKhachCD.Text = (Convert.ToDecimal(tbx_TongTien.Text) - _banHangServices.QuyDoiDiemThanhTien(Convert.ToInt32(tbx_DiemSD.Text))).ToString();
+                }
+            }          
         }
-        //pnl HoaDon
+        private void tbx_TongTien_TextChanged(object sender, EventArgs e)
+        {
+            if (_trangThaiBH < 3)
+            {
+                dtg_HoaDon.CurrentRow.Cells[4].Value = tbx_TongTien.Text;
+            }
+            else
+            {
+                dtg_DatHang.CurrentRow.Cells[5].Value = tbx_TongTien.Text;
+            }
+        }
+        #endregion
+        #region pnl_BanHang
         private void pic_TaoHoaDon_Click(object sender, EventArgs e)
         {
-            _hoaDon = _banHangServices.CreateHD(0,_nhanVien);
+            _hoaDon = _banHangServices.CreateHD(0, _nhanVien);
             _trangThaiBH = 0;
             LoadThongTinHoaDon(_hoaDon);
             LoadDTG_HoaDon(_trangThaiHD);
             LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
         }
+
         private void cbx_TrangThai_SelectedIndexChanged(object sender, EventArgs e)
         {
             _trangThaiHD = cbx_TrangThai.Text;
             LoadDTG_HoaDon(_trangThaiHD);
         }
+
         private void dtg_HoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dtg_HoaDon.CurrentRow.Cells[0].Value != null)
@@ -372,7 +423,8 @@ namespace _3.PL.Views
                 LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
             }
         }
-        //pnl DatHang
+        #endregion
+        #region pnl_DatHang
         private void pic_TaoDatHang_Click(object sender, EventArgs e)
         {
             _hoaDon = _banHangServices.CreateHD(3, _nhanVien);
@@ -381,6 +433,7 @@ namespace _3.PL.Views
             LoadDTG_DatHang(_trangThaiDH);
             LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
         }
+
         private void cbx_THDatHang_SelectedIndexChanged(object sender, EventArgs e)
         {
             _trangThaiDH = cbx_THDatHang.Text;
@@ -396,19 +449,22 @@ namespace _3.PL.Views
                 LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
             }
         }
-        //pnl GioHang
+        #endregion
+        #region pnl_GioHang
         private void btn_XoaAll_Click(object sender, EventArgs e)
         {
             if (_hoaDon != null)
             {
                 _banHangServices.DeleteALLChiTietHD(_hoaDon.Id);
                 LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
+                _iQLChiTietSpServices = new QLChiTietSpServices();
                 GetData(_iQLChiTietSpServices.GetAllView());
+                LoadThongTinHoaDon(_hoaDon);
             }
         }
         private void dtg_ChiTietHD_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (!_banHangServices.CheckHDThanhToan(_hoaDon))
+            if (_hoaDon.TrangThai == 1 || _hoaDon.TrangThai==4 || _hoaDon.TrangThai == 5)
             {
                 _banHangServices.UpdateSoLuongChiTietHD(new Guid(dtg_ChiTietHD.CurrentRow.Cells[8].Value.ToString()), Convert.ToInt32(dtg_ChiTietHD.CurrentRow.Cells[7].Value));
                 LoadThongTinHoaDon(_hoaDon);
@@ -417,24 +473,31 @@ namespace _3.PL.Views
                 //
                 GetData(_iQLChiTietSpServices.GetAllView());
             }
-            else MessageBox.Show("Hoá đơn đang được thanh toán");
+            else MessageBox.Show("Hoá đơn đã thanh toán");
         }
-
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
-            if(dtg_ChiTietHD.CurrentRow.Cells[8].Value!=null)
+            if (dtg_ChiTietHD.CurrentRow != null)
             {
                 _banHangServices.DeleteChiTietHD(new Guid(dtg_ChiTietHD.CurrentRow.Cells[8].Value.ToString()));
                 LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(_hoaDon.Id));
+                _iQLChiTietSpServices = new QLChiTietSpServices();
                 GetData(_iQLChiTietSpServices.GetAllView());
-            }           
+                LoadThongTinHoaDon(_hoaDon);
+            }
         }
-
         private void btn_QR_Click(object sender, EventArgs e)
         {
             Frm_QR frm_qr = new Frm_QR();
             frm_qr.frmPatents = this;
             frm_qr.ShowDialog();
+        }
+        #endregion
+
+        private void Frm_BanHang_Load(object sender, EventArgs e)
+        {
+            tbx_MaNV.Text = _nhanVien.Ma;
+            tbx_TenNV.Text = _nhanVien.Ten;
         }
     }
 }
