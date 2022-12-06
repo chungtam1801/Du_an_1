@@ -90,6 +90,10 @@ namespace _3.PL.Views
                 }
                 else if (_iqlkichThuocServices.GetAll().Any(p => p.Size == tb_size.Text))
                 {
+                    MessageBox.Show("Size đã tồn tại!");
+                }
+                else if (_iqlkichThuocServices.GetAll().Any(p => p.Size == tb_size.Text))
+                {
                     MessageBox.Show("kích thước đã tồn tại!");
                 }
                 else if (rbtn_conhang.Checked == false && rbtn_hethang.Checked == false)
