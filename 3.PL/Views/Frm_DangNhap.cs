@@ -61,32 +61,22 @@ namespace _3.PL.Views
 
         private void bt_dangnhap_Click_1(object sender, EventArgs e)
         {
-            string username =tb_taikhoan.Text;
-            string password = tb_matkhau.Text;
-            if (username.Equals("") || password.Equals(""))
+            if (tb_taikhoan.Text == "" || tb_matkhau.Text == "")
             {
-                MessageBox.Show("Các trường không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                if (username.Equals(""))
-                    tb_taikhoan.Focus();
-                else tb_matkhau.Focus();
+                MessageBox.Show("Các trường không được để trống");
             }
             else
             {
-                NhanVien nv = new NhanVien();
-                if (this.tb_taikhoan.Text == nv.Ma)
-                    if (this.tb_matkhau.Text == nv.MatKhau)
-                    {
+                NhanVien nv = _inhanVienServices.GetAll().FirstOrDefault(p => p.Ma == tb_taikhoan.Text && p.MatKhau == tb_matkhau.Text);
+                if (nv != null)
+                {
                     this.Hide();
                     Frm_Main main = new Frm_Main();
                     main.ShowDialog();
                 }
                 else
                 {
-                    DialogResult dialog = MessageBox.Show("Đăng nhập không thành công! Bạn có muốn tiếp tục đăng nhập?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
-                    if (dialog == DialogResult.Cancel)
-                    {
-                        Application.Exit();
-                    }
+                    MessageBox.Show("Sai tài khoản hoặc mật khẩu!");
                 }
             }
             //if (this.tb_taikhoan.Text == "" || this.tb_matkhau.Text == "")
