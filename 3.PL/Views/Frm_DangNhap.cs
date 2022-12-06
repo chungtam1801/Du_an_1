@@ -91,10 +91,7 @@ namespace _3.PL.Views
                 //    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
                 //}
             }
-<<<<<<< HEAD
             
-=======
->>>>>>> 820e451ddaf45adbffce7d57e7286617d64c40ad
 
             this.tb_taikhoan.Focus();
 
