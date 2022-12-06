@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.bt_Thoat = new System.Windows.Forms.Button();
             this.txt_SDT = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btn_CNMK = new System.Windows.Forms.Button();
@@ -37,15 +37,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // bt_Thoat
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(410, 278);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Thoát";
-            this.button1.UseVisualStyleBackColor = false;
+            this.bt_Thoat.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.bt_Thoat.Location = new System.Drawing.Point(410, 278);
+            this.bt_Thoat.Name = "bt_Thoat";
+            this.bt_Thoat.Size = new System.Drawing.Size(94, 29);
+            this.bt_Thoat.TabIndex = 25;
+            this.bt_Thoat.Text = "Thoát";
+            this.bt_Thoat.UseVisualStyleBackColor = false;
+            this.bt_Thoat.Click += new System.EventHandler(this.button1_Click);
             // 
             // txt_SDT
             // 
@@ -53,7 +54,6 @@
             this.txt_SDT.Name = "txt_SDT";
             this.txt_SDT.Size = new System.Drawing.Size(232, 27);
             this.txt_SDT.TabIndex = 24;
-            this.txt_SDT.Text = "NV1";
             // 
             // label4
             // 
@@ -74,6 +74,7 @@
             this.btn_CNMK.TabIndex = 22;
             this.btn_CNMK.Text = "Cập nhập ";
             this.btn_CNMK.UseVisualStyleBackColor = false;
+            this.btn_CNMK.Click += new System.EventHandler(this.btn_CNMK_Click_1);
             // 
             // label3
             // 
@@ -89,6 +90,7 @@
             // 
             this.txt_NPass.Location = new System.Drawing.Point(246, 197);
             this.txt_NPass.Name = "txt_NPass";
+            this.txt_NPass.PasswordChar = '*';
             this.txt_NPass.Size = new System.Drawing.Size(232, 27);
             this.txt_NPass.TabIndex = 21;
             // 
@@ -107,7 +109,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(572, 390);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.bt_Thoat);
             this.Controls.Add(this.txt_SDT);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btn_CNMK);
@@ -116,7 +118,6 @@
             this.Controls.Add(this.label1);
             this.Name = "Frm_QuenMatKhau";
             this.Text = "Frm_QuenMatKhau";
-            //this.Load += new System.EventHandler(this.Frm_QuenMatKhau_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,7 +125,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bt_Thoat;
         private System.Windows.Forms.TextBox txt_SDT;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btn_CNMK;
