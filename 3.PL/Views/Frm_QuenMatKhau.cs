@@ -26,11 +26,7 @@ namespace _3.PL.Views
         {
             InitializeComponent();
         }
-        private void btn_Thoat_Click(object sender, EventArgs e)
-        {
-            this.Close();
-
-        }
+       
         bool validateForm()
         {
 
@@ -47,7 +43,18 @@ namespace _3.PL.Views
             return true;
         }
 
-        private void btn_CNMK_Click(object sender, EventArgs e)
+        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult dg = MessageBox.Show("Bạn có muốn thoát ?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dg == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
+
+        private void btn_CNMK_Click_1(object sender, EventArgs e)
         {
             if (!validateForm()) return;
             if (nv.checkTT(txt_SDT.Text.Trim(), txt_NPass.Text.Trim()))

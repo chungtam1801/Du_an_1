@@ -111,6 +111,7 @@
             this.dgrd_mausac.RowTemplate.Height = 25;
             this.dgrd_mausac.Size = new System.Drawing.Size(708, 347);
             this.dgrd_mausac.TabIndex = 37;
+            this.dgrd_mausac.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrd_mausac_CellClick_1);
             // 
             // label4
             // 
@@ -144,6 +145,7 @@
             this.rbtn_hd.TabStop = true;
             this.rbtn_hd.Text = "Hoạt động";
             this.rbtn_hd.UseVisualStyleBackColor = true;
+            this.rbtn_hd.CheckedChanged += new System.EventHandler(this.rbtn_hd_CheckedChanged);
             // 
             // tbx_ten
             // 
@@ -188,6 +190,7 @@
             this.tk_timkiem.PlaceholderText = "   Nhập dữ liệu cần tìm";
             this.tk_timkiem.Size = new System.Drawing.Size(273, 29);
             this.tk_timkiem.TabIndex = 54;
+            this.tk_timkiem.TextChanged += new System.EventHandler(this.tk_timkiem_TextChanged);
             // 
             // btn_seachbyma
             // 

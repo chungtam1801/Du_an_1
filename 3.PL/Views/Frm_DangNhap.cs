@@ -63,14 +63,11 @@ namespace _3.PL.Views
 
         private void bt_dangnhap_Click_1(object sender, EventArgs e)
         {
-            string username =tb_taikhoan.Text;
-            string password = tb_matkhau.Text;
-            if (username.Equals("") || password.Equals(""))
+
+            
+            if (this.tb_taikhoan.Text == "" || this.tb_matkhau.Text == "")
             {
-                MessageBox.Show("Các trường không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                if (username.Equals(""))
-                    tb_taikhoan.Focus();
-                else tb_matkhau.Focus();
+                MessageBox.Show(" Vui lòng nhập tài khoản ! ");
             }
             else
             {
@@ -91,10 +88,6 @@ namespace _3.PL.Views
                 //    MessageBox.Show("Tên tài khoản hoặc mật khẩu sai ! \n Vui lòng nhập lại !", "Thông báo");
                 //}
             }
-<<<<<<< HEAD
-            
-=======
->>>>>>> 820e451ddaf45adbffce7d57e7286617d64c40ad
 
             this.tb_taikhoan.Focus();
 

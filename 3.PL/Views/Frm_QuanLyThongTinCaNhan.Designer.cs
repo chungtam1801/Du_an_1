@@ -117,6 +117,7 @@
             // 
             this.txt_MatKhau.Location = new System.Drawing.Point(224, 174);
             this.txt_MatKhau.Name = "txt_MatKhau";
+            this.txt_MatKhau.PasswordChar = '*';
             this.txt_MatKhau.Size = new System.Drawing.Size(178, 27);
             this.txt_MatKhau.TabIndex = 9;
             // 
@@ -124,6 +125,7 @@
             // 
             this.txt_MatKhauMoi.Location = new System.Drawing.Point(224, 226);
             this.txt_MatKhauMoi.Name = "txt_MatKhauMoi";
+            this.txt_MatKhauMoi.PasswordChar = '*';
             this.txt_MatKhauMoi.Size = new System.Drawing.Size(178, 27);
             this.txt_MatKhauMoi.TabIndex = 10;
             // 
@@ -131,6 +133,7 @@
             // 
             this.txt_NhapLai.Location = new System.Drawing.Point(224, 274);
             this.txt_NhapLai.Name = "txt_NhapLai";
+            this.txt_NhapLai.PasswordChar = '*';
             this.txt_NhapLai.Size = new System.Drawing.Size(178, 27);
             this.txt_NhapLai.TabIndex = 11;
             // 
