@@ -62,11 +62,9 @@ namespace _3.PL.Views
             hideMenuCon();
             //if(DialogResult.Yes == MessageBox.Show("Bạn có chắc chắn vào ca?", "", MessageBoxButtons.YesNo)){
             Frm_BanHang frm_BanHang = new Frm_BanHang();
-            //frm_BanHang.Doanhthuca = new Frm_BanHang.SendDoanhthuca (DoanhThuCa);
             frm_BanHang._nhanVien = nv;
             frm_BanHang.frmmain = this;
             OpenChildForm(frm_BanHang, sender);
-
         }
 
         private void btn_sanpham_Click(object sender, EventArgs e)

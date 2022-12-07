@@ -19,10 +19,10 @@ namespace _1.DAL.Repositories
         }
         public bool Add(GiaoCa obj)
         {
-            //if (obj == null) return false;
-            //obj.Id = Guid.NewGuid();//Tự động zen khóa chính
-            //_dbContext.GiaoCas.Add(obj);
-            //_dbContext.SaveChanges();
+            if (obj == null) return false;
+            obj.Id = Guid.NewGuid();//Tự động zen khóa chính
+            _dbContext.GiaoCas.Add(obj);
+            _dbContext.SaveChanges();
             return true;
         }
 

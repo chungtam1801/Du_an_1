@@ -56,6 +56,7 @@ namespace _3.PL.Views
         }
         private void GetData(List<ViewQLChiTietSp> lstview)
         {
+            flp_SanPham.Controls.Clear();
             ThongTinSanPham thongTinSanPham;
             foreach (var x in lstview)
             {
@@ -116,7 +117,11 @@ namespace _3.PL.Views
                 tbx_MaHD.Text = hoaDon.Ma;
                 tbx_TongTien.Text = _banHangServices.SumTienHang(hoaDon.Id).ToString();
                 tbx_TienKhachCD.Text = (_banHangServices.SumTienHang(hoaDon.Id) - _banHangServices.SumTienKhachDua(hoaDon.Id)).ToString();
-                tbx_DiemHD.Text = _banHangServices.QuyDoiTienThanhDiem(Convert.ToDecimal(tbx_TongTien.Text)).ToString();
+                if(_khachHang == null)
+                {
+                    tbx_DiemHD.Text = "";
+                }
+                else tbx_DiemHD.Text = _banHangServices.QuyDoiTienThanhDiem(Convert.ToDecimal(tbx_TongTien.Text)).ToString();
                 if (hoaDon.TrangThai == 4) btn_Chot.Text = "Đã giao hàng";
                 else if (hoaDon.TrangThai == 3) btn_Chot.Text = "Giao hàng";
                 else if (hoaDon.TrangThai < 3) btn_Chot.Text = "Thanh toán";
@@ -321,7 +326,7 @@ namespace _3.PL.Views
                 tbx_Diem.Text = _khachHang.DiemTich.ToString();
                 tbx_DiemSD.Enabled = true;
                 tbx_DiemSD.Text = "0";
-                tbx_DiemHD.Text = "0";
+                tbx_DiemHD.Text = _banHangServices.QuyDoiTienThanhDiem(Convert.ToDecimal(tbx_TongTien.Text)).ToString();
             }
             else
             {
@@ -365,11 +370,11 @@ namespace _3.PL.Views
                 else
                 {
                     MessageBox.Show(_banHangServices.UpdateTrangThaiHD(_hoaDon, 6));
-                    frmmain.lbl_doanhthuca.Text = LaydoanhThuCa(Convert.ToDecimal(frmmain.lbl_doanhthuca.Text));
-                    frmmain.lbl_doanhthungay.Text = LaydoanhthuNgay(Convert.ToDecimal(frmmain.lbl_doanhthungay.Text));
-                    Clear_Form();
                     LoadDTG_DatHang(_trangThaiDH);
                 }
+                frmmain.lbl_doanhthuca.Text = LaydoanhThuCa(Convert.ToDecimal(frmmain.lbl_doanhthuca.Text));
+                frmmain.lbl_doanhthungay.Text = LaydoanhthuNgay(Convert.ToDecimal(frmmain.lbl_doanhthungay.Text));
+                Clear_Form();
                 _iQLChiTietSpServices = new QLChiTietSpServices();
                 GetData(_iQLChiTietSpServices.GetAllView());
             }
@@ -400,10 +405,7 @@ namespace _3.PL.Views
             }
             else
             {
-                MessageBox.Show(_banHangServices.Chot(_hoaDon, _khachHang, tbx_TienKhachDua.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienKhachDua.Text), tbx_TienCK.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienCK.Text), _trangThaiBH, tbx_TienShip.Text == String.Empty ? null : Convert.ToDecimal(tbx_TienShip.Text), Convert.ToInt32(tbx_DiemHD.Text), tbx_DiemSD.Text == String.Empty ? 0 : Convert.ToInt32(tbx_DiemSD.Text)));
-                frmmain.lbl_doanhthuca.Text = LaydoanhThuCa(Convert.ToDecimal(frmmain.lbl_doanhthuca.Text));
-                frmmain.lbl_doanhthungay.Text = LaydoanhthuNgay(Convert.ToDecimal(frmmain.lbl_doanhthungay.Text));
-                Clear_Form();
+                MessageBox.Show(_banHangServices.Chot(_hoaDon, _khachHang, tbx_TienKhachDua.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienKhachDua.Text), tbx_TienCK.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienCK.Text), _trangThaiBH, tbx_TienShip.Text == String.Empty ? null : Convert.ToDecimal(tbx_TienShip.Text), tbx_DiemHD.Text == String.Empty ? 0:Convert.ToInt32(tbx_DiemHD.Text), tbx_DiemSD.Text == String.Empty ? 0 : Convert.ToInt32(tbx_DiemSD.Text)));               
                 if (_trangThaiBH < 3)
                 {
                     LoadDTG_HoaDon(_trangThaiHD);
@@ -412,6 +414,9 @@ namespace _3.PL.Views
                 {
                     LoadDTG_DatHang(_trangThaiDH);
                 }
+                frmmain.lbl_doanhthuca.Text = LaydoanhThuCa(Convert.ToDecimal(frmmain.lbl_doanhthuca.Text));
+                frmmain.lbl_doanhthungay.Text = LaydoanhthuNgay(Convert.ToDecimal(frmmain.lbl_doanhthungay.Text));
+                Clear_Form();
             }
         }
         private void tbx_DiemSD_Leave(object sender, EventArgs e)
