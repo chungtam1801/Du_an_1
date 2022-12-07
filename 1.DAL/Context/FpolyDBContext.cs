@@ -42,7 +42,7 @@ namespace _1.DAL.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=TAM-LAPTOP\\SQLEXPRESS;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;Persist Security Info=True;User ID=tam;Password=123456789");
+                optionsBuilder.UseSqlServer("Data Source=THUYNHU\\SQLEXPRESS;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;User ID=chiuchiu;Password=30062003");
             }
         }//FINALASS_BanQuanAo_Nhom666_FA22_PRO131
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -102,6 +102,7 @@
             // 
             // dtg_loai
             // 
+            this.dtg_loai.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtg_loai.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.dtg_loai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtg_loai.Location = new System.Drawing.Point(1, 416);
