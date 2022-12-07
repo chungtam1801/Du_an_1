@@ -31,7 +31,7 @@ namespace _3.PL.Views
             dtg_KichThuoc.Rows.Clear();
             dtg_KichThuoc.ColumnCount = 4;
             dtg_KichThuoc.Columns[0].Name = "ID";
-            dtg_KichThuoc.Columns[0].Width = 385;
+            dtg_KichThuoc.Columns[0].Visible = false;
             dtg_KichThuoc.Columns[1].Name = "Mã";
             dtg_KichThuoc.Columns[2].Name = "Size";
             dtg_KichThuoc.Columns[3].Name = "Trạng thái";
