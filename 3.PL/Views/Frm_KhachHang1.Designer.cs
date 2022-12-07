@@ -61,6 +61,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.dtg_xemtd = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_kh)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_seachbyma)).BeginInit();
@@ -68,6 +69,7 @@
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtg_xemtd)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_clear
@@ -406,12 +408,25 @@
             this.panel5.Size = new System.Drawing.Size(363, 624);
             this.panel5.TabIndex = 57;
             // 
+            // dtg_xemtd
+            // 
+            this.dtg_xemtd.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dtg_xemtd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtg_xemtd.Location = new System.Drawing.Point(14, 394);
+            this.dtg_xemtd.Name = "dtg_xemtd";
+            this.dtg_xemtd.RowHeadersWidth = 51;
+            this.dtg_xemtd.RowTemplate.Height = 29;
+            this.dtg_xemtd.Size = new System.Drawing.Size(1003, 280);
+            this.dtg_xemtd.TabIndex = 58;
+            this.dtg_xemtd.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_xemtd_CellClick);
+            // 
             // Frm_KhachHang1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1386, 673);
+            this.Controls.Add(this.dtg_xemtd);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.dtg_kh);
@@ -432,6 +447,7 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtg_xemtd)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -470,5 +486,6 @@
         private System.Windows.Forms.TextBox kh_diemtich;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView dtg_xemtd;
     }
 }

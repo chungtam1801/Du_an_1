@@ -261,5 +261,10 @@ namespace _3.PL.Views
             s = "KH00" + (max + 1);
             return s;
         }
+
+        private void dtg_xemtd_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
