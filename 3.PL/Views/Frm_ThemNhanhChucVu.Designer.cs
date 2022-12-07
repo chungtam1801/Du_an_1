@@ -61,6 +61,7 @@
             this.btn_boqua.Text = "Bỏ qua";
             this.btn_boqua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_boqua.UseVisualStyleBackColor = false;
+            this.btn_boqua.Click += new System.EventHandler(this.btn_boqua_Click);
             // 
             // btn_luu
             // 
@@ -77,6 +78,7 @@
             this.btn_luu.Text = "     Lưu";
             this.btn_luu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_luu.UseVisualStyleBackColor = false;
+            this.btn_luu.Click += new System.EventHandler(this.btn_luu_Click);
             // 
             // tbx_ten
             // 
@@ -121,6 +123,8 @@
             this.Controls.Add(this.label1);
             this.Name = "Frm_ThemNhanhChucVu";
             this.Text = "Frm_ThemNhanhChucVu";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Frm_ThemNhanhChucVu_FormClosed);
+            this.Load += new System.EventHandler(this.Frm_ThemNhanhChucVu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

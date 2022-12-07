@@ -32,6 +32,7 @@
             this.cbb_cv = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pic_themnhanhchucvu = new System.Windows.Forms.PictureBox();
             this.tb_ma = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tb_ten = new System.Windows.Forms.TextBox();
@@ -68,8 +69,8 @@
             this.tk_timkiem = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pic_themnhanhchucvu = new System.Windows.Forms.PictureBox();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhchucvu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_seachbyma)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -77,7 +78,6 @@
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhchucvu)).BeginInit();
             this.SuspendLayout();
             // 
             // cbb_cv
@@ -134,6 +134,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(353, 592);
             this.panel2.TabIndex = 54;
+            // 
+            // pic_themnhanhchucvu
+            // 
+            this.pic_themnhanhchucvu.Image = global::_3.PL.Properties.Resources.add4;
+            this.pic_themnhanhchucvu.Location = new System.Drawing.Point(256, 177);
+            this.pic_themnhanhchucvu.Name = "pic_themnhanhchucvu";
+            this.pic_themnhanhchucvu.Size = new System.Drawing.Size(25, 22);
+            this.pic_themnhanhchucvu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_themnhanhchucvu.TabIndex = 57;
+            this.pic_themnhanhchucvu.TabStop = false;
+            this.pic_themnhanhchucvu.Click += new System.EventHandler(this.pic_themnhanhchucvu_Click);
             // 
             // tb_ma
             // 
@@ -518,16 +529,6 @@
             this.panel1.Size = new System.Drawing.Size(353, 47);
             this.panel1.TabIndex = 52;
             // 
-            // pic_themnhanhchucvu
-            // 
-            this.pic_themnhanhchucvu.Image = global::_3.PL.Properties.Resources.add4;
-            this.pic_themnhanhchucvu.Location = new System.Drawing.Point(256, 177);
-            this.pic_themnhanhchucvu.Name = "pic_themnhanhchucvu";
-            this.pic_themnhanhchucvu.Size = new System.Drawing.Size(25, 22);
-            this.pic_themnhanhchucvu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pic_themnhanhchucvu.TabIndex = 57;
-            this.pic_themnhanhchucvu.TabStop = false;
-            // 
             // Frm_NhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -546,6 +547,7 @@
             this.Load += new System.EventHandler(this.Frm_NhanVien_Load_1);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhchucvu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_seachbyma)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
@@ -556,7 +558,6 @@
             this.panel5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_themnhanhchucvu)).EndInit();
             this.ResumeLayout(false);
 
         }

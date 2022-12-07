@@ -785,5 +785,18 @@ namespace _3.PL.Views
             LoadNV();
             rbtn_conlam.Checked = true;
         }
+        void ThemNhanhChucVu(string s)
+        {
+            LoadChucVu();
+            cbb_cv.Text = s;
+        }
+        private void pic_themnhanhchucvu_Click(object sender, EventArgs e)
+        {
+            Frm_ThemNhanhChucVu form = new Frm_ThemNhanhChucVu();
+            form.ThemChucVu = new Frm_ThemNhanhChucVu.AddChucVu(ThemNhanhChucVu);
+            form.TopMost = true;
+            form.BringToFront();
+            form.ShowDialog();
+        }
     }
 }
