@@ -28,7 +28,7 @@ namespace _3.PL.Views
             this.TopMost = true;
             this.BringToFront();
             tbx_lydochenhlech.Enabled = false;
-            //lbl_nhanvien.Text = nv.Ma;
+            lbl_nhanvien.Text = nv.Ma;
             tbx_lydochenhlech.Visible = false;
             groupBox1.Visible = false;
             lbl_giovaoca.Text = Convert.ToString(DateTime.Now);
@@ -98,8 +98,7 @@ namespace _3.PL.Views
             else
             {
                 GiaoCa giaoca = new GiaoCa();
-                //giaoca.IdNguoiNhanCa = _iQLNhanVienServices.GetAll().First(c => c.Ma == lbl_nhanvien.Text).Id;
-                giaoca.IdNguoiNhanCa = Guid.Parse("4B6E84E1-2918-4C39-9C2A-A6DC4BAB4332");
+                giaoca.IdNguoiNhanCa = _iQLNhanVienServices.GetAll().First(c => c.Ma == lbl_nhanvien.Text).Id;
                 giaoca.TienDauca = Convert.ToDecimal(lbl_tongtien.Text);
                 giaoca.ThoiGianVaoCa = Convert.ToDateTime(lbl_giovaoca.Text);
                 giaoca.GhiChu = tbx_lydochenhlech.Text;
