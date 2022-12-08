@@ -15,7 +15,7 @@ namespace _2.BUS.Services
     public class QLNhanVienServices : IQLNhanVienServices
     {
         private IClassCRUDRepo<NhanVien> _iNhanVienRepository;
-        private FpolyDBContext _FpolyDB;
+        private FpolyDBContext _FpolyDB = new FpolyDBContext();
         private List<NhanVien> _NhanVienList;
         private IClassCRUDRepo<ChucVu> _iChucVuRepository;
         public QLNhanVienServices()
@@ -41,7 +41,7 @@ namespace _2.BUS.Services
 
         public List<NhanVien> GetAll()
         {
-            _NhanVienList = _FpolyDB.NhanViens.ToList();
+            //_NhanVienList = _FpolyDB.NhanViens.ToList();
             return _iNhanVienRepository.GetAll();
         }
         public NhanVien GetByID(Guid id)

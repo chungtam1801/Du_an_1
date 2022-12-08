@@ -83,7 +83,7 @@ namespace _3.PL.Views
         //        cbb_cv.Items.Add(item.Ten);
         //    }
         //}
-        private NhanVien GetDataFormGui()
+        private NhanVien GetDataFormGuiThem()
         {
             NhanVien nv = new NhanVien();
             nv.Id = _id;
@@ -107,7 +107,51 @@ namespace _3.PL.Views
             }
             return nv;
         }
-
+        private NhanVien GetDataFormGuiSua()
+        {
+            NhanVien nv = _IqlNhanVienServices.GetAll().FirstOrDefault(p => p.Id == _id);
+            nv.Id = _id;
+            nv.IdCv = _iqLChucVuServices.GetAll().FirstOrDefault(p => p.Ten == cbb_cv.Text).Id;
+            nv.Ma = tb_ma.Text;
+            nv.Ten = tb_ten.Text;
+            nv.TenDem = tb_tendem.Text;
+            nv.Ho = tb_ho.Text;
+            nv.GioiTinh = nv_cbb_gioitinh.Text;
+            nv.NgaySinh = dtp_ngaysinh.Value;
+            nv.DiaChi = tb_diachi.Text;
+            nv.Sdt = tb_sdt.Text;
+            nv.MatKhau = tb_matkhau.Text;
+            if (rbtn_conlam.Checked == true)
+            {
+                nv.TrangThai = 1;
+            }
+            else if (rbtn_nghilam.Checked == true)
+            {
+                nv.TrangThai = 0;
+            }
+            return nv;
+        }
+        private NhanVien GetDataFormGuiXoa()
+        {
+            NhanVien nv = _IqlNhanVienServices.GetAll().FirstOrDefault(p => p.Id == _id);
+            nv.Id = _id;
+            nv.IdCv = _iqLChucVuServices.GetAll().FirstOrDefault(p => p.Ten == cbb_cv.Text).Id;
+            nv.Ma = tb_ma.Text;
+            nv.Ten = tb_ten.Text;
+            nv.TenDem = tb_tendem.Text;
+            nv.Ho = tb_ho.Text;
+            nv.GioiTinh = nv_cbb_gioitinh.Text;
+            nv.NgaySinh = dtp_ngaysinh.Value;
+            nv.DiaChi = tb_diachi.Text;
+            nv.Sdt = tb_sdt.Text;
+            nv.MatKhau = tb_matkhau.Text;
+            rbtn_nghilam.Checked = true;
+            if (rbtn_nghilam.Checked == true)
+            {
+                nv.TrangThai = 0;
+            }
+            return nv;
+        }
         private void Frm_NhanVien_Load(object sender, EventArgs e)
         {
             LoadNV();
@@ -207,7 +251,7 @@ namespace _3.PL.Views
                 }
                 else
                 {
-                    _IqlNhanVienServices.Add(GetDataFormGui());
+                    _IqlNhanVienServices.Add(GetDataFormGuiThem());
                     LoadNV();
                 }
             }
@@ -217,7 +261,7 @@ namespace _3.PL.Views
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
-                _IqlNhanVienServices.Update(GetDataFormGui());
+                _IqlNhanVienServices.Update(GetDataFormGuiSua());
                 LoadNV();
             }
         }
@@ -226,7 +270,7 @@ namespace _3.PL.Views
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
-                _IqlNhanVienServices.Delete(GetDataFormGui());
+                _IqlNhanVienServices.Delete(GetDataFormGuiXoa());
                 LoadNV();
             }
         }
@@ -668,7 +712,7 @@ namespace _3.PL.Views
                 }
                 else
                 {
-                    _IqlNhanVienServices.Add(GetDataFormGui());
+                    _IqlNhanVienServices.Add(GetDataFormGuiThem());
                     LoadNV();
                 }
             }
@@ -678,7 +722,7 @@ namespace _3.PL.Views
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
-                _IqlNhanVienServices.Update(GetDataFormGui());
+                _IqlNhanVienServices.Update(GetDataFormGuiSua());
                 LoadNV();
             }
         }
@@ -687,7 +731,7 @@ namespace _3.PL.Views
         {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
-                _IqlNhanVienServices.Delete(GetDataFormGui());
+                _IqlNhanVienServices.Update(GetDataFormGuiXoa());
                 LoadNV();
             }
         }
@@ -734,6 +778,25 @@ namespace _3.PL.Views
         private void tk_timkiem_TextChanged_1(object sender, EventArgs e)
         {
             cbbtimkiem();
+        }
+
+        private void Frm_NhanVien_Load_1(object sender, EventArgs e)
+        {
+            LoadNV();
+            rbtn_conlam.Checked = true;
+        }
+        void ThemNhanhChucVu(string s)
+        {
+            LoadChucVu();
+            cbb_cv.Text = s;
+        }
+        private void pic_themnhanhchucvu_Click(object sender, EventArgs e)
+        {
+            Frm_ThemNhanhChucVu form = new Frm_ThemNhanhChucVu();
+            form.ThemChucVu = new Frm_ThemNhanhChucVu.AddChucVu(ThemNhanhChucVu);
+            form.TopMost = true;
+            form.BringToFront();
+            form.ShowDialog();
         }
     }
 }

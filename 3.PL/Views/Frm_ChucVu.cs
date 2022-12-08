@@ -30,6 +30,7 @@ namespace _3.PL.Views
         {
             dgvChucVu.ColumnCount = 4;
             dgvChucVu.Columns[0].Name = "ID";
+            dgvChucVu.Columns[0].Visible = false;
             dgvChucVu.Columns[1].Name = "Mã";
             dgvChucVu.Columns[2].Name = "Tên";
             dgvChucVu.Columns[3].Name = "Trạng thái";

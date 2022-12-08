@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ptb_Anh = new System.Windows.Forms.PictureBox();
             this.lbl_Ten = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_GiaTien = new System.Windows.Forms.Label();
             this.lbl_SoLuong = new System.Windows.Forms.Label();
+            this.tlt_ChiTiet = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ptb_Anh)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,6 +49,8 @@
             this.ptb_Anh.Size = new System.Drawing.Size(287, 231);
             this.ptb_Anh.TabIndex = 0;
             this.ptb_Anh.TabStop = false;
+            this.ptb_Anh.MouseEnter += new System.EventHandler(this.ptb_Anh_MouseEnter);
+            this.ptb_Anh.MouseLeave += new System.EventHandler(this.ptb_Anh_MouseLeave);
             // 
             // lbl_Ten
             // 
@@ -116,12 +120,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox ptb_Anh;
         private System.Windows.Forms.Label lbl_Ten;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbl_GiaTien;
         public System.Windows.Forms.Label lbl_SoLuong;
+        private System.Windows.Forms.ToolTip tlt_ChiTiet;
+        public System.Windows.Forms.PictureBox ptb_Anh;
     }
 }

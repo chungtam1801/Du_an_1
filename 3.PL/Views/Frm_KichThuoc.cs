@@ -31,7 +31,7 @@ namespace _3.PL.Views
             dtg_KichThuoc.Rows.Clear();
             dtg_KichThuoc.ColumnCount = 4;
             dtg_KichThuoc.Columns[0].Name = "ID";
-            dtg_KichThuoc.Columns[0].Width = 385;
+            dtg_KichThuoc.Columns[0].Visible = false;
             dtg_KichThuoc.Columns[1].Name = "Mã";
             dtg_KichThuoc.Columns[2].Name = "Size";
             dtg_KichThuoc.Columns[3].Name = "Trạng thái";
@@ -87,6 +87,10 @@ namespace _3.PL.Views
                 else if (tb_size.Text.Trim() == "")
                 {
                     MessageBox.Show("kích thước không được để trống!");
+                }
+                else if (_iqlkichThuocServices.GetAll().Any(p => p.Size == tb_size.Text))
+                {
+                    MessageBox.Show("Size đã tồn tại!");
                 }
                 else if (_iqlkichThuocServices.GetAll().Any(p => p.Size == tb_size.Text))
                 {

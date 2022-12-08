@@ -30,7 +30,7 @@
         {
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tbx_tongtien = new System.Windows.Forms.TextBox();
+            this.lbl_tongtien = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.tbx_ttien1 = new System.Windows.Forms.TextBox();
             this.tbx_sl1 = new System.Windows.Forms.TextBox();
@@ -63,17 +63,21 @@
             this.label15 = new System.Windows.Forms.Label();
             this.tbx_sl500 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbl_giovaoca = new System.Windows.Forms.Label();
+            this.lbl_nhanvien = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbx_giovaoca = new System.Windows.Forms.TextBox();
-            this.tbx_nhanvien = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbx_lydochenhlech = new System.Windows.Forms.TextBox();
             this.btn_luu = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -84,7 +88,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 94);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(570, 470);
+            this.panel2.Size = new System.Drawing.Size(570, 463);
             this.panel2.TabIndex = 1;
             // 
             // tableLayoutPanel1
@@ -94,7 +98,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.97059F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.69118F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.08257F));
-            this.tableLayoutPanel1.Controls.Add(this.tbx_tongtien, 1, 10);
+            this.tableLayoutPanel1.Controls.Add(this.lbl_tongtien, 2, 10);
             this.tableLayoutPanel1.Controls.Add(this.label17, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.tbx_ttien1, 2, 9);
             this.tableLayoutPanel1.Controls.Add(this.tbx_sl1, 1, 9);
@@ -140,22 +144,20 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(545, 454);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // tbx_tongtien
+            // lbl_tongtien
             // 
-            this.tbx_tongtien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbx_tongtien.Enabled = false;
-            this.tbx_tongtien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tbx_tongtien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbx_tongtien.Location = new System.Drawing.Point(334, 414);
-            this.tbx_tongtien.Multiline = true;
-            this.tbx_tongtien.Name = "tbx_tongtien";
-            this.tbx_tongtien.Size = new System.Drawing.Size(207, 36);
-            this.tbx_tongtien.TabIndex = 32;
-            this.tbx_tongtien.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbx_tongtien.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbx_tongtien_KeyPress);
+            this.lbl_tongtien.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_tongtien.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_tongtien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lbl_tongtien.Location = new System.Drawing.Point(334, 411);
+            this.lbl_tongtien.Name = "lbl_tongtien";
+            this.lbl_tongtien.Size = new System.Drawing.Size(207, 42);
+            this.lbl_tongtien.TabIndex = 32;
+            this.lbl_tongtien.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label17
             // 
@@ -169,9 +171,8 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(323, 42);
             this.label17.TabIndex = 31;
-            this.label17.Text = "Tính tổng tiền đầu ca";
+            this.label17.Text = "Tổng tiền kê khai đầu ca";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label17.Click += new System.EventHandler(this.label17_Click);
             // 
             // tbx_ttien1
             // 
@@ -184,6 +185,7 @@
             this.tbx_ttien1.Size = new System.Drawing.Size(207, 34);
             this.tbx_ttien1.TabIndex = 29;
             this.tbx_ttien1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbx_ttien1.TextChanged += new System.EventHandler(this.tbx_ttien1_TextChanged);
             // 
             // tbx_sl1
             // 
@@ -209,6 +211,7 @@
             this.tbx_ttien2.Size = new System.Drawing.Size(207, 34);
             this.tbx_ttien2.TabIndex = 27;
             this.tbx_ttien2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbx_ttien2.TextChanged += new System.EventHandler(this.tbx_ttien2_TextChanged);
             // 
             // tbx_sl2
             // 
@@ -234,6 +237,7 @@
             this.tbx_ttien5.Size = new System.Drawing.Size(207, 34);
             this.tbx_ttien5.TabIndex = 25;
             this.tbx_ttien5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbx_ttien5.TextChanged += new System.EventHandler(this.tbx_ttien5_TextChanged);
             // 
             // tbx_sl5
             // 
@@ -259,6 +263,7 @@
             this.tbx_ttien10.Size = new System.Drawing.Size(207, 34);
             this.tbx_ttien10.TabIndex = 23;
             this.tbx_ttien10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbx_ttien10.TextChanged += new System.EventHandler(this.tbx_ttien10_TextChanged);
             // 
             // tbx_sl10
             // 
@@ -284,6 +289,7 @@
             this.tbx_ttien20.Size = new System.Drawing.Size(207, 34);
             this.tbx_ttien20.TabIndex = 21;
             this.tbx_ttien20.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbx_ttien20.TextChanged += new System.EventHandler(this.tbx_ttien20_TextChanged);
             // 
             // tbx_sl20
             // 
@@ -309,6 +315,7 @@
             this.tbx_ttien50.Size = new System.Drawing.Size(207, 34);
             this.tbx_ttien50.TabIndex = 19;
             this.tbx_ttien50.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbx_ttien50.TextChanged += new System.EventHandler(this.tbx_ttien50_TextChanged);
             // 
             // tbx_sl50
             // 
@@ -334,6 +341,7 @@
             this.tbx_ttien100.Size = new System.Drawing.Size(207, 34);
             this.tbx_ttien100.TabIndex = 17;
             this.tbx_ttien100.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbx_ttien100.TextChanged += new System.EventHandler(this.tbx_ttien100_TextChanged);
             // 
             // tbx_sl100
             // 
@@ -359,6 +367,7 @@
             this.tbx_ttien200.Size = new System.Drawing.Size(207, 34);
             this.tbx_ttien200.TabIndex = 15;
             this.tbx_ttien200.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbx_ttien200.TextChanged += new System.EventHandler(this.tbx_ttien200_TextChanged);
             // 
             // tbx_sl200
             // 
@@ -384,6 +393,7 @@
             this.tbx_ttien500.Size = new System.Drawing.Size(207, 34);
             this.tbx_ttien500.TabIndex = 13;
             this.tbx_ttien500.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbx_ttien500.TextChanged += new System.EventHandler(this.tbx_ttien500_TextChanged);
             // 
             // label4
             // 
@@ -551,11 +561,12 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(255)))));
+            this.panel1.Controls.Add(this.lbl_giovaoca);
+            this.panel1.Controls.Add(this.lbl_nhanvien);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.tbx_giovaoca);
-            this.panel1.Controls.Add(this.tbx_nhanvien);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.ForeColor = System.Drawing.Color.Black;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -563,6 +574,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(570, 94);
             this.panel1.TabIndex = 0;
+            // 
+            // lbl_giovaoca
+            // 
+            this.lbl_giovaoca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_giovaoca.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lbl_giovaoca.Location = new System.Drawing.Point(379, 53);
+            this.lbl_giovaoca.Name = "lbl_giovaoca";
+            this.lbl_giovaoca.Size = new System.Drawing.Size(179, 23);
+            this.lbl_giovaoca.TabIndex = 8;
+            // 
+            // lbl_nhanvien
+            // 
+            this.lbl_nhanvien.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_nhanvien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lbl_nhanvien.Location = new System.Drawing.Point(102, 54);
+            this.lbl_nhanvien.Name = "lbl_nhanvien";
+            this.lbl_nhanvien.Size = new System.Drawing.Size(130, 23);
+            this.lbl_nhanvien.TabIndex = 7;
             // 
             // label3
             // 
@@ -580,7 +609,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(4, 56);
+            this.label2.Location = new System.Drawing.Point(12, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 20);
             this.label2.TabIndex = 5;
@@ -604,36 +633,47 @@
             this.tbx_giovaoca.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbx_giovaoca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbx_giovaoca.ForeColor = System.Drawing.Color.Firebrick;
-            this.tbx_giovaoca.Location = new System.Drawing.Point(378, 53);
+            this.tbx_giovaoca.Location = new System.Drawing.Point(379, 53);
             this.tbx_giovaoca.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbx_giovaoca.Multiline = true;
             this.tbx_giovaoca.Name = "tbx_giovaoca";
-            this.tbx_giovaoca.Size = new System.Drawing.Size(180, 23);
+            this.tbx_giovaoca.Size = new System.Drawing.Size(188, 23);
             this.tbx_giovaoca.TabIndex = 3;
-            // 
-            // tbx_nhanvien
-            // 
-            this.tbx_nhanvien.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(255)))));
-            this.tbx_nhanvien.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbx_nhanvien.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tbx_nhanvien.Location = new System.Drawing.Point(94, 56);
-            this.tbx_nhanvien.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbx_nhanvien.Name = "tbx_nhanvien";
-            this.tbx_nhanvien.Size = new System.Drawing.Size(134, 20);
-            this.tbx_nhanvien.TabIndex = 2;
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.btn_luu);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 564);
+            this.panel3.Location = new System.Drawing.Point(0, 557);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(570, 50);
+            this.panel3.Size = new System.Drawing.Size(570, 111);
             this.panel3.TabIndex = 2;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tbx_lydochenhlech);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(570, 57);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Lý do chênh lệch";
+            // 
+            // tbx_lydochenhlech
+            // 
+            this.tbx_lydochenhlech.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbx_lydochenhlech.Location = new System.Drawing.Point(3, 20);
+            this.tbx_lydochenhlech.Multiline = true;
+            this.tbx_lydochenhlech.Name = "tbx_lydochenhlech";
+            this.tbx_lydochenhlech.Size = new System.Drawing.Size(564, 34);
+            this.tbx_lydochenhlech.TabIndex = 0;
             // 
             // btn_luu
             // 
             this.btn_luu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(213)))), ((int)(((byte)(197)))));
+            this.btn_luu.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btn_luu.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(213)))), ((int)(((byte)(197)))));
             this.btn_luu.FlatAppearance.BorderSize = 2;
             this.btn_luu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(195)))), ((int)(((byte)(176)))));
@@ -641,9 +681,9 @@
             this.btn_luu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_luu.Image = global::_3.PL.Properties.Resources.iconfinder_check_4341282_120572__1_;
             this.btn_luu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_luu.Location = new System.Drawing.Point(12, 0);
+            this.btn_luu.Location = new System.Drawing.Point(0, 63);
             this.btn_luu.Name = "btn_luu";
-            this.btn_luu.Size = new System.Drawing.Size(545, 50);
+            this.btn_luu.Size = new System.Drawing.Size(570, 48);
             this.btn_luu.TabIndex = 0;
             this.btn_luu.Text = "Lưu";
             this.btn_luu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -656,7 +696,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(255)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(570, 631);
+            this.ClientSize = new System.Drawing.Size(570, 668);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -671,6 +711,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -717,6 +759,10 @@
         private System.Windows.Forms.Button btn_luu;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox tbx_tongtien;
-        private System.Windows.Forms.TextBox tbx_nhanvien;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox tbx_lydochenhlech;
+        private System.Windows.Forms.Label lbl_giovaoca;
+        private System.Windows.Forms.Label lbl_nhanvien;
+        private System.Windows.Forms.Label lbl_tongtien;
     }
 }

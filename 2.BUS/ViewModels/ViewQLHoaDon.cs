@@ -12,7 +12,7 @@ namespace _2.BUS.ViewModels
     public class ViewQLHoaDon
     {
         public Guid Id { get; set; }
-        public string TenNv { get; set; }
+        public string MaNV { get; set; }
         public string Ma { get; set; }
         public DateTime? NgayTao { get; set; }
         public DateTime? NgayThanhToan { get; set; }
