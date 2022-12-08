@@ -44,60 +44,33 @@ namespace _3.PL.Views
 
             LoadSP();
         }
-
-        private void LoadData()
+        public string GetTenSP(Guid? id)
         {
-            dgvKM.ColumnCount = 6;
+            var sp = _iqlSanPhamServices.GetAll().Find(p => p.Id == id);
+            if (sp == null)
+            {
+                return "";
+            }
+            else return sp.Ten;
+        }
+        private void LoadData(string s)
+        {
+            dgvKM.ColumnCount = 7;
             dgvKM.Columns[0].Name = "ID";
             dgvKM.Columns[1].Name = "Tên";
-            DataGridViewTextBoxColumn dgvclsp = new DataGridViewTextBoxColumn();
-            dgvclsp.HeaderText = "Sản phẩm";
-            dgvclsp.Name = "Sản phẩm";
-            dgvKM.Columns.Add(dgvclsp);
             dgvKM.Columns[2].Name = "Giá trị";
-            dgvKM.Columns[3].Name = "Ngày bắt đầu";
-            dgvKM.Columns[4].Name = "Ngày kết thúc";
-            dgvKM.Columns[5].Name = "Trạng thái";
+            dgvKM.Columns[3].Name = "Sản phẩm";
+            dgvKM.Columns[4].Name = "Ngày bắt đầu";
+            dgvKM.Columns[5].Name = "Ngày kết thúc";
+            dgvKM.Columns[6].Name = "Trạng thái";
             dgvKM.Rows.Clear();
-            for (int i = 0; i <= dgv_sp.Rows.Count - 1; i++)
+
+            foreach (var x in _iqLkmServices.GetAll())
             {
-                bool rowAlreadyExist = false;
-
-
-                DataGridViewRow row = dgv_sp.Rows[i];
-                //if (Convert.ToBoolean(row.Cells["chk"].Value) == true)
-                //{
-
-                if (dgvKM.Rows.Count != 0)
-                {
-                    for (int j = 0; j <= dgvKM.Rows.Count - 1; j++)
-                    {
-                        if (Convert.ToString(row.Cells["Tên SP"].Value) == Convert.ToString(dgvKM.Rows[j].Cells["Sản phẩm"].Value))
-                        {
-                            rowAlreadyExist = true;
-                            break;
-                        }
-                    }
-                    if (rowAlreadyExist == false)
-
-                    {
-                        foreach (var x in _iqLkmServices.GetAll())
-                        {
-                            dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động", Convert.ToString(row.Cells["Tên SP"].Value));
-                        }
-
-                    }
-
-                }
-                else
-                {
-                    foreach (var x in _iqLkmServices.GetAll())
-                    {
-                        dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động", Convert.ToString(row.Cells["Tên SP"].Value));
-                    }
-                }
-               // }
+                string sp = GetTenSP(x.IdSp);
+                dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, sp, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
+           
 
 
         }
@@ -120,165 +93,57 @@ namespace _3.PL.Views
 
         private void LoadData3(DateTime input)
         {
-            dgvKM.ColumnCount = 6;
+           
+            dgvKM.ColumnCount = 7;
             dgvKM.Columns[0].Name = "ID";
             dgvKM.Columns[1].Name = "Tên";
-            DataGridViewTextBoxColumn dgvclsp = new DataGridViewTextBoxColumn();
-            dgvclsp.HeaderText = "Sản phẩm";
-            dgvclsp.Name = "Sản phẩm";
-            dgvKM.Columns.Add(dgvclsp);
             dgvKM.Columns[2].Name = "Giá trị";
-            dgvKM.Columns[3].Name = "Ngày bắt đầu";
-            dgvKM.Columns[4].Name = "Ngày kết thúc";
-            dgvKM.Columns[5].Name = "Trạng thái";
+            dgvKM.Columns[3].Name = "Sản phẩm";
+            dgvKM.Columns[4].Name = "Ngày bắt đầu";
+            dgvKM.Columns[5].Name = "Ngày kết thúc";
+            dgvKM.Columns[6].Name = "Trạng thái";
             dgvKM.Rows.Clear();
-            for (int i = 0; i <= dgv_sp.Rows.Count - 1; i++)
+            foreach (var x in GetAll3(input))
             {
-                bool rowAlreadyExist = false;
-
-
-                DataGridViewRow row = dgv_sp.Rows[i];
-                //if (Convert.ToBoolean(row.Cells["chk"].Value) == true)
-                //{
-
-                if (dgvKM.Rows.Count != 0)
-                {
-                    for (int j = 0; j <= dgvKM.Rows.Count - 1; j++)
-                    {
-                        if (Convert.ToString(row.Cells["Tên SP"].Value) == Convert.ToString(dgvKM.Rows[j].Cells["Sản phẩm"].Value))
-                        {
-                            rowAlreadyExist = true;
-                            break;
-                        }
-                    }
-                    if (rowAlreadyExist == false)
-
-                    {
-                        foreach (var x in GetAll3(input))
-                        {
-                            dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động", Convert.ToString(row.Cells["Tên SP"].Value));
-                        }
-
-                    }
-
-                }
-                else
-                {
-                    foreach (var x in _iqLkmServices.GetAll())
-                    {
-                        dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động", Convert.ToString(row.Cells["Tên SP"].Value));
-                    }
-                }
-               // }
+                string sp = GetTenSP(x.IdSp);
+                dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, sp, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
 
         }
         private void LoadData1(string input)
         {
-            dgvKM.ColumnCount = 6;
+            dgvKM.ColumnCount = 7;
             dgvKM.Columns[0].Name = "ID";
             dgvKM.Columns[1].Name = "Tên";
-            DataGridViewTextBoxColumn dgvclsp = new DataGridViewTextBoxColumn();
-            dgvclsp.HeaderText = "Sản phẩm";
-            dgvclsp.Name = "Sản phẩm";
-            dgvKM.Columns.Add(dgvclsp);
             dgvKM.Columns[2].Name = "Giá trị";
-            dgvKM.Columns[3].Name = "Ngày bắt đầu";
-            dgvKM.Columns[4].Name = "Ngày kết thúc";
-            dgvKM.Columns[5].Name = "Trạng thái";
+            dgvKM.Columns[3].Name = "Sản phẩm";
+            dgvKM.Columns[4].Name = "Ngày bắt đầu";
+            dgvKM.Columns[5].Name = "Ngày kết thúc";
+            dgvKM.Columns[6].Name = "Trạng thái";
             dgvKM.Rows.Clear();
-            for (int i = 0; i <= dgv_sp.Rows.Count - 1; i++)
+            foreach (var x in GetAll1(input))
             {
-                bool rowAlreadyExist = false;
-
-
-                DataGridViewRow row = dgv_sp.Rows[i];
-                //if (Convert.ToBoolean(row.Cells["chk"].Value) == true)
-                //{
-
-                if (dgvKM.Rows.Count != 0)
-                {
-                    for (int j = 0; j <= dgvKM.Rows.Count - 1; j++)
-                    {
-                        if (Convert.ToString(row.Cells["Tên SP"].Value) == Convert.ToString(dgvKM.Rows[j].Cells["Sản phẩm"].Value))
-                        {
-                            rowAlreadyExist = true;
-                            break;
-                        }
-                    }
-                    if (rowAlreadyExist == false)
-
-                    {
-                        foreach (var x in GetAll1(input))
-                        {
-                            dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động", Convert.ToString(row.Cells["Tên SP"].Value));
-                        }
-
-                    }
-
-                }
-                else
-                {
-                    foreach (var x in _iqLkmServices.GetAll())
-                    {
-                        dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động", Convert.ToString(row.Cells["Tên SP"].Value));
-                    }
-                }
-                // }
+                string sp = GetTenSP(x.IdSp);
+                dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, sp, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
         }
         private void LoadData2(bool input)
         {
-            dgvKM.ColumnCount = 6;
+
+
+            dgvKM.ColumnCount = 7;
             dgvKM.Columns[0].Name = "ID";
             dgvKM.Columns[1].Name = "Tên";
-            DataGridViewTextBoxColumn dgvclsp = new DataGridViewTextBoxColumn();
-            dgvclsp.HeaderText = "Sản phẩm";
-            dgvclsp.Name = "Sản phẩm";
-            dgvKM.Columns.Add(dgvclsp);
             dgvKM.Columns[2].Name = "Giá trị";
-            dgvKM.Columns[3].Name = "Ngày bắt đầu";
-            dgvKM.Columns[4].Name = "Ngày kết thúc";
-            dgvKM.Columns[5].Name = "Trạng thái";
+            dgvKM.Columns[3].Name = "Sản phẩm";
+            dgvKM.Columns[4].Name = "Ngày bắt đầu";
+            dgvKM.Columns[5].Name = "Ngày kết thúc";
+            dgvKM.Columns[6].Name = "Trạng thái";
             dgvKM.Rows.Clear();
-            for (int i = 0; i <= dgv_sp.Rows.Count - 1; i++)
+            foreach (var x in GetAll2(input))
             {
-                bool rowAlreadyExist = false;
-
-
-                DataGridViewRow row = dgv_sp.Rows[i];
-                //if (Convert.ToBoolean(row.Cells["chk"].Value) == true)
-                //{
-
-                if (dgvKM.Rows.Count != 0)
-                {
-                    for (int j = 0; j <= dgvKM.Rows.Count - 1; j++)
-                    {
-                        if (Convert.ToString(row.Cells["Tên SP"].Value) == Convert.ToString(dgvKM.Rows[j].Cells["Sản phẩm"].Value))
-                        {
-                            rowAlreadyExist = true;
-                            break;
-                        }
-                    }
-                    if (rowAlreadyExist == false)
-
-                    {
-                        foreach (var x in GetAll2(input))
-                        {
-                            dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động", Convert.ToString(row.Cells["Tên SP"].Value));
-                        }
-
-                    }
-
-                }
-                else
-                {
-                    foreach (var x in _iqLkmServices.GetAll())
-                    {
-                        dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động", Convert.ToString(row.Cells["Tên SP"].Value));
-                    }
-                }
-                // }
+                string sp = GetTenSP(x.IdSp);
+                dgvKM.Rows.Add(x.Id, x.Ten, x.GiaTri, sp, x.NgayBd, x.NgayKt, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
             }
         }
         private KhuyenMai GetDataFromGUI()
@@ -287,6 +152,7 @@ namespace _3.PL.Views
             km.Id = _id;
             km.Ten = tbx_Ten.Text;
             km.GiaTri = tbx_Giatri.Text;
+            
             km.NgayBd = Convert.ToDateTime(dtm_NgayBD.Text);
             km.NgayKt = Convert.ToDateTime(dtm_NgayKT.Text);
             if (rbt_Hoatdong.Checked == true)
@@ -297,8 +163,19 @@ namespace _3.PL.Views
             {
                 km.TrangThai = 0;
             }
+            for (int i = 0; i <= dgv_sp.Rows.Count -1; i++)
+            {
+                if (Convert.ToBoolean(dgv_sp.Rows[i].Cells["chk"].Value) == true)
+                {
+                    km.IdSp = _iqlSanPhamServices.GetAll().First(c => c.Ten == Convert.ToString(dgv_sp.Rows[dgv_sp.CurrentRow.Index].Cells["Tên SP"].Value)).Id;
+                }
 
+            }
+                   
 
+                
+            
+            
             return km;
 
         }
@@ -311,6 +188,7 @@ namespace _3.PL.Views
 
         private void LoadSP()
         {
+           
             dgv_sp.ColumnCount = 2;
             dgv_sp.Columns[0].Name = "Mã SP";
             dgv_sp.Columns[1].Name = "Tên SP";
@@ -318,6 +196,7 @@ namespace _3.PL.Views
             DataGridViewCheckBoxColumn dgvcb = new DataGridViewCheckBoxColumn();
             dgvcb.HeaderText = "Select";
             dgvcb.Name = "chk";
+            
             foreach (var x in _iqlSanPhamServices.GetAll())
             {
                 dgv_sp.Rows.Add(x.Ma, x.Ten);
@@ -352,10 +231,10 @@ namespace _3.PL.Views
             else if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
                 
-                
                 _iqLkmServices.Add(GetDataFromGUI());
-
-                LoadData();
+                 
+                
+                LoadData(null);
             }
         }
 
@@ -379,8 +258,17 @@ namespace _3.PL.Views
             }
             else if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
-                _iqLkmServices.Update(GetDataFromGUI());
-                LoadData();
+                for (int i = 0; i <= dgv_sp.Rows.Count -1 ; i++)
+                {
+                    
+                    
+                        _iqLkmServices.Update(GetDataFromGUI());
+                    
+                }
+                   
+                
+                
+                LoadData(null);
             }
 
         }
@@ -394,7 +282,7 @@ namespace _3.PL.Views
             else if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
                 _iqLkmServices.Delete(GetDataFromGUI());
-                LoadData();
+                LoadData(null);
             }
         }
 
@@ -413,12 +301,12 @@ namespace _3.PL.Views
             {
                 row.Cells["chk"].Value = false;
             }
-            LoadData();
+            LoadData(null);
         }
 
         private void FrmKhuyenMai_Load_1(object sender, EventArgs e)
         {
-            LoadData();
+            LoadData(null);
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -450,15 +338,15 @@ namespace _3.PL.Views
             {
                 rbt_koHoatdong.Checked = true;
             }
-            /*foreach (DataGridViewRow row in dgv_sp.Rows)
+            foreach (DataGridViewRow row in dgv_sp.Rows)
             {
                
-                    if (Convert.ToString(row.Cells["Tên SP"].Value) == Convert.ToString(dgvKM.Cells["Sản phẩm"].Value))
+                    if (Convert.ToString(row.Cells["Tên SP"].Value) == Convert.ToString(dgvKM.Rows[dgvKM.CurrentRow.Index].Cells["Sản phẩm"].Value))
                     {
                         row.Cells["chk"].Value = true;
                     }
                 
-            }*/
+            }
         }
 
         private void tbx_TimKiem_TextChanged_1(object sender, EventArgs e)
@@ -474,26 +362,25 @@ namespace _3.PL.Views
             }
             else
             {
-                LoadData();
+                LoadData(null);
             }
         }
 
         private void cbx_Tatca_CheckedChanged_1(object sender, EventArgs e)
         {
-            if (cbx_Tatca.Checked == true)
+            for (int i = 0; i < dgv_sp.Rows.Count; i++)
             {
-                foreach (DataGridViewRow row in dgv_sp.Rows)
+                if (cbx_Tatca.Checked == true)
                 {
-                    row.Cells["chk"].Value = true;
+                    ((DataGridViewCheckBoxCell)dgv_sp.Rows[i].Cells["chk"]).Value = true;
+                }
+                else
+                {
+                    ((DataGridViewCheckBoxCell)dgv_sp.Rows[i].Cells["chk"]).Value = false;
                 }
             }
-            else
-            {
-                foreach (DataGridViewRow row in dgv_sp.Rows)
-                {
-                    row.Cells["chk"].Value = false;
-                }
-            }
+            
+            
         }
     }
 }
