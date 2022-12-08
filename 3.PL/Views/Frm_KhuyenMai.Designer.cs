@@ -179,6 +179,7 @@
             this.dgv_sp.Location = new System.Drawing.Point(93, 297);
             this.dgv_sp.Name = "dgv_sp";
             this.dgv_sp.RowTemplate.Height = 25;
+            this.dgv_sp.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_sp.Size = new System.Drawing.Size(500, 78);
             this.dgv_sp.TabIndex = 15;
             // 
