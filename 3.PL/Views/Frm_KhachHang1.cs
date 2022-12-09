@@ -20,11 +20,17 @@ namespace _3.PL.Views
     public partial class Frm_KhachHang1 : Form
     {
         private IQLKhachHangServices _IqlKhachHangServices;
+        private IQLLichSuTichDiemServices _IqlLichSuTichDiemServices;
+        private IQLHoaDonServices _IqlHoaDonServices;
+        private IQLQuyDoiDiemServices _IqlQuyDoiDiemServices;
         private Guid _id;
         public Frm_KhachHang1()
         {
             InitializeComponent();
             _IqlKhachHangServices = new QLKhachHangServices();
+            _IqlHoaDonServices =new QLHoaDonServices(); 
+            _IqlQuyDoiDiemServices = new QLQuyDoiDiemServices();
+            _IqlLichSuTichDiemServices=new QLLichSuTichDiemServices();
             int widthScreen = Screen.PrimaryScreen.WorkingArea.Width;
             int heightScreen = Screen.PrimaryScreen.WorkingArea.Height;
 
@@ -111,7 +117,7 @@ namespace _3.PL.Views
             kh.DiaChi = kh_diachi.Text;
             kh.Sdt = kh_sdt.Text;
             //Tam sua
-            kh.DiemTich = Convert.ToInt32(kh_diemtich.Text);
+          // kh.DiemTich = Convert.ToInt32(kh_diemtich.Text);
             //
             if (radioButton1.Checked == true)
             {
@@ -243,6 +249,7 @@ namespace _3.PL.Views
         private void Frm_KhachHang1_Load(object sender, EventArgs e)
         {
             LoadKH();
+            LoadLSTD();
         }
         private string MaTuSinh()
         {
@@ -261,5 +268,40 @@ namespace _3.PL.Views
             s = "KH00" + (max + 1);
             return s;
         }
+        private void dtg_xemtd_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dtg_xemtd_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void LoadLSTD()
+        {
+            //Lam them 
+            dtg_xemtd.Rows.Clear();
+            dtg_xemtd.ColumnCount = 9;
+            dtg_xemtd.Columns[0].Name = "STT";
+            dtg_xemtd.Columns[1].Name = "Id";
+            dtg_xemtd.Columns[1].Visible=false;
+            dtg_xemtd.Columns[2].Name = "Tên KH";
+            dtg_xemtd.Columns[3].Name = "Số ĐT";
+            dtg_xemtd.Columns[4].Name = "Mã Hóa đơn ";
+            dtg_xemtd.Columns[5].Name = "Số Điểm";
+            dtg_xemtd.Columns[6].Name = "Ngày tạo ";
+            dtg_xemtd.Columns[6].Visible=false;
+            dtg_xemtd.Columns[7].Name = "Ngày thay đổi ";
+            dtg_xemtd.Columns[8].Name = "Trạng thái ";
+            int stt = 1;
+            dtg_xemtd.Rows.Clear();
+            foreach (var x in _IqlLichSuTichDiemServices.GetAllView())
+            {
+                dtg_xemtd.Rows.Add(stt++,x.Id, x.Ten, x.Sdt,x.MaHD,x.Diem,x.NgayTao,x.NgayThayDoi,x.TrangThai==1?"Còn":"Hết");
+            }
+           
+           
+        }
+
     }
 }
