@@ -47,7 +47,7 @@ namespace _3.PL.Views
             //lbl_Ten.Text = nv.Ho + " " + nv.TenDem + " " + nv.Ten;
             pnl_menucon.Visible = false;
             tbx_giohethong.Text = Convert.ToString(DateTime.Now);
-            Frm_QLVaoCa frm_QLVaoCa = new Frm_QLVaoCa(nv);
+            Frm_VaoCa frm_QLVaoCa = new Frm_VaoCa(nv);
             frm_QLVaoCa.frm_Main = this;
             frm_QLVaoCa.ShowDialog();
 

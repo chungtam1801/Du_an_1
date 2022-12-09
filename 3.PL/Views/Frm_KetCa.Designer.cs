@@ -761,7 +761,7 @@
             this.tbx_tongtienhang.Location = new System.Drawing.Point(576, 294);
             this.tbx_tongtienhang.Multiline = true;
             this.tbx_tongtienhang.Name = "tbx_tongtienhang";
-            this.tbx_tongtienhang.Size = new System.Drawing.Size(150, 27);
+            this.tbx_tongtienhang.Size = new System.Drawing.Size(153, 27);
             this.tbx_tongtienhang.TabIndex = 44;
             this.tbx_tongtienhang.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -781,7 +781,7 @@
             this.tbx_ttienmatcuoica.Location = new System.Drawing.Point(576, 337);
             this.tbx_ttienmatcuoica.Multiline = true;
             this.tbx_ttienmatcuoica.Name = "tbx_ttienmatcuoica";
-            this.tbx_ttienmatcuoica.Size = new System.Drawing.Size(150, 27);
+            this.tbx_ttienmatcuoica.Size = new System.Drawing.Size(153, 27);
             this.tbx_ttienmatcuoica.TabIndex = 42;
             this.tbx_ttienmatcuoica.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -792,7 +792,7 @@
             this.tbx_trabangtienmat.Location = new System.Drawing.Point(577, 163);
             this.tbx_trabangtienmat.Multiline = true;
             this.tbx_trabangtienmat.Name = "tbx_trabangtienmat";
-            this.tbx_trabangtienmat.Size = new System.Drawing.Size(150, 27);
+            this.tbx_trabangtienmat.Size = new System.Drawing.Size(152, 27);
             this.tbx_trabangtienmat.TabIndex = 41;
             this.tbx_trabangtienmat.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -803,7 +803,7 @@
             this.tbx_trabangnganhang.Location = new System.Drawing.Point(577, 209);
             this.tbx_trabangnganhang.Multiline = true;
             this.tbx_trabangnganhang.Name = "tbx_trabangnganhang";
-            this.tbx_trabangnganhang.Size = new System.Drawing.Size(150, 27);
+            this.tbx_trabangnganhang.Size = new System.Drawing.Size(152, 27);
             this.tbx_trabangnganhang.TabIndex = 40;
             this.tbx_trabangnganhang.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -892,6 +892,7 @@
             this.tbx_ghichu.Location = new System.Drawing.Point(17, 438);
             this.tbx_ghichu.Multiline = true;
             this.tbx_ghichu.Name = "tbx_ghichu";
+            this.tbx_ghichu.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.tbx_ghichu.Size = new System.Drawing.Size(331, 85);
             this.tbx_ghichu.TabIndex = 28;
             // 

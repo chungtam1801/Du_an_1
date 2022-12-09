@@ -47,6 +47,7 @@ namespace _3.PL.Views
         {
             this.TopMost = true;
             this.BringToFront();
+
             // Tìm ca được lưu gần nhất lưu 
             List<GiaoCa> ca = _iQLGiaoCaServices.GetAll().OrderByDescending(c => c.ThoiGianVaoCa).ToList();
             //Lấy thời gian vào ca gần nhất trong csdl
@@ -62,7 +63,6 @@ namespace _3.PL.Views
             tbx_nvtrucca.Enabled = false;
             var idnv = ca[0].IdNguoiNhanCa;
             tbx_nvtrucca.Text = _iQLNhanVienServices.GetAll().First(c => c.Id == idnv).Ma;
-
             // Thời gian kết ca
             tbx_gioketca.Text = Convert.ToString(DateTime.Now);
             // Tiền mặt đầu ca
@@ -87,6 +87,7 @@ namespace _3.PL.Views
             tbx_ttien2.Text = "0";
             tbx_ttien1.Text = "0";
             tbx_tongtien.Enabled = false;
+
             // Lấy danh sách hóa đơn được tạo trong ca          
             List<HoaDon> hoaDons = _iQLHoaDonServices.GetAll().Where(c => c.NgayTao > Convert.ToDateTime(tbx_giovao.Text) && c.NgayTao < DateTime.Now).ToList();
 
@@ -98,7 +99,9 @@ namespace _3.PL.Views
             tbx_hđthanhtoan.Text = Convert.ToString(hoadontt.Count());
 
             // Tính số lượng hóa đơn chờ thanh toán
-            List<HoaDon> hoadonchuatt = hoaDons.Where(c => c.TrangThai == 3 || c.TrangThai == 0).ToList();
+            List<HoaDon> hoaDonsngay = _iQLHoaDonServices.GetAll().Where(c => c.NgayTao == DateTime.Today).ToList();
+
+            List<HoaDon> hoadonchuatt = hoaDonsngay.Where(c => c.TrangThai == 3 || c.TrangThai == 0).ToList();
             tbx_hdchothanhtoan.Text = Convert.ToString(hoadonchuatt.Count());
 
             // Tính số lượng hóa đơn hủy
@@ -210,6 +213,11 @@ namespace _3.PL.Views
                 giaoca.ThoiGianKetCa = DateTime.Now;
                 giaoca.SoHoaDon = Convert.ToInt32(tbx_soluonghoadon.Text);
                 giaoca.Tongtienhang = Convert.ToDecimal(tbx_tongtienhang.Text);
+                giaoca.TienMat = Convert.ToDecimal(tbx_trabangtienmat.Text);
+                giaoca.NganHang= Convert.ToDecimal(tbx_trabangnganhang.Text);
+                giaoca.TienSDDiem = Convert.ToDecimal(tbx_tiensddiem.Text);
+                giaoca.TongTienMat = Convert.ToDecimal(tbx_ttienmatcuoica.Text);
+                giaoca.TrangThai = 0;
                 MessageBox.Show(_iQLGiaoCaServices.Update(giaoca), "Thông báo");
             }
         }
@@ -239,6 +247,7 @@ namespace _3.PL.Views
                 giaoca.ThoiGianKetCa = DateTime.Now;
                 giaoca.SoHoaDon = Convert.ToInt32(tbx_soluonghoadon.Text);
                 giaoca.Tongtienhang = Convert.ToDecimal(tbx_tongtienhang.Text);
+                giaoca.TrangThai = 0;
                 MessageBox.Show(_iQLGiaoCaServices.Update(giaoca), "Thông báo");
             }
         }

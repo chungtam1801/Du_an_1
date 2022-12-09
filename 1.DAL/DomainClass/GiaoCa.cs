@@ -21,7 +21,15 @@ namespace _1.DAL.DomainClass
         [Column(TypeName = "money")]
         public decimal? TienDauca { get; set; }
         [Column(TypeName = "money")]
+        public decimal? TienMat { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? NganHang { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? TienSDDiem { get; set; }
+        [Column(TypeName = "money")]
         public decimal? TienCuoiCa { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? TongTienMat { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? ThoiGianVaoCa { get; set; }
         [Column(TypeName = "datetime")]
