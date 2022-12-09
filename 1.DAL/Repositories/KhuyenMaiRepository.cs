@@ -53,6 +53,7 @@ namespace _1.DAL.Repositories
             tempobj.GiaTri=obj.GiaTri;
             tempobj.NgayBd=obj.NgayBd;
             tempobj.NgayKt=obj.NgayKt;
+            tempobj.IdSp = obj.IdSp;
             tempobj.TrangThai=obj.TrangThai;
             //Còn bao nhiêu thuộc tính làm tương tự
             _dbContext.Update(tempobj);
