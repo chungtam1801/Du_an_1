@@ -45,11 +45,11 @@ namespace _2.BUS.Services
         {
             return _iLichSuTichDiemRepository.GetAll(); 
         }
-        public List<ViewQLLichSuTichDiem> GetAllView()
+        public List<ViewQLLichSuTichDiem> GetAllView(Guid idKh)
         {
             var list = new List<ViewQLLichSuTichDiem>();
             list=(from a in _iLichSuTichDiemRepository.GetAll()
-                  join b in _iKhachHangRepository.GetAll() on a.IdKh equals b.Id
+                  join b in _iKhachHangRepository.GetAll().Where(c=>c.Id==idKh) on a.IdKh equals b.Id
                   join c in _iHoaDonRepository.GetAll() on a.IdHd equals c.Id
                   join d in _iQuyDoiDiemRepository.GetAll() on a.IdQuyDoiDiem equals d.Id
                   select new ViewQLLichSuTichDiem()
@@ -59,11 +59,8 @@ namespace _2.BUS.Services
                       Sdt=b.Sdt,
                       MaHD=c.Ma,
                       Diem=a.Diem,
-                      NgayTao=c.NgayTao,
                       NgayThayDoi=c.NgayThanhToan,
-                      TrangThai=c.TrangThai,
-
-
+                      MaQuyDoiDiem=d.Id
                   }).ToList();
             return list;
         }

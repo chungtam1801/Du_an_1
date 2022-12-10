@@ -15,7 +15,7 @@ namespace _2.BUS.IServices
         string Delete(LichSuTichDiem obj);
         List<LichSuTichDiem> GetAll();
       //Lam Them
-        List<ViewQLLichSuTichDiem> GetAllView();
+        List<ViewQLLichSuTichDiem> GetAllView(Guid idkh);
         LichSuTichDiem GetByID(Guid id);
     }
 }

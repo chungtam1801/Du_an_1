@@ -222,6 +222,7 @@
             // dtg_kh
             // 
             this.dtg_kh.AllowUserToOrderColumns = true;
+            this.dtg_kh.AllowUserToResizeColumns = false;
             this.dtg_kh.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtg_kh.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtg_kh.BackgroundColor = System.Drawing.Color.White;

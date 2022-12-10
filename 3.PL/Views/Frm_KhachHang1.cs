@@ -93,6 +93,7 @@ namespace _3.PL.Views
             kh_ngaysinh.Value = kh.NgaySinh;
             kh_diachi.Text = kh.DiaChi;
             kh_sdt.Text = kh.Sdt;
+
             //Tam Sua
             kh_diemtich.Text = kh.DiemTich.ToString();
             //
@@ -104,6 +105,7 @@ namespace _3.PL.Views
             {
                 radioButton2.Checked = false;
             }
+            LoadLSTD(new Guid(dtg_kh.CurrentRow.Cells[1].Value.ToString()));
         }
         private KhachHang GetDataFormGui()
         {
@@ -250,12 +252,11 @@ namespace _3.PL.Views
         private void Frm_KhachHang1_Load(object sender, EventArgs e)
         {
             LoadKH();
-            LoadLSTD();
         }
-        private void LoadLSTD()
+        private void LoadLSTD(Guid idkh)
         {
             dtg_xemtd.Rows.Clear();
-            dtg_xemtd.ColumnCount = 8;
+            dtg_xemtd.ColumnCount = 7;
             dtg_xemtd.Columns[0].Name = "STT";
             dtg_xemtd.Columns[1].Name = "Id";
             dtg_xemtd.Columns[1].Visible = false;
@@ -264,12 +265,12 @@ namespace _3.PL.Views
             dtg_xemtd.Columns[4].Name = "Mã HD";
             dtg_xemtd.Columns[5].Name = "Ngày Thay Đổi";
             dtg_xemtd.Columns[6].Name = "Điểm";
-            dtg_xemtd.Columns[7].Name = "Trạng Thái";
+           
             int stt = 1;
             dtg_xemtd.Rows.Clear();
-            foreach (var x in _IqlLichSuTichDiemServices.GetAllView())
+            foreach (var x in _IqlLichSuTichDiemServices.GetAllView(idkh))
             {
-                dtg_xemtd.Rows.Add(stt++, x.Id, x.Ten, x.Sdt, x.MaHD, x.NgayThayDoi, x.Diem, x.TrangThai == 1 ? "cộng điểm " : "trừ điểm ");
+                dtg_xemtd.Rows.Add(stt++, x.Id, x.Ten, x.Sdt, x.MaHD, x.NgayThayDoi, x.Diem);
             }
 
         }
