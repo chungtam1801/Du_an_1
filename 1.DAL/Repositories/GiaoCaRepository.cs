@@ -64,8 +64,8 @@ namespace _1.DAL.Repositories
             tempobj.TrangThai = obj.TrangThai;
             tempobj.Tongtienhang = obj.Tongtienhang;
             tempobj.SoHoaDon = obj.SoHoaDon;
-            tempobj.TienMat = obj.TienMat;
-            tempobj.NganHang = obj.NganHang;
+            tempobj.Tienmat = obj.Tienmat;
+            tempobj.Nganhang = obj.Nganhang;
             tempobj.TienSDDiem = obj.TienSDDiem;
             tempobj.TongTienMat = obj.TongTienMat;
             //Còn bao nhiêu thuộc tính làm tương tự

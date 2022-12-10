@@ -38,9 +38,9 @@ namespace _2.BUS.Services
             return _iChucVuRepository.GetAll();
         }
 
-        public ChucVu GetByID(Guid id)
+        public ChucVu GetByID(Guid? id)
         {
-            throw new NotImplementedException();
+            return _iChucVuRepository.GetbyId(id);
         }
 
         public string Update(ChucVu obj)

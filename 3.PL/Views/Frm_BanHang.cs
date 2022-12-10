@@ -23,19 +23,14 @@ namespace _3.PL.Views
     {
         private BanHangServices _banHangServices = new BanHangServices();
         private IQLChiTietHoaDonServices _iQLChiTietHoaDonServices;
-        //private IQLHoaDonServices _iQLHoaDonServices;
         private IQLChiTietSpServices _iQLChiTietSpServices;
         private IQLGiaoCaServices _iQLGiaoCaServices;
         private IQLHoaDonServices _iQLHoaDonServices;
-        //private IQLChiTietHoaDonServices _iQLChiTietHoaDonServices;
-        //private IQLChiTietPtttServices _iQLChiTietPtttServices;
-        //private IQLPhuongThucThanhToanServices _iQLPhuongThucThanhToanServices;
         private KhachHang? _khachHang;
-        //private HoaDon? _hoaDon;
+        private List<ThongTinSanPham> lstTTSP = new List<ThongTinSanPham>();
         private int _trangThaiBH = 0;
         private string _trangThaiHD = "Chờ thanh toán";
         private string _trangThaiDH = "Chờ giao hàng";
-        private List<Guid> _lstIDPTTT = new List<Guid>();
         public HoaDon? _hoaDon { get; set; }
         public NhanVien _nhanVien { get; set; }
         public Frm_Main frmmain { get; set; }
@@ -63,7 +58,22 @@ namespace _3.PL.Views
                 thongTinSanPham = new ThongTinSanPham(x);
                 thongTinSanPham.Click += new System.EventHandler(UserContrel_Click);
                 thongTinSanPham.ptb_Anh.Click += new System.EventHandler(UserContrel_Click);
+                lstTTSP.Add(thongTinSanPham);
                 flp_SanPham.Controls.Add(thongTinSanPham);           
+            }
+        }
+        public void LocBangTien(decimal min,decimal max)
+        {
+            foreach(var x in lstTTSP)
+            {
+                if(x.chiTietSP.GiaBan>min && x.chiTietSP.GiaBan<max)
+                {
+                    x.Visible = true;
+                }
+                else
+                {
+                    x.Visible = false;
+                }
             }
         }
         private string LaydoanhthuNgay(decimal? x)
@@ -255,7 +265,23 @@ namespace _3.PL.Views
 
         private void pic_TimKiem_Click(object sender, EventArgs e)
         {
-            GetData(_iQLChiTietSpServices.GetAllView().Where(c => c.Ten.Contains(tbx_TimKiem.Text)).ToList());
+            foreach (var x in lstTTSP)
+            {
+                if(x.chiTietSP.Ten.Contains(tbx_TimKiem.Text))
+                {
+                    x.Visible = true;
+                }
+                else
+                {
+                    x.Visible = false;
+                }
+            }
+        }
+        private void btn_LocBangTien_Click(object sender, EventArgs e)
+        {
+            Frm_LocBangTien frm_LocBangTien = new Frm_LocBangTien();
+            frm_LocBangTien.frmParent = this;
+            frm_LocBangTien.ShowDialog();
         }
         #endregion
         #region pnl_ThongTinHD

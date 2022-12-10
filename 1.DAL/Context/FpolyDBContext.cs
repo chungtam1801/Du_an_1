@@ -44,7 +44,8 @@ namespace _1.DAL.Context
             {
                 optionsBuilder.UseSqlServer("Data Source=LAPTOP-G189FU38\\SQLEXPRESS;Initial Catalog=FINALASS_BanQuanAo_Nhom666_FA22_PRO131;Persist Security Info=True;User ID=nhinhph25737;Password=123456");
             }
-        }//FINALASS_BanQuanAo_Nhom666_FA22_PRO131
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
@@ -176,8 +177,6 @@ namespace _1.DAL.Context
             modelBuilder.Entity<GiaoCa>(entity =>
             {
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.GhiChu).IsUnicode(false);
 
                 entity.HasOne(d => d.IdNguoiGiaoCaNavigation)
                     .WithMany(p => p.GiaoCaIdNguoiGiaoCaNavigations)
