@@ -7,12 +7,14 @@ using _1.DAL.DomainClass;
 using _1.DAL.IRepositories;
 using _1.DAL.Repositories;
 using _2.BUS.IServices;
+using _2.BUS.ViewModels;
 
 namespace _2.BUS.Services
 {
     public class QLKhuyenMaiServices : IQLKhuyenMaiServices
     {
         private IClassCRUDRepo<KhuyenMai> _iKhuyenMaiRepository;
+        private IClassCRUDRepo<SanPham> _iSPRespository;
         public QLKhuyenMaiServices()
         {
             _iKhuyenMaiRepository = new KhuyenMaiRepository();
@@ -36,6 +38,27 @@ namespace _2.BUS.Services
         public List<KhuyenMai> GetAll()
         {
             return _iKhuyenMaiRepository.GetAll();
+        }
+
+        public List<ViewQLKhuyenMai> GetAllView()
+        {
+            var listView = new List<ViewQLKhuyenMai>();
+            listView = (from a in _iKhuyenMaiRepository.GetAll()
+                        join b in _iSPRespository.GetAll() on a.IdSp equals b.Id
+                        
+                        //join i in _iChiTietKhuyenMaiRepository.GetAll() on a.ChiTietKhuyenMais equals i.Id
+                        select new ViewQLKhuyenMai()
+                        {
+                            Id = a.Id,
+                            Ten = a.Ten,
+                            GiaTri = a.GiaTri,
+                            NgayBd = a.NgayBd,
+                            NgayKt = a.NgayKt,
+                            SanPham = b.Ten,
+                            TrangThai = a.TrangThai
+                        }
+                         ).ToList();
+            return listView;
         }
 
         public KhuyenMai GetByID(Guid id)

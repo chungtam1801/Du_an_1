@@ -14,6 +14,6 @@ namespace _2.BUS.IServices
         string Update(ChucVu obj);
         string Delete(ChucVu obj);
         List<ChucVu> GetAll();
-        ChucVu GetByID(Guid id);
+        ChucVu GetByID(Guid? id);
     }
 }

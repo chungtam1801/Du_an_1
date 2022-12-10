@@ -42,7 +42,7 @@ namespace _1.DAL.Repositories
 
         public ChucVu GetbyId(Guid? id)
         {
-            throw new NotImplementedException();
+            return _dbContext.ChucVus.FirstOrDefault(c => c.Id == id);
         }
 
         public bool Update(ChucVu obj)

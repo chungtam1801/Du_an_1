@@ -412,14 +412,13 @@
             // 
             this.dtg_xemtd.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dtg_xemtd.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg_xemtd.Location = new System.Drawing.Point(14, 387);
+            this.dtg_xemtd.Location = new System.Drawing.Point(14, 394);
             this.dtg_xemtd.Name = "dtg_xemtd";
             this.dtg_xemtd.RowHeadersWidth = 51;
             this.dtg_xemtd.RowTemplate.Height = 29;
-            this.dtg_xemtd.Size = new System.Drawing.Size(1003, 286);
+            this.dtg_xemtd.Size = new System.Drawing.Size(1003, 280);
             this.dtg_xemtd.TabIndex = 58;
             this.dtg_xemtd.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_xemtd_CellClick);
-            this.dtg_xemtd.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_xemtd_CellContentClick);
             // 
             // Frm_KhachHang1
             // 

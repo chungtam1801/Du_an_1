@@ -23,19 +23,14 @@ namespace _3.PL.Views
     {
         private BanHangServices _banHangServices = new BanHangServices();
         private IQLChiTietHoaDonServices _iQLChiTietHoaDonServices;
-        //private IQLHoaDonServices _iQLHoaDonServices;
         private IQLChiTietSpServices _iQLChiTietSpServices;
         private IQLGiaoCaServices _iQLGiaoCaServices;
         private IQLHoaDonServices _iQLHoaDonServices;
-        //private IQLChiTietHoaDonServices _iQLChiTietHoaDonServices;
-        //private IQLChiTietPtttServices _iQLChiTietPtttServices;
-        //private IQLPhuongThucThanhToanServices _iQLPhuongThucThanhToanServices;
         private KhachHang? _khachHang;
-        //private HoaDon? _hoaDon;
+        private List<ThongTinSanPham> lstTTSP = new List<ThongTinSanPham>();
         private int _trangThaiBH = 0;
         private string _trangThaiHD = "Chờ thanh toán";
         private string _trangThaiDH = "Chờ giao hàng";
-        private List<Guid> _lstIDPTTT = new List<Guid>();
         public HoaDon? _hoaDon { get; set; }
         public NhanVien _nhanVien { get; set; }
         public Frm_Main frmmain { get; set; }
@@ -56,13 +51,29 @@ namespace _3.PL.Views
         }
         private void GetData(List<ViewQLChiTietSp> lstview)
         {
+            flp_SanPham.Controls.Clear();
             ThongTinSanPham thongTinSanPham;
             foreach (var x in lstview)
             {
                 thongTinSanPham = new ThongTinSanPham(x);
                 thongTinSanPham.Click += new System.EventHandler(UserContrel_Click);
                 thongTinSanPham.ptb_Anh.Click += new System.EventHandler(UserContrel_Click);
+                lstTTSP.Add(thongTinSanPham);
                 flp_SanPham.Controls.Add(thongTinSanPham);           
+            }
+        }
+        public void LocBangTien(decimal min,decimal max)
+        {
+            foreach(var x in lstTTSP)
+            {
+                if(x.chiTietSP.GiaBan>min && x.chiTietSP.GiaBan<max)
+                {
+                    x.Visible = true;
+                }
+                else
+                {
+                    x.Visible = false;
+                }
             }
         }
         private string LaydoanhthuNgay(decimal? x)
@@ -116,7 +127,11 @@ namespace _3.PL.Views
                 tbx_MaHD.Text = hoaDon.Ma;
                 tbx_TongTien.Text = _banHangServices.SumTienHang(hoaDon.Id).ToString();
                 tbx_TienKhachCD.Text = (_banHangServices.SumTienHang(hoaDon.Id) - _banHangServices.SumTienKhachDua(hoaDon.Id)).ToString();
-                tbx_DiemHD.Text = _banHangServices.QuyDoiTienThanhDiem(Convert.ToDecimal(tbx_TongTien.Text)).ToString();
+                if(_khachHang == null)
+                {
+                    tbx_DiemHD.Text = "";
+                }
+                else tbx_DiemHD.Text = _banHangServices.QuyDoiTienThanhDiem(Convert.ToDecimal(tbx_TongTien.Text)).ToString();
                 if (hoaDon.TrangThai == 4) btn_Chot.Text = "Đã giao hàng";
                 else if (hoaDon.TrangThai == 3) btn_Chot.Text = "Giao hàng";
                 else if (hoaDon.TrangThai < 3) btn_Chot.Text = "Thanh toán";
@@ -250,7 +265,23 @@ namespace _3.PL.Views
 
         private void pic_TimKiem_Click(object sender, EventArgs e)
         {
-            GetData(_iQLChiTietSpServices.GetAllView().Where(c => c.Ten.Contains(tbx_TimKiem.Text)).ToList());
+            foreach (var x in lstTTSP)
+            {
+                if(x.chiTietSP.Ten.Contains(tbx_TimKiem.Text))
+                {
+                    x.Visible = true;
+                }
+                else
+                {
+                    x.Visible = false;
+                }
+            }
+        }
+        private void btn_LocBangTien_Click(object sender, EventArgs e)
+        {
+            Frm_LocBangTien frm_LocBangTien = new Frm_LocBangTien();
+            frm_LocBangTien.frmParent = this;
+            frm_LocBangTien.ShowDialog();
         }
         #endregion
         #region pnl_ThongTinHD
@@ -321,7 +352,7 @@ namespace _3.PL.Views
                 tbx_Diem.Text = _khachHang.DiemTich.ToString();
                 tbx_DiemSD.Enabled = true;
                 tbx_DiemSD.Text = "0";
-                tbx_DiemHD.Text = "0";
+                tbx_DiemHD.Text = _banHangServices.QuyDoiTienThanhDiem(Convert.ToDecimal(tbx_TongTien.Text)).ToString();
             }
             else
             {
@@ -365,11 +396,11 @@ namespace _3.PL.Views
                 else
                 {
                     MessageBox.Show(_banHangServices.UpdateTrangThaiHD(_hoaDon, 6));
-                    frmmain.lbl_doanhthuca.Text = LaydoanhThuCa(Convert.ToDecimal(frmmain.lbl_doanhthuca.Text));
-                    frmmain.lbl_doanhthungay.Text = LaydoanhthuNgay(Convert.ToDecimal(frmmain.lbl_doanhthungay.Text));
-                    Clear_Form();
                     LoadDTG_DatHang(_trangThaiDH);
                 }
+                frmmain.lbl_doanhthuca.Text = LaydoanhThuCa(Convert.ToDecimal(frmmain.lbl_doanhthuca.Text));
+                frmmain.lbl_doanhthungay.Text = LaydoanhthuNgay(Convert.ToDecimal(frmmain.lbl_doanhthungay.Text));
+                Clear_Form();
                 _iQLChiTietSpServices = new QLChiTietSpServices();
                 GetData(_iQLChiTietSpServices.GetAllView());
             }
@@ -400,10 +431,7 @@ namespace _3.PL.Views
             }
             else
             {
-                MessageBox.Show(_banHangServices.Chot(_hoaDon, _khachHang, tbx_TienKhachDua.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienKhachDua.Text), tbx_TienCK.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienCK.Text), _trangThaiBH, tbx_TienShip.Text == String.Empty ? null : Convert.ToDecimal(tbx_TienShip.Text), Convert.ToInt32(tbx_DiemHD.Text), tbx_DiemSD.Text == String.Empty ? 0 : Convert.ToInt32(tbx_DiemSD.Text)));
-                frmmain.lbl_doanhthuca.Text = LaydoanhThuCa(Convert.ToDecimal(frmmain.lbl_doanhthuca.Text));
-                frmmain.lbl_doanhthungay.Text = LaydoanhthuNgay(Convert.ToDecimal(frmmain.lbl_doanhthungay.Text));
-                Clear_Form();
+                MessageBox.Show(_banHangServices.Chot(_hoaDon, _khachHang, tbx_TienKhachDua.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienKhachDua.Text), tbx_TienCK.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienCK.Text), _trangThaiBH, tbx_TienShip.Text == String.Empty ? null : Convert.ToDecimal(tbx_TienShip.Text), tbx_DiemHD.Text == String.Empty ? 0:Convert.ToInt32(tbx_DiemHD.Text), tbx_DiemSD.Text == String.Empty ? 0 : Convert.ToInt32(tbx_DiemSD.Text)));               
                 if (_trangThaiBH < 3)
                 {
                     LoadDTG_HoaDon(_trangThaiHD);
@@ -412,6 +440,9 @@ namespace _3.PL.Views
                 {
                     LoadDTG_DatHang(_trangThaiDH);
                 }
+                frmmain.lbl_doanhthuca.Text = LaydoanhThuCa(Convert.ToDecimal(frmmain.lbl_doanhthuca.Text));
+                frmmain.lbl_doanhthungay.Text = LaydoanhthuNgay(Convert.ToDecimal(frmmain.lbl_doanhthungay.Text));
+                Clear_Form();
             }
         }
         private void tbx_DiemSD_Leave(object sender, EventArgs e)
