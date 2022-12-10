@@ -268,7 +268,7 @@ namespace _3.PL.Views
             dtg_xemtd.Rows.Clear();
             foreach (var x in _IqlLichSuTichDiemServices.GetAllView())
             {
-                dtg_xemtd.Rows.Add(stt++, x.Id, x.Ten, x.Sdt, x.MaHD, x.NgayThayDoi, x.Diem, x.TrangThai == 1 ? "còn" : "hết");
+                dtg_xemtd.Rows.Add(stt++, x.Id, x.Ten, x.Sdt, x.MaHD, x.NgayThayDoi, x.Diem, x.TrangThai == 1 ? "cộng điểm " : "trừ điểm ");
             }
 
         }
