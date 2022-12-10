@@ -21,7 +21,11 @@ namespace _3.PL.Views
         private IQLChiTietHoaDonServices _iQLChiTietHoaDonServices;
         private IQLChiTietPtttServices _iQLChiTietPtttServices;
         private IQLPhuongThucThanhToanServices _iQLPhuongThucThanhToanServices;
+        private IQLLichSuTichDiemServices _iqLLichSuTichDiemServices;
+        private IQLQuyDoiDiemServices _iqQuyDoiDiemServices;
         private Guid _id;
+        private decimal _tientralai;
+
         public Frm_KetCa()
         {
             InitializeComponent();
@@ -31,6 +35,8 @@ namespace _3.PL.Views
             _iQLChiTietHoaDonServices = new QLChiTietHoaDonServices();
             _iQLChiTietPtttServices = new QLChiTietPtttServices();
             _iQLPhuongThucThanhToanServices = new QLPhuongThucThanhToanServices();
+            _iqLLichSuTichDiemServices = new QLLichSuTichDiemServices();
+            _iqQuyDoiDiemServices = new QLQuyDoiDiemServices();
             LoadNVBanGiao();
             btn_resetca.Enabled = false;
         }
@@ -47,6 +53,7 @@ namespace _3.PL.Views
         {
             this.TopMost = true;
             this.BringToFront();
+
             // Tìm ca được lưu gần nhất lưu 
             List<GiaoCa> ca = _iQLGiaoCaServices.GetAll().OrderByDescending(c => c.ThoiGianVaoCa).ToList();
             //Lấy thời gian vào ca gần nhất trong csdl
@@ -62,7 +69,6 @@ namespace _3.PL.Views
             tbx_nvtrucca.Enabled = false;
             var idnv = ca[0].IdNguoiNhanCa;
             tbx_nvtrucca.Text = _iQLNhanVienServices.GetAll().First(c => c.Id == idnv).Ma;
-
             // Thời gian kết ca
             tbx_gioketca.Text = Convert.ToString(DateTime.Now);
             // Tiền mặt đầu ca
@@ -87,31 +93,76 @@ namespace _3.PL.Views
             tbx_ttien2.Text = "0";
             tbx_ttien1.Text = "0";
             tbx_tongtien.Enabled = false;
+
             // Lấy danh sách hóa đơn được tạo trong ca          
             List<HoaDon> hoaDons = _iQLHoaDonServices.GetAll().Where(c => c.NgayTao > Convert.ToDateTime(tbx_giovao.Text) && c.NgayTao < DateTime.Now).ToList();
 
-            // Tính số lượng hóa đơn tạo ra
+            // Số lượng hóa đơn tạo ra
             tbx_soluonghoadon.Text = Convert.ToString(hoaDons.Count());
 
-            // Tính số lượng hóa đơn đã thanh toán
+            // Số lượng hóa đơn đã thanh toán
             List<HoaDon> hoadontt = hoaDons.Where(c => c.TrangThai == 1 || c.TrangThai == 4).ToList();
             tbx_hđthanhtoan.Text = Convert.ToString(hoadontt.Count());
 
-            // Tính số lượng hóa đơn chờ thanh toán
+            // Số lượng hóa đơn chờ thanh toán
+            List<HoaDon> hoaDonsngay = _iQLHoaDonServices.GetAll().Where(c => c.NgayTao == DateTime.Today).ToList();
+
             List<HoaDon> hoadonchuatt = hoaDons.Where(c => c.TrangThai == 3 || c.TrangThai == 0).ToList();
             tbx_hdchothanhtoan.Text = Convert.ToString(hoadonchuatt.Count());
 
-            // Tính số lượng hóa đơn hủy
+            // Số lượng hóa đơn hủy
             List<HoaDon> hoadonhuy = hoaDons.Where(c => c.TrangThai == 2 || c.TrangThai == 6).ToList();
             tbx_hdhuy.Text = Convert.ToString(hoadonhuy.Count());
 
-            List<HoaDon> hdnganhang = (from a in hoadontt
-                                       join b in _iQLChiTietPtttServices.GetAll() on a.Id equals b.IdHd
-                                       join c in _iQLPhuongThucThanhToanServices.GetAll().Where(c => c.Ten == "Chuyển khoản" || c.Ten == "Thẻ") on b.IdPttt equals c.Id
-                                       where a.Id == b.IdHd && b.IdPttt == c.Id
-                                       select a).ToList();
+            // Danh sách hóa đơn có 2 phương thức thanh toán
+            var hd2pttt = (from a in hoadontt
+                           where (from b in _iQLChiTietPtttServices.GetAll()
+                                  where a.Id == b.IdHd
+                                  select b).Count() > 1
+                           select a).ToList();
 
-            //Tiền hàng mua bằng chuyển khoản và thẻ
+            // Tìm tiền hàng của hóa đơn
+            var thang = (from a in hd2pttt
+                         join b in _iQLChiTietHoaDonServices.GetAll()
+                          on a.Id equals b.IdHd
+                         select (b.SoLuong * b.DonGia)).ToList();
+
+            var nhang = (from a in hd2pttt
+                         join b in _iQLChiTietPtttServices.GetAll() on a.Id equals b.IdHd
+                         join c in _iQLPhuongThucThanhToanServices.GetAll().Where(c => c.Ten == "Chuyển khoản") on b.IdPttt equals c.Id
+                         select b.TienKhachDua).ToList();
+            var sddiem2pttt = (from a in hd2pttt
+                               join b in _iqLLichSuTichDiemServices.GetAll()
+                              on a.Id equals b.IdHd
+                               join c in _iqQuyDoiDiemServices.GetAll()
+                               on b.IdQuyDoiDiem equals c.Id
+                               where b.Diem < 0
+                               select b.Diem * c.TiLeTieuDiem).ToList();
+            var ssdiem2pttt = sddiem2pttt.Sum();
+            var tmat = thang.Sum() - nhang.Sum() + ssdiem2pttt;
+
+            // Hóa đơn 1 pttt
+
+
+            var hd1pttt = (from a in hoadontt
+                           where (from b in _iQLChiTietPtttServices.GetAll()
+                                  where a.Id == b.IdHd
+                                  select b).Count() == 1
+                           select a).ToList();
+
+            //Tiền hàng mua bằng chuyển khoản và thẻ khi trả đúng tiền hàng
+            List<HoaDon> hdnganhang = (from a in hd1pttt
+                                       join b in _iQLChiTietPtttServices.GetAll() on a.Id equals b.IdHd
+                                       join c in _iQLPhuongThucThanhToanServices.GetAll().Where(c => c.Ten == "Chuyển khoản") on b.IdPttt equals c.Id
+                                       select a).ToList();
+            var sddiemttnghang = (from a in hdnganhang
+                                  join b in _iqLLichSuTichDiemServices.GetAll()
+                                  on a.Id equals b.IdHd
+                                  join c in _iqQuyDoiDiemServices.GetAll()
+                                  on b.IdQuyDoiDiem equals c.Id
+                                  where b.Diem < 0
+                                  select b.Diem * c.TiLeTieuDiem).ToList();
+
             var nganhang2 = from a in hdnganhang
                             join b in _iQLChiTietHoaDonServices.GetAll() on a.Id equals b.IdHd
                             select (b.DonGia * b.SoLuong);
@@ -121,49 +172,51 @@ namespace _3.PL.Views
                            join b in _iQLChiTietPtttServices.GetAll() on a.Id equals b.IdHd
                            select b.TienKhachDua;
 
-            // Tính tiền khách hàng dùng thẻ và chuyển khoản 
-            tbx_trabangnganhang.Text = String.Format("{0:0,00}", nganhang.Sum());
-            tbx_trabangnganhang.Enabled = false;
-
-            // List trả về hóa đơn thanh toán bằng điểm
-            List<HoaDon> hdsddiem = (from a in hoadontt
-                                     join b in _iQLChiTietPtttServices.GetAll() on a.Id equals b.IdHd
-                                     join c in _iQLPhuongThucThanhToanServices.GetAll().Where(c => c.Ten == "Điểm")
-                                     on b.IdPttt equals c.Id
-                                     where a.Id == b.IdHd && b.IdPttt == c.Id
-                                     select a).ToList();
-            var trabangdiem = from a in hdsddiem
-                              join b in _iQLChiTietPtttServices.GetAll() on a.Id equals b.IdHd
-                              select b.TienKhachDua;
-            tbx_tiensddiem.Text = String.Format("{0:0,00}", trabangdiem.Sum());
+            // Tiền mặt trả lại khách khi thừa tiền lúc chuyển khoản
+            _tientralai = Convert.ToDecimal(nganhang.Sum()) - Convert.ToDecimal(nganhang2.Sum());
 
             // List trả về hóa đơn thanh toán bằng tiền mặt 
-            List<HoaDon> hdtienmat = (from a in hoadontt
+            List<HoaDon> hdtienmat = (from a in hd1pttt
                                       join b in _iQLChiTietPtttServices.GetAll() on a.Id equals b.IdHd
                                       join c in _iQLPhuongThucThanhToanServices.GetAll().Where(c => c.Ten == "Tiền mặt")
                                       on b.IdPttt equals c.Id
                                       select a).ToList();
             var tienmat = from a in hdtienmat
                           join b in _iQLChiTietHoaDonServices.GetAll()
-                           on a.Id equals b.IdHd
+                          on a.Id equals b.IdHd
                           select (b.DonGia * b.SoLuong);
-            // Tiền mặt trả lại khách khi thừa tiền lúc chuyển khoản
-            decimal tientralai = Convert.ToDecimal(nganhang.Sum()) - Convert.ToDecimal(nganhang2.Sum());
+            // List hóa đơn sd điểm
+            var sddiemtmat = (from a in hdtienmat
+                              join b in _iqLLichSuTichDiemServices.GetAll()
+                              on a.Id equals b.IdHd
+                              join c in _iqQuyDoiDiemServices.GetAll()
+                              on b.IdQuyDoiDiem equals c.Id
+                              where b.Diem < 0
+                              select b.Diem * c.TiLeTieuDiem).ToList();
+            var sddiemtttmat = sddiemtmat.Sum();
+            // Tiền sử dụng điểm 
+            tbx_tiensddiem.Text = String.Format("{0:0,00}", sddiemtttmat + sddiemttnghang.Sum() + ssdiem2pttt);
 
             // Tính tiền hàng trả bằng tiền mặt - tiền trả lại khách 
-            tbx_trabangtienmat.Text = String.Format("{0:0,00}", tienmat.Sum() - Convert.ToDecimal(tientralai) - Convert.ToDecimal(trabangdiem.Sum()));
+            var trabangtienmat = tienmat.Sum() + tmat - _tientralai + sddiemtttmat + ssdiem2pttt;
+            tbx_trabangtienmat.Text = String.Format("{0:0,00}", trabangtienmat);
             tbx_trabangtienmat.Enabled = false;
 
+            // Tính tiền khách hàng dùng thẻ và chuyển khoản 
+            tbx_trabangnganhang.Text = String.Format("{0:0,00}", nganhang.Sum() + nhang.Sum() + sddiemttnghang.Sum());
+            tbx_trabangnganhang.Enabled = false;
+
             // Tổng tiền hàng bán được
-            var tongtienhang = nganhang2.Sum() + tienmat.Sum();
+            var tongtienhang = nganhang2.Sum() + tienmat.Sum() + thang.Sum() + Convert.ToDecimal(tbx_tiensddiem.Text);
+
+
+
             tbx_tongtienhang.Text = String.Format("{0:0,00}", tongtienhang);
             tbx_tongtienhang.Enabled = false;
 
             // Tổng tiền mặt cuối ca = tiền đầu ca + tiền khách trả bằng tiền mặt - tiền trả lại khách khi khách chuyển khoản thừa - tien sd điểm
-            decimal tongtienmatcuoica = Convert.ToDecimal(tienmat.Sum()) + Convert.ToDecimal(tbx_tiendauca.Text)
-                - Convert.ToDecimal(tientralai) - Convert.ToDecimal(tbx_tiensddiem.Text);
+            decimal tongtienmatcuoica = Convert.ToDecimal(tbx_trabangtienmat.Text) + Convert.ToDecimal(tbx_tiendauca.Text) + Convert.ToDecimal(tbx_tiensddiem.Text);
             tbx_ttienmatcuoica.Text = String.Format("{0:0,00}", tongtienmatcuoica);
-
         }
         private void tbx_tongtien_TextChanged(object sender, EventArgs e)
         {
@@ -206,23 +259,29 @@ namespace _3.PL.Views
                 giaoca.Id = _id;
                 giaoca.GhiChu = tbx_ghichu.Text;
                 giaoca.ThoiGianVaoCa = Convert.ToDateTime(tbx_giovao.Text);
+                giaoca.TienDauca = Convert.ToDecimal(tbx_tiendauca.Text);
                 giaoca.TienCuoiCa = Convert.ToDecimal(tbx_tongtien.Text);
                 giaoca.ThoiGianKetCa = DateTime.Now;
                 giaoca.SoHoaDon = Convert.ToInt32(tbx_soluonghoadon.Text);
                 giaoca.Tongtienhang = Convert.ToDecimal(tbx_tongtienhang.Text);
+                giaoca.Tienmat = Convert.ToDecimal(tbx_trabangtienmat.Text);
+                giaoca.Nganhang = Convert.ToDecimal(tbx_trabangnganhang.Text);
+                giaoca.TienSDDiem = tbx_tiensddiem.Text == "" ? 0 : Convert.ToDecimal(tbx_tiensddiem.Text);
+                giaoca.TongTienMat = Convert.ToDecimal(tbx_ttienmatcuoica.Text);
+                giaoca.TrangThai = 0;
                 MessageBox.Show(_iQLGiaoCaServices.Update(giaoca), "Thông báo");
             }
         }
         private void btn_ketca_Click(object sender, EventArgs e)
         {
             decimal tienchenhlech = Convert.ToDecimal(tbx_chenhlechtienmat.Text);
-            if (String.IsNullOrEmpty(cmb_nvbangiao.Text))
-            {
-                MessageBox.Show("Bạn chưa chọn người bàn giao ca");
-            }
-            else if (tbx_tongtien.Text == "")
+            if (Convert.ToDecimal(tbx_tongtien.Text) == 0)
             {
                 MessageBox.Show("Bạn chưa kê khai tiền mặt cuối ca");
+            }
+            else if (String.IsNullOrEmpty(cmb_nvbangiao.Text))
+            {
+                MessageBox.Show("Bạn chưa chọn người bàn giao ca");
             }
             else if (tienchenhlech != 0 && String.IsNullOrEmpty(tbx_ghichu.Text) == true)
             {
@@ -235,10 +294,16 @@ namespace _3.PL.Views
                 giaoca.IdNguoiGiaoCa = _iQLNhanVienServices.GetAll().First(c => c.Ma == cmb_nvbangiao.Text).Id;
                 giaoca.GhiChu = tbx_ghichu.Text;
                 giaoca.ThoiGianVaoCa = Convert.ToDateTime(tbx_giovao.Text);
+                giaoca.TienDauca = Convert.ToDecimal(tbx_tiendauca.Text);
                 giaoca.TienCuoiCa = Convert.ToDecimal(tbx_tongtien.Text);
                 giaoca.ThoiGianKetCa = DateTime.Now;
                 giaoca.SoHoaDon = Convert.ToInt32(tbx_soluonghoadon.Text);
                 giaoca.Tongtienhang = Convert.ToDecimal(tbx_tongtienhang.Text);
+                giaoca.Tienmat = Convert.ToDecimal(tbx_trabangtienmat.Text);
+                giaoca.Nganhang = Convert.ToDecimal(tbx_trabangnganhang.Text);
+                giaoca.TienSDDiem = tbx_tiensddiem.Text == "" ? 0 : Convert.ToDecimal(tbx_tiensddiem.Text);
+                giaoca.TongTienMat = Convert.ToDecimal(tbx_ttienmatcuoica.Text);
+                giaoca.TrangThai = 0;
                 MessageBox.Show(_iQLGiaoCaServices.Update(giaoca), "Thông báo");
             }
         }
@@ -546,5 +611,6 @@ namespace _3.PL.Views
             int tongtien = tt500 + tt200 + tt100 + tt50 + tt20 + tt10 + tt5 + tt2 + tt1;
             tbx_tongtien.Text = String.Format("{0:0,00}", tongtien);
         }
+
     }
 }

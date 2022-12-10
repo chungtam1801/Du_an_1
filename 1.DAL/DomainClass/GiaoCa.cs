@@ -29,12 +29,14 @@ namespace _1.DAL.DomainClass
         public int? SoHoaDon { get; set; }
         [Column(TypeName = "money")]
         public decimal? Tongtienhang { get; set; }
-        [Column(TypeName = "decimal(18, 0)")]
+        [Column(TypeName = "money")]
         public decimal? Tienmat { get; set; }
-        [Column(TypeName = "decimal(18, 0)")]
+        [Column(TypeName = "money")]
         public decimal? Nganhang { get; set; }
-        [Column("TienSĐiem", TypeName = "decimal(18, 0)")]
-        public decimal? TienSđiem { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? TongTienMat { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? TienSDDiem { get; set; }
 
         [ForeignKey(nameof(IdNguoiGiaoCa))]
         [InverseProperty(nameof(NhanVien.GiaoCaIdNguoiGiaoCaNavigations))]
