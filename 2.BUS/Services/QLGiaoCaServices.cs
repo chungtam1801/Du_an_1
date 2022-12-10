@@ -7,11 +7,14 @@ using _1.DAL.DomainClass;
 using _1.DAL.IRepositories;
 using _1.DAL.Repositories;
 using _2.BUS.IServices;
+using _2.BUS.ViewModels;
+
 namespace _2.BUS.Services
 {
     public class QLGiaoCaServices : IQLGiaoCaServices
     {
         private IClassCRUDRepo<GiaoCa> _iGiaoCaRepository;
+        private IClassCRUDRepo<NhanVien> _iNhanVienRepository;
         public QLGiaoCaServices()
         {
             _iGiaoCaRepository = new GiaoCaRepository();
@@ -46,8 +49,8 @@ namespace _2.BUS.Services
         {
             if (obj == null) return "Sửa thất bại";
             var tempobj = obj;
-            if (_iGiaoCaRepository.Update(tempobj)) return "Kết ca thành công";
-            return "Kết ca thất bại";
+            if (_iGiaoCaRepository.Update(tempobj)) return "Thành công";
+            return "Thất bại";
         }
     }
 }

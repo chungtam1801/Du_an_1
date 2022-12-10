@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _1.DAL.DomainClass;
+using _2.BUS.ViewModels;
 
 namespace _2.BUS.IServices
 {
