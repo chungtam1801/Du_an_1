@@ -93,6 +93,16 @@ namespace _3.PL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _6907_png_860__1_ {
+            get {
+                object obj = ResourceManager.GetObject("6907.png_860 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap account_profile_user_avatar_man_people_team_group_users_icon_210760 {
             get {
                 object obj = ResourceManager.GetObject("account_profile_user_avatar_man_people_team_group_users_icon_210760", resourceCulture);
@@ -233,6 +243,16 @@ namespace _3.PL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap dollar_icon_money_sign_isolated_260nw_1411671620 {
+            get {
+                object obj = ResourceManager.GetObject("dollar-icon-money-sign-isolated-260nw-1411671620", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap edit {
             get {
                 object obj = ResourceManager.GetObject("edit", resourceCulture);
@@ -303,6 +323,58 @@ namespace _3.PL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap images__1_ {
+            get {
+                object obj = ResourceManager.GetObject("images (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap istockphoto_1277030309_170667a {
+            get {
+                object obj = ResourceManager.GetObject("istockphoto-1277030309-170667a", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap istockphoto_1277030309_170667a1 {
+            get {
+                object obj = ResourceManager.GetObject("istockphoto-1277030309-170667a1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kisspng_money_bag_computer_icons_coin_bank_money_bag_5ac3d5a2074e39_1968342715227836500299__1_ {
+            get {
+                object obj = ResourceManager.GetObject("kisspng-money-bag-computer-icons-coin-bank-money-bag-5ac3d5a2074e39.1968342715227" +
+                        "836500299 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kisspng_money_bag_computer_icons_coin_bank_money_bag_5ac3d5a2074e39_1968342715227836500299__1___1_ {
+            get {
+                object obj = ResourceManager.GetObject("kisspng-money-bag-computer-icons-coin-bank-money-bag-5ac3d5a2074e39.1968342715227" +
+                        "836500299 (1) (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap market_shop_ecommerce_delivery_product_icon_228243 {
             get {
                 object obj = ResourceManager.GetObject("market_shop_ecommerce_delivery_product_icon_228243", resourceCulture);
@@ -356,6 +428,27 @@ namespace _3.PL.Properties {
         internal static System.Drawing.Bitmap office_business_people_group_team_leadership_icon_221269 {
             get {
                 object obj = ResourceManager.GetObject("office_business_people_group_team_leadership_icon_221269", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_financeinvestmentpaymentmoneydollar_line_icon___vector_is_png_image_1063255 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-financeinvestmentpaymentmoneydollar-line-icon - vector-is-png-image_10632" +
+                        "55", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_vector_statistics_icon_png_image_4142668 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-vector-statistics-icon-png-image_4142668", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
