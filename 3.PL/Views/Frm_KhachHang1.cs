@@ -117,8 +117,9 @@ namespace _3.PL.Views
             kh.DiaChi = kh_diachi.Text;
             kh.Sdt = kh_sdt.Text;
             //Tam sua
-          // kh.DiemTich = Convert.ToInt32(kh_diemtich.Text);
+            // kh.DiemTich = Convert.ToInt32(kh_diemtich.Text);
             //
+            kh.DiemTich = 0;
             if (radioButton1.Checked == true)
             {
                 kh.TrangThai = 1;
