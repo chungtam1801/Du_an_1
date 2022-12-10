@@ -21,6 +21,7 @@ namespace _3.PL.Views
         {
             this.Close();
             frmParent.LocBangTien(Convert.ToDecimal(tbx_Min.Text),Convert.ToDecimal(tbx_Max.Text));
+            frmParent.btn_LocBangTien.Text = "Clear";
         }
     }
 }

@@ -29,6 +29,8 @@ namespace _3.PL.Views
         private KhachHang? _khachHang;
         private List<ThongTinSanPham> lstTTSP = new List<ThongTinSanPham>();
         private int _trangThaiBH = 0;
+        private decimal _min=0;
+        private decimal _max=0;
         private string _trangThaiHD = "Chờ thanh toán";
         private string _trangThaiDH = "Chờ giao hàng";
         public HoaDon? _hoaDon { get; set; }
@@ -64,7 +66,9 @@ namespace _3.PL.Views
         }
         public void LocBangTien(decimal min,decimal max)
         {
-            foreach(var x in lstTTSP)
+            _min = min;
+            _max = max;
+            foreach(var x in lstTTSP.Where(c=>c.chiTietSP.Ten.Contains(tbx_TimKiem.Text)))
             {
                 if(x.chiTietSP.GiaBan>min && x.chiTietSP.GiaBan<max)
                 {
@@ -265,23 +269,53 @@ namespace _3.PL.Views
 
         private void pic_TimKiem_Click(object sender, EventArgs e)
         {
-            foreach (var x in lstTTSP)
+            if(btn_LocBangTien.Text=="Clear")
             {
-                if(x.chiTietSP.Ten.Contains(tbx_TimKiem.Text))
+                foreach (var x in lstTTSP.Where(c=>c.chiTietSP.GiaBan>=_min && c.chiTietSP.GiaBan<=_max))
                 {
-                    x.Visible = true;
-                }
-                else
-                {
-                    x.Visible = false;
+                    if (x.chiTietSP.Ten.Contains(tbx_TimKiem.Text))
+                    {
+                        x.Visible = true;
+                    }
+                    else
+                    {
+                        x.Visible = false;
+                    }
                 }
             }
+            else
+            {
+                foreach (var x in lstTTSP)
+                {
+                    if (x.chiTietSP.Ten.Contains(tbx_TimKiem.Text))
+                    {
+                        x.Visible = true;
+                    }
+                    else
+                    {
+                        x.Visible = false;
+                    }
+                }
+            }        
         }
         private void btn_LocBangTien_Click(object sender, EventArgs e)
         {
-            Frm_LocBangTien frm_LocBangTien = new Frm_LocBangTien();
-            frm_LocBangTien.frmParent = this;
-            frm_LocBangTien.ShowDialog();
+            if(btn_LocBangTien.Text=="Clear")
+            {
+                _min = 0;
+                _max = 0;
+                btn_LocBangTien.Text = "Lọc bằng tiền";
+                foreach(var x in lstTTSP.Where(c => c.chiTietSP.Ten.Contains(tbx_TimKiem.Text)))
+                {
+                    x.Visible = true;
+                }
+            }
+            else
+            {
+                Frm_LocBangTien frm_LocBangTien = new Frm_LocBangTien();
+                frm_LocBangTien.frmParent = this;
+                frm_LocBangTien.ShowDialog();
+            }        
         }
         #endregion
         #region pnl_ThongTinHD
@@ -329,16 +363,16 @@ namespace _3.PL.Views
                 lbl_Tien.Visible = true;
                 tbx_TienCK.Visible = true;
                 lbl_ChuyenKhoan.Visible = true;
-                tbx_TienCK.Location = new Point(281, 300);
-                tbx_TienThua.Location = new Point(281, 300+10*4);
-                tbx_DiaChi.Location = new Point(281, 300+20*4);
-                tbx_TienShip.Location = new Point(281, 300+30*4);
-                tbx_GhiChu.Location = new Point(281, 300+40*4);
-                lbl_ChuyenKhoan.Location = new Point(145, 307);
-                lbl_TienThua.Location = new Point(145, 307+10*4);
-                lbl_DiaChi.Location = new Point(145, 307+20*4);
-                lbl_TienShip.Location = new Point(145, 307+30*4);
-                lbl_GhiChu.Location = new Point(145, 307+40*4);
+                tbx_TienCK.Location = new Point(tbx_TienKhachDua.Location.X, tbx_TienKhachDua.Location.Y + 10 * 4);
+                tbx_TienThua.Location = new Point(tbx_TienKhachDua.Location.X, tbx_TienKhachDua.Location.Y + 20 * 4);
+                tbx_DiaChi.Location = new Point(tbx_TienKhachDua.Location.X, tbx_TienKhachDua.Location.Y + 30 * 4);
+                tbx_TienShip.Location = new Point(tbx_TienKhachDua.Location.X, tbx_TienKhachDua.Location.Y + 40 * 4);
+                tbx_GhiChu.Location = new Point(tbx_TienKhachDua.Location.X, tbx_TienKhachDua.Location.Y + 50 * 4);
+                lbl_ChuyenKhoan.Location = new Point(lbl_Tien.Location.X, lbl_Tien.Location.Y + 10 * 4);
+                lbl_TienThua.Location = new Point(lbl_Tien.Location.X, lbl_Tien.Location.Y + 20 * 4);
+                lbl_DiaChi.Location = new Point(lbl_Tien.Location.X, lbl_Tien.Location.Y + 30 * 4);
+                lbl_TienShip.Location = new Point(lbl_Tien.Location.X, lbl_Tien.Location.Y + 40 * 4);
+                lbl_GhiChu.Location = new Point(lbl_Tien.Location.X, lbl_Tien.Location.Y + 50 * 4);
             }    
         }
 
@@ -465,16 +499,27 @@ namespace _3.PL.Views
                 }
             }          
         }
+        //Sua
         private void tbx_TongTien_TextChanged(object sender, EventArgs e)
         {
-            if (_trangThaiBH < 3)
+            DataGridViewRow dataGridViewRow = dtg_HoaDon.CurrentRow;
+            if (dataGridViewRow != null && _hoaDon != null)
             {
-                dtg_HoaDon.CurrentRow.Cells[4].Value = tbx_TongTien.Text;
+                if (_trangThaiBH < 3)
+                {
+                    if (_hoaDon.Ma == dataGridViewRow.Cells[0].Value.ToString())
+                    {
+                        dataGridViewRow.Cells[4].Value = tbx_TongTien.Text;
+                    }
             }
-            else
-            {
-                dtg_DatHang.CurrentRow.Cells[5].Value = tbx_TongTien.Text;
-            }
+                else
+                {
+                    if (_hoaDon.Ma == dataGridViewRow.Cells[0].Value.ToString())
+                    {
+                        dataGridViewRow.Cells[5].Value = tbx_TongTien.Text; 
+                    }
+                }
+            }           
         }
         #endregion
         #region pnl_BanHang
