@@ -45,20 +45,21 @@
             // 
             // btn_clear
             // 
+            this.btn_clear.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btn_clear.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_clear.Location = new System.Drawing.Point(611, 160);
+            this.btn_clear.Location = new System.Drawing.Point(547, 97);
             this.btn_clear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_clear.Name = "btn_clear";
-            this.btn_clear.Size = new System.Drawing.Size(82, 22);
+            this.btn_clear.Size = new System.Drawing.Size(106, 48);
             this.btn_clear.TabIndex = 40;
             this.btn_clear.Text = "Clear";
-            this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.UseVisualStyleBackColor = false;
             this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
             // rbtn_kohd
             // 
             this.rbtn_kohd.AutoSize = true;
-            this.rbtn_kohd.Location = new System.Drawing.Point(513, 85);
+            this.rbtn_kohd.Location = new System.Drawing.Point(275, 126);
             this.rbtn_kohd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtn_kohd.Name = "rbtn_kohd";
             this.rbtn_kohd.Size = new System.Drawing.Size(118, 19);
@@ -70,7 +71,7 @@
             // rbtn_hd
             // 
             this.rbtn_hd.AutoSize = true;
-            this.rbtn_hd.Location = new System.Drawing.Point(513, 45);
+            this.rbtn_hd.Location = new System.Drawing.Point(166, 124);
             this.rbtn_hd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbtn_hd.Name = "rbtn_hd";
             this.rbtn_hd.Size = new System.Drawing.Size(82, 19);
@@ -83,7 +84,7 @@
             // 
             this.Label4.AutoSize = true;
             this.Label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Label4.Location = new System.Drawing.Point(399, 69);
+            this.Label4.Location = new System.Drawing.Point(65, 128);
             this.Label4.Name = "Label4";
             this.Label4.Size = new System.Drawing.Size(63, 15);
             this.Label4.TabIndex = 37;
@@ -93,7 +94,7 @@
             // 
             this.Label3.AutoSize = true;
             this.Label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Label3.Location = new System.Drawing.Point(63, 126);
+            this.Label3.Location = new System.Drawing.Point(65, 89);
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(74, 15);
             this.Label3.TabIndex = 36;
@@ -103,7 +104,7 @@
             // 
             this.Label2.AutoSize = true;
             this.Label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Label2.Location = new System.Drawing.Point(63, 66);
+            this.Label2.Location = new System.Drawing.Point(65, 45);
             this.Label2.Name = "Label2";
             this.Label2.Size = new System.Drawing.Size(72, 15);
             this.Label2.TabIndex = 35;
@@ -111,66 +112,69 @@
             // 
             // btnSua
             // 
+            this.btnSua.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnSua.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnSua.Location = new System.Drawing.Point(275, 160);
+            this.btnSua.Location = new System.Drawing.Point(547, 37);
             this.btnSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(82, 22);
+            this.btnSua.Size = new System.Drawing.Size(106, 48);
             this.btnSua.TabIndex = 34;
             this.btnSua.Text = "Sửa";
-            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.UseVisualStyleBackColor = false;
             this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnXoa
             // 
+            this.btnXoa.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnXoa.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnXoa.Location = new System.Drawing.Point(436, 160);
+            this.btnXoa.Location = new System.Drawing.Point(417, 97);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(82, 22);
+            this.btnXoa.Size = new System.Drawing.Size(106, 46);
             this.btnXoa.TabIndex = 33;
             this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.UseVisualStyleBackColor = false;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnThem
             // 
+            this.btnThem.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnThem.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnThem.Location = new System.Drawing.Point(106, 160);
+            this.btnThem.Location = new System.Drawing.Point(417, 37);
             this.btnThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(82, 22);
+            this.btnThem.Size = new System.Drawing.Size(106, 48);
             this.btnThem.TabIndex = 32;
             this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // dgvChucVu
             // 
             this.dgvChucVu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvChucVu.Location = new System.Drawing.Point(85, 195);
+            this.dgvChucVu.Location = new System.Drawing.Point(12, 186);
             this.dgvChucVu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvChucVu.Name = "dgvChucVu";
             this.dgvChucVu.RowHeadersWidth = 51;
             this.dgvChucVu.RowTemplate.Height = 29;
-            this.dgvChucVu.Size = new System.Drawing.Size(653, 211);
+            this.dgvChucVu.Size = new System.Drawing.Size(776, 253);
             this.dgvChucVu.TabIndex = 31;
             this.dgvChucVu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChucVu_CellClick);
             // 
             // txtTen
             // 
-            this.txtTen.Location = new System.Drawing.Point(185, 116);
+            this.txtTen.Location = new System.Drawing.Point(166, 81);
             this.txtTen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTen.Name = "txtTen";
-            this.txtTen.Size = new System.Drawing.Size(110, 23);
+            this.txtTen.Size = new System.Drawing.Size(227, 23);
             this.txtTen.TabIndex = 30;
             // 
             // txtMa
             // 
-            this.txtMa.Location = new System.Drawing.Point(185, 64);
+            this.txtMa.Location = new System.Drawing.Point(166, 37);
             this.txtMa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtMa.Name = "txtMa";
-            this.txtMa.Size = new System.Drawing.Size(110, 23);
+            this.txtMa.Size = new System.Drawing.Size(227, 23);
             this.txtMa.TabIndex = 29;
             // 
             // Frm_ChucVu

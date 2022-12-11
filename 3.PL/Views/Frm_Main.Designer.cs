@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Main));
             this.pnl_menu = new System.Windows.Forms.Panel();
+            this.btn_thongke = new System.Windows.Forms.Button();
             this.btn_ketca = new System.Windows.Forms.Button();
             this.btn_QLTichDiem = new System.Windows.Forms.Button();
             this.btn_khuyenmai = new System.Windows.Forms.Button();
@@ -58,7 +59,6 @@
             this.tbx_giohethong = new System.Windows.Forms.TextBox();
             this.lbl_tilte = new System.Windows.Forms.Label();
             this.pnl_desktop = new System.Windows.Forms.Panel();
-            this.btn_thongke = new System.Windows.Forms.Button();
             this.pnl_menu.SuspendLayout();
             this.pnl_menucon.SuspendLayout();
             this.pnl_user.SuspendLayout();
@@ -85,6 +85,26 @@
             this.pnl_menu.Name = "pnl_menu";
             this.pnl_menu.Size = new System.Drawing.Size(190, 841);
             this.pnl_menu.TabIndex = 0;
+            // 
+            // btn_thongke
+            // 
+            this.btn_thongke.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.btn_thongke.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_thongke.FlatAppearance.BorderSize = 0;
+            this.btn_thongke.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_thongke.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_thongke.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_thongke.Image = ((System.Drawing.Image)(resources.GetObject("btn_thongke.Image")));
+            this.btn_thongke.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_thongke.Location = new System.Drawing.Point(0, 776);
+            this.btn_thongke.Name = "btn_thongke";
+            this.btn_thongke.Size = new System.Drawing.Size(190, 45);
+            this.btn_thongke.TabIndex = 17;
+            this.btn_thongke.Text = "THỐNG KÊ";
+            this.btn_thongke.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_thongke.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btn_thongke.UseVisualStyleBackColor = false;
+            this.btn_thongke.Click += new System.EventHandler(this.btn_thongke_Click);
             // 
             // btn_ketca
             // 
@@ -379,7 +399,7 @@
             this.btn_banHang.FlatAppearance.BorderSize = 0;
             this.btn_banHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_banHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_banHang.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_banHang.ForeColor = System.Drawing.SystemColors.Window;
             this.btn_banHang.Image = ((System.Drawing.Image)(resources.GetObject("btn_banHang.Image")));
             this.btn_banHang.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_banHang.Location = new System.Drawing.Point(0, 144);
@@ -395,7 +415,7 @@
             // 
             // pnl_user
             // 
-            this.pnl_user.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.pnl_user.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(192)))));
             this.pnl_user.Controls.Add(this.lbl_Ten);
             this.pnl_user.Controls.Add(this.pictureBox1);
             this.pnl_user.Dock = System.Windows.Forms.DockStyle.Top;
@@ -427,7 +447,7 @@
             // 
             // pnl_title
             // 
-            this.pnl_title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(192)))));
+            this.pnl_title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.pnl_title.Controls.Add(this.lbl_tientaiquay);
             this.pnl_title.Controls.Add(this.lbl_doanhthuca);
             this.pnl_title.Controls.Add(this.lbl_doanhthungay);
@@ -439,14 +459,14 @@
             this.pnl_title.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_title.Location = new System.Drawing.Point(190, 0);
             this.pnl_title.Name = "pnl_title";
-            this.pnl_title.Size = new System.Drawing.Size(1160, 95);
+            this.pnl_title.Size = new System.Drawing.Size(1160, 144);
             this.pnl_title.TabIndex = 4;
             // 
             // lbl_tientaiquay
             // 
             this.lbl_tientaiquay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_tientaiquay.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbl_tientaiquay.Location = new System.Drawing.Point(157, 71);
+            this.lbl_tientaiquay.Location = new System.Drawing.Point(157, 91);
             this.lbl_tientaiquay.Name = "lbl_tientaiquay";
             this.lbl_tientaiquay.Size = new System.Drawing.Size(174, 21);
             this.lbl_tientaiquay.TabIndex = 7;
@@ -456,7 +476,7 @@
             // 
             this.lbl_doanhthuca.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_doanhthuca.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbl_doanhthuca.Location = new System.Drawing.Point(157, 39);
+            this.lbl_doanhthuca.Location = new System.Drawing.Point(157, 59);
             this.lbl_doanhthuca.Name = "lbl_doanhthuca";
             this.lbl_doanhthuca.Size = new System.Drawing.Size(174, 21);
             this.lbl_doanhthuca.TabIndex = 6;
@@ -466,7 +486,7 @@
             // 
             this.lbl_doanhthungay.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_doanhthungay.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbl_doanhthungay.Location = new System.Drawing.Point(157, 9);
+            this.lbl_doanhthungay.Location = new System.Drawing.Point(157, 29);
             this.lbl_doanhthungay.Name = "lbl_doanhthungay";
             this.lbl_doanhthungay.Size = new System.Drawing.Size(174, 21);
             this.lbl_doanhthungay.TabIndex = 5;
@@ -477,7 +497,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label4.Location = new System.Drawing.Point(6, 71);
+            this.label4.Location = new System.Drawing.Point(6, 91);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(101, 21);
             this.label4.TabIndex = 4;
@@ -488,7 +508,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label3.Location = new System.Drawing.Point(6, 39);
+            this.label3.Location = new System.Drawing.Point(6, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 21);
             this.label3.TabIndex = 3;
@@ -499,7 +519,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Location = new System.Drawing.Point(6, 9);
+            this.label1.Location = new System.Drawing.Point(6, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 21);
             this.label1.TabIndex = 2;
@@ -508,11 +528,11 @@
             // tbx_giohethong
             // 
             this.tbx_giohethong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbx_giohethong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(105)))), ((int)(((byte)(192)))));
+            this.tbx_giohethong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.tbx_giohethong.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbx_giohethong.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbx_giohethong.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.tbx_giohethong.Location = new System.Drawing.Point(937, 69);
+            this.tbx_giohethong.Location = new System.Drawing.Point(928, 98);
             this.tbx_giohethong.Name = "tbx_giohethong";
             this.tbx_giohethong.Size = new System.Drawing.Size(220, 20);
             this.tbx_giohethong.TabIndex = 1;
@@ -523,7 +543,7 @@
             this.lbl_tilte.AutoSize = true;
             this.lbl_tilte.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_tilte.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lbl_tilte.Location = new System.Drawing.Point(540, 31);
+            this.lbl_tilte.Location = new System.Drawing.Point(540, 56);
             this.lbl_tilte.Name = "lbl_tilte";
             this.lbl_tilte.Size = new System.Drawing.Size(99, 31);
             this.lbl_tilte.TabIndex = 0;
@@ -535,30 +555,10 @@
             this.pnl_desktop.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnl_desktop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnl_desktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_desktop.Location = new System.Drawing.Point(190, 95);
+            this.pnl_desktop.Location = new System.Drawing.Point(190, 144);
             this.pnl_desktop.Name = "pnl_desktop";
-            this.pnl_desktop.Size = new System.Drawing.Size(1160, 746);
+            this.pnl_desktop.Size = new System.Drawing.Size(1160, 697);
             this.pnl_desktop.TabIndex = 5;
-            // 
-            // btn_thongke
-            // 
-            this.btn_thongke.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-            this.btn_thongke.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_thongke.FlatAppearance.BorderSize = 0;
-            this.btn_thongke.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_thongke.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btn_thongke.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btn_thongke.Image = ((System.Drawing.Image)(resources.GetObject("btn_thongke.Image")));
-            this.btn_thongke.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_thongke.Location = new System.Drawing.Point(0, 776);
-            this.btn_thongke.Name = "btn_thongke";
-            this.btn_thongke.Size = new System.Drawing.Size(190, 45);
-            this.btn_thongke.TabIndex = 17;
-            this.btn_thongke.Text = "THỐNG KÊ";
-            this.btn_thongke.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_thongke.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btn_thongke.UseVisualStyleBackColor = false;
-            this.btn_thongke.Click += new System.EventHandler(this.btn_thongke_Click);
             // 
             // Frm_Main
             // 
@@ -573,7 +573,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Frm_Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Frm_Main_Load);
             this.pnl_menu.ResumeLayout(false);

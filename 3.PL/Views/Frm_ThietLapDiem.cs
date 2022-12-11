@@ -38,7 +38,7 @@ namespace _3.PL.Views
 
         private void btn_Luu_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_quyDoiDiemServices.CreateQuyDoiDiem(Convert.ToDecimal(tbx_Tien1.Text), Convert.ToDecimal(tbx_Tien2.Text),chbx_Check.Checked?1:2));
+            MessageBox.Show(_quyDoiDiemServices.CreateQuyDoiDiem(Convert.ToDecimal(tbx_Tien1.Text), Convert.ToDecimal(tbx_Tien2.Text),/*chbx_Check.Checked?1:*/2));
             LoadDTG_Diem();
         }
         private void btn_BoQua_Click(object sender, EventArgs e)
@@ -49,6 +49,11 @@ namespace _3.PL.Views
         {
             tbx_Tien1.Text = dtg_Diem.CurrentRow.Cells[1].Value.ToString();
             tbx_Tien2.Text = dtg_Diem.CurrentRow.Cells[2].Value.ToString();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

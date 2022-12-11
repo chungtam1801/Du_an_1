@@ -667,5 +667,10 @@ namespace _3.PL.Views
             tbx_MaNV.Text = _nhanVien.Ma;
             tbx_TenNV.Text = _nhanVien.Ten;
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

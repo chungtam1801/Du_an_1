@@ -183,7 +183,7 @@ namespace _3.PL.Views
             //pnl_Nav.Left = btn_khachhang.Left;
             //btn_khachhang.BackColor = Color.FromArgb(46, 51, 73);
             lbl_tilte.Text = "KHÁCH HÀNG";
-            OpenChildForm(new Frm_KhachHang1(), sender);
+            OpenChildForm(new Frm_KhachHang(), sender);
         }
 
         private void btn_khuyenmai_Click(object sender, EventArgs e)
