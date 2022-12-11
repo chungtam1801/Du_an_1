@@ -176,57 +176,67 @@ namespace _3.PL.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var listca = _iqLGiaoCaServices.GetAll().Where(c => c.ThoiGianVaoCa >= dtime_bdau.Value && c.ThoiGianVaoCa <= dtime_kthuc.Value).ToList();
-            int stt = 1;
-            dgrd_dsca.Rows.Clear();
-            dgrd_dsca.ColumnCount = 8;
-            dgrd_dsca.Columns[0].Name = "STT";
-            dgrd_dsca.Columns[0].Width = 50;
-            dgrd_dsca.Columns[1].Name = "ID";
-            dgrd_dsca.Columns[1].Visible = false;
-            dgrd_dsca.Columns[2].Name = "Thời gian vào";
-            dgrd_dsca.Columns[3].Name = "Người trực ca";
-            dgrd_dsca.Columns[4].Name = "Thời gian kết ca";
-            dgrd_dsca.Columns[5].Name = "Doanh thu";
-            dgrd_dsca.Columns[6].Name = "Ghi chú";
-            dgrd_dsca.Columns[7].Name = "Trạng thái";
-            foreach (var x in listca.OrderByDescending(c => c.ThoiGianVaoCa))
+            try
             {
-                string ten = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).Ten;
-                string ho = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).Ho;
-                string dem = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).TenDem;
+                var listca = _iqLGiaoCaServices.GetAll().Where(c => c.ThoiGianVaoCa >= dtime_bdau.Value && c.ThoiGianVaoCa <= dtime_kthuc.Value).ToList();
+                int stt = 1;
+                dgrd_dsca.Rows.Clear();
+                dgrd_dsca.ColumnCount = 8;
+                dgrd_dsca.Columns[0].Name = "STT";
+                dgrd_dsca.Columns[0].Width = 50;
+                dgrd_dsca.Columns[1].Name = "ID";
+                dgrd_dsca.Columns[1].Visible = false;
+                dgrd_dsca.Columns[2].Name = "Thời gian vào";
+                dgrd_dsca.Columns[3].Name = "Người trực ca";
+                dgrd_dsca.Columns[4].Name = "Thời gian kết ca";
+                dgrd_dsca.Columns[5].Name = "Doanh thu";
+                dgrd_dsca.Columns[6].Name = "Ghi chú";
+                dgrd_dsca.Columns[7].Name = "Trạng thái";
+                foreach (var x in listca.OrderByDescending(c => c.ThoiGianVaoCa))
+                {
+                    string ten = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).Ten;
+                    string ho = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).Ho;
+                    string dem = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).TenDem;
 
-                dgrd_dsca.Rows.Add(stt++, x.Id, x.ThoiGianVaoCa, ho + " " + dem + " " + ten, x.ThoiGianKetCa, x.Tongtienhang, x.GhiChu, x.TrangThai == 0 ? "Chờ xác nhận" : (x.TrangThai == 1 ? "Đã xác nhận" : "Không được xác nhận"));
+                    dgrd_dsca.Rows.Add(stt++, x.Id, x.ThoiGianVaoCa, ho + " " + dem + " " + ten, x.ThoiGianKetCa, x.Tongtienhang, x.GhiChu, x.TrangThai == 0 ? "Chờ xác nhận" : (x.TrangThai == 1 ? "Đã xác nhận" : "Không được xác nhận"));
+                }
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
-
         }
 
         private void pic_TimKiem_Click_1(object sender, EventArgs e)
         {
-            var id = _iqNhanVienServices.GetAll().First(c => (c.Ho + " " + c.TenDem + " " + c.Ten) == cmb_nhvien.Text).Id;
-            var lstca = _iqLGiaoCaServices.GetAll().Where(c => c.IdNguoiNhanCa == id).ToList();
-            int stt = 1;
-            dgrd_dsca.Rows.Clear();
-            dgrd_dsca.ColumnCount = 8;
-            dgrd_dsca.Columns[0].Name = "STT";
-            dgrd_dsca.Columns[0].Width = 50;
-            dgrd_dsca.Columns[1].Name = "ID";
-            dgrd_dsca.Columns[1].Visible = false;
-            dgrd_dsca.Columns[2].Name = "Thời gian vào";
-            dgrd_dsca.Columns[3].Name = "Người trực ca";
-            dgrd_dsca.Columns[4].Name = "Thời gian kết ca";
-            dgrd_dsca.Columns[5].Name = "Doanh thu";
-            dgrd_dsca.Columns[6].Name = "Ghi chú";
-            dgrd_dsca.Columns[7].Name = "Trạng thái";
-            foreach (var x in lstca.OrderByDescending(c => c.ThoiGianVaoCa))
+            try
             {
-                string ten = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).Ten;
-                string ho = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).Ho;
-                string dem = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).TenDem;
+                var id = _iqNhanVienServices.GetAll().First(c => (c.Ho + " " + c.TenDem + " " + c.Ten) == cmb_nhvien.Text).Id;
+                var lstca = _iqLGiaoCaServices.GetAll().Where(c => c.IdNguoiNhanCa == id).ToList();
+                int stt = 1;
+                dgrd_dsca.Rows.Clear();
+                dgrd_dsca.ColumnCount = 8;
+                dgrd_dsca.Columns[0].Name = "STT";
+                dgrd_dsca.Columns[0].Width = 50;
+                dgrd_dsca.Columns[1].Name = "ID";
+                dgrd_dsca.Columns[1].Visible = false;
+                dgrd_dsca.Columns[2].Name = "Thời gian vào";
+                dgrd_dsca.Columns[3].Name = "Người trực ca";
+                dgrd_dsca.Columns[4].Name = "Thời gian kết ca";
+                dgrd_dsca.Columns[5].Name = "Doanh thu";
+                dgrd_dsca.Columns[6].Name = "Ghi chú";
+                dgrd_dsca.Columns[7].Name = "Trạng thái";
+                foreach (var x in lstca.OrderByDescending(c => c.ThoiGianVaoCa))
+                {
+                    string ten = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).Ten;
+                    string ho = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).Ho;
+                    string dem = _iqNhanVienServices.GetAll().First(c => c.Id == x.IdNguoiNhanCa).TenDem;
 
-                dgrd_dsca.Rows.Add(stt++, x.Id, x.ThoiGianVaoCa, ho + " " + dem + " " + ten, x.ThoiGianKetCa, x.Tongtienhang, x.GhiChu, x.TrangThai == 0 ? "Chờ xác nhận" : (x.TrangThai == 1 ? "Đã xác nhận" : "Không được xác nhận"));
+                    dgrd_dsca.Rows.Add(stt++, x.Id, x.ThoiGianVaoCa, ho + " " + dem + " " + ten, x.ThoiGianKetCa, x.Tongtienhang, x.GhiChu, x.TrangThai == 0 ? "Chờ xác nhận" : (x.TrangThai == 1 ? "Đã xác nhận" : "Không được xác nhận"));
+                }
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
-
         }
     }
 }
