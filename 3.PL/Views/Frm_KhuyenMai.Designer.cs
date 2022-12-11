@@ -37,6 +37,10 @@
             this.btn_Xoa = new System.Windows.Forms.Button();
             this.btn_Clear = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbx_TimKiemSP = new System.Windows.Forms.TextBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dgv_sp = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tbx_Ten = new System.Windows.Forms.TextBox();
@@ -55,15 +59,17 @@
             this.tbx_TimKiem = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dgvKM = new System.Windows.Forms.DataGridView();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.dgv_ctkm = new System.Windows.Forms.DataGridView();
+            this.rbt_KM = new System.Windows.Forms.RadioButton();
+            this.rbt_ctKM = new System.Windows.Forms.RadioButton();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_sp)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKM)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ctkm)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -73,9 +79,9 @@
             this.groupBox2.Controls.Add(this.dgv_sp);
             this.groupBox2.Controls.Add(this.cbx_Tatca);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox2.Location = new System.Drawing.Point(639, 21);
+            this.groupBox2.Location = new System.Drawing.Point(734, 40);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(453, 324);
+            this.groupBox2.Size = new System.Drawing.Size(358, 375);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Áp dụng cho :";
@@ -164,11 +170,10 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.BackColor = System.Drawing.Color.Gainsboro;
-            this.groupBox1.Controls.Add(this.btn_Clear);
-            this.groupBox1.Controls.Add(this.btn_Xoa);
-            this.groupBox1.Controls.Add(this.btn_Sua);
-            this.groupBox1.Controls.Add(this.tbn_Them);
+            this.groupBox1.Controls.Add(this.tbx_TimKiemSP);
+            this.groupBox1.Controls.Add(this.pictureBox2);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.dgv_sp);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.tbx_Ten);
@@ -182,12 +187,54 @@
             this.groupBox1.Controls.Add(this.rbt_Hoatdong);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(7, 21);
+            this.groupBox1.Location = new System.Drawing.Point(7, 40);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(626, 324);
+            this.groupBox1.Size = new System.Drawing.Size(721, 375);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
+            // 
+            // tbx_TimKiemSP
+            // 
+            this.tbx_TimKiemSP.Location = new System.Drawing.Point(160, 270);
+            this.tbx_TimKiemSP.Name = "tbx_TimKiemSP";
+            this.tbx_TimKiemSP.Size = new System.Drawing.Size(203, 23);
+            this.tbx_TimKiemSP.TabIndex = 34;
+            this.tbx_TimKiemSP.TextChanged += new System.EventHandler(this.tbx_TimKiemSP_TextChanged);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::_3.PL.Properties.Resources.timkiem;
+            this.pictureBox2.Location = new System.Drawing.Point(369, 260);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 33);
+            this.pictureBox2.TabIndex = 33;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(93, 273);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 15);
+            this.label9.TabIndex = 31;
+            this.label9.Text = " Tìm kiếm:";
+            // 
+            // dgv_sp
+            // 
+            this.dgv_sp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv_sp.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgv_sp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_sp.Location = new System.Drawing.Point(93, 299);
+            this.dgv_sp.Name = "dgv_sp";
+            this.dgv_sp.RowTemplate.Height = 25;
+            this.dgv_sp.Size = new System.Drawing.Size(500, 70);
+            this.dgv_sp.TabIndex = 15;
+            this.dgv_sp.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_sp_CellValueChanged);
+            this.dgv_sp.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgv_sp_CurrentCellDirtyStateChanged);
             // 
             // button1
             // 
@@ -323,6 +370,7 @@
             // 
             // cbx_conHan
             // 
+            this.cbx_conHan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbx_conHan.AutoSize = true;
             this.cbx_conHan.Location = new System.Drawing.Point(91, 50);
             this.cbx_conHan.Name = "cbx_conHan";
@@ -334,8 +382,9 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = global::_3.PL.Properties.Resources.timkiem;
-            this.pictureBox1.Location = new System.Drawing.Point(386, 17);
+            this.pictureBox1.Location = new System.Drawing.Point(376, 421);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(36, 33);
             this.pictureBox1.TabIndex = 28;
@@ -343,9 +392,8 @@
             // 
             // tbx_TimKiem
             // 
-            this.tbx_TimKiem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbx_TimKiem.Location = new System.Drawing.Point(91, 21);
+            this.tbx_TimKiem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tbx_TimKiem.Location = new System.Drawing.Point(81, 431);
             this.tbx_TimKiem.Name = "tbx_TimKiem";
             this.tbx_TimKiem.Size = new System.Drawing.Size(289, 23);
             this.tbx_TimKiem.TabIndex = 27;
@@ -353,6 +401,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label6.Location = new System.Drawing.Point(6, 29);
@@ -363,9 +412,7 @@
             // 
             // dgvKM
             // 
-            this.dgvKM.AllowUserToAddRows = false;
-            this.dgvKM.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvKM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvKM.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvKM.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -373,43 +420,62 @@
             this.dgvKM.Name = "dgvKM";
             this.dgvKM.ReadOnly = true;
             this.dgvKM.RowTemplate.Height = 25;
-            this.dgvKM.Size = new System.Drawing.Size(630, 361);
+            this.dgvKM.Size = new System.Drawing.Size(593, 151);
             this.dgvKM.TabIndex = 25;
             this.dgvKM.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKM_CellContentClick);
             // 
-            // groupBox3
+            // dgv_ctkm
             // 
-            this.groupBox3.Controls.Add(this.pictureBox2);
-            this.groupBox3.Controls.Add(this.dgvKM);
-            this.groupBox3.Controls.Add(this.cbx_conHan);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.pictureBox1);
-            this.groupBox3.Controls.Add(this.tbx_TimKiem);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox3.Location = new System.Drawing.Point(0, 354);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1098, 442);
-            this.groupBox3.TabIndex = 30;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Thông tin sản phẩm áp dụng";
+            this.dgv_ctkm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv_ctkm.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dgv_ctkm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ctkm.Location = new System.Drawing.Point(606, 496);
+            this.dgv_ctkm.Name = "dgv_ctkm";
+            this.dgv_ctkm.RowTemplate.Height = 25;
+            this.dgv_ctkm.Size = new System.Drawing.Size(486, 151);
+            this.dgv_ctkm.TabIndex = 30;
+            this.dgv_ctkm.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ctkm_CellContentClick);
             // 
-            // pictureBox2
+            // rbt_KM
             // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(699, 19);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(396, 420);
-            this.pictureBox2.TabIndex = 30;
-            this.pictureBox2.TabStop = false;
+            this.rbt_KM.AutoSize = true;
+            this.rbt_KM.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbt_KM.Location = new System.Drawing.Point(9, 7);
+            this.rbt_KM.Name = "rbt_KM";
+            this.rbt_KM.Size = new System.Drawing.Size(90, 19);
+            this.rbt_KM.TabIndex = 35;
+            this.rbt_KM.TabStop = true;
+            this.rbt_KM.Text = "Khuyến mãi";
+            this.rbt_KM.UseVisualStyleBackColor = true;
+            this.rbt_KM.CheckedChanged += new System.EventHandler(this.rbt_KM_CheckedChanged);
+            // 
+            // rbt_ctKM
+            // 
+            this.rbt_ctKM.AutoSize = true;
+            this.rbt_ctKM.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbt_ctKM.Location = new System.Drawing.Point(137, 7);
+            this.rbt_ctKM.Name = "rbt_ctKM";
+            this.rbt_ctKM.Size = new System.Drawing.Size(89, 19);
+            this.rbt_ctKM.TabIndex = 36;
+            this.rbt_ctKM.TabStop = true;
+            this.rbt_ctKM.Text = "Chi Tiết KM";
+            this.rbt_ctKM.UseVisualStyleBackColor = true;
+            this.rbt_ctKM.CheckedChanged += new System.EventHandler(this.rbt_ctKM_CheckedChanged);
             // 
             // FrmKhuyenMai
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1098, 796);
-            this.Controls.Add(this.groupBox3);
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ClientSize = new System.Drawing.Size(1098, 652);
+            this.Controls.Add(this.rbt_ctKM);
+            this.Controls.Add(this.rbt_KM);
+            this.Controls.Add(this.dgv_ctkm);
+            this.Controls.Add(this.cbx_conHan);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.tbx_TimKiem);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.dgvKM);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label7);
@@ -423,11 +489,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_sp)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_sp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKM)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ctkm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,7 +507,6 @@
         private System.Windows.Forms.Button btn_Xoa;
         private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.CheckBox cbx_Tatca;
         private System.Windows.Forms.DataGridView dgv_sp;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
@@ -461,7 +526,11 @@
         private System.Windows.Forms.TextBox tbx_TimKiem;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgvKM;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView dgv_ctkm;
+        private System.Windows.Forms.TextBox tbx_TimKiemSP;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.RadioButton rbt_KM;
+        private System.Windows.Forms.RadioButton rbt_ctKM;
     }
 }

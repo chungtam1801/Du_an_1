@@ -10,8 +10,8 @@ namespace _2.BUS.ViewModels
     public class ViewQLChiTietKhuyenMai
     {
         public Guid Id { get; set; }
-        public Guid? IdCtsp { get; set; }
-        public Guid? IdKm { get; set; }
+        public string SanPham { get; set; }
+        public string KhuyenMai { get; set; }
         public int? TrangThai { get; set; }
     }
 }
