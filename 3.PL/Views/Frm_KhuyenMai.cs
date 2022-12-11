@@ -651,7 +651,7 @@ namespace _3.PL.Views
 
         private void tbx_TimKiemSP_TextChanged(object sender, EventArgs e)
         {
-            LoadSP1(tbx_TimKiemSP.Text);
+            //LoadSP1(tbx_TimKiemSP.Text);
         }
 
         private void rbt_KM_CheckedChanged(object sender, EventArgs e)
