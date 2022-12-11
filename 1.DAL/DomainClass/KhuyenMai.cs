@@ -28,7 +28,6 @@ namespace _1.DAL.DomainClass
         [Column("NgayKT", TypeName = "date")]
         public DateTime NgayKt { get; set; }
         public int? TrangThai { get; set; }
-        [Column("IdSP")]
         public Guid? IdSp { get; set; }
 
         [InverseProperty(nameof(ChiTietKhuyenMai.IdKmNavigation))]

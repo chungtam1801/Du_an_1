@@ -49,17 +49,17 @@ namespace _2.BUS.Services
         {
             var list = new List<ViewQLLichSuTichDiem>();
             list=(from a in _iLichSuTichDiemRepository.GetAll()
-                  join b in _iKhachHangRepository.GetAll().Where(c=>c.Id==idKh) on a.IdKh equals b.Id
-                  join c in _iHoaDonRepository.GetAll() on a.IdHd equals c.Id
+                  join b in _iHoaDonRepository.GetAll() on a.IdHd equals b.Id
+                  join c in _iKhachHangRepository.GetAll().Where(c => c.Id == idKh) on b.IdKh equals c.Id
                   join d in _iQuyDoiDiemRepository.GetAll() on a.IdQuyDoiDiem equals d.Id
                   select new ViewQLLichSuTichDiem()
                   {
                       Id=a.Id,
-                      Ten=b.Ten,
-                      Sdt=b.Sdt,
-                      MaHD=c.Ma,
+                      Ten = c.Ten,
+                      Sdt = c.Sdt,
+                      MaHD =b.Ma,
                       Diem=a.Diem,
-                      NgayThayDoi=c.NgayThanhToan,
+                      NgayThayDoi=b.NgayThanhToan,
                       MaQuyDoiDiem=d.Id
                   }).ToList();
             return list;

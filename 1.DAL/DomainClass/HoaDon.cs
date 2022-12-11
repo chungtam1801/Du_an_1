@@ -40,6 +40,7 @@ namespace _1.DAL.DomainClass
         public string GhiChu { get; set; }
         [Column("IdKH")]
         public Guid? IdKh { get; set; }
+        public string DiaChi { get; set; }
 
         [ForeignKey(nameof(IdKh))]
         [InverseProperty(nameof(KhachHang.HoaDons))]

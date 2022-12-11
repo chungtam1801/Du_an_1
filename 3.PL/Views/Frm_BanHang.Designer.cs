@@ -73,7 +73,6 @@
             this.tbx_DiemHD = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.lbl_DiaChi = new System.Windows.Forms.Label();
-            this.btn_Sua = new System.Windows.Forms.Button();
             this.tbx_TienShip = new System.Windows.Forms.TextBox();
             this.btn_Chot = new System.Windows.Forms.Button();
             this.lbl_TienShip = new System.Windows.Forms.Label();
@@ -311,7 +310,6 @@
             this.groupBox7.Controls.Add(this.tbx_DiemHD);
             this.groupBox7.Controls.Add(this.label11);
             this.groupBox7.Controls.Add(this.lbl_DiaChi);
-            this.groupBox7.Controls.Add(this.btn_Sua);
             this.groupBox7.Controls.Add(this.tbx_TienShip);
             this.groupBox7.Controls.Add(this.btn_Chot);
             this.groupBox7.Controls.Add(this.lbl_TienShip);
@@ -404,6 +402,7 @@
             this.tbx_DiemSD.Name = "tbx_DiemSD";
             this.tbx_DiemSD.Size = new System.Drawing.Size(194, 25);
             this.tbx_DiemSD.TabIndex = 223;
+            this.tbx_DiemSD.TextChanged += new System.EventHandler(this.tbx_DiemSD_TextChanged);
             this.tbx_DiemSD.Leave += new System.EventHandler(this.tbx_DiemSD_Leave);
             // 
             // label13
@@ -433,9 +432,9 @@
             // 
             // btn_Huy
             // 
-            this.btn_Huy.Location = new System.Drawing.Point(331, 592);
+            this.btn_Huy.Location = new System.Drawing.Point(485, 525);
             this.btn_Huy.Name = "btn_Huy";
-            this.btn_Huy.Size = new System.Drawing.Size(248, 52);
+            this.btn_Huy.Size = new System.Drawing.Size(81, 52);
             this.btn_Huy.TabIndex = 219;
             this.btn_Huy.Text = "Hủy";
             this.btn_Huy.UseVisualStyleBackColor = true;
@@ -520,6 +519,7 @@
             // 
             // tbx_DiaChi
             // 
+            this.tbx_DiaChi.Enabled = false;
             this.tbx_DiaChi.Location = new System.Drawing.Point(279, 375);
             this.tbx_DiaChi.Name = "tbx_DiaChi";
             this.tbx_DiaChi.Size = new System.Drawing.Size(194, 25);
@@ -551,15 +551,6 @@
             this.lbl_DiaChi.TabIndex = 205;
             this.lbl_DiaChi.Text = "Địa chỉ";
             // 
-            // btn_Sua
-            // 
-            this.btn_Sua.Location = new System.Drawing.Point(63, 592);
-            this.btn_Sua.Name = "btn_Sua";
-            this.btn_Sua.Size = new System.Drawing.Size(248, 52);
-            this.btn_Sua.TabIndex = 201;
-            this.btn_Sua.Text = "Sửa";
-            this.btn_Sua.UseVisualStyleBackColor = true;
-            // 
             // tbx_TienShip
             // 
             this.tbx_TienShip.Enabled = false;
@@ -572,7 +563,7 @@
             // 
             this.btn_Chot.Location = new System.Drawing.Point(63, 525);
             this.btn_Chot.Name = "btn_Chot";
-            this.btn_Chot.Size = new System.Drawing.Size(516, 52);
+            this.btn_Chot.Size = new System.Drawing.Size(416, 52);
             this.btn_Chot.TabIndex = 200;
             this.btn_Chot.Text = "Thanh toán";
             this.btn_Chot.UseVisualStyleBackColor = true;
@@ -965,7 +956,6 @@
         private System.Windows.Forms.TextBox tbx_DiemHD;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lbl_DiaChi;
-        private System.Windows.Forms.Button btn_Sua;
         private System.Windows.Forms.TextBox tbx_TienShip;
         private System.Windows.Forms.Button btn_Chot;
         private System.Windows.Forms.Label lbl_TienShip;

@@ -60,7 +60,7 @@ namespace _2.BUS.Services
         {
             return _CRUDKhachHang.GetAll().FirstOrDefault(c => c.Sdt == sdt);
         }
-        public string Chot(HoaDon hoaDon,KhachHang khachHang,decimal tienKhachDua,decimal tienCK,int trangThai,decimal? tienShip,int diemCong,int diemSD)
+        public string Chot(HoaDon hoaDon,KhachHang khachHang,decimal tienKhachDua,decimal tienCK,int trangThai,decimal? tienShip,int diemCong,int diemSD,string diachi)
         {
             CongDiem(hoaDon, khachHang,diemCong);
             if(tienKhachDua >0)
@@ -87,11 +87,14 @@ namespace _2.BUS.Services
             }           
             if (trangThai == 0)
             {
+                if(khachHang!=null) hoaDon.IdKh = khachHang.Id;
                 hoaDon.NgayThanhToan = DateTime.Now;
                 hoaDon.TrangThai = 1;
             }
             else if (trangThai == 3)
             {
+                if (khachHang != null) hoaDon.IdKh = khachHang.Id;
+                hoaDon.DiaChi = diachi;
                 hoaDon.NgayShip = DateTime.Now;
                 hoaDon.TrangThai = 4;
                 hoaDon.TienShip = tienShip;
@@ -224,23 +227,23 @@ namespace _2.BUS.Services
         //Quy doi diem
         public void CongDiem(HoaDon hoaDon,KhachHang khachHang,int diem)
         {
-                QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai == 1);
-                if (qdd != null && khachHang != null && hoaDon != null)
-                {
-                    LichSuTichDiem lichSuTichDiem = new LichSuTichDiem();
-                    lichSuTichDiem.IdQuyDoiDiem = qdd.Id;
-                    lichSuTichDiem.IdHd = hoaDon.Id;
-                    lichSuTichDiem.IdKh = khachHang.Id;
-                    lichSuTichDiem.Diem = diem;
+            QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai > 0);
+            if (qdd != null && khachHang != null && hoaDon != null)
+            {
+                LichSuTichDiem lichSuTichDiem = new LichSuTichDiem();
+                lichSuTichDiem.IdQuyDoiDiem = qdd.Id;
+                lichSuTichDiem.IdHd = hoaDon.Id;
+                lichSuTichDiem.IdKh = khachHang.Id;
+                lichSuTichDiem.Diem = diem;
                 lichSuTichDiem.IdKh = khachHang.Id;
                 khachHang.DiemTich += diem;
-                    _CRUDKhachHang.Update(khachHang);
-                    _CRUDLSTD.Add(lichSuTichDiem);
-                }       
+                _CRUDKhachHang.Update(khachHang);
+                _CRUDLSTD.Add(lichSuTichDiem);
+            }       
         }
         public void TruDiem(HoaDon hoaDon,KhachHang khachHang,int diemSD)
         {
-            QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai == 1);
+            QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai > 0);
             if (qdd != null && khachHang != null && hoaDon != null)
             {
                 LichSuTichDiem lichSuTichDiem = new LichSuTichDiem();
@@ -256,7 +259,7 @@ namespace _2.BUS.Services
         }
         public decimal QuyDoiDiemThanhTien(int diem)
         {
-            QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai == 1);
+            QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai > 0);
             if (qdd != null)
             {
                 return diem * qdd.TiLeTieuDiem;
@@ -265,12 +268,20 @@ namespace _2.BUS.Services
         }
         public int QuyDoiTienThanhDiem(decimal tien)
         {
-            QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai == 1);
+            QuyDoiDiem qdd = _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai > 0);
             if (qdd != null)
             {
                 return Convert.ToInt32(tien / qdd.TiLeTichDiem);
             }
             else return 0;
+        }
+        public int? GetTrangThaiQuyDoiDiem()
+        {
+            return _CRUDQDD.GetAll().FirstOrDefault(p => p.TrangThai > 0).TrangThai;
+        }
+        public decimal? TienThucTe(Guid idHD)
+        {
+            return SumTienHang(idHD) - _CRUDLSTD.GetAll().Where(c => c.IdHd == idHD && c.Diem > 0).Sum(c => c.Diem * _CRUDQDD.GetAll().First(x=>x.Id==c.IdQuyDoiDiem).TiLeTieuDiem);
         }
         //Quan ly chi tiet hoa don
         public void UpdateSoLuongChiTietHD(Guid idCTHD, int soLuong)

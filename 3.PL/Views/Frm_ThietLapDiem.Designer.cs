@@ -31,17 +31,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tbx_Tien1 = new System.Windows.Forms.TextBox();
-            this.tbx_Diem = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tbx_Tien2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.btn_Luu = new System.Windows.Forms.Button();
             this.btn_BoQua = new System.Windows.Forms.Button();
             this.dtg_Diem = new System.Windows.Forms.DataGridView();
+            this.chbx_Check = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtg_Diem)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,13 +70,6 @@
             this.tbx_Tien1.Size = new System.Drawing.Size(100, 23);
             this.tbx_Tien1.TabIndex = 5;
             // 
-            // tbx_Diem
-            // 
-            this.tbx_Diem.Location = new System.Drawing.Point(691, 128);
-            this.tbx_Diem.Name = "tbx_Diem";
-            this.tbx_Diem.Size = new System.Drawing.Size(100, 23);
-            this.tbx_Diem.TabIndex = 6;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -102,15 +95,6 @@
             this.tbx_Tien2.Size = new System.Drawing.Size(100, 23);
             this.tbx_Tien2.TabIndex = 9;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(891, 84);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 15);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "1 điểm thưởng";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -130,16 +114,6 @@
             this.label7.Size = new System.Drawing.Size(31, 15);
             this.label7.TabIndex = 12;
             this.label7.Text = "VNĐ";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.label8.Location = new System.Drawing.Point(801, 131);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 15);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Điểm";
             // 
             // btn_Luu
             // 
@@ -173,22 +147,50 @@
             this.dtg_Diem.TabIndex = 16;
             this.dtg_Diem.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtg_Diem_CellClick);
             // 
+            // chbx_Check
+            // 
+            this.chbx_Check.AutoSize = true;
+            this.chbx_Check.Location = new System.Drawing.Point(499, 166);
+            this.chbx_Check.Name = "chbx_Check";
+            this.chbx_Check.Size = new System.Drawing.Size(216, 19);
+            this.chbx_Check.TabIndex = 17;
+            this.chbx_Check.Text = "Không cộng điểm khi sử dụng điểm";
+            this.chbx_Check.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(891, 84);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(85, 15);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "1 điểm thưởng";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(730, 131);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(85, 15);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "1 điểm thưởng";
+            // 
             // Frm_ThietLapDiem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 577);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.chbx_Check);
             this.Controls.Add(this.dtg_Diem);
             this.Controls.Add(this.btn_BoQua);
             this.Controls.Add(this.btn_Luu);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbx_Tien2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.tbx_Diem);
             this.Controls.Add(this.tbx_Tien1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -205,16 +207,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbx_Tien1;
-        private System.Windows.Forms.TextBox tbx_Diem;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbx_Tien2;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btn_Luu;
         private System.Windows.Forms.Button btn_BoQua;
         private System.Windows.Forms.DataGridView dtg_Diem;
+        private System.Windows.Forms.CheckBox chbx_Check;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -33,10 +33,10 @@ namespace _1.DAL.DomainClass
         public decimal? Tienmat { get; set; }
         [Column(TypeName = "money")]
         public decimal? Nganhang { get; set; }
+        [Column("TienSDDiem", TypeName = "money")]
+        public decimal? TienSDDiem { get; set; }
         [Column(TypeName = "money")]
         public decimal? TongTienMat { get; set; }
-        [Column(TypeName = "money")]
-        public decimal? TienSDDiem { get; set; }
 
         [ForeignKey(nameof(IdNguoiGiaoCa))]
         [InverseProperty(nameof(NhanVien.GiaoCaIdNguoiGiaoCaNavigations))]

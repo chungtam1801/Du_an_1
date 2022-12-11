@@ -272,7 +272,6 @@ namespace _3.PL.Views
             {
                 dtg_xemtd.Rows.Add(stt++, x.Id, x.Ten, x.Sdt, x.MaHD, x.NgayThayDoi, x.Diem);
             }
-
         }
         private string MaTuSinh()
         {

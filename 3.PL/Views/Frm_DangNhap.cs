@@ -20,8 +20,8 @@ namespace _3.PL.Views
         {
             InitializeComponent();
             _inhanVienServices = new QLNhanVienServices();
-            tb_taikhoan.Text = "NV001";
-            tb_matkhau.Text = "123456";
+            tb_taikhoan.Text = "NV1";
+            tb_matkhau.Text = "123";
         }
 
         private void btn_Thoat_Click(object sender, EventArgs e)

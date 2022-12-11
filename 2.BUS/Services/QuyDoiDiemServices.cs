@@ -16,28 +16,27 @@ namespace _2.BUS.Services
         {
             _CRUDQuyDoiDiem = new QuyDoiDiemRepository();
         }
-        public string CreateQuyDoiDiem(decimal tien1,int diem,decimal tien2)
+        public string CreateQuyDoiDiem(decimal tien1,decimal tien2,int trangthai)
         {
-            QuyDoiDiem temp = _CRUDQuyDoiDiem.GetAll().FirstOrDefault(c => c.TrangThai == 1);
+            QuyDoiDiem temp = _CRUDQuyDoiDiem.GetAll().FirstOrDefault(c => c.TrangThai > 0);
             if(temp != null)
             {
                 temp.TrangThai = 0;
                 _CRUDQuyDoiDiem.Update(temp);
             }
-            QuyDoiDiem quyDoiDiem = _CRUDQuyDoiDiem.GetAll().FirstOrDefault(c => c.TiLeTichDiem == tien1 && c.SoDiem == diem && c.TiLeTieuDiem == tien2);
+            QuyDoiDiem quyDoiDiem = _CRUDQuyDoiDiem.GetAll().FirstOrDefault(c => c.TiLeTichDiem == tien1 && c.TiLeTieuDiem == tien2);
             if(quyDoiDiem == null)
             {
                 quyDoiDiem = new QuyDoiDiem();
                 quyDoiDiem.TiLeTichDiem = tien1;
-                quyDoiDiem.SoDiem = diem;
                 quyDoiDiem.TiLeTieuDiem = tien2;
-                quyDoiDiem.TrangThai = 1;
+                quyDoiDiem.TrangThai = trangthai;
                 if (_CRUDQuyDoiDiem.Add(quyDoiDiem)) return "Lưu thành công";
                 else return "Lưu thất bại";
             }
             else
             {
-                quyDoiDiem.TrangThai = 1;
+                quyDoiDiem.TrangThai = trangthai;
                 if (_CRUDQuyDoiDiem.Update(quyDoiDiem)) return "Lưu thành công";
                 else return "Lưu thất bại";
             }

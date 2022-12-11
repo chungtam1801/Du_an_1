@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace _3.PL.Utilities
@@ -50,6 +51,11 @@ namespace _3.PL.Utilities
         {
             int n;
             return int.TryParse(temp, out n);    
+        }
+        public static bool CheckSDT(string temp)
+        {
+            if (Regex.Match(temp, @"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$").Success) return true;
+            else return false;
         }
     }
 }

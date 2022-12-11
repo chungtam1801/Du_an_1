@@ -59,7 +59,6 @@ namespace _3.PL.Views
             {
                 thongTinSanPham = new ThongTinSanPham(x);
                 thongTinSanPham.Click += new System.EventHandler(UserContrel_Click);
-                thongTinSanPham.ptb_Anh.Click += new System.EventHandler(UserContrel_Click);
                 lstTTSP.Add(thongTinSanPham);
                 flp_SanPham.Controls.Add(thongTinSanPham);           
             }
@@ -136,6 +135,18 @@ namespace _3.PL.Views
                     tbx_DiemHD.Text = "";
                 }
                 else tbx_DiemHD.Text = _banHangServices.QuyDoiTienThanhDiem(Convert.ToDecimal(tbx_TongTien.Text)).ToString();
+                if(_trangThaiBH<3)
+                {
+                    tbx_DiaChi.Text = "";
+                    tbx_TienShip.Text = "";
+                    tbx_TienShip.Enabled = false;
+                    tbx_DiaChi.Enabled = false;
+                }
+                else
+                {
+                    tbx_TienShip.Enabled = true;
+                    tbx_DiaChi.Enabled = true;
+                }
                 if (hoaDon.TrangThai == 4) btn_Chot.Text = "Đã giao hàng";
                 else if (hoaDon.TrangThai == 3) btn_Chot.Text = "Giao hàng";
                 else if (hoaDon.TrangThai < 3) btn_Chot.Text = "Thanh toán";
@@ -382,7 +393,6 @@ namespace _3.PL.Views
             if (_khachHang != null)
             {
                 tbx_TenKH.Text = _khachHang.Ho + " " + _khachHang.TenDem + " " + _khachHang.Ten;
-                tbx_DiaChi.Text = _khachHang.DiaChi;
                 tbx_Diem.Text = _khachHang.DiemTich.ToString();
                 tbx_DiemSD.Enabled = true;
                 tbx_DiemSD.Text = "0";
@@ -391,7 +401,6 @@ namespace _3.PL.Views
             else
             {
                 tbx_TenKH.Text = "";
-                tbx_DiaChi.Text = "";
                 tbx_Diem.Text = "";
                 tbx_DiemSD.Enabled = false;
                 tbx_DiemSD.Text = "";
@@ -458,6 +467,18 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Tiền khách trả chưa đủ");
             }
+            else if (!Utility.CheckStringEmpty(tbx_SDT.Text) && Utility.CheckStringEmpty(tbx_TenKH.Text))
+            {
+                MessageBox.Show("Không tìm thấy khách hàng");
+            }
+            else if(_trangThaiBH >= 3 && _khachHang == null)
+            {
+                MessageBox.Show("Cần khách hàng khi đặt hàng");
+            }    
+            else if(_trangThaiBH >= 3 && Utility.CheckStringEmpty(tbx_DiaChi.Text))
+            {
+                MessageBox.Show("Cần địa chỉ khi đặt hàng");
+            }
             else if (btn_Chot.Text == "Đã giao hàng")
             {
                 MessageBox.Show(_banHangServices.UpdateTrangThaiHD(_hoaDon, 5));
@@ -465,7 +486,7 @@ namespace _3.PL.Views
             }
             else
             {
-                MessageBox.Show(_banHangServices.Chot(_hoaDon, _khachHang, tbx_TienKhachDua.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienKhachDua.Text), tbx_TienCK.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienCK.Text), _trangThaiBH, tbx_TienShip.Text == String.Empty ? null : Convert.ToDecimal(tbx_TienShip.Text), tbx_DiemHD.Text == String.Empty ? 0:Convert.ToInt32(tbx_DiemHD.Text), tbx_DiemSD.Text == String.Empty ? 0 : Convert.ToInt32(tbx_DiemSD.Text)));               
+                MessageBox.Show(_banHangServices.Chot(_hoaDon, _khachHang, tbx_TienKhachDua.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienKhachDua.Text), tbx_TienCK.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienCK.Text), _trangThaiBH, tbx_TienShip.Text == String.Empty ? 0 : Convert.ToDecimal(tbx_TienShip.Text), tbx_DiemHD.Text == String.Empty ? 0:Convert.ToInt32(tbx_DiemHD.Text), tbx_DiemSD.Text == String.Empty ? 0 : Convert.ToInt32(tbx_DiemSD.Text),tbx_DiaChi.Text));               
                 if (_trangThaiBH < 3)
                 {
                     LoadDTG_HoaDon(_trangThaiHD);
@@ -520,6 +541,28 @@ namespace _3.PL.Views
                     }
                 }
             }           
+        }
+        private void tbx_DiemSD_TextChanged(object sender, EventArgs e)
+        {
+            if(Utility.CheckNumber(tbx_DiemSD.Text))
+            {
+                tbx_ThanhTien.Text = _banHangServices.QuyDoiDiemThanhTien(Convert.ToInt32(tbx_DiemSD.Text)).ToString();
+                if (tbx_DiemSD.Text != "0")
+                {
+                    if (_banHangServices.GetTrangThaiQuyDoiDiem() == 1)
+                    {
+                        tbx_DiemHD.Text = "0";
+                    }
+                    else
+                    {
+                        tbx_DiemHD.Text = _banHangServices.QuyDoiTienThanhDiem(Convert.ToDecimal(tbx_TongTien.Text)).ToString();
+                    }
+                }
+                else
+                {
+                    tbx_DiemHD.Text = _banHangServices.QuyDoiTienThanhDiem(Convert.ToDecimal(tbx_TongTien.Text)).ToString();
+                }
+            }                   
         }
         #endregion
         #region pnl_BanHang
