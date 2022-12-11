@@ -336,12 +336,12 @@
             // 
             // tbx_ThanhTien
             // 
+            this.tbx_ThanhTien.Enabled = false;
             this.tbx_ThanhTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbx_ThanhTien.Location = new System.Drawing.Point(277, 259);
             this.tbx_ThanhTien.Name = "tbx_ThanhTien";
             this.tbx_ThanhTien.Size = new System.Drawing.Size(194, 24);
             this.tbx_ThanhTien.TabIndex = 231;
-            this.tbx_ThanhTien.Text = "0";
             // 
             // label1
             // 

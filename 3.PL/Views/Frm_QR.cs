@@ -31,56 +31,92 @@ namespace _3.PL.Views
         SaveFileDialog saveFile = new SaveFileDialog();
         private void Frm_QR_Load(object sender, EventArgs e)
         {
-            filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            foreach (FilterInfo filterInfo in filterInfoCollection)
-                cbx_Camera.Items.Add(filterInfo.Name);
-            cbx_Camera.SelectedIndex = 0;
+            try
+            {
+                filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+                foreach (FilterInfo filterInfo in filterInfoCollection)
+                    cbx_Camera.Items.Add(filterInfo.Name);
+                cbx_Camera.SelectedIndex = 0;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void btn_Start_Click(object sender, EventArgs e)
         {
-            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cbx_Camera.SelectedIndex].MonikerString);
-            videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
-            videoCaptureDevice.Start();
-            timer1.Start();
+            try
+            {
+                videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cbx_Camera.SelectedIndex].MonikerString);
+                videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
+                videoCaptureDevice.Start();
+                timer1.Start();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
         {
-            ptb_QR.Image = (Bitmap)eventArgs.Frame.Clone();
+            try
+            {
+                ptb_QR.Image = (Bitmap)eventArgs.Frame.Clone();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Frm_QR_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (videoCaptureDevice != null)
+            try
             {
-                if (videoCaptureDevice.IsRunning)
+                if (videoCaptureDevice != null)
                 {
-                    videoCaptureDevice.SignalToStop();
+                    if (videoCaptureDevice.IsRunning)
+                    {
+                        videoCaptureDevice.SignalToStop();
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (ptb_QR.Image != null)
+            try
             {
-                BarcodeReader barcodeReader = new BarcodeReader();
-                Result result = barcodeReader.Decode((Bitmap)ptb_QR.Image);
-                if(result != null)
+                if (ptb_QR.Image != null)
                 {
-                    ChiTietSp temp = _iQLChiTietSpServices.GetAll().FirstOrDefault(c => c.Id == new Guid(result.ToString()));
-                    if(temp != null)
+                    BarcodeReader barcodeReader = new BarcodeReader();
+                    Result result = barcodeReader.Decode((Bitmap)ptb_QR.Image);
+                    if (result != null)
                     {
-                        _banHangServices.AddChiTietHD(temp, frmPatents._hoaDon);
-                        frmPatents.LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(frmPatents._hoaDon.Id));
-                        timer1.Stop();
-                        if (videoCaptureDevice.IsRunning)
+                        ChiTietSp temp = _iQLChiTietSpServices.GetAll().FirstOrDefault(c => c.Id == new Guid(result.ToString()));
+                        if (temp != null)
                         {
-                            videoCaptureDevice.SignalToStop();
-                            this.Close();
+                            _banHangServices.AddChiTietHD(temp, frmPatents._hoaDon);
+                            frmPatents.LoadDTG_ChiTietHD(_banHangServices.GetAllChiTietHDV(frmPatents._hoaDon.Id));
+                            MessageBox.Show("Thêm sản phẩm thành công");
+                            timer1.Stop();
+                            if (videoCaptureDevice.IsRunning)
+                            {
+                                videoCaptureDevice.SignalToStop();
+                                this.Close();
+                            }
                         }
-                    }                 
-                }
+                    }
 
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

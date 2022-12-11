@@ -18,26 +18,47 @@ namespace _1.DAL.Repositories
         }
         public bool Add(HoaDon obj)
         {
-            if (obj == null) return false;
-            obj.Id = Guid.NewGuid();//Tự động zen khóa chính
-            _dbContext.HoaDons.Add(obj);
-            _dbContext.SaveChanges();
-            return true;
+            try
+            {
+                if (obj == null) return false;
+                obj.Id = Guid.NewGuid();//Tự động zen khóa chính
+                _dbContext.HoaDons.Add(obj);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool Delete(HoaDon obj)
         {
-            if (obj == null) return false;
-            var tempobj = _dbContext.HoaDons.FirstOrDefault(c => c.Id == obj.Id);
+            try
+            {
+                if (obj == null) return false;
+                var tempobj = _dbContext.HoaDons.FirstOrDefault(c => c.Id == obj.Id);
 
-            _dbContext.Remove(tempobj);
-            _dbContext.SaveChanges();
-            return true;
+                _dbContext.Remove(tempobj);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }        
         }
 
         public List<HoaDon> GetAll()
         {
-           return _dbContext.HoaDons.ToList();
+            try
+            {
+                return _dbContext.HoaDons.ToList();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public HoaDon GetbyId(Guid? id)
@@ -47,17 +68,25 @@ namespace _1.DAL.Repositories
 
         public bool Update(HoaDon obj)
         {
-            if (obj == null) return false;
-            var tempobj = _dbContext.HoaDons.FirstOrDefault(c => c.Id == obj.Id);
-            tempobj.Ma=obj.Ma;
-            tempobj.NgayTao=obj.NgayTao;
-          tempobj.NgayThanhToan=obj.NgayThanhToan;
-            tempobj.GiamGia=obj.GiamGia;
-            tempobj.TrangThai=obj.TrangThai;
-            //Còn bao nhiêu thuộc tính làm tương tự
-            _dbContext.Update(tempobj);
-            _dbContext.SaveChanges();
-            return true;
+            try
+            {
+                if (obj == null) return false;
+                var tempobj = _dbContext.HoaDons.FirstOrDefault(c => c.Id == obj.Id);
+                tempobj.Ma = obj.Ma;
+                tempobj.NgayTao = obj.NgayTao;
+                tempobj.NgayThanhToan = obj.NgayThanhToan;
+                tempobj.GiamGia = obj.GiamGia;
+                tempobj.TrangThai = obj.TrangThai;
+                //Còn bao nhiêu thuộc tính làm tương tự
+                _dbContext.Update(tempobj);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
         }
     }
 }

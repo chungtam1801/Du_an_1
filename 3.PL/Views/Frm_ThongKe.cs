@@ -38,46 +38,74 @@ namespace _3.PL.Views
         }
         private void Frm_ThongKe_Load(object sender, EventArgs e)
         {
-            lb_tongdoanhthungay.Text = _thongKeServices.SumTienNgay().ToString();
-            lb_tongdoanhthuthang.Text = _thongKeServices.SumTienThang().ToString();
-            lb_tongdoanhthunam.Text = _thongKeServices.SumTienNam().ToString();
-            lb_tongdonhang.Text = _thongKeServices.GetSoLuongHD().ToString();
-            lb_thanhcong.Text = _thongKeServices.GetSoLuongHDThanhToan().ToString();
-            lb_bihuy.Text = _thongKeServices.GetSoLuongHDHuy().ToString();
+            try
+            {
+                lb_tongdoanhthungay.Text = _thongKeServices.SumTienNgay().ToString();
+                lb_tongdoanhthuthang.Text = _thongKeServices.SumTienThang().ToString();
+                lb_tongdoanhthunam.Text = _thongKeServices.SumTienNam().ToString();
+                lb_tongdonhang.Text = _thongKeServices.GetSoLuongHD().ToString();
+                lb_thanhcong.Text = _thongKeServices.GetSoLuongHDThanhToan().ToString();
+                lb_bihuy.Text = _thongKeServices.GetSoLuongHDHuy().ToString();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void rbtn_thang_CheckedChanged(object sender, EventArgs e)
         {
-            dtg_chitietdoanhthu.Rows.Clear();
-            dtg_chitietdoanhthu.ColumnCount = 2;
-            dtg_chitietdoanhthu.Columns[0].Name = "Tháng";
-            dtg_chitietdoanhthu.Columns[1].Name = "Tổng tiền";
-            foreach (var x in _thongKeServices.LoadDoanhThuThang())
+            try
             {
-                dtg_chitietdoanhthu.Rows.Add(x.Thang, x.TongTien);
+                dtg_chitietdoanhthu.Rows.Clear();
+                dtg_chitietdoanhthu.ColumnCount = 2;
+                dtg_chitietdoanhthu.Columns[0].Name = "Tháng";
+                dtg_chitietdoanhthu.Columns[1].Name = "Tổng tiền";
+                foreach (var x in _thongKeServices.LoadDoanhThuThang())
+                {
+                    dtg_chitietdoanhthu.Rows.Add(x.Thang, x.TongTien);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void rbtn_nam_CheckedChanged(object sender, EventArgs e)
         {
-            dtg_chitietdoanhthu.Rows.Clear();
-            dtg_chitietdoanhthu.ColumnCount = 2;
-            dtg_chitietdoanhthu.Columns[0].Name = "Năm";
-            dtg_chitietdoanhthu.Columns[1].Name = "Tổng tiền";
-            foreach (var x in _thongKeServices.LoadDoanhThuNam())
+            try
             {
-                dtg_chitietdoanhthu.Rows.Add(x.Nam, x.TongTien);
+                dtg_chitietdoanhthu.Rows.Clear();
+                dtg_chitietdoanhthu.ColumnCount = 2;
+                dtg_chitietdoanhthu.Columns[0].Name = "Năm";
+                dtg_chitietdoanhthu.Columns[1].Name = "Tổng tiền";
+                foreach (var x in _thongKeServices.LoadDoanhThuNam())
+                {
+                    dtg_chitietdoanhthu.Rows.Add(x.Nam, x.TongTien);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void rbtn_ngay_CheckedChanged(object sender, EventArgs e)
         {
-            dtg_chitietdoanhthu.Rows.Clear();
-            dtg_chitietdoanhthu.ColumnCount = 2;
-            dtg_chitietdoanhthu.Columns[0].Name = "Ngày";
-            dtg_chitietdoanhthu.Columns[1].Name = "Tổng tiền";
-            foreach (var x in _thongKeServices.LoadDoanhThuNgay())
+            try
             {
-                dtg_chitietdoanhthu.Rows.Add(x.Ngay, x.TongTien);
+                dtg_chitietdoanhthu.Rows.Clear();
+                dtg_chitietdoanhthu.ColumnCount = 2;
+                dtg_chitietdoanhthu.Columns[0].Name = "Ngày";
+                dtg_chitietdoanhthu.Columns[1].Name = "Tổng tiền";
+                foreach (var x in _thongKeServices.LoadDoanhThuNgay())
+                {
+                    dtg_chitietdoanhthu.Rows.Add(x.Ngay, x.TongTien);
+                }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }        
         }
     }
 }

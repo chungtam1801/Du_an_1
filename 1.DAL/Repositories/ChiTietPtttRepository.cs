@@ -18,26 +18,47 @@ namespace _1.DAL.Repositories
         }
         public bool Add(ChiTietPttt obj)
         {
-            if (obj == null) return false;
-            obj.Id = Guid.NewGuid();//Tự động zen khóa chính
-            _dbContext.ChiTietPttts.Add(obj);
-            _dbContext.SaveChanges();
-            return true;
+            try
+            {
+                if (obj == null) return false;
+                obj.Id = Guid.NewGuid();//Tự động zen khóa chính
+                _dbContext.ChiTietPttts.Add(obj);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }           
         }
 
         public bool Delete(ChiTietPttt obj)
         {
-            if (obj == null) return false;
-            var tempobj = _dbContext.ChiTietPttts.FirstOrDefault(c => c.Id == obj.Id);
+            try
+            {
+                if (obj == null) return false;
+                var tempobj = _dbContext.ChiTietPttts.FirstOrDefault(c => c.Id == obj.Id);
 
-            _dbContext.Remove(tempobj);
-            _dbContext.SaveChanges();
-            return true;
+                _dbContext.Remove(tempobj);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }          
         }
 
         public List<ChiTietPttt> GetAll()
         {
-           return _dbContext.ChiTietPttts.ToList();
+            try
+            {
+                return _dbContext.ChiTietPttts.ToList();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public ChiTietPttt GetbyId(Guid? id)
@@ -47,15 +68,22 @@ namespace _1.DAL.Repositories
 
         public bool Update(ChiTietPttt obj)
         {
-            if (obj == null) return false;
-            var tempobj = _dbContext.ChiTietPttts.FirstOrDefault(c => c.Id == obj.Id);
-            tempobj.Ma = obj.Ma;
-            tempobj.TienKhachDua=obj.TienKhachDua;
-            tempobj.TrangThai=obj.TrangThai;
-            //Còn bao nhiêu thuộc tính làm tương tự
-            _dbContext.Update(tempobj);
-            _dbContext.SaveChanges();
-            return true;
+            try
+            {
+                if (obj == null) return false;
+                var tempobj = _dbContext.ChiTietPttts.FirstOrDefault(c => c.Id == obj.Id);
+                tempobj.Ma = obj.Ma;
+                tempobj.TienKhachDua = obj.TienKhachDua;
+                tempobj.TrangThai = obj.TrangThai;
+                //Còn bao nhiêu thuộc tính làm tương tự
+                _dbContext.Update(tempobj);
+                _dbContext.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }          
         }
     }
 }

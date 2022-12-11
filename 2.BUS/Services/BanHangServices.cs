@@ -313,5 +313,9 @@ namespace _2.BUS.Services
                 _CRUDChiTietHD.Delete(x);
             }          
         }
+        public KhachHang GetKHById(Guid? idkh)
+        {
+            return _CRUDKhachHang.GetbyId(idkh);
+        }
     }
 }

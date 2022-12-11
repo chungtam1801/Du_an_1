@@ -20,73 +20,139 @@ namespace _2.BUS.Services
         }
         public List<ViewQLThongKe> LoadDoanhThuNgay()
         {
-            return (from a in _CRUDHoaDon.GetAll() where a.TrangThai == 1 || a.TrangThai == 4 || a.TrangThai == 5
-             group a by Convert.ToDateTime(a.NgayThanhToan).Date.ToString("d") into g
-             select new ViewQLThongKe()
-             {
-                 TongTien = g.Sum(c=>_banHangServices.TienThucTe(c.Id)),
-                 Ngay = g.Key
-             }).ToList();
+            try
+            {
+                return (from a in _CRUDHoaDon.GetAll()
+                        where a.TrangThai == 1 || a.TrangThai == 4 || a.TrangThai == 5
+                        group a by Convert.ToDateTime(a.NgayThanhToan).Date.ToString("d") into g
+                        select new ViewQLThongKe()
+                        {
+                            TongTien = g.Sum(c => _banHangServices.TienThucTe(c.Id)),
+                            Ngay = g.Key
+                        }).ToList();
+            }
+            catch
+            {
+                return null;
+            }          
         }
         public List<ViewQLThongKe> LoadDoanhThuThang()
         {
-            return (from a in _CRUDHoaDon.GetAll()
-                    where a.TrangThai == 1 || a.TrangThai == 4 || a.TrangThai == 5
-                    group a by Convert.ToDateTime(a.NgayThanhToan).Date.ToString("MM/yyyy") into g
-                    select new ViewQLThongKe()
-                    {
-                        TongTien = g.Sum(c => _banHangServices.TienThucTe(c.Id)),
-                        Thang = g.Key
-                    }).ToList();
+            try
+            {
+                return (from a in _CRUDHoaDon.GetAll()
+                        where a.TrangThai == 1 || a.TrangThai == 4 || a.TrangThai == 5
+                        group a by Convert.ToDateTime(a.NgayThanhToan).Date.ToString("MM/yyyy") into g
+                        select new ViewQLThongKe()
+                        {
+                            TongTien = g.Sum(c => _banHangServices.TienThucTe(c.Id)),
+                            Thang = g.Key
+                        }).ToList();
+            }          
+            catch
+            {
+                return null;
+            }
         }
         public List<ViewQLThongKe> LoadDoanhThuNam()
         {
-            return (from a in _CRUDHoaDon.GetAll()
-                    where a.TrangThai == 1 || a.TrangThai == 4 || a.TrangThai == 5
-                    group a by Convert.ToDateTime(a.NgayThanhToan).Date.ToString("yyyy") into g
-                    select new ViewQLThongKe()
-                    {
-                        TongTien = g.Sum(c => _banHangServices.TienThucTe(c.Id)),
-                        Nam = g.Key
-                    }).ToList();
+            try
+            {
+                return (from a in _CRUDHoaDon.GetAll()
+                        where a.TrangThai == 1 || a.TrangThai == 4 || a.TrangThai == 5
+                        group a by Convert.ToDateTime(a.NgayThanhToan).Date.ToString("yyyy") into g
+                        select new ViewQLThongKe()
+                        {
+                            TongTien = g.Sum(c => _banHangServices.TienThucTe(c.Id)),
+                            Nam = g.Key
+                        }).ToList();
+            }
+            catch
+            {
+                return null;
+            }         
         }
         public decimal? SumTienNgay()
         {
-            return (from a in _CRUDHoaDon.GetAll() where Convert.ToDateTime(a.NgayThanhToan).Date == DateTime.Now.Date || Convert.ToDateTime(a.NgayShip).Date == DateTime.Now.Date
-                    select  new 
-                    {
-                        TongTien = _banHangServices.TienThucTe(a.Id)
-                    }).Sum(c=>c.TongTien);
+            try
+            {
+                return (from a in _CRUDHoaDon.GetAll()
+                        where Convert.ToDateTime(a.NgayThanhToan).Date == DateTime.Now.Date || Convert.ToDateTime(a.NgayShip).Date == DateTime.Now.Date
+                        select new
+                        {
+                            TongTien = _banHangServices.TienThucTe(a.Id)
+                        }).Sum(c => c.TongTien);
+            }
+            catch
+            {
+                return null;
+            }           
         }
         public decimal? SumTienThang()
         {
-            return (from a in _CRUDHoaDon.GetAll()
-                    where Convert.ToDateTime(a.NgayThanhToan).Month == DateTime.Now.Month || Convert.ToDateTime(a.NgayShip).Month == DateTime.Now.Month
-                    select new
-                    {
-                        TongTien = _banHangServices.TienThucTe(a.Id)
-                    }).Sum(c => c.TongTien);
+            try
+            {
+                return (from a in _CRUDHoaDon.GetAll()
+                        where Convert.ToDateTime(a.NgayThanhToan).Month == DateTime.Now.Month || Convert.ToDateTime(a.NgayShip).Month == DateTime.Now.Month
+                        select new
+                        {
+                            TongTien = _banHangServices.TienThucTe(a.Id)
+                        }).Sum(c => c.TongTien);
+            }
+            catch
+            {
+                return null;
+            }          
         }
         public decimal? SumTienNam()
         {
-            return (from a in _CRUDHoaDon.GetAll()
-                    where Convert.ToDateTime(a.NgayThanhToan).Year == DateTime.Now.Year || Convert.ToDateTime(a.NgayShip).Year == DateTime.Now.Year
-                    select new
-                    {
-                        TongTien = _banHangServices.TienThucTe(a.Id)
-                    }).Sum(c => c.TongTien);
+            try
+            {
+                return (from a in _CRUDHoaDon.GetAll()
+                        where Convert.ToDateTime(a.NgayThanhToan).Year == DateTime.Now.Year || Convert.ToDateTime(a.NgayShip).Year == DateTime.Now.Year
+                        select new
+                        {
+                            TongTien = _banHangServices.TienThucTe(a.Id)
+                        }).Sum(c => c.TongTien);
+            }
+            catch
+            {
+                return null;
+            }           
         }
-        public int GetSoLuongHD()
+        public int? GetSoLuongHD()
         {
-            return _CRUDHoaDon.GetAll().Count;
+            try
+            {
+                return _CRUDHoaDon.GetAll().Count;
+            }
+            catch
+            {
+                return null;
+            }
         }
-        public int GetSoLuongHDThanhToan()
+        public int? GetSoLuongHDThanhToan()
         {
-            return _CRUDHoaDon.GetAll().Where(c => c.TrangThai == 1 || c.TrangThai == 4 || c.TrangThai == 5).ToList().Count;
+            try
+            {
+                return _CRUDHoaDon.GetAll().Where(c => c.TrangThai == 1 || c.TrangThai == 4 || c.TrangThai == 5).ToList().Count;
+
+            }
+            catch
+            {
+                return null;
+            }
         }
-        public int GetSoLuongHDHuy()
+        public int? GetSoLuongHDHuy()
         {
-            return _CRUDHoaDon.GetAll().Where(c => c.TrangThai == 2 || c.TrangThai == 6).ToList().Count;
+            try
+            {
+                return _CRUDHoaDon.GetAll().Where(c => c.TrangThai == 2 || c.TrangThai == 6).ToList().Count;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
