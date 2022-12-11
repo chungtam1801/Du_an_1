@@ -18,14 +18,14 @@ using System.Text.RegularExpressions;
 
 namespace _3.PL.Views
 {
-    public partial class Frm_KhachHang1 : Form
+    public partial class Frm_KhachHang : Form
     {
         private IQLKhachHangServices _IqlKhachHangServices;
         private IQLLichSuTichDiemServices _IqlLichSuTichDiemServices;
         private IQLHoaDonServices _IqlHoaDonServices;
         private IQLQuyDoiDiemServices _IqlQuyDoiDiemServices;
         private Guid _id;
-        public Frm_KhachHang1()
+        public Frm_KhachHang()
         {
             InitializeComponent();
             _IqlKhachHangServices = new QLKhachHangServices();

@@ -168,5 +168,10 @@ namespace _3.PL.Views
             tbx_timkiem.Text = "   Tìm kiếm sản phẩm theo tên";
             LoadData(null);
         }
+
+        private void dgrd_sanpham_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

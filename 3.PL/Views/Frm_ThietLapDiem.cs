@@ -52,5 +52,10 @@ namespace _3.PL.Views
             tbx_Tien2.Text = dtg_Diem.CurrentRow.Cells[3].Value.ToString();
             tbx_Diem.Text = dtg_Diem.CurrentRow.Cells[1].Value.ToString();
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -73,9 +73,39 @@ namespace _3.PL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _360_F_313740998_4YyWEmVFlFw6Zt14TBm1fYi1mBJu4gZz__1_ {
+            get {
+                object obj = ResourceManager.GetObject("360_F_313740998_4YyWEmVFlFw6Zt14TBm1fYi1mBJu4gZz (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _360_F_313740998_4YyWEmVFlFw6Zt14TBm1fYi1mBJu4gZz__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("360_F_313740998_4YyWEmVFlFw6Zt14TBm1fYi1mBJu4gZz (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _3668836_bill_expenses_fee_tax_108027 {
             get {
                 object obj = ResourceManager.GetObject("3668836-bill-expenses-fee-tax_108027", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _3d45c2390a378eb6686e26594d24de34 {
+            get {
+                object obj = ResourceManager.GetObject("3d45c2390a378eb6686e26594d24de34", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,6 +213,16 @@ namespace _3.PL.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap barcode_2 {
+            get {
+                object obj = ResourceManager.GetObject("barcode-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap basket_icon_icons_com_54364 {
             get {
                 object obj = ResourceManager.GetObject("basket_icon-icons.com_54364", resourceCulture);
@@ -246,6 +286,16 @@ namespace _3.PL.Properties {
         internal static System.Drawing.Bitmap dollar_icon_money_sign_isolated_260nw_1411671620 {
             get {
                 object obj = ResourceManager.GetObject("dollar-icon-money-sign-isolated-260nw-1411671620", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download {
+            get {
+                object obj = ResourceManager.GetObject("download", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -326,6 +376,16 @@ namespace _3.PL.Properties {
         internal static System.Drawing.Bitmap images__1_ {
             get {
                 object obj = ResourceManager.GetObject("images (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap istockphoto_1194891687_1024x1024 {
+            get {
+                object obj = ResourceManager.GetObject("istockphoto-1194891687-1024x1024", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -439,6 +499,26 @@ namespace _3.PL.Properties {
             get {
                 object obj = ResourceManager.GetObject("pngtree-financeinvestmentpaymentmoneydollar-line-icon - vector-is-png-image_10632" +
                         "55", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_sparkling_diamonds_png_image_3255573 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-sparkling-diamonds-png-image_3255573", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_sparkling_diamonds_png_image_32555731 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-sparkling-diamonds-png-image_32555731", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

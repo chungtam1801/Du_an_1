@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_QR));
             this.label1 = new System.Windows.Forms.Label();
             this.cbx_Camera = new System.Windows.Forms.ComboBox();
             this.ptb_QR = new System.Windows.Forms.PictureBox();
@@ -58,27 +59,30 @@
             // ptb_QR
             // 
             this.ptb_QR.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.ptb_QR.Location = new System.Drawing.Point(162, 132);
+            this.ptb_QR.Image = ((System.Drawing.Image)(resources.GetObject("ptb_QR.Image")));
+            this.ptb_QR.Location = new System.Drawing.Point(162, 83);
             this.ptb_QR.Name = "ptb_QR";
-            this.ptb_QR.Size = new System.Drawing.Size(514, 357);
+            this.ptb_QR.Size = new System.Drawing.Size(474, 454);
             this.ptb_QR.TabIndex = 2;
             this.ptb_QR.TabStop = false;
             // 
             // btn_Start
             // 
+            this.btn_Start.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.btn_Start.Location = new System.Drawing.Point(717, 132);
             this.btn_Start.Name = "btn_Start";
-            this.btn_Start.Size = new System.Drawing.Size(75, 23);
+            this.btn_Start.Size = new System.Drawing.Size(105, 48);
             this.btn_Start.TabIndex = 3;
             this.btn_Start.Text = "Start";
-            this.btn_Start.UseVisualStyleBackColor = true;
+            this.btn_Start.UseVisualStyleBackColor = false;
             this.btn_Start.Click += new System.EventHandler(this.btn_Start_Click);
             // 
             // tbx_Chuoi
             // 
-            this.tbx_Chuoi.Location = new System.Drawing.Point(717, 175);
+            this.tbx_Chuoi.Location = new System.Drawing.Point(717, 199);
+            this.tbx_Chuoi.Multiline = true;
             this.tbx_Chuoi.Name = "tbx_Chuoi";
-            this.tbx_Chuoi.Size = new System.Drawing.Size(181, 23);
+            this.tbx_Chuoi.Size = new System.Drawing.Size(181, 33);
             this.tbx_Chuoi.TabIndex = 4;
             // 
             // timer1
@@ -90,6 +94,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightCyan;
             this.ClientSize = new System.Drawing.Size(922, 540);
             this.Controls.Add(this.tbx_Chuoi);
             this.Controls.Add(this.btn_Start);
