@@ -73,9 +73,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbx_giovaoca = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btn_luu = new System.Windows.Forms.Button();
-            this.tbx_lydochenhlech = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbx_lydochenhlech = new System.Windows.Forms.TextBox();
+            this.btn_luu = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -86,7 +86,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(255)))));
+            this.panel2.BackColor = System.Drawing.Color.MediumTurquoise;
             this.panel2.Controls.Add(this.tableLayoutPanel2);
             this.panel2.Controls.Add(this.tableLayoutPanel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -114,6 +114,7 @@
             // 
             // lbl_tongtiencatruoc
             // 
+            this.lbl_tongtiencatruoc.BackColor = System.Drawing.Color.White;
             this.lbl_tongtiencatruoc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl_tongtiencatruoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_tongtiencatruoc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -196,6 +197,7 @@
             // 
             // lbl_tongtien
             // 
+            this.lbl_tongtien.BackColor = System.Drawing.Color.White;
             this.lbl_tongtien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl_tongtien.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lbl_tongtien.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -606,7 +608,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(255)))));
+            this.panel1.BackColor = System.Drawing.Color.MediumTurquoise;
             this.panel1.Controls.Add(this.lbl_giovaoca);
             this.panel1.Controls.Add(this.lbl_nhanvien);
             this.panel1.Controls.Add(this.label3);
@@ -696,6 +698,27 @@
             this.panel3.Size = new System.Drawing.Size(570, 115);
             this.panel3.TabIndex = 2;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.groupBox1.Controls.Add(this.tbx_lydochenhlech);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(570, 73);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Lý do chênh lệch";
+            // 
+            // tbx_lydochenhlech
+            // 
+            this.tbx_lydochenhlech.Location = new System.Drawing.Point(3, 20);
+            this.tbx_lydochenhlech.Multiline = true;
+            this.tbx_lydochenhlech.Name = "tbx_lydochenhlech";
+            this.tbx_lydochenhlech.Size = new System.Drawing.Size(564, 41);
+            this.tbx_lydochenhlech.TabIndex = 0;
+            // 
             // btn_luu
             // 
             this.btn_luu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(213)))), ((int)(((byte)(197)))));
@@ -703,6 +726,7 @@
             this.btn_luu.FlatAppearance.BorderSize = 2;
             this.btn_luu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(195)))), ((int)(((byte)(176)))));
             this.btn_luu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(195)))), ((int)(((byte)(176)))));
+            this.btn_luu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_luu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_luu.Image = global::_3.PL.Properties.Resources.iconfinder_check_4341282_120572__1_;
             this.btn_luu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -715,27 +739,7 @@
             this.btn_luu.UseVisualStyleBackColor = false;
             this.btn_luu.Click += new System.EventHandler(this.btn_luu_Click);
             // 
-            // tbx_lydochenhlech
-            // 
-            this.tbx_lydochenhlech.Location = new System.Drawing.Point(3, 20);
-            this.tbx_lydochenhlech.Multiline = true;
-            this.tbx_lydochenhlech.Name = "tbx_lydochenhlech";
-            this.tbx_lydochenhlech.Size = new System.Drawing.Size(564, 41);
-            this.tbx_lydochenhlech.TabIndex = 0;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.tbx_lydochenhlech);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(570, 73);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lý do chênh lệch";
-            // 
-            // Frm_QLVaoCa
+            // Frm_VaoCa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -747,8 +751,9 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "Frm_QLVaoCa";
+            this.Name = "Frm_VaoCa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VÀO CA LÀM VIỆC";
             this.panel2.ResumeLayout(false);

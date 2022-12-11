@@ -94,6 +94,7 @@ namespace _3.PL.Views
         }
         private void LoadNSX()
         {
+            cmb_nsx.Items.Clear();
             if (_iqlNsxServices.GetAll().Count == 0) return;
             foreach (var x in _iqlNsxServices.GetAll())
             {
@@ -133,6 +134,7 @@ namespace _3.PL.Views
         }
         private void LoadLoaiSP()
         {
+            cmb_loaisp.Items.Clear();
             List<LoaiSp> _lstlsp = _iqLLoaiSpServices.GetAll().Where(c=> c.MaLoaiSpcha != null).ToList();
             if (_lstlsp.Count == 0) return;
             foreach (var x in _lstlsp)
@@ -215,59 +217,77 @@ namespace _3.PL.Views
         // CRUD
         private void btn_them_Click(object sender, EventArgs e)
         {
-            if (cmb_sp.Text == "" || cmb_nsx.Text == "" || cmb_mausac.Text == "" || cmb_loaisp.Text == "" || cmb_kichthuoc.Text == "" || cmb_chatlieu.Text == "" || tbx_giaban.Text == "" || tbx_gianhap.Text == "" || tbx_soluong.Text == "")
+            try
             {
-                MessageBox.Show("Thuộc tính sản phẩm, giá nhập, giá bán, số lượng tồn không được để trống");
-            }
-            if (Convert.ToDecimal(tbx_giaban.Text) < Convert.ToDecimal(tbx_gianhap.Text))
-            {
-                MessageBox.Show("Giá bán phải lớn hơn giá nhập");
-            }
-            //if (tbx_masp.Text == _iqLChiTietSpServices.GetAllView().First(c => c.Ma == tbx_masp.Text).Ma)
-            //{
-            //    MessageBox.Show("Sản phẩm bạn nhập đã tồn tại trong ứng dụng", "Thông báo");
-            //}
-            else
-            {
-                if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+                if (cmb_sp.Text == "" || cmb_nsx.Text == "" || cmb_mausac.Text == "" || cmb_loaisp.Text == "" || cmb_kichthuoc.Text == "" || cmb_chatlieu.Text == "" || tbx_giaban.Text == "" || tbx_gianhap.Text == "" || tbx_soluong.Text == "")
                 {
-                    MessageBox.Show(_iqLChiTietSpServices.Add(GetDataFromGUI()));
+                    MessageBox.Show("Thuộc tính sản phẩm, giá nhập, giá bán, số lượng tồn không được để trống");
                 }
-                LoadData(null);
+                if (Convert.ToDecimal(tbx_giaban.Text) < Convert.ToDecimal(tbx_gianhap.Text))
+                {
+                    MessageBox.Show("Giá bán phải lớn hơn giá nhập");
+                }
+                if (_iqLChiTietSpServices.GetAll().Any(c => c.Ma == tbx_masp.Text))
+                {
+                    MessageBox.Show("Sản phẩm bạn nhập đã tồn tại trong ứng dụng", "thông báo");
+                }
+                else
+                {
+                    if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
+                    {
+                        MessageBox.Show(_iqLChiTietSpServices.Add(GetDataFromGUI()));
+                    }
+                    LoadData(null);
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void btn_sua_Click(object sender, EventArgs e)
         {
-            if (tbx_masp.Text == "")
+            try
             {
-                MessageBox.Show("Bạn chưa chọn sản phẩm nào để sửa", "Thông báo");
-            }
-            else
-            {
-                if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
+                if (tbx_masp.Text == "")
                 {
-                    MessageBox.Show(_iqLChiTietSpServices.Update(GetDataFromGUI()));
-
+                    MessageBox.Show("Bạn chưa chọn sản phẩm nào để sửa", "Thông báo");
                 }
-                LoadData(null);
-            }       
+                else
+                {
+                    if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
+                    {
+                        MessageBox.Show(_iqLChiTietSpServices.Update(GetDataFromGUI()));
+
+                    }
+                    LoadData(null);
+                }
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btn_xoa_Click(object sender, EventArgs e)
         {
-            if(tbx_masp.Text == "")
+            try
             {
-                MessageBox.Show("Bạn chưa chọn sản phẩm nào để xóa", "Thông báo");
-            }else
-            {
-                if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
+                if (tbx_masp.Text == "")
                 {
-                    MessageBox.Show(_iqLChiTietSpServices.Delete(GetDataFromGUI()));
+                    MessageBox.Show("Bạn chưa chọn sản phẩm nào để xóa", "Thông báo");
                 }
-                LoadData(null);
+                else
+                {
+                    if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
+                    {
+                        MessageBox.Show(_iqLChiTietSpServices.Delete(GetDataFromGUI()));
+                    }
+                    LoadData(null);
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
-
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -308,49 +328,55 @@ namespace _3.PL.Views
         // Cell click
         private void dgrd_ctsp_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
-            if (rowIndex >= 0 && rowIndex <_iqLChiTietSpServices.GetAllView().Count)
+            try
             {
-                var row = dgrd_ctsp.Rows[rowIndex];
-                ChiTietSp ctsp = _iqLChiTietSpServices.GetAll().First(c => c.Id == Guid.Parse(row.Cells[0].Value.ToString()));
-                SanPham sp = _iqlSanPhamServices.GetAll().First(c => c.Id == ctsp.IdSp);
-                MauSac ms = _iqlMauSacServices.GetAll().First(c => c.Id == ctsp.IdMauSac);
-                KichThuoc kt = _iqlLKichThuocServices.GetAll().First(c => c.Id == ctsp.IdKt);
-                LoaiSp lsp = _iqLLoaiSpServices.GetAll().First(c => c.Id == ctsp.IdLoaiSp);
-                Nsx nsx = _iqlNsxServices.GetAll().First(c => c.Id == ctsp.IdNsx);
-                ChatLieu cl = _iqLChatLieuServices.GetAll().First(c => c.Id == ctsp.IdClieu);
-                _id = ctsp.Id;
-                tbx_masp.Text = ctsp.Ma;
-                cmb_sp.Text = sp.Ten;
-                cmb_mausac.Text = ms.Ten;
-                cmb_kichthuoc.Text = kt.Size;
-                cmb_loaisp.Text = lsp.Ten;
-                cmb_nsx.Text = nsx.Ten;
-                cmb_chatlieu.Text = cl.Ten;
-                tbx_mota.Text = ctsp.MoTa;
-                tbx_soluong.Text = ctsp.SoLuongTon.ToString();
-                tbx_gianhap.Text = ctsp.GiaNhap.ToString();
-                tbx_giaban.Text = ctsp.GiaBan.ToString();
-                //ẢNh
-                if (ctsp.Anh == null)
+                int rowIndex = e.RowIndex;
+                if (rowIndex >= 0 && rowIndex < _iqLChiTietSpServices.GetAllView().Count)
                 {
-                    pic_anhsp.Image = null;
+                    var row = dgrd_ctsp.Rows[rowIndex];
+                    ChiTietSp ctsp = _iqLChiTietSpServices.GetAll().First(c => c.Id == Guid.Parse(row.Cells[0].Value.ToString()));
+                    SanPham sp = _iqlSanPhamServices.GetAll().First(c => c.Id == ctsp.IdSp);
+                    MauSac ms = _iqlMauSacServices.GetAll().First(c => c.Id == ctsp.IdMauSac);
+                    KichThuoc kt = _iqlLKichThuocServices.GetAll().First(c => c.Id == ctsp.IdKt);
+                    LoaiSp lsp = _iqLLoaiSpServices.GetAll().First(c => c.Id == ctsp.IdLoaiSp);
+                    Nsx nsx = _iqlNsxServices.GetAll().First(c => c.Id == ctsp.IdNsx);
+                    ChatLieu cl = _iqLChatLieuServices.GetAll().First(c => c.Id == ctsp.IdClieu);
+                    _id = ctsp.Id;
+                    tbx_masp.Text = ctsp.Ma;
+                    cmb_sp.Text = sp.Ten;
+                    cmb_mausac.Text = ms.Ten;
+                    cmb_kichthuoc.Text = kt.Size;
+                    cmb_loaisp.Text = lsp.Ten;
+                    cmb_nsx.Text = nsx.Ten;
+                    cmb_chatlieu.Text = cl.Ten;
+                    tbx_mota.Text = ctsp.MoTa;
+                    tbx_soluong.Text = ctsp.SoLuongTon.ToString();
+                    tbx_gianhap.Text = ctsp.GiaNhap.ToString();
+                    tbx_giaban.Text = ctsp.GiaBan.ToString();
+                    //ẢNh
+                    if (ctsp.Anh == null)
+                    {
+                        pic_anhsp.Image = null;
+                    }
+                    else
+                    {
+                        MemoryStream memoryStream = new MemoryStream(ctsp.Anh.ToArray());
+                        Image img = Image.FromStream(memoryStream);
+                        if (img == null) return;
+                        pic_anhsp.Image = img;
+                    }
+                    if (ctsp.TrangThai == 1)
+                    {
+                        rbtn_hd.Checked = true;
+                    }
+                    else if (ctsp.TrangThai == 0)
+                    {
+                        rbtn_kohd.Checked = true;
+                    }
                 }
-                else
-                {
-                    MemoryStream memoryStream = new MemoryStream(ctsp.Anh.ToArray());
-                    Image img = Image.FromStream(memoryStream);
-                    if (img == null) return;
-                    pic_anhsp.Image = img;
-                }
-                if (ctsp.TrangThai == 1)
-                {
-                    rbtn_hd.Checked = true;
-                }
-                else if (ctsp.TrangThai == 0)
-                {
-                    rbtn_kohd.Checked = true;
-                }
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         // Thêm nhanh các thuộc tính

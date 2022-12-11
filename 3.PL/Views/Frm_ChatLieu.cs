@@ -225,6 +225,11 @@ namespace _3.PL.Views
         {
             tbt_Ma.Text = MaTuSinh();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

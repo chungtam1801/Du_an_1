@@ -50,53 +50,65 @@ namespace _3.PL.Views
             tbx_ttien2.Text = "0";
             tbx_ttien1.Text = "0";
 
-            if (_iQLGiaoCaServices.GetAll().Count == 0)
+            try
             {
-                lbl_tongtien.Text = "0";
-            }
-            else
-            {
-                List<GiaoCa> ca = _iQLGiaoCaServices.GetAll().OrderByDescending(c => c.ThoiGianKetCa).ToList();
-                if (ca[0].IdNguoiGiaoCa != null)
+                if (_iQLGiaoCaServices.GetAll().Count == 0)
                 {
-                    _thoigian = Convert.ToDateTime(ca[0].ThoiGianKetCa);
-                    if (DateTime.Now.Day == _thoigian.Day)
+                    lbl_tongtien.Text = "0";
+                }
+                else
+                {
+                    List<GiaoCa> ca = _iQLGiaoCaServices.GetAll().OrderByDescending(c => c.ThoiGianKetCa).ToList();
+                    if (ca[0].IdNguoiGiaoCa != null)
                     {
-                        string tien = string.Format("{0:0,00}", ca[0].TienCuoiCa);
-                        lbl_tongtiencatruoc.Text = tien;
-                        tbx_lydochenhlech.Enabled = true;
-                    }
-                    else
-                    {
-                        lbl_tongtiencatruoc.Text = "000";
+                        _thoigian = Convert.ToDateTime(ca[0].ThoiGianKetCa);
+                        if (DateTime.Now.Day == _thoigian.Day)
+                        {
+                            string tien = string.Format("{0:0,00}", ca[0].TienCuoiCa);
+                            lbl_tongtiencatruoc.Text = tien;
+                            tbx_lydochenhlech.Enabled = true;
+                        }
+                        else
+                        {
+                            lbl_tongtiencatruoc.Text = "000";
+                        }
                     }
                 }
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void btn_luu_Click(object sender, EventArgs e)
         {
-            if (lbl_tongtien.Text == "000")
+            try
             {
-                MessageBox.Show("Chưa nhập tiền vào ca");
-            }
-            else if (lbl_tongtiencatruoc.Text != lbl_tongtien.Text && String.IsNullOrEmpty(tbx_lydochenhlech.Text) == true && DateTime.Now.Day == _thoigian.Day)
-            {
-                MessageBox.Show("Có tiền chênh lệch đầu ca với tiền ca trước, nhập lý do");
-            }
-            else
-            {
-                if (DialogResult.OK == MessageBox.Show("Bạn có chắc chắn muốn vào ca?", "", MessageBoxButtons.OKCancel))
+                if (lbl_tongtien.Text == "000")
                 {
-                    GiaoCa giaoca = new GiaoCa();
-                    giaoca.IdNguoiNhanCa = _iQLNhanVienServices.GetAll().First(c => c.Ma == lbl_nhanvien.Text).Id;
-                    giaoca.TienDauca = Convert.ToDecimal(lbl_tongtien.Text);
-                    giaoca.ThoiGianVaoCa = Convert.ToDateTime(lbl_giovaoca.Text);
-                    giaoca.GhiChu = tbx_lydochenhlech.Text;
-                    giaoca.TrangThai = 0;
-                    MessageBox.Show(_iQLGiaoCaServices.Add(giaoca), "Thông báo");
-                    frm_Main.lbl_tientaiquay.Text = lbl_tongtien.Text;
-                    this.Close();
+                    MessageBox.Show("Chưa nhập tiền vào ca");
                 }
+                else if (lbl_tongtiencatruoc.Text != lbl_tongtien.Text && String.IsNullOrEmpty(tbx_lydochenhlech.Text) == true && DateTime.Now.Day == _thoigian.Day)
+                {
+                    MessageBox.Show("Có tiền chênh lệch đầu ca với tiền ca trước, nhập lý do");
+                }
+                else
+                {
+                    if (DialogResult.OK == MessageBox.Show("Bạn có chắc chắn muốn vào ca?", "", MessageBoxButtons.OKCancel))
+                    {
+                        GiaoCa giaoca = new GiaoCa();
+                        giaoca.IdNguoiNhanCa = _iQLNhanVienServices.GetAll().First(c => c.Ma == lbl_nhanvien.Text).Id;
+                        giaoca.TienDauca = Convert.ToDecimal(lbl_tongtien.Text);
+                        giaoca.ThoiGianVaoCa = Convert.ToDateTime(lbl_giovaoca.Text);
+                        giaoca.GhiChu = tbx_lydochenhlech.Text;
+                        giaoca.TrangThai = 0;
+                        MessageBox.Show(_iQLGiaoCaServices.Add(giaoca), "Thông báo");
+                        frm_Main.lbl_tientaiquay.Text = lbl_tongtien.Text;
+                        this.Close();
+                    }
+                }
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
