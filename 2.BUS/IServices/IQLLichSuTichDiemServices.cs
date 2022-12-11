@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using _1.DAL.DomainClass;
+using _2.BUS.ViewModels;
 
 namespace _2.BUS.IServices
 {
@@ -13,6 +14,8 @@ namespace _2.BUS.IServices
         string Update(LichSuTichDiem obj);
         string Delete(LichSuTichDiem obj);
         List<LichSuTichDiem> GetAll();
+      //Lam Them
+        List<ViewQLLichSuTichDiem> GetAllView(Guid idkh);
         LichSuTichDiem GetByID(Guid id);
     }
 }

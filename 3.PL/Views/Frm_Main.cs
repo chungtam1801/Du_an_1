@@ -48,7 +48,7 @@ namespace _3.PL.Views
             lbl_Ten.Text = nv.Ho + " " + nv.TenDem + " " + nv.Ten;
             pnl_menucon.Visible = false;
             tbx_giohethong.Text = Convert.ToString(DateTime.Now);
-            Frm_QLVaoCa frm_QLVaoCa = new Frm_QLVaoCa(nv);
+            Frm_VaoCa frm_QLVaoCa = new Frm_VaoCa(nv);
             frm_QLVaoCa.frm_Main = this;
             if(_iQLChucVuServices.GetByID(nv.IdCv).Ten=="Nhân viên")
             {
@@ -277,6 +277,17 @@ namespace _3.PL.Views
             //pnl_Nav.Left = btn_nhanvien.Left;
             //btn_nhanvien.BackColor = Color.FromArgb(46, 51, 73);
             OpenChildForm(new Frm_KetCa(), sender);
+        }
+
+        private void btn_thongke_Click(object sender, EventArgs e)
+        {
+            hideMenuCon();
+            pnl_Nav.Height = btn_thongke.Height;
+            pnl_Nav.Top = btn_thongke.Top;
+            pnl_Nav.Left = btn_thongke.Left;
+            btn_thongke.BackColor = Color.FromArgb(46, 51, 73);
+            lbl_tilte.Text = "THỐNG KÊ";
+            OpenChildForm(new Frm_ThongKe(), sender);
         }
 
 

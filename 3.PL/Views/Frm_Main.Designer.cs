@@ -58,6 +58,7 @@
             this.tbx_giohethong = new System.Windows.Forms.TextBox();
             this.lbl_tilte = new System.Windows.Forms.Label();
             this.pnl_desktop = new System.Windows.Forms.Panel();
+            this.btn_thongke = new System.Windows.Forms.Button();
             this.pnl_menu.SuspendLayout();
             this.pnl_menucon.SuspendLayout();
             this.pnl_user.SuspendLayout();
@@ -68,6 +69,7 @@
             // pnl_menu
             // 
             this.pnl_menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.pnl_menu.Controls.Add(this.btn_thongke);
             this.pnl_menu.Controls.Add(this.btn_ketca);
             this.pnl_menu.Controls.Add(this.btn_QLTichDiem);
             this.pnl_menu.Controls.Add(this.btn_khuyenmai);
@@ -90,14 +92,16 @@
             this.btn_ketca.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_ketca.FlatAppearance.BorderSize = 0;
             this.btn_ketca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_ketca.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_ketca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_ketca.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_ketca.Image = ((System.Drawing.Image)(resources.GetObject("btn_ketca.Image")));
+            this.btn_ketca.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_ketca.Location = new System.Drawing.Point(0, 731);
             this.btn_ketca.Name = "btn_ketca";
             this.btn_ketca.Size = new System.Drawing.Size(190, 45);
             this.btn_ketca.TabIndex = 16;
-            this.btn_ketca.Text = "            KẾT CA";
+            this.btn_ketca.Text = "KẾT CA";
+            this.btn_ketca.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_ketca.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btn_ketca.UseVisualStyleBackColor = false;
             this.btn_ketca.Click += new System.EventHandler(this.btn_ketca_Click_1);
@@ -108,14 +112,16 @@
             this.btn_QLTichDiem.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_QLTichDiem.FlatAppearance.BorderSize = 0;
             this.btn_QLTichDiem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_QLTichDiem.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_QLTichDiem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_QLTichDiem.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_QLTichDiem.Image = ((System.Drawing.Image)(resources.GetObject("btn_QLTichDiem.Image")));
+            this.btn_QLTichDiem.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_QLTichDiem.Location = new System.Drawing.Point(0, 686);
             this.btn_QLTichDiem.Name = "btn_QLTichDiem";
             this.btn_QLTichDiem.Size = new System.Drawing.Size(190, 45);
             this.btn_QLTichDiem.TabIndex = 15;
             this.btn_QLTichDiem.Text = "QL TÍCH ĐIỂM";
+            this.btn_QLTichDiem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_QLTichDiem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btn_QLTichDiem.UseVisualStyleBackColor = false;
             this.btn_QLTichDiem.Click += new System.EventHandler(this.btn_QLTichDiem_Click);
@@ -126,14 +132,16 @@
             this.btn_khuyenmai.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_khuyenmai.FlatAppearance.BorderSize = 0;
             this.btn_khuyenmai.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_khuyenmai.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_khuyenmai.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_khuyenmai.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_khuyenmai.Image = ((System.Drawing.Image)(resources.GetObject("btn_khuyenmai.Image")));
+            this.btn_khuyenmai.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_khuyenmai.Location = new System.Drawing.Point(0, 641);
             this.btn_khuyenmai.Name = "btn_khuyenmai";
             this.btn_khuyenmai.Size = new System.Drawing.Size(190, 45);
             this.btn_khuyenmai.TabIndex = 13;
-            this.btn_khuyenmai.Text = " KHUYẾN MÃI";
+            this.btn_khuyenmai.Text = "KHUYẾN MÃI";
+            this.btn_khuyenmai.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_khuyenmai.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btn_khuyenmai.UseVisualStyleBackColor = false;
             this.btn_khuyenmai.Click += new System.EventHandler(this.btn_khuyenmai_Click);
@@ -145,14 +153,16 @@
             this.btn_khachhang.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_khachhang.FlatAppearance.BorderSize = 0;
             this.btn_khachhang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_khachhang.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_khachhang.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_khachhang.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_khachhang.Image = ((System.Drawing.Image)(resources.GetObject("btn_khachhang.Image")));
+            this.btn_khachhang.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_khachhang.Location = new System.Drawing.Point(0, 596);
             this.btn_khachhang.Name = "btn_khachhang";
             this.btn_khachhang.Size = new System.Drawing.Size(190, 45);
             this.btn_khachhang.TabIndex = 12;
             this.btn_khachhang.Text = "KHÁCH HÀNG";
+            this.btn_khachhang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_khachhang.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btn_khachhang.UseVisualStyleBackColor = false;
             this.btn_khachhang.Click += new System.EventHandler(this.btn_khachhang_Click_1);
@@ -164,14 +174,16 @@
             this.btn_nhanvien.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_nhanvien.FlatAppearance.BorderSize = 0;
             this.btn_nhanvien.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_nhanvien.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_nhanvien.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_nhanvien.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_nhanvien.Image = ((System.Drawing.Image)(resources.GetObject("btn_nhanvien.Image")));
+            this.btn_nhanvien.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_nhanvien.Location = new System.Drawing.Point(0, 551);
             this.btn_nhanvien.Name = "btn_nhanvien";
             this.btn_nhanvien.Size = new System.Drawing.Size(190, 45);
             this.btn_nhanvien.TabIndex = 11;
             this.btn_nhanvien.Text = "NHÂN VIÊN";
+            this.btn_nhanvien.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_nhanvien.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btn_nhanvien.UseVisualStyleBackColor = false;
             this.btn_nhanvien.Click += new System.EventHandler(this.btn_nhanvien_Click_1);
@@ -198,7 +210,7 @@
             this.btn_kichthuoc.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_kichthuoc.FlatAppearance.BorderSize = 0;
             this.btn_kichthuoc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_kichthuoc.Font = new System.Drawing.Font("Noto Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_kichthuoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_kichthuoc.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_kichthuoc.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_kichthuoc.Location = new System.Drawing.Point(0, 225);
@@ -219,7 +231,7 @@
             this.btn_mausac.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_mausac.FlatAppearance.BorderSize = 0;
             this.btn_mausac.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_mausac.Font = new System.Drawing.Font("Noto Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_mausac.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_mausac.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_mausac.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_mausac.Location = new System.Drawing.Point(0, 180);
@@ -240,7 +252,7 @@
             this.btn_clieu.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_clieu.FlatAppearance.BorderSize = 0;
             this.btn_clieu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_clieu.Font = new System.Drawing.Font("Noto Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_clieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_clieu.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_clieu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_clieu.Location = new System.Drawing.Point(0, 135);
@@ -261,7 +273,7 @@
             this.btn_lsp.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_lsp.FlatAppearance.BorderSize = 0;
             this.btn_lsp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_lsp.Font = new System.Drawing.Font("Noto Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_lsp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_lsp.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_lsp.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_lsp.Location = new System.Drawing.Point(0, 90);
@@ -282,7 +294,7 @@
             this.btn_nsx.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_nsx.FlatAppearance.BorderSize = 0;
             this.btn_nsx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_nsx.Font = new System.Drawing.Font("Noto Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_nsx.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_nsx.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_nsx.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_nsx.Location = new System.Drawing.Point(0, 45);
@@ -303,7 +315,7 @@
             this.btn_sp.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_sp.FlatAppearance.BorderSize = 0;
             this.btn_sp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_sp.Font = new System.Drawing.Font("Noto Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_sp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_sp.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_sp.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_sp.Location = new System.Drawing.Point(0, 0);
@@ -324,14 +336,16 @@
             this.btn_thuoctinh.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_thuoctinh.FlatAppearance.BorderSize = 0;
             this.btn_thuoctinh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_thuoctinh.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_thuoctinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_thuoctinh.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_thuoctinh.Image = ((System.Drawing.Image)(resources.GetObject("btn_thuoctinh.Image")));
+            this.btn_thuoctinh.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_thuoctinh.Location = new System.Drawing.Point(0, 234);
             this.btn_thuoctinh.Name = "btn_thuoctinh";
             this.btn_thuoctinh.Size = new System.Drawing.Size(190, 45);
             this.btn_thuoctinh.TabIndex = 4;
             this.btn_thuoctinh.Text = "QL THUỘC TÍNH";
+            this.btn_thuoctinh.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_thuoctinh.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btn_thuoctinh.UseVisualStyleBackColor = false;
             this.btn_thuoctinh.Click += new System.EventHandler(this.btn_thuoctinh_Click_1);
@@ -343,14 +357,16 @@
             this.btn_sanpham.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_sanpham.FlatAppearance.BorderSize = 0;
             this.btn_sanpham.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_sanpham.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_sanpham.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_sanpham.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_sanpham.Image = ((System.Drawing.Image)(resources.GetObject("btn_sanpham.Image")));
+            this.btn_sanpham.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_sanpham.Location = new System.Drawing.Point(0, 189);
             this.btn_sanpham.Name = "btn_sanpham";
             this.btn_sanpham.Size = new System.Drawing.Size(190, 45);
             this.btn_sanpham.TabIndex = 3;
             this.btn_sanpham.Text = "QL SẢN PHẨM";
+            this.btn_sanpham.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_sanpham.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btn_sanpham.UseVisualStyleBackColor = false;
             this.btn_sanpham.Click += new System.EventHandler(this.btn_sanpham_Click);
@@ -362,14 +378,16 @@
             this.btn_banHang.Dock = System.Windows.Forms.DockStyle.Top;
             this.btn_banHang.FlatAppearance.BorderSize = 0;
             this.btn_banHang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_banHang.Font = new System.Drawing.Font("Noto Sans", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_banHang.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_banHang.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.btn_banHang.Image = ((System.Drawing.Image)(resources.GetObject("btn_banHang.Image")));
+            this.btn_banHang.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_banHang.Location = new System.Drawing.Point(0, 144);
             this.btn_banHang.Name = "btn_banHang";
             this.btn_banHang.Size = new System.Drawing.Size(190, 45);
             this.btn_banHang.TabIndex = 2;
-            this.btn_banHang.Text = "      BÁN HÀNG";
+            this.btn_banHang.Text = "BÁN HÀNG";
+            this.btn_banHang.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_banHang.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btn_banHang.UseVisualStyleBackColor = false;
             this.btn_banHang.Click += new System.EventHandler(this.btn_banHang_Click);
@@ -522,6 +540,26 @@
             this.pnl_desktop.Size = new System.Drawing.Size(1160, 746);
             this.pnl_desktop.TabIndex = 5;
             // 
+            // btn_thongke
+            // 
+            this.btn_thongke.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.btn_thongke.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_thongke.FlatAppearance.BorderSize = 0;
+            this.btn_thongke.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_thongke.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btn_thongke.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btn_thongke.Image = ((System.Drawing.Image)(resources.GetObject("btn_thongke.Image")));
+            this.btn_thongke.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_thongke.Location = new System.Drawing.Point(0, 776);
+            this.btn_thongke.Name = "btn_thongke";
+            this.btn_thongke.Size = new System.Drawing.Size(190, 45);
+            this.btn_thongke.TabIndex = 17;
+            this.btn_thongke.Text = "THỐNG KÊ";
+            this.btn_thongke.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_thongke.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btn_thongke.UseVisualStyleBackColor = false;
+            this.btn_thongke.Click += new System.EventHandler(this.btn_thongke_Click);
+            // 
             // Frm_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -582,5 +620,6 @@
         public System.Windows.Forms.Label lbl_doanhthuca;
         public System.Windows.Forms.Label lbl_doanhthungay;
         public System.Windows.Forms.Label lbl_tientaiquay;
+        private System.Windows.Forms.Button btn_thongke;
     }
 }

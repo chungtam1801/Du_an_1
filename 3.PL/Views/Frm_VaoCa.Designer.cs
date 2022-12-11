@@ -1,6 +1,6 @@
 ﻿namespace _3.PL.Views
 {
-    partial class Frm_QLVaoCa
+    partial class Frm_VaoCa
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbl_tongtiencatruoc = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbl_tongtien = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -70,10 +73,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbx_giovaoca = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.tbx_lydochenhlech = new System.Windows.Forms.TextBox();
             this.btn_luu = new System.Windows.Forms.Button();
+            this.tbx_lydochenhlech = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel2.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -83,13 +87,55 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(255)))));
+            this.panel2.Controls.Add(this.tableLayoutPanel2);
             this.panel2.Controls.Add(this.tableLayoutPanel1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 94);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(570, 463);
+            this.panel2.Size = new System.Drawing.Size(570, 516);
             this.panel2.TabIndex = 1;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.55046F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.44954F));
+            this.tableLayoutPanel2.Controls.Add(this.lbl_tongtiencatruoc, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label16, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 467);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(545, 43);
+            this.tableLayoutPanel2.TabIndex = 2;
+            // 
+            // lbl_tongtiencatruoc
+            // 
+            this.lbl_tongtiencatruoc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_tongtiencatruoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lbl_tongtiencatruoc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lbl_tongtiencatruoc.Location = new System.Drawing.Point(333, 1);
+            this.lbl_tongtiencatruoc.Name = "lbl_tongtiencatruoc";
+            this.lbl_tongtiencatruoc.Size = new System.Drawing.Size(208, 41);
+            this.lbl_tongtiencatruoc.TabIndex = 33;
+            this.lbl_tongtiencatruoc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(114)))), ((int)(((byte)(142)))));
+            this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label16.ForeColor = System.Drawing.Color.White;
+            this.label16.Location = new System.Drawing.Point(4, 1);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(322, 41);
+            this.label16.TabIndex = 32;
+            this.label16.Text = "Tiền của ca trước";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel1
             // 
@@ -645,35 +691,14 @@
             this.panel3.Controls.Add(this.groupBox1);
             this.panel3.Controls.Add(this.btn_luu);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 557);
+            this.panel3.Location = new System.Drawing.Point(0, 610);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(570, 111);
+            this.panel3.Size = new System.Drawing.Size(570, 115);
             this.panel3.TabIndex = 2;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.tbx_lydochenhlech);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(570, 57);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lý do chênh lệch";
-            // 
-            // tbx_lydochenhlech
-            // 
-            this.tbx_lydochenhlech.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbx_lydochenhlech.Location = new System.Drawing.Point(3, 20);
-            this.tbx_lydochenhlech.Multiline = true;
-            this.tbx_lydochenhlech.Name = "tbx_lydochenhlech";
-            this.tbx_lydochenhlech.Size = new System.Drawing.Size(564, 34);
-            this.tbx_lydochenhlech.TabIndex = 0;
             // 
             // btn_luu
             // 
             this.btn_luu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(213)))), ((int)(((byte)(197)))));
-            this.btn_luu.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btn_luu.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(213)))), ((int)(((byte)(197)))));
             this.btn_luu.FlatAppearance.BorderSize = 2;
             this.btn_luu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(195)))), ((int)(((byte)(176)))));
@@ -681,22 +706,43 @@
             this.btn_luu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btn_luu.Image = global::_3.PL.Properties.Resources.iconfinder_check_4341282_120572__1_;
             this.btn_luu.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_luu.Location = new System.Drawing.Point(0, 63);
+            this.btn_luu.Location = new System.Drawing.Point(0, 67);
             this.btn_luu.Name = "btn_luu";
-            this.btn_luu.Size = new System.Drawing.Size(570, 48);
+            this.btn_luu.Size = new System.Drawing.Size(570, 45);
             this.btn_luu.TabIndex = 0;
             this.btn_luu.Text = "Lưu";
             this.btn_luu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_luu.UseVisualStyleBackColor = false;
             this.btn_luu.Click += new System.EventHandler(this.btn_luu_Click);
             // 
+            // tbx_lydochenhlech
+            // 
+            this.tbx_lydochenhlech.Location = new System.Drawing.Point(3, 20);
+            this.tbx_lydochenhlech.Multiline = true;
+            this.tbx_lydochenhlech.Name = "tbx_lydochenhlech";
+            this.tbx_lydochenhlech.Size = new System.Drawing.Size(564, 41);
+            this.tbx_lydochenhlech.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.tbx_lydochenhlech);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(570, 73);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Lý do chênh lệch";
+            // 
             // Frm_QLVaoCa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(241)))), ((int)(((byte)(255)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(570, 668);
+            this.ClientSize = new System.Drawing.Size(570, 721);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -706,6 +752,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VÀO CA LÀM VIỆC";
             this.panel2.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -756,13 +804,16 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbx_giovaoca;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btn_luu;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox tbx_tongtien;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox tbx_lydochenhlech;
         private System.Windows.Forms.Label lbl_giovaoca;
         private System.Windows.Forms.Label lbl_nhanvien;
         private System.Windows.Forms.Label lbl_tongtien;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label lbl_tongtiencatruoc;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox tbx_lydochenhlech;
+        private System.Windows.Forms.Button btn_luu;
     }
 }

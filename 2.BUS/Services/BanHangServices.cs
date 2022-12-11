@@ -232,7 +232,8 @@ namespace _2.BUS.Services
                     lichSuTichDiem.IdHd = hoaDon.Id;
                     lichSuTichDiem.IdKh = khachHang.Id;
                     lichSuTichDiem.Diem = diem;
-                    khachHang.DiemTich += diem;
+                lichSuTichDiem.IdKh = khachHang.Id;
+                khachHang.DiemTich += diem;
                     _CRUDKhachHang.Update(khachHang);
                     _CRUDLSTD.Add(lichSuTichDiem);
                 }       
@@ -248,6 +249,7 @@ namespace _2.BUS.Services
                 lichSuTichDiem.Diem = -diemSD;
                 lichSuTichDiem.IdKh = khachHang.Id;
                 khachHang.DiemTich -= diemSD;
+                lichSuTichDiem.IdKh = khachHang.Id;
                 _CRUDKhachHang.Update(khachHang);
                 _CRUDLSTD.Add(lichSuTichDiem);
             }
