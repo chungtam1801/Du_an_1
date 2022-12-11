@@ -38,7 +38,6 @@ namespace _3.PL.Views
         }
         private void Frm_ThongKe_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(_thongKeServices.SumTienNgay().ToString());
             lb_tongdoanhthungay.Text = _thongKeServices.SumTienNgay().ToString();
             lb_tongdoanhthuthang.Text = _thongKeServices.SumTienThang().ToString();
             lb_tongdoanhthunam.Text = _thongKeServices.SumTienNam().ToString();

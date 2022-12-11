@@ -244,67 +244,79 @@ namespace _3.PL.Views
         }
         private void btn_resetca_Click(object sender, EventArgs e)
         {
-            decimal tienchenhlech = Convert.ToDecimal(tbx_chenhlechtienmat.Text);
-            if (tbx_tongtien.Text == "")
+            try
             {
-                MessageBox.Show("Bạn chưa kê khai tiền mặt cuối ca");
-            }
-            else if (tienchenhlech != 0 && String.IsNullOrEmpty(tbx_ghichu.Text) == true)
+                decimal tienchenhlech = Convert.ToDecimal(tbx_chenhlechtienmat.Text);
+                if (tbx_tongtien.Text == "")
+                {
+                    MessageBox.Show("Bạn chưa kê khai tiền mặt cuối ca");
+                }
+                else if (tienchenhlech != 0 && String.IsNullOrEmpty(tbx_ghichu.Text) == true)
+                {
+                    MessageBox.Show("Bạn chưa nhập lý do có tiền phát sinh");
+                }
+                else if (DialogResult.Yes == MessageBox.Show("Bạn chắc chắn muốn kết ca và Reset lại toàn bộ dữ liệu trong ngày?", "", MessageBoxButtons.YesNo))
+                {
+                    GiaoCa giaoca = new GiaoCa();
+                    giaoca.Id = _id;
+                    giaoca.GhiChu = tbx_ghichu.Text;
+                    giaoca.ThoiGianVaoCa = Convert.ToDateTime(tbx_giovao.Text);
+                    giaoca.TienDauca = Convert.ToDecimal(tbx_tiendauca.Text);
+                    giaoca.TienCuoiCa = Convert.ToDecimal(tbx_tongtien.Text);
+                    giaoca.ThoiGianKetCa = DateTime.Now;
+                    giaoca.SoHoaDon = Convert.ToInt32(tbx_soluonghoadon.Text);
+                    giaoca.Tongtienhang = Convert.ToDecimal(tbx_tongtienhang.Text);
+                    giaoca.Tienmat = Convert.ToDecimal(tbx_trabangtienmat.Text);
+                    giaoca.Nganhang = Convert.ToDecimal(tbx_trabangnganhang.Text);
+                    giaoca.TienSDDiem = tbx_tiensddiem.Text == "" ? 0 : Convert.ToDecimal(tbx_tiensddiem.Text);
+                    giaoca.TongTienMat = Convert.ToDecimal(tbx_ttienmatcuoica.Text);
+                    giaoca.TrangThai = 0;
+                    MessageBox.Show(_iQLGiaoCaServices.Update(giaoca), "Thông báo");
+                }
+            }catch (Exception ex)
             {
-                MessageBox.Show("Bạn chưa nhập lý do có tiền phát sinh");
-            }
-            else if (DialogResult.Yes == MessageBox.Show("Bạn chắc chắn muốn kết ca và Reset lại toàn bộ dữ liệu trong ngày?", "", MessageBoxButtons.YesNo))
-            {
-                GiaoCa giaoca = new GiaoCa();
-                giaoca.Id = _id;
-                giaoca.GhiChu = tbx_ghichu.Text;
-                giaoca.ThoiGianVaoCa = Convert.ToDateTime(tbx_giovao.Text);
-                giaoca.TienDauca = Convert.ToDecimal(tbx_tiendauca.Text);
-                giaoca.TienCuoiCa = Convert.ToDecimal(tbx_tongtien.Text);
-                giaoca.ThoiGianKetCa = DateTime.Now;
-                giaoca.SoHoaDon = Convert.ToInt32(tbx_soluonghoadon.Text);
-                giaoca.Tongtienhang = Convert.ToDecimal(tbx_tongtienhang.Text);
-                giaoca.Tienmat = Convert.ToDecimal(tbx_trabangtienmat.Text);
-                giaoca.Nganhang = Convert.ToDecimal(tbx_trabangnganhang.Text);
-                giaoca.TienSDDiem = tbx_tiensddiem.Text == "" ? 0 : Convert.ToDecimal(tbx_tiensddiem.Text);
-                giaoca.TongTienMat = Convert.ToDecimal(tbx_ttienmatcuoica.Text);
-                giaoca.TrangThai = 0;
-                MessageBox.Show(_iQLGiaoCaServices.Update(giaoca), "Thông báo");
+                MessageBox.Show(ex.Message);
             }
         }
         private void btn_ketca_Click(object sender, EventArgs e)
         {
-            decimal tienchenhlech = Convert.ToDecimal(tbx_chenhlechtienmat.Text);
-            if (Convert.ToDecimal(tbx_tongtien.Text) == 0)
+            try
             {
-                MessageBox.Show("Bạn chưa kê khai tiền mặt cuối ca");
-            }
-            else if (String.IsNullOrEmpty(cmb_nvbangiao.Text))
+                decimal tienchenhlech = Convert.ToDecimal(tbx_chenhlechtienmat.Text);
+                if (Convert.ToDecimal(tbx_tongtien.Text) == 0)
+                {
+                    MessageBox.Show("Bạn chưa kê khai tiền mặt cuối ca");
+                }
+                else if (String.IsNullOrEmpty(cmb_nvbangiao.Text))
+                {
+                    MessageBox.Show("Bạn chưa chọn người bàn giao ca");
+                }
+                else if (tienchenhlech != 0 && String.IsNullOrEmpty(tbx_ghichu.Text) == true)
+                {
+                    MessageBox.Show("Bạn chưa nhập lý do có tiền phát sinh");
+                }
+                else if (DialogResult.Yes == MessageBox.Show("Bạn chắc chắn muốn kết ca?", "", MessageBoxButtons.YesNo))
+                {
+                    GiaoCa giaoca = new GiaoCa();
+                    giaoca.Id = _id;
+                    giaoca.IdNguoiGiaoCa = _iQLNhanVienServices.GetAll().First(c => c.Ma == cmb_nvbangiao.Text).Id;
+                    giaoca.GhiChu = tbx_ghichu.Text;
+                    giaoca.ThoiGianVaoCa = Convert.ToDateTime(tbx_giovao.Text);
+                    giaoca.TienDauca = Convert.ToDecimal(tbx_tiendauca.Text);
+                    giaoca.TienCuoiCa = Convert.ToDecimal(tbx_tongtien.Text);
+                    giaoca.ThoiGianKetCa = DateTime.Now;
+                    giaoca.SoHoaDon = Convert.ToInt32(tbx_soluonghoadon.Text);
+                    giaoca.Tongtienhang = Convert.ToDecimal(tbx_tongtienhang.Text);
+                    giaoca.Tienmat = Convert.ToDecimal(tbx_trabangtienmat.Text);
+                    giaoca.Nganhang = Convert.ToDecimal(tbx_trabangnganhang.Text);
+                    giaoca.TienSDDiem = tbx_tiensddiem.Text == "" ? 0 : Convert.ToDecimal(tbx_tiensddiem.Text);
+                    giaoca.TongTienMat = Convert.ToDecimal(tbx_ttienmatcuoica.Text);
+                    giaoca.TrangThai = 0;
+                    MessageBox.Show(_iQLGiaoCaServices.Update(giaoca), "Thông báo");
+                }
+            }catch (Exception ex)
             {
-                MessageBox.Show("Bạn chưa chọn người bàn giao ca");
-            }
-            else if (tienchenhlech != 0 && String.IsNullOrEmpty(tbx_ghichu.Text) == true)
-            {
-                MessageBox.Show("Bạn chưa nhập lý do có tiền phát sinh");
-            }
-            else if (DialogResult.Yes == MessageBox.Show("Bạn chắc chắn muốn kết ca?", "", MessageBoxButtons.YesNo))
-            {
-                GiaoCa giaoca = new GiaoCa();
-                giaoca.Id = _id;
-                giaoca.IdNguoiGiaoCa = _iQLNhanVienServices.GetAll().First(c => c.Ma == cmb_nvbangiao.Text).Id;
-                giaoca.GhiChu = tbx_ghichu.Text;
-                giaoca.ThoiGianVaoCa = Convert.ToDateTime(tbx_giovao.Text);
-                giaoca.TienDauca = Convert.ToDecimal(tbx_tiendauca.Text);
-                giaoca.TienCuoiCa = Convert.ToDecimal(tbx_tongtien.Text);
-                giaoca.ThoiGianKetCa = DateTime.Now;
-                giaoca.SoHoaDon = Convert.ToInt32(tbx_soluonghoadon.Text);
-                giaoca.Tongtienhang = Convert.ToDecimal(tbx_tongtienhang.Text);
-                giaoca.Tienmat = Convert.ToDecimal(tbx_trabangtienmat.Text);
-                giaoca.Nganhang = Convert.ToDecimal(tbx_trabangnganhang.Text);
-                giaoca.TienSDDiem = tbx_tiensddiem.Text == "" ? 0 : Convert.ToDecimal(tbx_tiensddiem.Text);
-                giaoca.TongTienMat = Convert.ToDecimal(tbx_ttienmatcuoica.Text);
-                giaoca.TrangThai = 0;
-                MessageBox.Show(_iQLGiaoCaServices.Update(giaoca), "Thông báo");
+                MessageBox.Show(ex.Message);
             }
         }
 
