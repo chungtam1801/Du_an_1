@@ -13,6 +13,7 @@ using _2.BUS.ViewModels;
 using _1.DAL.DomainClass;
 using _1.DAL.IRepositories;
 using _1.DAL.Repositories;
+using System.Text.RegularExpressions;
 /*Tran văn lam thay frm_KhachHang thành frm_KhachHang1*/
 
 namespace _3.PL.Views
@@ -20,11 +21,17 @@ namespace _3.PL.Views
     public partial class Frm_KhachHang1 : Form
     {
         private IQLKhachHangServices _IqlKhachHangServices;
+        private IQLLichSuTichDiemServices _IqlLichSuTichDiemServices;
+        private IQLHoaDonServices _IqlHoaDonServices;
+        private IQLQuyDoiDiemServices _IqlQuyDoiDiemServices;
         private Guid _id;
         public Frm_KhachHang1()
         {
             InitializeComponent();
             _IqlKhachHangServices = new QLKhachHangServices();
+            _IqlHoaDonServices =new QLHoaDonServices(); 
+            _IqlQuyDoiDiemServices = new QLQuyDoiDiemServices();
+            _IqlLichSuTichDiemServices=new QLLichSuTichDiemServices();
             int widthScreen = Screen.PrimaryScreen.WorkingArea.Width;
             int heightScreen = Screen.PrimaryScreen.WorkingArea.Height;
 
@@ -87,6 +94,7 @@ namespace _3.PL.Views
             kh_ngaysinh.Value = kh.NgaySinh;
             kh_diachi.Text = kh.DiaChi;
             kh_sdt.Text = kh.Sdt;
+
             //Tam Sua
             kh_diemtich.Text = kh.DiemTich.ToString();
             //
@@ -98,6 +106,7 @@ namespace _3.PL.Views
             {
                 radioButton2.Checked = false;
             }
+            LoadLSTD(new Guid(dtg_kh.CurrentRow.Cells[1].Value.ToString()));
         }
         private KhachHang GetDataFormGui()
         {
@@ -111,8 +120,9 @@ namespace _3.PL.Views
             kh.DiaChi = kh_diachi.Text;
             kh.Sdt = kh_sdt.Text;
             //Tam sua
-            kh.DiemTich = Convert.ToInt32(kh_diemtich.Text);
+            // kh.DiemTich = Convert.ToInt32(kh_diemtich.Text);
             //
+            kh.DiemTich = 0;
             if (radioButton1.Checked == true)
             {
                 kh.TrangThai = 1;
@@ -123,6 +133,13 @@ namespace _3.PL.Views
             }
             return kh;
 
+        }
+        public static bool IsValidVietNamPhoneNumber(string phoneNum)
+        {
+            if (string.IsNullOrEmpty(phoneNum))
+                return false;
+            string sMailPattern = @"^((0(\d){9}))$";
+            return Regex.IsMatch(phoneNum.Trim(), sMailPattern);
         }
 
         private void btn_them_Click(object sender, EventArgs e)
@@ -153,7 +170,7 @@ namespace _3.PL.Views
                 {
                     MessageBox.Show("SDT khách hàng không được bỏ trống!");
                 }
-                else if (kh_sdt.Text.Trim().Count() != 10)
+                else if (IsValidVietNamPhoneNumber(kh_sdt.Text) == true && kh_sdt.Text.Trim().Count() != 10)
                 {
                     MessageBox.Show("SDT khách hàng không hợp lệ !");
                 }
@@ -221,7 +238,7 @@ namespace _3.PL.Views
             dtg_kh.Columns[10].Name = "Điểm tích";
             dtg_kh.Columns[11].Name = "Trạng thái";
             int stt = 1;
-            var tk = _IqlKhachHangServices.GetAll().Where(x => x.Ten.Contains(tk_timkiem.Text)).ToList();
+            var tk = _IqlKhachHangServices.GetAll().Where(x => x.Ma.Contains(tk_timkiem.Text)).ToList();
             foreach (var x in tk)
             {
                 dtg_kh.Rows.Add(stt++, x.Id, x.Ma, x.Ten, x.TenDem, x.Ho, string.Concat(x.Ho, " ", x.TenDem, " ", x.Ten), x.NgaySinh, x.Sdt, x.DiaChi, x.DiemTich, x.TrangThai == 1 ? "Hoạt động" : "Không hoạt động");
@@ -243,6 +260,27 @@ namespace _3.PL.Views
         private void Frm_KhachHang1_Load(object sender, EventArgs e)
         {
             LoadKH();
+        }
+        private void LoadLSTD(Guid idkh)
+        {
+            dtg_xemtd.Rows.Clear();
+            dtg_xemtd.ColumnCount = 7;
+            dtg_xemtd.Columns[0].Name = "STT";
+            dtg_xemtd.Columns[1].Name = "Id";
+            dtg_xemtd.Columns[1].Visible = false;
+            dtg_xemtd.Columns[2].Name = "Tên KH";
+            dtg_xemtd.Columns[3].Name = "Số ĐT";
+            dtg_xemtd.Columns[4].Name = "Mã HD";
+            dtg_xemtd.Columns[5].Name = "Ngày Thay Đổi";
+            dtg_xemtd.Columns[6].Name = "Điểm";
+           
+            int stt = 1;
+            dtg_xemtd.Rows.Clear();
+            foreach (var x in _IqlLichSuTichDiemServices.GetAllView(idkh))
+            {
+                dtg_xemtd.Rows.Add(stt++, x.Id, x.Ten, x.Sdt, x.MaHD, x.NgayThayDoi, x.Diem);
+            }
+
         }
         private string MaTuSinh()
         {

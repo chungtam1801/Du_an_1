@@ -222,11 +222,12 @@
             // dtg_kh
             // 
             this.dtg_kh.AllowUserToOrderColumns = true;
+            this.dtg_kh.AllowUserToResizeColumns = false;
             this.dtg_kh.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtg_kh.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dtg_kh.BackgroundColor = System.Drawing.Color.White;
             this.dtg_kh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtg_kh.Location = new System.Drawing.Point(14, 119);
+            this.dtg_kh.Location = new System.Drawing.Point(14, 127);
             this.dtg_kh.Name = "dtg_kh";
             this.dtg_kh.RowHeadersWidth = 51;
             this.dtg_kh.RowTemplate.Height = 29;

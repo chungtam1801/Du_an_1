@@ -297,7 +297,6 @@ namespace _3.PL.Views
             cmb_timkiem.Text = "";
             cmb_thanhphan.Text = "";
             cmb_loc.Text = "";
-            cmb_khuyenmai.Text = "";
             cmb_sp.Text = "";
             cmb_nsx.Text = "";
             cmb_mausac.Text = "";

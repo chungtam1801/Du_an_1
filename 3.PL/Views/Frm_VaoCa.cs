@@ -14,13 +14,14 @@ using _1.DAL.DomainClass;
 
 namespace _3.PL.Views
 {
-    public partial class Frm_QLVaoCa : Form
+    public partial class Frm_VaoCa : Form
     {
         public Frm_Main frm_Main { get; set; }
         private IQLGiaoCaServices _iQLGiaoCaServices;
         private IQLNhanVienServices _iQLNhanVienServices;
+        private DateTime _thoigian;
         public NhanVien _nhanVien { get; set; }
-        public Frm_QLVaoCa(NhanVien nv)
+        public Frm_VaoCa(NhanVien nv)
         {
             InitializeComponent();
             _iQLGiaoCaServices = new QLGiaoCaServices();
@@ -29,8 +30,6 @@ namespace _3.PL.Views
             this.BringToFront();
             tbx_lydochenhlech.Enabled = false;
             lbl_nhanvien.Text = nv.Ma;
-            tbx_lydochenhlech.Visible = false;
-            groupBox1.Visible = false;
             lbl_giovaoca.Text = Convert.ToString(DateTime.Now);
             tbx_sl500.Text = "0";
             tbx_sl200.Text = "0";
@@ -57,53 +56,43 @@ namespace _3.PL.Views
             }
             else
             {
-                // Lấy thời gian kết thúc ca gần nhất và không phải ca cuối cùng
                 List<GiaoCa> ca = _iQLGiaoCaServices.GetAll().OrderByDescending(c => c.ThoiGianKetCa).ToList();
-
                 if (ca[0].IdNguoiGiaoCa != null)
                 {
-                    DateTime thoigian = Convert.ToDateTime(ca[0].ThoiGianKetCa);
-
-                    if (DateTime.Now.Day == thoigian.Day)
+                    _thoigian = Convert.ToDateTime(ca[0].ThoiGianKetCa);
+                    if (DateTime.Now.Day == _thoigian.Day)
                     {
                         string tien = string.Format("{0:0,00}", ca[0].TienCuoiCa);
-                        lbl_tongtien.Text = tien;
-                        tbx_sl500.Enabled = false;
-                        tbx_sl200.Enabled = false;
-                        tbx_sl100.Enabled = false;
-                        tbx_sl50.Enabled = false;
-                        tbx_sl20.Enabled = false;
-                        tbx_sl10.Enabled = false;
-                        tbx_sl5.Enabled = false;
-                        tbx_sl2.Enabled = false;
-                        tbx_sl1.Enabled = false;
-                        tbx_lydochenhlech.Visible = true;
-                        groupBox1.Visible = true;
-                        tbx_lydochenhlech.Text = (ca[0].GhiChu).ToString();
+                        lbl_tongtiencatruoc.Text = tien;
+                        tbx_lydochenhlech.Enabled = true;
                     }
                     else
                     {
-                        lbl_tongtien.Text = "0";
+                        lbl_tongtiencatruoc.Text = "000";
                     }
-
                 }
             }
         }
         private void btn_luu_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(lbl_tongtien.Text) || lbl_tongtien.Text == "0")
+            if (lbl_tongtien.Text == "000")
             {
                 MessageBox.Show("Chưa nhập tiền vào ca");
             }
+            else if (lbl_tongtiencatruoc.Text != lbl_tongtien.Text && String.IsNullOrEmpty(tbx_lydochenhlech.Text) == true && DateTime.Now.Day == _thoigian.Day)
+            {
+                MessageBox.Show("Có tiền chênh lệch đầu ca với tiền ca trước, nhập lý do");
+            }
             else
             {
-                GiaoCa giaoca = new GiaoCa();
-                giaoca.IdNguoiNhanCa = _iQLNhanVienServices.GetAll().First(c => c.Ma == lbl_nhanvien.Text).Id;
-                giaoca.TienDauca = Convert.ToDecimal(lbl_tongtien.Text);
-                giaoca.ThoiGianVaoCa = Convert.ToDateTime(lbl_giovaoca.Text);
-                giaoca.GhiChu = tbx_lydochenhlech.Text;
                 if (DialogResult.OK == MessageBox.Show("Bạn có chắc chắn muốn vào ca?", "", MessageBoxButtons.OKCancel))
                 {
+                    GiaoCa giaoca = new GiaoCa();
+                    giaoca.IdNguoiNhanCa = _iQLNhanVienServices.GetAll().First(c => c.Ma == lbl_nhanvien.Text).Id;
+                    giaoca.TienDauca = Convert.ToDecimal(lbl_tongtien.Text);
+                    giaoca.ThoiGianVaoCa = Convert.ToDateTime(lbl_giovaoca.Text);
+                    giaoca.GhiChu = tbx_lydochenhlech.Text;
+                    giaoca.TrangThai = 0;
                     MessageBox.Show(_iQLGiaoCaServices.Add(giaoca), "Thông báo");
                     frm_Main.lbl_tientaiquay.Text = lbl_tongtien.Text;
                     this.Close();
