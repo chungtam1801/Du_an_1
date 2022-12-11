@@ -29,17 +29,24 @@ namespace _3.PL.Views
 
         private void LoadData()
         {
-            ShowDataChatLieu.Rows.Clear();
-            ShowDataChatLieu.ColumnCount = 4;
-            ShowDataChatLieu.Columns[0].Name = "ID";
-            ShowDataChatLieu.Columns[0].Visible = false;
-            ShowDataChatLieu.Columns[1].Name = "Mã";
-            ShowDataChatLieu.Columns[2].Name = "Ten";
-            ShowDataChatLieu.Columns[3].Name = "Trạng thái";
-
-            foreach (var x in qLChatLieuServices.GetAll())
+            try
             {
-                ShowDataChatLieu.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng");
+                ShowDataChatLieu.Rows.Clear();
+                ShowDataChatLieu.ColumnCount = 4;
+                ShowDataChatLieu.Columns[0].Name = "ID";
+                ShowDataChatLieu.Columns[0].Visible = false;
+                ShowDataChatLieu.Columns[1].Name = "Mã";
+                ShowDataChatLieu.Columns[2].Name = "Ten";
+                ShowDataChatLieu.Columns[3].Name = "Trạng thái";
+
+                foreach (var x in qLChatLieuServices.GetAll())
+                {
+                    ShowDataChatLieu.Rows.Add(x.Id, x.Ma, x.Ten, x.TrangThai == 1 ? "Còn hàng" : "Hết hàng");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     
@@ -67,6 +74,9 @@ namespace _3.PL.Views
 
         private void btn_them_Click(object sender, EventArgs e)
         {
+            try 
+            { 
+
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn thêm không?", "", MessageBoxButtons.YesNo))
             {
                 if (qLChatLieuServices.GetAll().Any(p => p.Ma == tbt_Ma.Text))
@@ -99,11 +109,17 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Them that bai");
             }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-
+            try
+            { 
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn sửa không?", "", MessageBoxButtons.YesNo))
             {
 
@@ -126,10 +142,17 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Sửa  that bai");
             }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
+            try
+            {
             if (DialogResult.Yes == MessageBox.Show("Bạn có muốn xóa không?", "", MessageBoxButtons.YesNo))
             {
                 if (tbt_Ma.Text.Trim() == "")
@@ -150,7 +173,11 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Xoa that bai");
             }
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btn_clear_Click(object sender, EventArgs e)
@@ -163,7 +190,9 @@ namespace _3.PL.Views
         }
 
         private void ShowDataChatLieu_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
+        {try
+            { 
+            
             int rowIndex = e.RowIndex;
             if (rowIndex >= 0 && rowIndex < qLChatLieuServices.GetAll().Count)
             {
@@ -186,10 +215,18 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Ngoài phạm vi dữ liệu");
             }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void tbt_timkiem_TextChanged(object sender, EventArgs e)
         {
+            try
+            { 
+            
             ShowDataChatLieu.Rows.Clear();
             ShowDataChatLieu.ColumnCount = 4;
             ShowDataChatLieu.Columns[0].Name = "ID";
@@ -201,6 +238,11 @@ namespace _3.PL.Views
             foreach (var item in qLChatLieuServices.GetAll().Where(x => x.Ten.ToLower().Contains(tbt_timkiem.Text.ToLower()) || x.Ma.Contains(tbt_timkiem.Text)))
             {
                 ShowDataChatLieu.Rows.Add(item.Id, item.Ma, item.Ten, item.TrangThai == 1 ? "Còn hàng" : "Hết hàng");
+            }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private string MaTuSinh()

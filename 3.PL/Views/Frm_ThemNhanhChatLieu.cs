@@ -42,6 +42,8 @@ namespace _3.PL.Views
         }
         private void btn_luu_Click_1(object sender, EventArgs e)
         {
+            try
+            { 
             if(tbx_ten.Text != "")
             {
                 ChatLieu cl = new ChatLieu();
@@ -55,12 +57,24 @@ namespace _3.PL.Views
             {
                 MessageBox.Show("Bạn chưa nhập tên chất liệu");
             }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btn_boqua_Click_1(object sender, EventArgs e)
         {
+            try
+            {
             ThemChatLieu(tbx_ten.Text);
             this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Frm_ThemNhanhChatLieu_FormClosed(object sender, FormClosedEventArgs e)
